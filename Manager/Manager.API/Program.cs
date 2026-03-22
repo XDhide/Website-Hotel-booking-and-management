@@ -57,7 +57,9 @@ builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IRoomRateRepository, RoomRateRepository>();
 builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 builder.Services.AddScoped<IServicesRepository, ServicesRepository>();
-
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<ISupportChatRepository, SupportChatRepository>();
 
 builder.Services.AddScoped<ITokenService, TokenService>();
 

@@ -59,6 +59,15 @@ namespace Manager.API.Repository
             return roomRate;
         }
 
+        public async Task<RoomRate?> GetByRoomTypeIdAsync(int roomTypeId)
+        {
+            var roomRate = await _dBContext.RoomRates
+                .Where(rr => rr.RoomTypeId == roomTypeId && rr.IsActive)
+                .OrderByDescending(rr => rr.CreateAt)
+                .FirstOrDefaultAsync();
+            return roomRate;
+        }
+
         public async Task<RoomRate?> UpdateAsync(int id, UpdateRoomRateRequestDto RoomRateDto)
         {
             var roomRate = await _dBContext.RoomRates.FirstOrDefaultAsync(s => s.Id == id);
