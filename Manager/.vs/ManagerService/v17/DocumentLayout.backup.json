@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\supportchatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\supportchatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\checkinoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\checkinoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\supportchatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\supportchatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -53,10 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\interfaces\\ibookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\interfaces\\ibookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -526,7 +526,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
@@ -543,7 +543,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "IRoomRepository.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IRoomRepository.cs",
               "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IRoomRepository.cs",
@@ -551,12 +551,11 @@
               "RelativeToolTip": "Manager.API\\Interfaces\\IRoomRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T02:55:54.696Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T02:55:54.696Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "BookingRepository.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\BookingRepository.cs",
               "RelativeDocumentMoniker": "Manager.API\\Repository\\BookingRepository.cs",
@@ -564,12 +563,11 @@
               "RelativeToolTip": "Manager.API\\Repository\\BookingRepository.cs",
               "ViewState": "AgIAADEAAAAAAAAAAAAcwGYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:09.551Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:44:09.551Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "BookingController.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\BookingController.cs",
               "RelativeDocumentMoniker": "Manager.API\\Controllers\\BookingController.cs",
@@ -577,12 +575,11 @@
               "RelativeToolTip": "Manager.API\\Controllers\\BookingController.cs",
               "ViewState": "AgIAAJ8AAAAAAAAAAAAkwLcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:08.813Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:08.813Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "RoomMapper.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\RoomMapper.cs",
               "RelativeDocumentMoniker": "Manager.API\\Mappers\\RoomMapper.cs",
@@ -590,12 +587,11 @@
               "RelativeToolTip": "Manager.API\\Mappers\\RoomMapper.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAcwB4AAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T03:06:23.285Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T03:06:23.285Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "DiscountMapper.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\DiscountMapper.cs",
               "RelativeDocumentMoniker": "Manager.API\\Mappers\\DiscountMapper.cs",
@@ -603,12 +599,11 @@
               "RelativeToolTip": "Manager.API\\Mappers\\DiscountMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:46:25.938Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:46:25.938Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Manager.API\\Controllers\\AccountController.cs",
@@ -616,12 +611,11 @@
               "RelativeToolTip": "Manager.API\\Controllers\\AccountController.cs",
               "ViewState": "AgIAAGIAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:07.778Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:07.778Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "SupportChatController.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\SupportChatController.cs",
               "RelativeDocumentMoniker": "Manager.API\\Controllers\\SupportChatController.cs",
@@ -634,72 +628,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UpdateRoomRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T02:59:57.073Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "RoomRateRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRateRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Repository\\RoomRateRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRateRepository.cs",
-              "RelativeToolTip": "Manager.API\\Repository\\RoomRateRepository.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwDoAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T03:24:44.295Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "BookingMapper.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\BookingMapper.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Mappers\\BookingMapper.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\BookingMapper.cs",
-              "RelativeToolTip": "Manager.API\\Mappers\\BookingMapper.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAA5wCgAAABOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:31.451Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "RoomRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Repository\\RoomRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRepository.cs",
-              "RelativeToolTip": "Manager.API\\Repository\\RoomRepository.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAIwD8AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T03:24:30.079Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "IBookingRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IBookingRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IBookingRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IBookingRepository.cs",
-              "RelativeToolTip": "Manager.API\\Interfaces\\IBookingRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:18.507Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 0,
               "Title": "DiscountController.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\DiscountController.cs",
               "RelativeDocumentMoniker": "Manager.API\\Controllers\\DiscountController.cs",
@@ -711,6 +640,70 @@
               "EditorCaption": ""
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UpdateRoomRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T02:59:57.073Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RoomRateRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRateRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Repository\\RoomRateRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRateRepository.cs",
+              "RelativeToolTip": "Manager.API\\Repository\\RoomRateRepository.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwDoAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T03:24:44.295Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "BookingMapper.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\BookingMapper.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Mappers\\BookingMapper.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\BookingMapper.cs",
+              "RelativeToolTip": "Manager.API\\Mappers\\BookingMapper.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAA5wCgAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:43:31.451Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RoomRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Repository\\RoomRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRepository.cs",
+              "RelativeToolTip": "Manager.API\\Repository\\RoomRepository.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAIwD8AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T03:24:30.079Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IBookingRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IBookingRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IBookingRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IBookingRepository.cs",
+              "RelativeToolTip": "Manager.API\\Interfaces\\IBookingRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:43:18.507Z"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 14,
               "Title": "RoomController.cs",
@@ -720,8 +713,7 @@
               "RelativeToolTip": "Manager.API\\Controllers\\RoomController.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAwwDUAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T03:40:34.443Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T03:40:34.443Z"
             },
             {
               "$type": "Document",
@@ -733,8 +725,7 @@
               "RelativeToolTip": "Manager.API\\Controllers\\ReportController.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAswDoAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:49.242Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:49.242Z"
             },
             {
               "$type": "Document",
@@ -746,8 +737,7 @@
               "RelativeToolTip": "Manager.API\\Controllers\\ProfileController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:47.797Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:47.797Z"
             },
             {
               "$type": "Document",
@@ -759,8 +749,7 @@
               "RelativeToolTip": "Manager.API\\Controllers\\PaymentController.cs",
               "ViewState": "AgIAAB0AAAAAAAAAAADgv6UAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:46.574Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:46.574Z"
             },
             {
               "$type": "Document",
@@ -772,8 +761,7 @@
               "RelativeToolTip": "Manager.API\\Controllers\\LostItemController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:45.385Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:45.385Z"
             },
             {
               "$type": "Document",
@@ -785,8 +773,7 @@
               "RelativeToolTip": "Manager.API\\Controllers\\IncidentController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:38.47Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:38.47Z"
             },
             {
               "$type": "Document",
@@ -798,8 +785,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Booking\\UpdateBookingDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:23.439Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:23.439Z"
             },
             {
               "$type": "Document",
@@ -811,8 +797,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Booking\\CreateBookingDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:17.901Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:17.901Z"
             },
             {
               "$type": "Document",
@@ -824,8 +809,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Booking\\CreateBookingRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:21.679Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:21.679Z"
             },
             {
               "$type": "Document",
@@ -837,8 +821,7 @@
               "RelativeToolTip": "Manager.API\\Models\\Booking.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAmwBIAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T02:19:08.599Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T02:19:08.599Z"
             },
             {
               "$type": "Document",
@@ -850,8 +833,7 @@
               "RelativeToolTip": "Manager.API\\Controllers\\InvoiceController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:43.503Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:43.503Z"
             },
             {
               "$type": "Document",
@@ -863,8 +845,7 @@
               "RelativeToolTip": "Manager.API\\Interfaces\\IRoomRateRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T02:55:45.882Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T02:55:45.882Z"
             },
             {
               "$type": "Document",
@@ -876,8 +857,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Booking\\BookingDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:16.77Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:16.77Z"
             },
             {
               "$type": "Document",
@@ -889,8 +869,7 @@
               "RelativeToolTip": "Manager.API\\Data\\ApplicationDBContext.cs",
               "ViewState": "AgIAAHEAAAAAAAAAAAAAAJgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T02:24:24.723Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T02:24:24.723Z"
             },
             {
               "$type": "Document",
@@ -902,8 +881,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Booking\\UpdateBookingRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:24.105Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:24.105Z"
             },
             {
               "$type": "Document",
@@ -915,8 +893,7 @@
               "RelativeToolTip": "Manager.API\\Program.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAAAD0AAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T00:03:37.095Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T00:03:37.095Z"
             },
             {
               "$type": "Document",
@@ -928,8 +905,7 @@
               "RelativeToolTip": "Manager.API\\Service\\TokenService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:18.327Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:44:18.327Z"
             },
             {
               "$type": "Document",
@@ -941,8 +917,7 @@
               "RelativeToolTip": "Manager.API\\Interfaces\\ITokenService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:29.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:29.185Z"
             },
             {
               "$type": "Document",
@@ -954,8 +929,7 @@
               "RelativeToolTip": "Manager.API\\Interfaces\\ISupportChatRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:28.676Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:28.676Z"
             },
             {
               "$type": "Document",
@@ -967,8 +941,7 @@
               "RelativeToolTip": "Manager.API\\Interfaces\\IServicesRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:51:57.82Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:51:57.82Z"
             },
             {
               "$type": "Document",
@@ -980,8 +953,7 @@
               "RelativeToolTip": "Manager.API\\Interfaces\\IReviewRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:24.48Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:24.48Z"
             },
             {
               "$type": "Document",
@@ -993,8 +965,7 @@
               "RelativeToolTip": "Manager.API\\Interfaces\\IPaymentRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:23.958Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:23.958Z"
             },
             {
               "$type": "Document",
@@ -1006,8 +977,7 @@
               "RelativeToolTip": "Manager.API\\Interfaces\\IInvoiceRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:22.78Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:22.78Z"
             },
             {
               "$type": "Document",
@@ -1019,8 +989,7 @@
               "RelativeToolTip": "Manager.API\\Interfaces\\IIncidentRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:22.226Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:22.226Z"
             },
             {
               "$type": "Document",
@@ -1032,8 +1001,7 @@
               "RelativeToolTip": "Manager.API\\Interfaces\\IDiscountRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:54:16.206Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:54:16.206Z"
             },
             {
               "$type": "Document",
@@ -1045,8 +1013,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\RoomType\\UpdateRoomTypeRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T01:00:53.632Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T01:00:53.632Z"
             },
             {
               "$type": "Document",
@@ -1058,8 +1025,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\RoomType\\RoomTypeDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T00:31:01.432Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T00:31:01.432Z"
             },
             {
               "$type": "Document",
@@ -1071,8 +1037,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\RoomType\\CreateRoomTypeRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T00:56:23.272Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T00:56:23.272Z"
             },
             {
               "$type": "Document",
@@ -1084,8 +1049,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Review\\UpdateReviewDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:00.049Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:00.049Z"
             },
             {
               "$type": "Document",
@@ -1097,8 +1061,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Review\\ReviewDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:59.436Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:59.436Z"
             },
             {
               "$type": "Document",
@@ -1110,8 +1073,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Review\\CreateReviewDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:58.69Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:58.69Z"
             },
             {
               "$type": "Document",
@@ -1123,8 +1085,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Report\\RevenueReportDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:55.61Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:55.61Z"
             },
             {
               "$type": "Document",
@@ -1136,8 +1097,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Profile\\UpdateProfileRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:53.123Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:53.123Z"
             },
             {
               "$type": "Document",
@@ -1149,8 +1109,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Profile\\ChangePasswordDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:52.226Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:52.226Z"
             },
             {
               "$type": "Document",
@@ -1162,8 +1121,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Payment\\SplitInvoiceRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:47.457Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:47.457Z"
             },
             {
               "$type": "Document",
@@ -1175,8 +1133,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Payment\\PaymentDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:46:20.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:46:20.047Z"
             },
             {
               "$type": "Document",
@@ -1188,8 +1145,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Payment\\MergeInvoicesRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:46.84Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:46.84Z"
             },
             {
               "$type": "Document",
@@ -1201,8 +1157,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Payment\\CreatePaymentRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:46.161Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:46.161Z"
             },
             {
               "$type": "Document",
@@ -1214,8 +1169,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\LostItem\\UpdateLostItemDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:40.695Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:40.695Z"
             },
             {
               "$type": "Document",
@@ -1227,8 +1181,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\LostItem\\LostItemDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:40.031Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:40.031Z"
             },
             {
               "$type": "Document",
@@ -1240,8 +1193,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\LostItem\\CreateLostItemDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:39.204Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:39.204Z"
             },
             {
               "$type": "Document",
@@ -1253,8 +1205,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Invoice\\UpdateInvoiceDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:37.606Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:37.606Z"
             },
             {
               "$type": "Document",
@@ -1266,8 +1217,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Invoice\\InvoiceDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:36.916Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:36.916Z"
             },
             {
               "$type": "Document",
@@ -1279,8 +1229,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Invoice\\CreateIncoiceDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:36.314Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:36.314Z"
             },
             {
               "$type": "Document",
@@ -1292,8 +1241,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Incident\\UpdateIncidentDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:34.412Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:34.412Z"
             },
             {
               "$type": "Document",
@@ -1305,8 +1253,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Incident\\IncidentDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:33.364Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:33.364Z"
             },
             {
               "$type": "Document",
@@ -1318,8 +1265,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Incident\\CreateIncidentDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:32.596Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:32.596Z"
             },
             {
               "$type": "Document",
@@ -1331,8 +1277,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Discount\\UpdateDiscountRequetsDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:45:38.108Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:45:38.108Z"
             },
             {
               "$type": "Document",
@@ -1344,8 +1289,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Discount\\DiscountDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:37:05.996Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:37:05.996Z"
             },
             {
               "$type": "Document",
@@ -1357,8 +1301,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Discount\\CreateDiscountRequetsDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:45:28.613Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:45:28.613Z"
             },
             {
               "$type": "Document",
@@ -1370,8 +1313,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\CheckInOut\\TransferRoomRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:27.4Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:27.4Z"
             },
             {
               "$type": "Document",
@@ -1383,8 +1325,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\CheckInOut\\ExtendBookingRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:26.543Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:26.543Z"
             },
             {
               "$type": "Document",
@@ -1396,8 +1337,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\CheckInOut\\CheckOutRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:25.859Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:25.859Z"
             },
             {
               "$type": "Document",
@@ -1409,8 +1349,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\CheckInOut\\CheckInRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:25.057Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:25.057Z"
             },
             {
               "$type": "Document",
@@ -1422,8 +1361,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Account\\RegisterDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:14.672Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:14.672Z"
             },
             {
               "$type": "Document",
@@ -1435,8 +1373,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Account\\NewUserDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:14.064Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:14.064Z"
             },
             {
               "$type": "Document",
@@ -1448,8 +1385,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Account\\LoginDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:13.442Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:13.442Z"
             },
             {
               "$type": "Document",
@@ -1461,8 +1397,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Account\\AssignRoleDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:12.406Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:42:12.406Z"
             },
             {
               "$type": "Document",
@@ -1474,8 +1409,7 @@
               "RelativeToolTip": "Manager.API\\Controllers\\ServiceController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:54.734Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:54.734Z"
             },
             {
               "$type": "Document",
@@ -1487,8 +1421,7 @@
               "RelativeToolTip": "Manager.API\\Controllers\\RoomTypeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T00:24:11.79Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T00:24:11.79Z"
             },
             {
               "$type": "Document",
@@ -1500,8 +1433,7 @@
               "RelativeToolTip": "Manager.API\\Repository\\SupportChatRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:16.462Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:44:16.462Z"
             },
             {
               "$type": "Document",
@@ -1513,8 +1445,7 @@
               "RelativeToolTip": "Manager.API\\Repository\\ReviewRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:13.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:44:13.781Z"
             },
             {
               "$type": "Document",
@@ -1526,8 +1457,7 @@
               "RelativeToolTip": "Manager.API\\Repository\\LostItemRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:13.219Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:44:13.219Z"
             },
             {
               "$type": "Document",
@@ -1539,8 +1469,7 @@
               "RelativeToolTip": "Manager.API\\Repository\\InvoiceRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:11.772Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:44:11.772Z"
             },
             {
               "$type": "Document",
@@ -1552,8 +1481,7 @@
               "RelativeToolTip": "Manager.API\\Repository\\IncidentRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:11.211Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:44:11.211Z"
             },
             {
               "$type": "Document",
@@ -1565,8 +1493,7 @@
               "RelativeToolTip": "Manager.API\\Models\\SupportChat.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:07.676Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:44:07.676Z"
             },
             {
               "$type": "Document",
@@ -1578,8 +1505,7 @@
               "RelativeToolTip": "Manager.API\\Repository\\ServicesRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:56:01.11Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:56:01.11Z"
             },
             {
               "$type": "Document",
@@ -1591,8 +1517,7 @@
               "RelativeToolTip": "Manager.API\\Models\\Payment.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:03.714Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:44:03.714Z"
             },
             {
               "$type": "Document",
@@ -1604,8 +1529,7 @@
               "RelativeToolTip": "Manager.API\\Models\\Invoice.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T02:21:43.164Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T02:21:43.164Z"
             },
             {
               "$type": "Document",
@@ -1617,8 +1541,7 @@
               "RelativeToolTip": "Manager.API\\Models\\Inccident.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T02:23:51.175Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T02:23:51.175Z"
             },
             {
               "$type": "Document",
@@ -1630,8 +1553,7 @@
               "RelativeToolTip": "Manager.API\\Models\\Discount.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:29:20.271Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:29:20.271Z"
             },
             {
               "$type": "Document",
@@ -1643,8 +1565,7 @@
               "RelativeToolTip": "Manager.API\\Models\\InvoiceService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T02:22:12.905Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T02:22:12.905Z"
             },
             {
               "$type": "Document",
@@ -1656,8 +1577,7 @@
               "RelativeToolTip": "Manager.API\\Models\\Review.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T02:23:23.541Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T02:23:23.541Z"
             },
             {
               "$type": "Document",
@@ -1669,8 +1589,7 @@
               "RelativeToolTip": "Manager.API\\Models\\RoomRate.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-07T11:30:14.64Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-07T11:30:14.64Z"
             },
             {
               "$type": "Document",
@@ -1682,8 +1601,7 @@
               "RelativeToolTip": "Manager.API\\Models\\Rooms.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-07T11:27:03.643Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-07T11:27:03.643Z"
             },
             {
               "$type": "Document",
@@ -1695,8 +1613,7 @@
               "RelativeToolTip": "Manager.API\\Repository\\DiscountRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAUwBIAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T08:01:25.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T08:01:25.184Z"
             },
             {
               "$type": "Document",
@@ -1708,8 +1625,7 @@
               "RelativeToolTip": "Manager.API\\Models\\BookingService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:48.618Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:48.618Z"
             },
             {
               "$type": "Document",
@@ -1721,8 +1637,7 @@
               "RelativeToolTip": "Manager.API\\Models\\ChatMessage.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:58.789Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:58.789Z"
             },
             {
               "$type": "Document",
@@ -1734,8 +1649,7 @@
               "RelativeToolTip": "Manager.API\\Models\\RoomType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-07T11:29:29.226Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-07T11:29:29.226Z"
             },
             {
               "$type": "Document",
@@ -1747,8 +1661,7 @@
               "RelativeToolTip": "Manager.API\\Models\\Services.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:21:37.065Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:21:37.065Z"
             },
             {
               "$type": "Document",
@@ -1760,8 +1673,7 @@
               "RelativeToolTip": "Manager.API\\Models\\AppUser.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:47.572Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:47.572Z"
             },
             {
               "$type": "Document",
@@ -1773,8 +1685,7 @@
               "RelativeToolTip": "Manager.API\\Migrations\\ApplicationDBContextModelSnapshot.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:45.402Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:45.402Z"
             },
             {
               "$type": "Document",
@@ -1786,8 +1697,7 @@
               "RelativeToolTip": "Manager.API\\Migrations\\20260321022916_AddLanFeatures.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:44.758Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:44.758Z"
             },
             {
               "$type": "Document",
@@ -1799,8 +1709,7 @@
               "RelativeToolTip": "Manager.API\\Models\\LostItem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T02:22:37.806Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-21T02:22:37.806Z"
             },
             {
               "$type": "Document",
@@ -1812,8 +1721,7 @@
               "RelativeToolTip": "Manager.API\\Migrations\\20260224094147_SeedRole.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:44.167Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:44.167Z"
             },
             {
               "$type": "Document",
@@ -1825,8 +1733,7 @@
               "RelativeToolTip": "Manager.API\\Migrations\\20260224092316_Identity.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:43.093Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:43.093Z"
             },
             {
               "$type": "Document",
@@ -1838,8 +1745,7 @@
               "RelativeToolTip": "Manager.API\\Migrations\\20260224032210_init.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:40.959Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:40.959Z"
             },
             {
               "$type": "Document",
@@ -1851,8 +1757,7 @@
               "RelativeToolTip": "Manager.API\\Mappers\\SupportChatMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:39.336Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:39.336Z"
             },
             {
               "$type": "Document",
@@ -1864,8 +1769,7 @@
               "RelativeToolTip": "Manager.API\\Mappers\\ReviewMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:36.19Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:36.19Z"
             },
             {
               "$type": "Document",
@@ -1877,8 +1781,7 @@
               "RelativeToolTip": "Manager.API\\Mappers\\PaymentMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:35.644Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:35.644Z"
             },
             {
               "$type": "Document",
@@ -1890,8 +1793,7 @@
               "RelativeToolTip": "Manager.API\\Mappers\\LostItemMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:35.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:35.026Z"
             },
             {
               "$type": "Document",
@@ -1903,8 +1805,7 @@
               "RelativeToolTip": "Manager.API\\Mappers\\InvoiceMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:34.477Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:34.477Z"
             },
             {
               "$type": "Document",
@@ -1916,8 +1817,7 @@
               "RelativeToolTip": "Manager.API\\Mappers\\IncidentMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:33.812Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:33.812Z"
             },
             {
               "$type": "Document",
@@ -1929,8 +1829,7 @@
               "RelativeToolTip": "Manager.API\\Mappers\\RoomRateMapper.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAYwBoAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T03:06:40.555Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T03:06:40.555Z"
             },
             {
               "$type": "Document",
@@ -1942,8 +1841,7 @@
               "RelativeToolTip": "Manager.API\\Mappers\\RoomTypeMapper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T00:32:35.28Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T00:32:35.28Z"
             },
             {
               "$type": "Document",
@@ -1955,8 +1853,7 @@
               "RelativeToolTip": "Manager.API\\Mappers\\ServicesMapper.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAiwBUAAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:46:16.768Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:46:16.768Z"
             },
             {
               "$type": "Document",
@@ -1968,8 +1865,7 @@
               "RelativeToolTip": "Manager.API\\Interfaces\\ILostItemRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:23.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:23.369Z"
             },
             {
               "$type": "Document",
@@ -1981,8 +1877,7 @@
               "RelativeToolTip": "Manager.API\\Interfaces\\IRoomTypeRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T00:38:36.086Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T00:38:36.086Z"
             },
             {
               "$type": "Document",
@@ -1994,8 +1889,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\SupportChat\\SupportChatDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:14.855Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:14.855Z"
             },
             {
               "$type": "Document",
@@ -2007,8 +1901,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\SupportChat\\SendMessageRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:14.213Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:14.213Z"
             },
             {
               "$type": "Document",
@@ -2020,8 +1913,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\SupportChat\\ChatMessageDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:13.669Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:43:13.669Z"
             },
             {
               "$type": "Document",
@@ -2033,8 +1925,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\RoomRate\\UpdateRoomRateRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T02:59:07.876Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T02:59:07.876Z"
             },
             {
               "$type": "Document",
@@ -2046,8 +1937,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\RoomRate\\RoomRateDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T02:57:19.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T02:57:19.469Z"
             },
             {
               "$type": "Document",
@@ -2059,8 +1949,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Services\\CreateServicesRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:44:36.723Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:44:36.723Z"
             },
             {
               "$type": "Document",
@@ -2072,8 +1961,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Services\\ServicesDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:37:24.208Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:37:24.208Z"
             },
             {
               "$type": "Document",
@@ -2085,8 +1973,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Services\\UpdateServicesRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:44:49.535Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T07:44:49.535Z"
             },
             {
               "$type": "Document",
@@ -2098,8 +1985,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\RoomRate\\CreateRoomRateRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T02:58:47.343Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T02:58:47.343Z"
             },
             {
               "$type": "Document",
@@ -2111,8 +1997,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Room\\RoomDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T02:59:25.051Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T02:59:25.051Z"
             },
             {
               "$type": "Document",
@@ -2124,8 +2009,7 @@
               "RelativeToolTip": "Manager.API\\Dtos\\Room\\CreateRoomRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T02:59:34.39Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T02:59:34.39Z"
             },
             {
               "$type": "Document",
@@ -2137,8 +2021,7 @@
               "RelativeToolTip": "Manager.API\\Controllers\\ReviewController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:50.183Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:50.183Z"
             },
             {
               "$type": "Document",
@@ -2151,10 +2034,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-03-21T02:39:47.981Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
             },
             {
               "$type": "Document",

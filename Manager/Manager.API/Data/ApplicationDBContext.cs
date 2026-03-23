@@ -143,9 +143,9 @@ namespace Manager.API.Data
 
             List<IdentityRole> roles = new List<IdentityRole>
             {
-                new IdentityRole { Name = "Admin", NormalizedName = "ADMIN" },
-                new IdentityRole { Name = "Manager", NormalizedName = "MANAGER" },
-                new IdentityRole { Name = "Guest", NormalizedName = "GUEST" }
+                new IdentityRole {Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
+                new IdentityRole {Id = "2", Name = "Manager", NormalizedName = "MANAGER" },
+                new IdentityRole {Id = "3", Name = "Guest", NormalizedName = "GUEST" }
             };
             modelBuilder.Entity<IdentityRole>().HasData(roles);
         }

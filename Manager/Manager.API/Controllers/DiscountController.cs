@@ -1,6 +1,7 @@
 ﻿using Manager.API.Dtos.Discount;
 using Manager.API.Interfaces;
 using Manager.API.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers
@@ -17,6 +18,7 @@ namespace Manager.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> GetAll()
         {
             var discounts = await _discountRepository.GetAllAsync();
@@ -30,6 +32,7 @@ namespace Manager.API.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> GetById(int id)
         {
             var discount = await _discountRepository.GetByIdAsync(id);
@@ -40,6 +43,7 @@ namespace Manager.API.Controllers
             var discountDto = discount.ToDiscountDto();
             return Ok(discountDto);
         }
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost]
         public async Task<IActionResult> Create(CreateDiscountRequetsDto createDiscountRequestDto)
         {
@@ -48,6 +52,7 @@ namespace Manager.API.Controllers
             var discountDto = createdDiscount.ToDiscountDto();
             return CreatedAtAction(nameof(GetById), new { id = discountDto.Id }, discountDto);
         }
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> Update(int id, UpdateDiscountRequetsDto updateDiscountRequestDto)
@@ -61,6 +66,7 @@ namespace Manager.API.Controllers
             return Ok(discountDto);
 
         }
+        [Authorize(Roles = "Admin,Manager")]
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> Delete(int id)

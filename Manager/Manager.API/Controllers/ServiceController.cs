@@ -1,7 +1,8 @@
-﻿using Manager.API.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+﻿using Manager.API.Dtos.Services;
+using Manager.API.Interfaces;
 using Manager.API.Mappers;
-using Manager.API.Dtos.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers
 {
@@ -38,6 +39,7 @@ namespace Manager.API.Controllers
             return Ok(serviceDto);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Create(CreateServicesRequestDto createServiceRequestDto)
         {
             var serviceModel = createServiceRequestDto.ToServicesUpdateDto();
@@ -48,6 +50,7 @@ namespace Manager.API.Controllers
 
         [HttpPut]
         [Route("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Update(int id, UpdateServicesRequestDto updateServiceRequestDto)
         {
             var updatedService = await _servicesRepository.UpdateAsync(id, updateServiceRequestDto);
@@ -60,6 +63,7 @@ namespace Manager.API.Controllers
         }
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Delete(int id)
         {
             var deletedService = await _servicesRepository.DeleteAsync(id);

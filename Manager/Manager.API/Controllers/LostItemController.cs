@@ -1,6 +1,7 @@
 ﻿using Manager.API.Dtos.LostItem;
 using Manager.API.Interfaces;
 using Manager.API.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers
@@ -35,6 +36,7 @@ namespace Manager.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Create(CreateLostItemDto dto)
         {
             var item = dto.ToLostItem();
@@ -43,6 +45,7 @@ namespace Manager.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Update(int id, UpdateLostItemDto dto)
         {
             var updated = await _lostItemRepository.UpdateAsync(id, dto);
@@ -52,6 +55,7 @@ namespace Manager.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Delete(int id)
         {
             var deleted = await _lostItemRepository.DeleteAsync(id);

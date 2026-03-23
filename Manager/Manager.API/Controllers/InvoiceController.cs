@@ -1,6 +1,7 @@
 ﻿using Manager.API.Dtos.Invoice;
 using Manager.API.Interfaces;
 using Manager.API.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers
@@ -16,6 +17,7 @@ namespace Manager.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> GetAll()
         {
             var invoices = await _invoiceRepository.GetAllAsync();
@@ -26,6 +28,7 @@ namespace Manager.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> GetById(int id)
         {
             var invoice = await _invoiceRepository.GetByIdAsync(id);
@@ -35,6 +38,7 @@ namespace Manager.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Create(CreateInvoiceDto dto)
         {
             var invoice = dto.ToInvoice();
@@ -43,6 +47,7 @@ namespace Manager.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Update(int id, UpdateInvoiceDto dto)
         {
             var updated = await _invoiceRepository.UpdateAsync(id, dto);
@@ -52,6 +57,7 @@ namespace Manager.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Delete(int id)
         {
             var deleted = await _invoiceRepository.DeleteAsync(id);

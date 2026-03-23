@@ -1,6 +1,7 @@
 ﻿using Manager.API.Dtos.RoomRate;
 using Manager.API.Mappers;
 using Manager.API.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers
@@ -39,6 +40,7 @@ namespace Manager.API.Controllers
             return Ok(roomRateDto);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Create(int IdRoomType, CreateRoomRateRequestDto createRoomRateRequestDto)
         {
             var roomRateModel = createRoomRateRequestDto.ToCreateRoomRateDto();
@@ -48,6 +50,7 @@ namespace Manager.API.Controllers
         }
         [HttpPut]
         [Route("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Update(int id, UpdateRoomRateRequestDto updateRoomRateRequestDto)
         {
             var updatedRoomRate = await _roomRateRepository.UpdateAsync(id, updateRoomRateRequestDto);
@@ -60,6 +63,7 @@ namespace Manager.API.Controllers
         }
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Delete(int id)
         {
             var deletedRoomRate = await _roomRateRepository.DeleteAsync(id);
