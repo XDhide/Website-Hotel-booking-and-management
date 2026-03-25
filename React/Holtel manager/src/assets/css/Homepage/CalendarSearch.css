@@ -1,0 +1,138 @@
+/* src/components/CalendarSearch/CalendarSearch.css */
+
+.cs-section { background: #fff; }
+
+.cs-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 28px;
+}
+
+/* ── Panel ── */
+.cs-panel {
+  background: #f0f7ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 14px;
+  padding: 24px;
+  align-self: start;
+}
+.cs-panel-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e3a5f;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Labels & inputs ── */
+.cs-label {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 6px;
+}
+.cs-label-icon { margin-right: 6px; font-size: 13px; }
+
+.cs-input,
+.cs-select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1e3a5f;
+  background: #fff;
+  outline: none;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+.cs-input:focus,
+.cs-select:focus { border-color: #3b82f6; }
+
+/* ── Guest counter ── */
+.cs-guest-counter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.cs-counter-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #bfdbfe;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3b82f6;
+  transition: background 0.15s, color 0.15s;
+}
+.cs-counter-btn:hover { background: #3b82f6; color: #fff; }
+.cs-guest-num {
+  font-weight: 700;
+  color: #1e3a5f;
+  min-width: 24px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* ── Info box ── */
+.cs-info-box {
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+.cs-info-box.success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+.cs-info-box.warning {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+/* ── Search button ── */
+.cs-search-btn {
+  width: 100%;
+  padding: 11px 0;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.15s;
+}
+.cs-search-btn:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+/* ── Results ── */
+.cs-results { min-height: 200px; }
+.cs-no-results {
+  text-align: center;
+  color: #94a3b8;
+  padding: 60px 0;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .cs-layout { grid-template-columns: 1fr; }
+}

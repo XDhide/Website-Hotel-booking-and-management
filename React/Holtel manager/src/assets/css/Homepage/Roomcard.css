@@ -1,0 +1,225 @@
+/* src/components/Roomcard/Roomcard.css */
+
+.room-card {
+  background: #fff;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+.room-card:hover {
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.14);
+  transform: translateY(-2px);
+}
+
+/* ── Image ── */
+.rc-img-wrap {
+  position: relative;
+  height: 180px;
+  background: #e0f2fe;
+  overflow: hidden;
+}
+.room-card.compact .rc-img-wrap {
+  height: 140px;
+}
+.rc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.rc-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  background: #eff6ff;
+}
+
+/* ── Badges ── */
+.rc-badge-full {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.46);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.rc-badge-popular {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #3b82f6;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+}
+.rc-badge-discount {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Like button ── */
+.rc-like-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #94a3b8;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: color 0.2s, transform 0.15s;
+}
+.rc-like-btn:hover { transform: scale(1.15); }
+.rc-like-btn.liked { color: #ef4444; }
+
+/* ── Body ── */
+.rc-body {
+  padding: 14px 16px;
+}
+.room-card.compact .rc-body {
+  padding: 12px 14px;
+}
+.rc-type {
+  font-size: 11px;
+  color: #60a5fa;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+.rc-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e3a5f;
+  margin-bottom: 6px;
+}
+.rc-name.compact { font-size: 14px; }
+
+/* ── Stars ── */
+.star-row {
+  display: inline-flex;
+  gap: 2px;
+}
+.star-filled {
+  font-size: 13px;
+  color: #f59e0b;
+}
+.star-empty {
+  font-size: 13px;
+  color: #e5e7eb;
+}
+.rc-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.rc-rating-num {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e3a5f;
+}
+.rc-reviews {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* ── Tags ── */
+.rc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.rc-tag {
+  font-size: 11px;
+  background: #eff6ff;
+  color: #3b82f6;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  padding: 2px 7px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.rc-tag-icon { font-size: 10px; }
+
+/* ── Price row ── */
+.rc-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.rc-price-group { display: flex; flex-direction: column; }
+.rc-price {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1d4ed8;
+}
+.rc-price.compact { font-size: 15px; }
+.rc-price-unit {
+  font-size: 12px;
+  color: #64748b;
+  margin-left: 2px;
+}
+.rc-original-price {
+  font-size: 12px;
+  color: #9ca3af;
+  text-decoration: line-through;
+  margin-top: 1px;
+}
+
+/* ── Book button ── */
+.rc-book-btn {
+  padding: 7px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: opacity 0.15s, transform 0.15s;
+  white-space: nowrap;
+}
+.rc-book-btn.available {
+  background: #3b82f6;
+  color: #fff;
+  cursor: pointer;
+}
+.rc-book-btn.available:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+.rc-book-btn.disabled {
+  background: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}

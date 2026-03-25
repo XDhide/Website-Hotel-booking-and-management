@@ -1,0 +1,50 @@
+/* src/pages/Homepage.css */
+
+.homepage {
+  background: #f8faff;
+  min-height: 100vh;
+}
+
+/* ── Shared section layout ── */
+.section {
+  padding: 56px 24px;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ── Section headings ── */
+.section-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1e3a5f;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title-icon {
+  font-size: 22px;
+  color: #3b82f6;
+}
+
+.section-subtitle {
+  font-size: 15px;
+  color: #64748b;
+  margin-bottom: 32px;
+}
+
+/* ── Room grid (shared bởi TopRooms & CalendarSearch) ── */
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 480px) {
+  .section { padding: 36px 16px; }
+  .section-title { font-size: 20px; }
+  .room-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,5 @@
+/* src/components/TopRooms/TopRooms.css */
+/* Layout riêng cho TopRooms nếu cần override */
+.top-rooms-section {
+  background: #f8faff;
+}
