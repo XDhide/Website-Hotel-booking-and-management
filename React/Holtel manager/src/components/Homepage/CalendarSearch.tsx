@@ -1,4 +1,3 @@
-// src/components/CalendarSearch/CalendarSearch.tsx
 import { useState } from "react";
 import {
   CalendarOutlined,
@@ -12,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import RoomCard from "./Roomcard";
 import { ALL_ROOMS } from "./rooms";
-import "./CalendarSearch.css";
+import "../../assets/css/Homepage/CalendarSearch.css";
 
 const ROOM_TYPES = [
   { value: "all",      label: "Tất cả" },
@@ -30,7 +29,6 @@ export default function CalendarSearch() {
 
   const today = new Date().toISOString().split("T")[0];
 
-  // giả lập ngày cao điểm
   const isFullDate = checkIn === "2025-09-02";
 
   const filtered = ALL_ROOMS.filter((r) =>
@@ -50,7 +48,6 @@ export default function CalendarSearch() {
         <p className="section-subtitle">Chọn ngày và loại phòng phù hợp với bạn</p>
 
         <div className="cs-layout">
-          {/* ── Filter panel ── */}
           <div className="cs-panel">
             <h3 className="cs-panel-title">
               <FilterOutlined style={{ marginRight: 8 }} />
@@ -131,7 +128,6 @@ export default function CalendarSearch() {
             </button>
           </div>
 
-          {/* ── Results ── */}
           <div className="cs-results">
             {filtered.length === 0 ? (
               <div className="cs-no-results">Không tìm thấy phòng phù hợp.</div>

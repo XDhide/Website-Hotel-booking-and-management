@@ -3,8 +3,84 @@
   "WorkspaceRootPath": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\checkinout\\transferroomrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\checkinout\\transferroomrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\checkinout\\extendbookingrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\checkinout\\extendbookingrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\checkinout\\checkinrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\checkinout\\checkinrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\interfaces\\idiscountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\interfaces\\idiscountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\account\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\account\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\interfaces\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\interfaces\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\mappers\\paymentmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\mappers\\paymentmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\interfaces\\iservicesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\interfaces\\iservicesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\account\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\account\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\roomratecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\roomratecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\incidentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\incidentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\supportchatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,28 +91,8 @@
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\roomtypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\roomratecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\roomratecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\lostitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,10 +101,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\incidentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\incidentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\discountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -61,14 +113,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\interfaces\\iroomrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -119,10 +163,6 @@
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\booking\\createbookingrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\models\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\interfaces\\iroomraterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\interfaces\\iroomraterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -151,16 +191,8 @@
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\interfaces\\isupportchatrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\interfaces\\iservicesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\interfaces\\iservicesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\interfaces\\ireviewrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\interfaces\\ireviewrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\interfaces\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\interfaces\\ipaymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\interfaces\\iinvoicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -169,10 +201,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\interfaces\\iincidentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\interfaces\\iincidentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\interfaces\\idiscountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\interfaces\\idiscountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\roomtype\\updateroomtyperequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -275,32 +303,12 @@
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\discount\\creatediscountrequetsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\checkinout\\transferroomrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\checkinout\\transferroomrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\checkinout\\extendbookingrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\checkinout\\extendbookingrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\checkinout\\checkoutrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\checkinout\\checkoutrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\checkinout\\checkinrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\checkinout\\checkinrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\account\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\account\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\account\\newuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\account\\newuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\account\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\dtos\\account\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\dtos\\account\\assignroledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -357,10 +365,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\models\\lostitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -433,10 +437,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\mappers\\reviewmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\mappers\\reviewmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\mappers\\paymentmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\mappers\\paymentmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\mappers\\lostitemmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -526,11 +526,101 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAwwHYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:41:07.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RegisterDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\RegisterDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Account\\RegisterDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\RegisterDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Account\\RegisterDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:14.672Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IDiscountRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IDiscountRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IDiscountRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IDiscountRepository.cs",
+              "RelativeToolTip": "Manager.API\\Interfaces\\IDiscountRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T07:54:16.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ExtendBookingRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\ExtendBookingRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\CheckInOut\\ExtendBookingRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\ExtendBookingRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\CheckInOut\\ExtendBookingRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:26.543Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CheckInRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\CheckInRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\CheckInOut\\CheckInRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\CheckInRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\CheckInOut\\CheckInRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:25.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TransferRoomRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\TransferRoomRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\CheckInOut\\TransferRoomRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\TransferRoomRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\CheckInOut\\TransferRoomRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:27.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ApplicationDBContext.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Data\\ApplicationDBContext.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Data\\ApplicationDBContext.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Data\\ApplicationDBContext.cs",
+              "RelativeToolTip": "Manager.API\\Data\\ApplicationDBContext.cs",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAYwJMAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T02:24:24.723Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "PaymentController.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\PaymentController.cs",
               "RelativeDocumentMoniker": "Manager.API\\Controllers\\PaymentController.cs",
@@ -538,51 +628,23 @@
               "RelativeToolTip": "Manager.API\\Controllers\\PaymentController.cs",
               "ViewState": "AgIAAEcAAAAAAAAAAAAwwDIAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:46.574Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:46.574Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ProfileController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ProfileController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\ProfileController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ProfileController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\ProfileController.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "ServiceController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ServiceController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\ServiceController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ServiceController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\ServiceController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwBcAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:47.797Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:54.734Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ReportController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ReportController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\ReportController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ReportController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\ReportController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:49.242Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ReviewController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ReviewController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\ReviewController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ReviewController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\ReviewController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:50.183Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "RoomController.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\RoomController.cs",
               "RelativeDocumentMoniker": "Manager.API\\Controllers\\RoomController.cs",
@@ -590,436 +652,23 @@
               "RelativeToolTip": "Manager.API\\Controllers\\RoomController.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAwwEIAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T03:40:34.443Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RoomRateController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\RoomRateController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\RoomRateController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\RoomRateController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\RoomRateController.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAcwEEAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T03:40:50.896Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ServiceController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ServiceController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\ServiceController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ServiceController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\ServiceController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:54.734Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RoomTypeController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\RoomTypeController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\RoomTypeController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\RoomTypeController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\RoomTypeController.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAcwEQAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T00:24:11.79Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SupportChatController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\SupportChatController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\SupportChatController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\SupportChatController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\SupportChatController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:55.426Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "LostItemController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\LostItemController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\LostItemController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\LostItemController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\LostItemController.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAwwDkAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:45.385Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-24T03:40:34.443Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "InvoiceController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\InvoiceController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\InvoiceController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\InvoiceController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\InvoiceController.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAwwDsAAAAsAAAAAAAAAA==",
+              "Title": "ReportController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ReportController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\ReportController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ReportController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\ReportController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:43.503Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T06:41:49.242Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "IncidentController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\IncidentController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\IncidentController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\IncidentController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\IncidentController.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAwwDsAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:38.47Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "DiscountController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\DiscountController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\DiscountController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\DiscountController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\DiscountController.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAcwEQAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T08:15:05.304Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "CheckInOutController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\CheckInOutController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\CheckInOutController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\CheckInOutController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\CheckInOutController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:09.829Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "BookingController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\BookingController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\BookingController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\BookingController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\BookingController.cs",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAmwLcAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:08.813Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\AccountController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAowHYAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:07.778Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ApplicationDBContext.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Data\\ApplicationDBContext.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Data\\ApplicationDBContext.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Data\\ApplicationDBContext.cs",
-              "RelativeToolTip": "Manager.API\\Data\\ApplicationDBContext.cs",
-              "ViewState": "AgIAAH4AAAAAAAAAAAAYwJMAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T02:24:24.723Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "RoomMapper.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\RoomMapper.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Mappers\\RoomMapper.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\RoomMapper.cs",
-              "RelativeToolTip": "Manager.API\\Mappers\\RoomMapper.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAcwB4AAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T03:06:23.285Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "DiscountMapper.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\DiscountMapper.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Mappers\\DiscountMapper.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\DiscountMapper.cs",
-              "RelativeToolTip": "Manager.API\\Mappers\\DiscountMapper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:46:25.938Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "BookingRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\BookingRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Repository\\BookingRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\BookingRepository.cs",
-              "RelativeToolTip": "Manager.API\\Repository\\BookingRepository.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAcwGYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:09.551Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "IRoomRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IRoomRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IRoomRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IRoomRepository.cs",
-              "RelativeToolTip": "Manager.API\\Interfaces\\IRoomRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T02:55:54.696Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "UpdateRoomRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T02:59:57.073Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "RoomRateRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRateRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Repository\\RoomRateRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRateRepository.cs",
-              "RelativeToolTip": "Manager.API\\Repository\\RoomRateRepository.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwDoAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T03:24:44.295Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "BookingMapper.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\BookingMapper.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Mappers\\BookingMapper.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\BookingMapper.cs",
-              "RelativeToolTip": "Manager.API\\Mappers\\BookingMapper.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAA5wCgAAABOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:31.451Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "RoomRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Repository\\RoomRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRepository.cs",
-              "RelativeToolTip": "Manager.API\\Repository\\RoomRepository.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAIwD8AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T03:24:30.079Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "IBookingRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IBookingRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IBookingRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IBookingRepository.cs",
-              "RelativeToolTip": "Manager.API\\Interfaces\\IBookingRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:18.507Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "UpdateBookingDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\UpdateBookingDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Booking\\UpdateBookingDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\UpdateBookingDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Booking\\UpdateBookingDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:23.439Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "CreateBookingDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\CreateBookingDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Booking\\CreateBookingDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\CreateBookingDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Booking\\CreateBookingDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:17.901Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "CreateBookingRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\CreateBookingRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Booking\\CreateBookingRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\CreateBookingRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Booking\\CreateBookingRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:21.679Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "Booking.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Booking.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Models\\Booking.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Booking.cs",
-              "RelativeToolTip": "Manager.API\\Models\\Booking.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAmwBIAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-21T02:19:08.599Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "IRoomRateRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IRoomRateRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IRoomRateRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IRoomRateRepository.cs",
-              "RelativeToolTip": "Manager.API\\Interfaces\\IRoomRateRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T02:55:45.882Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "BookingDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\BookingDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Booking\\BookingDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\BookingDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Booking\\BookingDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:16.77Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "UpdateBookingRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\UpdateBookingRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Booking\\UpdateBookingRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\UpdateBookingRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Booking\\UpdateBookingRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:24.105Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Program.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Program.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Program.cs",
-              "RelativeToolTip": "Manager.API\\Program.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAD0AAABMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T00:03:37.095Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "TokenService.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Service\\TokenService.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Service\\TokenService.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Service\\TokenService.cs",
-              "RelativeToolTip": "Manager.API\\Service\\TokenService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:18.327Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "ITokenService.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\ITokenService.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\ITokenService.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\ITokenService.cs",
-              "RelativeToolTip": "Manager.API\\Interfaces\\ITokenService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:29.185Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "ISupportChatRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\ISupportChatRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\ISupportChatRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\ISupportChatRepository.cs",
-              "RelativeToolTip": "Manager.API\\Interfaces\\ISupportChatRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:28.676Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "IServicesRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IServicesRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IServicesRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IServicesRepository.cs",
-              "RelativeToolTip": "Manager.API\\Interfaces\\IServicesRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:51:57.82Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "IReviewRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IReviewRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IReviewRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IReviewRepository.cs",
-              "RelativeToolTip": "Manager.API\\Interfaces\\IReviewRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:24.48Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
               "Title": "IPaymentRepository.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IPaymentRepository.cs",
               "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IPaymentRepository.cs",
@@ -1031,523 +680,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "IInvoiceRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IInvoiceRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IInvoiceRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IInvoiceRepository.cs",
-              "RelativeToolTip": "Manager.API\\Interfaces\\IInvoiceRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:22.78Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "IIncidentRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IIncidentRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IIncidentRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IIncidentRepository.cs",
-              "RelativeToolTip": "Manager.API\\Interfaces\\IIncidentRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:22.226Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "IDiscountRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IDiscountRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IDiscountRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IDiscountRepository.cs",
-              "RelativeToolTip": "Manager.API\\Interfaces\\IDiscountRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:54:16.206Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "UpdateRoomTypeRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\RoomType\\UpdateRoomTypeRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\RoomType\\UpdateRoomTypeRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\RoomType\\UpdateRoomTypeRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\RoomType\\UpdateRoomTypeRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T01:00:53.632Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "RoomTypeDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\RoomType\\RoomTypeDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\RoomType\\RoomTypeDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\RoomType\\RoomTypeDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\RoomType\\RoomTypeDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T00:31:01.432Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "CreateRoomTypeRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\RoomType\\CreateRoomTypeRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\RoomType\\CreateRoomTypeRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\RoomType\\CreateRoomTypeRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\RoomType\\CreateRoomTypeRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T00:56:23.272Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "UpdateReviewDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Review\\UpdateReviewDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Review\\UpdateReviewDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Review\\UpdateReviewDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Review\\UpdateReviewDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:00.049Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "ReviewDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Review\\ReviewDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Review\\ReviewDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Review\\ReviewDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Review\\ReviewDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:59.436Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
-              "Title": "CreateReviewDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Review\\CreateReviewDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Review\\CreateReviewDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Review\\CreateReviewDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Review\\CreateReviewDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:58.69Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
-              "Title": "RevenueReportDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Report\\RevenueReportDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Report\\RevenueReportDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Report\\RevenueReportDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Report\\RevenueReportDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:55.61Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 50,
-              "Title": "UpdateProfileRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Profile\\UpdateProfileRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Profile\\UpdateProfileRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Profile\\UpdateProfileRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Profile\\UpdateProfileRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:53.123Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 51,
-              "Title": "ChangePasswordDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Profile\\ChangePasswordDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Profile\\ChangePasswordDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Profile\\ChangePasswordDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Profile\\ChangePasswordDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:52.226Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 52,
-              "Title": "SplitInvoiceRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\SplitInvoiceRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Payment\\SplitInvoiceRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\SplitInvoiceRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Payment\\SplitInvoiceRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:47.457Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 53,
-              "Title": "PaymentDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\PaymentDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Payment\\PaymentDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\PaymentDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Payment\\PaymentDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:46:20.047Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 54,
-              "Title": "MergeInvoicesRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\MergeInvoicesRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Payment\\MergeInvoicesRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\MergeInvoicesRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Payment\\MergeInvoicesRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:46.84Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 55,
-              "Title": "CreatePaymentRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\CreatePaymentRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Payment\\CreatePaymentRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\CreatePaymentRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Payment\\CreatePaymentRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:46.161Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 56,
-              "Title": "UpdateLostItemDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\LostItem\\UpdateLostItemDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\LostItem\\UpdateLostItemDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\LostItem\\UpdateLostItemDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\LostItem\\UpdateLostItemDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:40.695Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 57,
-              "Title": "LostItemDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\LostItem\\LostItemDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\LostItem\\LostItemDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\LostItem\\LostItemDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\LostItem\\LostItemDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:40.031Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 58,
-              "Title": "CreateLostItemDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\LostItem\\CreateLostItemDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\LostItem\\CreateLostItemDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\LostItem\\CreateLostItemDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\LostItem\\CreateLostItemDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:39.204Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 59,
-              "Title": "UpdateInvoiceDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Invoice\\UpdateInvoiceDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Invoice\\UpdateInvoiceDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Invoice\\UpdateInvoiceDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Invoice\\UpdateInvoiceDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:37.606Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 60,
-              "Title": "InvoiceDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Invoice\\InvoiceDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Invoice\\InvoiceDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Invoice\\InvoiceDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Invoice\\InvoiceDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:36.916Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 61,
-              "Title": "CreateIncoiceDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Invoice\\CreateIncoiceDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Invoice\\CreateIncoiceDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Invoice\\CreateIncoiceDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Invoice\\CreateIncoiceDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:36.314Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
-              "Title": "UpdateIncidentDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Incident\\UpdateIncidentDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Incident\\UpdateIncidentDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Incident\\UpdateIncidentDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Incident\\UpdateIncidentDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:34.412Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 63,
-              "Title": "IncidentDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Incident\\IncidentDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Incident\\IncidentDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Incident\\IncidentDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Incident\\IncidentDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:33.364Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 64,
-              "Title": "CreateIncidentDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Incident\\CreateIncidentDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Incident\\CreateIncidentDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Incident\\CreateIncidentDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Incident\\CreateIncidentDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:32.596Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 65,
-              "Title": "UpdateDiscountRequetsDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Discount\\UpdateDiscountRequetsDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Discount\\UpdateDiscountRequetsDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Discount\\UpdateDiscountRequetsDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Discount\\UpdateDiscountRequetsDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:45:38.108Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 66,
-              "Title": "DiscountDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Discount\\DiscountDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Discount\\DiscountDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Discount\\DiscountDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Discount\\DiscountDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:37:05.996Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 67,
-              "Title": "CreateDiscountRequetsDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Discount\\CreateDiscountRequetsDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Discount\\CreateDiscountRequetsDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Discount\\CreateDiscountRequetsDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Discount\\CreateDiscountRequetsDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:45:28.613Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 68,
-              "Title": "TransferRoomRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\TransferRoomRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\CheckInOut\\TransferRoomRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\TransferRoomRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\CheckInOut\\TransferRoomRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:27.4Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 69,
-              "Title": "ExtendBookingRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\ExtendBookingRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\CheckInOut\\ExtendBookingRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\ExtendBookingRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\CheckInOut\\ExtendBookingRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:26.543Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 70,
-              "Title": "CheckOutRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\CheckOutRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\CheckInOut\\CheckOutRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\CheckOutRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\CheckInOut\\CheckOutRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:25.859Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 71,
-              "Title": "CheckInRequestDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\CheckInRequestDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\CheckInOut\\CheckInRequestDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\CheckInRequestDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\CheckInOut\\CheckInRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:25.057Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 72,
-              "Title": "RegisterDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\RegisterDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Account\\RegisterDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\RegisterDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Account\\RegisterDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:14.672Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 73,
-              "Title": "NewUserDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\NewUserDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Account\\NewUserDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\NewUserDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Account\\NewUserDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:14.064Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 74,
-              "Title": "LoginDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\LoginDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Account\\LoginDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\LoginDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Account\\LoginDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:13.442Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 75,
-              "Title": "AssignRoleDto.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\AssignRoleDto.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Account\\AssignRoleDto.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\AssignRoleDto.cs",
-              "RelativeToolTip": "Manager.API\\Dtos\\Account\\AssignRoleDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:42:12.406Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 76,
-              "Title": "SupportChatRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\SupportChatRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Repository\\SupportChatRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\SupportChatRepository.cs",
-              "RelativeToolTip": "Manager.API\\Repository\\SupportChatRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:16.462Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 78,
-              "Title": "ReviewRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\ReviewRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Repository\\ReviewRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\ReviewRepository.cs",
-              "RelativeToolTip": "Manager.API\\Repository\\ReviewRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:13.781Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 79,
-              "Title": "LostItemRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\LostItemRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Repository\\LostItemRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\LostItemRepository.cs",
-              "RelativeToolTip": "Manager.API\\Repository\\LostItemRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:13.219Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 80,
-              "Title": "InvoiceRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\InvoiceRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Repository\\InvoiceRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\InvoiceRepository.cs",
-              "RelativeToolTip": "Manager.API\\Repository\\InvoiceRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:11.772Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 81,
-              "Title": "IncidentRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\IncidentRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Repository\\IncidentRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\IncidentRepository.cs",
-              "RelativeToolTip": "Manager.API\\Repository\\IncidentRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:11.211Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 83,
-              "Title": "SupportChat.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\SupportChat.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Models\\SupportChat.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\SupportChat.cs",
-              "RelativeToolTip": "Manager.API\\Models\\SupportChat.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:44:07.676Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 77,
-              "Title": "ServicesRepository.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\ServicesRepository.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Repository\\ServicesRepository.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\ServicesRepository.cs",
-              "RelativeToolTip": "Manager.API\\Repository\\ServicesRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-24T07:56:01.11Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 12,
               "Title": "Payment.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Payment.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\Payment.cs",
@@ -1559,7 +692,871 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
+              "DocumentIndex": 13,
+              "Title": "Booking.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Booking.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Models\\Booking.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Booking.cs",
+              "RelativeToolTip": "Manager.API\\Models\\Booking.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAmwBIAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-21T02:19:08.599Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PaymentMapper.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\PaymentMapper.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Mappers\\PaymentMapper.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\PaymentMapper.cs",
+              "RelativeToolTip": "Manager.API\\Mappers\\PaymentMapper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:43:35.644Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IServicesRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IServicesRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IServicesRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IServicesRepository.cs",
+              "RelativeToolTip": "Manager.API\\Interfaces\\IServicesRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T07:51:57.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\LoginDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Account\\LoginDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\LoginDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Account\\LoginDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:13.442Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "RoomRateController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\RoomRateController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\RoomRateController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\RoomRateController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\RoomRateController.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAcwEEAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T03:40:50.896Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "RoomTypeController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\RoomTypeController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\RoomTypeController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\RoomTypeController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\RoomTypeController.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAcwEQAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T00:24:11.79Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ReviewController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ReviewController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\ReviewController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ReviewController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\ReviewController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:41:50.183Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ProfileController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ProfileController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\ProfileController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\ProfileController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\ProfileController.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:41:47.797Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IncidentController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\IncidentController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\IncidentController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\IncidentController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\IncidentController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAwwDsAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:41:38.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "SupportChatController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\SupportChatController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\SupportChatController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\SupportChatController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\SupportChatController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:41:55.426Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "LostItemController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\LostItemController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\LostItemController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\LostItemController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\LostItemController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAwwDkAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:41:45.385Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "InvoiceController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\InvoiceController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\InvoiceController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\InvoiceController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\InvoiceController.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAwwDsAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:41:43.503Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "DiscountController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\DiscountController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\DiscountController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\DiscountController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\DiscountController.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAcwEQAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T08:15:05.304Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "CheckInOutController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\CheckInOutController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\CheckInOutController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\CheckInOutController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\CheckInOutController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:41:09.829Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "BookingController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\BookingController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\BookingController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\BookingController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\BookingController.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAmwLcAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:41:08.813Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "RoomMapper.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\RoomMapper.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Mappers\\RoomMapper.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\RoomMapper.cs",
+              "RelativeToolTip": "Manager.API\\Mappers\\RoomMapper.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAcwB4AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T03:06:23.285Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "DiscountMapper.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\DiscountMapper.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Mappers\\DiscountMapper.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\DiscountMapper.cs",
+              "RelativeToolTip": "Manager.API\\Mappers\\DiscountMapper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T07:46:25.938Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "BookingRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\BookingRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Repository\\BookingRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\BookingRepository.cs",
+              "RelativeToolTip": "Manager.API\\Repository\\BookingRepository.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAcwGYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:44:09.551Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "IRoomRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IRoomRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IRoomRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IRoomRepository.cs",
+              "RelativeToolTip": "Manager.API\\Interfaces\\IRoomRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T02:55:54.696Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "UpdateRoomRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Room\\UpdateRoomRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T02:59:57.073Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "RoomRateRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRateRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Repository\\RoomRateRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRateRepository.cs",
+              "RelativeToolTip": "Manager.API\\Repository\\RoomRateRepository.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwDoAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T03:24:44.295Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "BookingMapper.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\BookingMapper.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Mappers\\BookingMapper.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\BookingMapper.cs",
+              "RelativeToolTip": "Manager.API\\Mappers\\BookingMapper.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAA5wCgAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:43:31.451Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "RoomRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Repository\\RoomRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\RoomRepository.cs",
+              "RelativeToolTip": "Manager.API\\Repository\\RoomRepository.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAIwD8AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T03:24:30.079Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "IBookingRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IBookingRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IBookingRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IBookingRepository.cs",
+              "RelativeToolTip": "Manager.API\\Interfaces\\IBookingRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:43:18.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "UpdateBookingDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\UpdateBookingDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Booking\\UpdateBookingDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\UpdateBookingDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Booking\\UpdateBookingDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:23.439Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "CreateBookingDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\CreateBookingDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Booking\\CreateBookingDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\CreateBookingDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Booking\\CreateBookingDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:17.901Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "CreateBookingRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\CreateBookingRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Booking\\CreateBookingRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\CreateBookingRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Booking\\CreateBookingRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:21.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "IRoomRateRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IRoomRateRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IRoomRateRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IRoomRateRepository.cs",
+              "RelativeToolTip": "Manager.API\\Interfaces\\IRoomRateRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T02:55:45.882Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "BookingDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\BookingDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Booking\\BookingDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\BookingDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Booking\\BookingDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:16.77Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "UpdateBookingRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\UpdateBookingRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Booking\\UpdateBookingRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Booking\\UpdateBookingRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Booking\\UpdateBookingRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:24.105Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Program.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Program.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Program.cs",
+              "RelativeToolTip": "Manager.API\\Program.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAD0AAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T00:03:37.095Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Service\\TokenService.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Service\\TokenService.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Service\\TokenService.cs",
+              "RelativeToolTip": "Manager.API\\Service\\TokenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:44:18.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "ITokenService.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\ITokenService.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\ITokenService.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\ITokenService.cs",
+              "RelativeToolTip": "Manager.API\\Interfaces\\ITokenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:43:29.185Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "ISupportChatRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\ISupportChatRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\ISupportChatRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\ISupportChatRepository.cs",
+              "RelativeToolTip": "Manager.API\\Interfaces\\ISupportChatRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:43:28.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "IReviewRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IReviewRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IReviewRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IReviewRepository.cs",
+              "RelativeToolTip": "Manager.API\\Interfaces\\IReviewRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:43:24.48Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "IInvoiceRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IInvoiceRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IInvoiceRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IInvoiceRepository.cs",
+              "RelativeToolTip": "Manager.API\\Interfaces\\IInvoiceRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:43:22.78Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "IIncidentRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IIncidentRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IIncidentRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IIncidentRepository.cs",
+              "RelativeToolTip": "Manager.API\\Interfaces\\IIncidentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:43:22.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "UpdateRoomTypeRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\RoomType\\UpdateRoomTypeRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\RoomType\\UpdateRoomTypeRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\RoomType\\UpdateRoomTypeRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\RoomType\\UpdateRoomTypeRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T01:00:53.632Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "RoomTypeDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\RoomType\\RoomTypeDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\RoomType\\RoomTypeDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\RoomType\\RoomTypeDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\RoomType\\RoomTypeDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T00:31:01.432Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "CreateRoomTypeRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\RoomType\\CreateRoomTypeRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\RoomType\\CreateRoomTypeRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\RoomType\\CreateRoomTypeRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\RoomType\\CreateRoomTypeRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T00:56:23.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "UpdateReviewDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Review\\UpdateReviewDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Review\\UpdateReviewDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Review\\UpdateReviewDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Review\\UpdateReviewDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:43:00.049Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "ReviewDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Review\\ReviewDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Review\\ReviewDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Review\\ReviewDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Review\\ReviewDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:59.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "CreateReviewDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Review\\CreateReviewDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Review\\CreateReviewDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Review\\CreateReviewDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Review\\CreateReviewDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:58.69Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "RevenueReportDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Report\\RevenueReportDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Report\\RevenueReportDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Report\\RevenueReportDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Report\\RevenueReportDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:55.61Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "UpdateProfileRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Profile\\UpdateProfileRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Profile\\UpdateProfileRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Profile\\UpdateProfileRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Profile\\UpdateProfileRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:53.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "ChangePasswordDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Profile\\ChangePasswordDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Profile\\ChangePasswordDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Profile\\ChangePasswordDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Profile\\ChangePasswordDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:52.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "SplitInvoiceRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\SplitInvoiceRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Payment\\SplitInvoiceRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\SplitInvoiceRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Payment\\SplitInvoiceRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:47.457Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "PaymentDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\PaymentDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Payment\\PaymentDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\PaymentDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Payment\\PaymentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:46:20.047Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "MergeInvoicesRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\MergeInvoicesRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Payment\\MergeInvoicesRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\MergeInvoicesRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Payment\\MergeInvoicesRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:46.84Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "CreatePaymentRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\CreatePaymentRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Payment\\CreatePaymentRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Payment\\CreatePaymentRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Payment\\CreatePaymentRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:46.161Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "UpdateLostItemDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\LostItem\\UpdateLostItemDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\LostItem\\UpdateLostItemDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\LostItem\\UpdateLostItemDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\LostItem\\UpdateLostItemDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:40.695Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "LostItemDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\LostItem\\LostItemDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\LostItem\\LostItemDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\LostItem\\LostItemDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\LostItem\\LostItemDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:40.031Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "CreateLostItemDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\LostItem\\CreateLostItemDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\LostItem\\CreateLostItemDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\LostItem\\CreateLostItemDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\LostItem\\CreateLostItemDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:39.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "UpdateInvoiceDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Invoice\\UpdateInvoiceDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Invoice\\UpdateInvoiceDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Invoice\\UpdateInvoiceDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Invoice\\UpdateInvoiceDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:37.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "InvoiceDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Invoice\\InvoiceDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Invoice\\InvoiceDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Invoice\\InvoiceDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Invoice\\InvoiceDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:36.916Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "CreateIncoiceDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Invoice\\CreateIncoiceDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Invoice\\CreateIncoiceDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Invoice\\CreateIncoiceDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Invoice\\CreateIncoiceDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:36.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "UpdateIncidentDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Incident\\UpdateIncidentDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Incident\\UpdateIncidentDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Incident\\UpdateIncidentDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Incident\\UpdateIncidentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:34.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "IncidentDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Incident\\IncidentDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Incident\\IncidentDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Incident\\IncidentDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Incident\\IncidentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:33.364Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 71,
+              "Title": "CreateIncidentDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Incident\\CreateIncidentDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Incident\\CreateIncidentDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Incident\\CreateIncidentDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Incident\\CreateIncidentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:32.596Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "UpdateDiscountRequetsDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Discount\\UpdateDiscountRequetsDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Discount\\UpdateDiscountRequetsDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Discount\\UpdateDiscountRequetsDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Discount\\UpdateDiscountRequetsDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T07:45:38.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "DiscountDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Discount\\DiscountDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Discount\\DiscountDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Discount\\DiscountDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Discount\\DiscountDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T07:37:05.996Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "CreateDiscountRequetsDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Discount\\CreateDiscountRequetsDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Discount\\CreateDiscountRequetsDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Discount\\CreateDiscountRequetsDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Discount\\CreateDiscountRequetsDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T07:45:28.613Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "CheckOutRequestDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\CheckOutRequestDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\CheckInOut\\CheckOutRequestDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\CheckInOut\\CheckOutRequestDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\CheckInOut\\CheckOutRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:25.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "NewUserDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\NewUserDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Account\\NewUserDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\NewUserDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Account\\NewUserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:14.064Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "AssignRoleDto.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\AssignRoleDto.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Dtos\\Account\\AssignRoleDto.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Dtos\\Account\\AssignRoleDto.cs",
+              "RelativeToolTip": "Manager.API\\Dtos\\Account\\AssignRoleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:42:12.406Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 78,
+              "Title": "SupportChatRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\SupportChatRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Repository\\SupportChatRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\SupportChatRepository.cs",
+              "RelativeToolTip": "Manager.API\\Repository\\SupportChatRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:44:16.462Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 80,
+              "Title": "ReviewRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\ReviewRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Repository\\ReviewRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\ReviewRepository.cs",
+              "RelativeToolTip": "Manager.API\\Repository\\ReviewRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:44:13.781Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 81,
+              "Title": "LostItemRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\LostItemRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Repository\\LostItemRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\LostItemRepository.cs",
+              "RelativeToolTip": "Manager.API\\Repository\\LostItemRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:44:13.219Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 82,
+              "Title": "InvoiceRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\InvoiceRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Repository\\InvoiceRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\InvoiceRepository.cs",
+              "RelativeToolTip": "Manager.API\\Repository\\InvoiceRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:44:11.772Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 83,
+              "Title": "IncidentRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\IncidentRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Repository\\IncidentRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\IncidentRepository.cs",
+              "RelativeToolTip": "Manager.API\\Repository\\IncidentRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:44:11.211Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 85,
+              "Title": "SupportChat.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\SupportChat.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Models\\SupportChat.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\SupportChat.cs",
+              "RelativeToolTip": "Manager.API\\Models\\SupportChat.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:44:07.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 79,
+              "Title": "ServicesRepository.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\ServicesRepository.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Repository\\ServicesRepository.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\ServicesRepository.cs",
+              "RelativeToolTip": "Manager.API\\Repository\\ServicesRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T07:56:01.11Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 93,
               "Title": "Invoice.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Invoice.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\Invoice.cs",
@@ -1571,7 +1568,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
+              "DocumentIndex": 94,
               "Title": "Inccident.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Inccident.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\Inccident.cs",
@@ -1583,7 +1580,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 94,
+              "DocumentIndex": 95,
               "Title": "Discount.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Discount.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\Discount.cs",
@@ -1595,7 +1592,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
+              "DocumentIndex": 92,
               "Title": "InvoiceService.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\InvoiceService.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\InvoiceService.cs",
@@ -1607,7 +1604,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 88,
+              "DocumentIndex": 90,
               "Title": "Review.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Review.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\Review.cs",
@@ -1619,7 +1616,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 87,
+              "DocumentIndex": 89,
               "Title": "RoomRate.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\RoomRate.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\RoomRate.cs",
@@ -1631,7 +1628,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
+              "DocumentIndex": 88,
               "Title": "Rooms.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Rooms.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\Rooms.cs",
@@ -1643,7 +1640,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
+              "DocumentIndex": 84,
               "Title": "DiscountRepository.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\DiscountRepository.cs",
               "RelativeDocumentMoniker": "Manager.API\\Repository\\DiscountRepository.cs",
@@ -1655,7 +1652,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 95,
+              "DocumentIndex": 96,
               "Title": "BookingService.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\BookingService.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\BookingService.cs",
@@ -1667,7 +1664,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 96,
+              "DocumentIndex": 97,
               "Title": "ChatMessage.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\ChatMessage.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\ChatMessage.cs",
@@ -1679,7 +1676,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 87,
               "Title": "RoomType.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\RoomType.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\RoomType.cs",
@@ -1691,7 +1688,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 84,
+              "DocumentIndex": 86,
               "Title": "Services.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Services.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\Services.cs",
@@ -1703,7 +1700,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 97,
+              "DocumentIndex": 98,
               "Title": "AppUser.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\AppUser.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\AppUser.cs",
@@ -1715,7 +1712,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 98,
+              "DocumentIndex": 99,
               "Title": "ApplicationDBContextModelSnapshot.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Migrations\\ApplicationDBContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "Manager.API\\Migrations\\ApplicationDBContextModelSnapshot.cs",
@@ -1727,7 +1724,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 99,
+              "DocumentIndex": 100,
               "Title": "20260321022916_AddLanFeatures.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Migrations\\20260321022916_AddLanFeatures.cs",
               "RelativeDocumentMoniker": "Manager.API\\Migrations\\20260321022916_AddLanFeatures.cs",
@@ -1739,7 +1736,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 91,
               "Title": "LostItem.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\LostItem.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\LostItem.cs",
@@ -1751,7 +1748,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 100,
+              "DocumentIndex": 101,
               "Title": "20260224094147_SeedRole.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Migrations\\20260224094147_SeedRole.cs",
               "RelativeDocumentMoniker": "Manager.API\\Migrations\\20260224094147_SeedRole.cs",
@@ -1763,7 +1760,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 101,
+              "DocumentIndex": 102,
               "Title": "20260224092316_Identity.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Migrations\\20260224092316_Identity.cs",
               "RelativeDocumentMoniker": "Manager.API\\Migrations\\20260224092316_Identity.cs",
@@ -1775,7 +1772,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 102,
+              "DocumentIndex": 103,
               "Title": "20260224032210_init.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Migrations\\20260224032210_init.cs",
               "RelativeDocumentMoniker": "Manager.API\\Migrations\\20260224032210_init.cs",
@@ -1787,7 +1784,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 103,
+              "DocumentIndex": 104,
               "Title": "SupportChatMapper.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\SupportChatMapper.cs",
               "RelativeDocumentMoniker": "Manager.API\\Mappers\\SupportChatMapper.cs",
@@ -1799,7 +1796,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 107,
+              "DocumentIndex": 108,
               "Title": "ReviewMapper.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\ReviewMapper.cs",
               "RelativeDocumentMoniker": "Manager.API\\Mappers\\ReviewMapper.cs",
@@ -1808,18 +1805,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-23T06:43:36.19Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 108,
-              "Title": "PaymentMapper.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\PaymentMapper.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Mappers\\PaymentMapper.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\PaymentMapper.cs",
-              "RelativeToolTip": "Manager.API\\Mappers\\PaymentMapper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:43:35.644Z"
             },
             {
               "$type": "Document",
@@ -1859,7 +1844,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 106,
+              "DocumentIndex": 107,
               "Title": "RoomRateMapper.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\RoomRateMapper.cs",
               "RelativeDocumentMoniker": "Manager.API\\Mappers\\RoomRateMapper.cs",
@@ -1871,7 +1856,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 105,
+              "DocumentIndex": 106,
               "Title": "RoomTypeMapper.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\RoomTypeMapper.cs",
               "RelativeDocumentMoniker": "Manager.API\\Mappers\\RoomTypeMapper.cs",
@@ -1883,7 +1868,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 104,
+              "DocumentIndex": 105,
               "Title": "ServicesMapper.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Mappers\\ServicesMapper.cs",
               "RelativeDocumentMoniker": "Manager.API\\Mappers\\ServicesMapper.cs",
@@ -2095,6 +2080,10 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2026-02-23T23:57:45.195Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
             }
           ]
         }

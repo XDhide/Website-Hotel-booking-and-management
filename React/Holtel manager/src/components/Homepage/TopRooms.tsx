@@ -2,7 +2,7 @@
 import { TrophyOutlined } from "@ant-design/icons";
 import RoomCard from "./Roomcard";
 import { ALL_ROOMS } from "./rooms";
-import "./TopRooms.css";
+import "../../assets/css/Homepage/TopRooms.css";
 
 export default function TopRooms() {
   const top5 = ALL_ROOMS.filter((r) => r.popular).slice(0, 5);

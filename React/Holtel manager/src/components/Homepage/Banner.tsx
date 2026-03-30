@@ -1,7 +1,7 @@
 // src/components/Banner/Banner.tsx
 import { useState, useEffect } from "react";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import "./Banner.css";
+import "../../assets/css/Homepage/Banner.css";
 
 const BANNERS = [
   { bg: "#dbeafe", title: "Chào mừng đến LuxStay", sub: "Trải nghiệm lưu trú đẳng cấp 5 sao" },

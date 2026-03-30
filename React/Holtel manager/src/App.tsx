@@ -1,9 +1,9 @@
-import HomePage from "./pages/Homepage"
+import AdminPage from "./pages/AdminPage"
 function App() {
 
   return (
     <>
-    <HomePage/>
+    <AdminPage/>
     </>
   )
 }

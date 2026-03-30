@@ -1,86 +1,144 @@
 import { useState } from 'react'
-import { SearchOutlined, PlusOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import { SearchOutlined, PlusOutlined ,DeleteOutlined } from '@ant-design/icons'
 import Modal from './Modal'
-import './DataTable.css'
+import '../../assets/css/Adminpage/DataTable.css'
 
-export interface User {
-  id: number
-  name: string
-  email: string
-  role: string
-  status: 'Hoạt động' | 'Không hoạt động'
+
+export type FieldMeta<T> = {
+  label?: string
+  render?: (value: any, row: T) => React.ReactNode
+  inputType?: 'text' | 'select' | 'number' | 'email' | 'textarea'
+  options?: string[]
+  hidden?: boolean
+  readOnly?: boolean
 }
 
-const INITIAL_DATA: User[] = [
-  { id: 1,  name: 'Nguyễn Văn An',    email: 'an@example.com',     role: 'Admin',  status: 'Hoạt động'       },
-  { id: 2,  name: 'Trần Thị Bình',    email: 'binh@example.com',   role: 'Editor', status: 'Hoạt động'       },
-  { id: 3,  name: 'Lê Minh Cường',    email: 'cuong@example.com',  role: 'Viewer', status: 'Không hoạt động' },
-  { id: 4,  name: 'Phạm Thu Dung',    email: 'dung@example.com',   role: 'Editor', status: 'Hoạt động'       },
-  { id: 5,  name: 'Hoàng Văn Em',     email: 'em@example.com',     role: 'Viewer', status: 'Hoạt động'       },
-  { id: 6,  name: 'Vũ Thị Phương',    email: 'phuong@example.com', role: 'Admin',  status: 'Không hoạt động' },
-  { id: 7,  name: 'Đặng Quốc Giang',  email: 'giang@example.com',  role: 'Viewer', status: 'Hoạt động'       },
-  { id: 8,  name: 'Bùi Thị Hoa',      email: 'hoa@example.com',    role: 'Editor', status: 'Hoạt động'       },
-  { id: 9,  name: 'Đinh Văn Hùng',    email: 'hung@example.com',   role: 'Viewer', status: 'Không hoạt động' },
-  { id: 10, name: 'Lý Thị Lan',       email: 'lan@example.com',    role: 'Editor', status: 'Hoạt động'       },
-  { id: 11, name: 'Mai Văn Long',      email: 'long@example.com',   role: 'Viewer', status: 'Hoạt động'       },
-  { id: 12, name: 'Phan Thị Mai',      email: 'mai@example.com',    role: 'Admin',  status: 'Hoạt động'       },
-]
+export type FieldsMeta<T> = Partial<Record<keyof T, FieldMeta<T>>>
 
-const PAGE_SIZE = 5
-const EMPTY: Omit<User, 'id'> = { name: '', email: '', role: 'Viewer', status: 'Hoạt động' }
 
-export default function DataTable() {
-  const [data, setData]           = useState<User[]>(INITIAL_DATA)
+interface DataTableProps<T extends { id: number }> {
+  initialData: T[]
+  fieldsMeta?: FieldsMeta<T>
+  pageSize?: number
+  emptyForm: Omit<T, 'id'>
+}
+
+
+export default function DataTable<T extends { id: number }>({
+  initialData,
+  fieldsMeta = {},
+  pageSize = 5,
+  emptyForm,
+}: DataTableProps<T>) {
+
+  const [data, setData]           = useState<T[]>(initialData)
   const [search, setSearch]       = useState('')
   const [page, setPage]           = useState(1)
   const [modalMode, setModalMode] = useState<'add' | 'edit' | null>(null)
-  const [editTarget, setEditTarget] = useState<User | null>(null)
-  const [form, setForm]           = useState<Omit<User, 'id'>>(EMPTY)
+  const [editTarget, setEditTarget] = useState<T | null>(null)
+  const [form, setForm]           = useState<Omit<T, 'id'>>(emptyForm)
 
-  const filtered = data.filter(u =>
-    u.name.toLowerCase().includes(search.toLowerCase()) ||
-    u.email.toLowerCase().includes(search.toLowerCase()) ||
-    u.role.toLowerCase().includes(search.toLowerCase())
+  const allKeys = data.length > 0
+    ? (Object.keys(data[0]) as (keyof T)[]).filter(k => k !== 'id')
+    : (Object.keys(emptyForm) as (keyof T)[])
+
+  const visibleKeys = allKeys.filter(k => !fieldsMeta[k]?.hidden)
+
+
+  const filtered = data.filter(item =>
+    JSON.stringify(item).toLowerCase().includes(search.toLowerCase())
   )
-
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize))
   const safePage   = Math.min(page, totalPages)
-  const paginated  = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE)
+  const paginated  = filtered.slice((safePage - 1) * pageSize, safePage * pageSize)
+
 
   const openAdd = () => {
-    setForm(EMPTY)
+    setForm(emptyForm)
     setEditTarget(null)
     setModalMode('add')
   }
 
-  const openEdit = (user: User) => {
-    setForm({ name: user.name, email: user.email, role: user.role, status: user.status })
-    setEditTarget(user)
+  const openEdit = (item: T) => {
+    const { id, ...rest } = item as any
+    setEditTarget(item)
+    setForm(rest as Omit<T, 'id'>)
     setModalMode('edit')
   }
 
-  const handleDelete = (id: number) => setData(prev => prev.filter(u => u.id !== id))
+
+  const handleDelete = (id: number) =>
+    setData(prev => prev.filter(item => item.id !== id))
 
   const handleSave = () => {
-    if (!form.name.trim() || !form.email.trim()) return
+    const editableKeys = allKeys.filter(k => !fieldsMeta[k]?.readOnly)
+    const hasEmpty = editableKeys.some(k => String((form as any)[k] ?? '').trim() === '')
+    if (hasEmpty) return
+
     if (modalMode === 'add') {
-      const newId = Math.max(0, ...data.map(u => u.id)) + 1
-      setData(prev => [...prev, { id: newId, ...form }])
+      const newId = Math.max(0, ...data.map(item => item.id)) + 1
+      setData(prev => [...prev, { id: newId, ...form } as unknown as T])
     } else if (modalMode === 'edit' && editTarget) {
-      setData(prev => prev.map(u => u.id === editTarget.id ? { ...u, ...form } : u))
+      setData(prev =>
+        prev.map(item =>
+          item.id === editTarget.id ? { ...item, ...form } : item
+        )
+      )
     }
     setModalMode(null)
   }
 
+  const handleFieldChange = (key: keyof T, value: string) => {
+    setForm(f => ({ ...f, [key]: value }))
+  }
+
+
+  const renderFormField = (key: keyof T) => {
+    const meta   = fieldsMeta[key]
+    const value  = String((form as any)[key] ?? '')
+    const type   = meta?.inputType ?? 'text'
+    const label  = meta?.label ?? String(key)
+
+    if (meta?.readOnly) return null 
+
+    return (
+      <div className="form-group" key={String(key)}>
+        <label>{label}</label>
+
+        {type === 'select' && meta?.options ? (
+          <select value={value} onChange={e => handleFieldChange(key, e.target.value)}>
+            {meta.options.map(opt => (
+              <option key={opt} value={opt}>{opt}</option>
+            ))}
+          </select>
+        ) : type === 'textarea' ? (
+          <textarea
+            value={value}
+            onChange={e => handleFieldChange(key, e.target.value)}
+            placeholder={`Nhập ${label.toLowerCase()}`}
+          />
+        ) : (
+          <input
+            type={type}
+            value={value}
+            onChange={e => handleFieldChange(key, e.target.value)}
+            placeholder={`Nhập ${label.toLowerCase()}`}
+          />
+        )}
+      </div>
+    )
+  }
+
+
   return (
     <div className="datatable-wrapper">
-      {/* Thanh tìm kiếm + nút thêm */}
+
       <div className="datatable-header">
         <div className="search-box">
           <SearchOutlined className="search-icon" />
           <input
             type="text"
-            placeholder="Tìm kiếm theo tên, email, vai trò..."
+            placeholder="Tìm kiếm..."
             value={search}
             onChange={e => { setSearch(e.target.value); setPage(1) }}
           />
@@ -90,38 +148,36 @@ export default function DataTable() {
         </button>
       </div>
 
-      {/* Bảng dữ liệu */}
       <div className="table-container">
         <table className="data-table">
           <thead>
             <tr>
               <th>#</th>
-              <th>Họ và tên</th>
-              <th>Email</th>
-              <th>Vai trò</th>
-              <th>Trạng thái</th>
+              {visibleKeys.map(key => (
+                <th key={String(key)}>
+                  {fieldsMeta[key]?.label ?? String(key)}
+                </th>
+              ))}
               <th>Hành động</th>
             </tr>
           </thead>
           <tbody>
             {paginated.length === 0 ? (
-              <tr><td colSpan={6} className="no-data">Không có dữ liệu</td></tr>
-            ) : paginated.map((user, i) => (
-              <tr key={user.id} className="table-row" onClick={() => openEdit(user)}>
-                <td>{(safePage - 1) * PAGE_SIZE + i + 1}</td>
-                <td className="cell-name">{user.name}</td>
-                <td className="cell-email">{user.email}</td>
-                <td><span className={`badge role-${user.role.toLowerCase()}`}>{user.role}</span></td>
-                <td><span className={`badge status-${user.status === 'Hoạt động' ? 'active' : 'inactive'}`}>{user.status}</span></td>
+              <tr><td colSpan={visibleKeys.length + 2}>Không có dữ liệu</td></tr>
+            ) : paginated.map((row, i) => (
+              <tr key={row.id} onClick={() => openEdit(row)}>
+                <td>{(safePage - 1) * pageSize + i + 1}</td>
+
+                {visibleKeys.map(key => (
+                  <td key={String(key)}>
+                    {fieldsMeta[key]?.render
+                      ? fieldsMeta[key]!.render!(row[key], row)
+                      : String(row[key] ?? '')}
+                  </td>
+                ))}
+
                 <td onClick={e => e.stopPropagation()}>
-                  <div className="action-group">
-                    <button className="btn-icon edit" title="Sửa" onClick={() => openEdit(user)}>
-                      <EditOutlined />
-                    </button>
-                    <button className="btn-icon delete" title="Xóa" onClick={() => handleDelete(user.id)}>
-                      <DeleteOutlined />
-                    </button>
-                  </div>
+                  <button onClick={() => handleDelete(row.id)}><span className='btn-icon delete'><DeleteOutlined /></span></button>
                 </td>
               </tr>
             ))}
@@ -129,7 +185,6 @@ export default function DataTable() {
         </table>
       </div>
 
-      {/* Phân trang */}
       <div className="pagination">
         <span className="pagination-info">
           Hiển thị {paginated.length} / {filtered.length} bản ghi
@@ -145,49 +200,17 @@ export default function DataTable() {
         </div>
       </div>
 
-      {/* Modal thêm / sửa */}
+      {/* Modal */}
       {modalMode && (
         <Modal
-          title={modalMode === 'add' ? 'Thêm người dùng' : 'Sửa người dùng'}
+          title={modalMode === 'add' ? 'Thêm mới' : 'Chỉnh sửa'}
           onClose={() => setModalMode(null)}
           onSave={handleSave}
         >
-          <div className="form-group">
-            <label>Họ và tên</label>
-            <input
-              value={form.name}
-              onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-              placeholder="Nhập họ tên"
-            />
-          </div>
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              value={form.email}
-              onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-              placeholder="Nhập email"
-            />
-          </div>
-          <div className="form-group">
-            <label>Vai trò</label>
-            <select value={form.role} onChange={e => setForm(f => ({ ...f, role: e.target.value }))}>
-              <option>Admin</option>
-              <option>Editor</option>
-              <option>Viewer</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label>Trạng thái</label>
-            <select
-              value={form.status}
-              onChange={e => setForm(f => ({ ...f, status: e.target.value as User['status'] }))}
-            >
-              <option>Hoạt động</option>
-              <option>Không hoạt động</option>
-            </select>
-          </div>
+          {allKeys.map(key => renderFormField(key))}
         </Modal>
       )}
+
     </div>
   )
 }

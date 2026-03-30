@@ -1,7 +1,6 @@
-// src/components/Comments/Comments.tsx
 import { StarFilled, CommentOutlined } from "@ant-design/icons";
 import { COMMENTS } from "./rooms";
-import "./Comments.css";
+import "../../assets/css/Homepage/Comments.css";
 
 export default function Comments() {
   return (

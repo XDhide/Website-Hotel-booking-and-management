@@ -1,4 +1,3 @@
-// src/components/ChatBubble/ChatBubble.tsx
 import { useState, useRef, useEffect } from "react";
 import {
   MessageOutlined,
@@ -10,7 +9,7 @@ import {
   LoginOutlined,
   SmileOutlined,
 } from "@ant-design/icons";
-import "./ChatBubble.css";
+import "../../assets/css/Homepage/ChatBubble.css";
 
 interface Message {
   from: "bot" | "user";
@@ -46,7 +45,6 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
   ]);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  // auto scroll xuống tin nhắn mới nhất
   useEffect(() => {
     if (open) bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, open, typing]);
@@ -59,7 +57,6 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
     setMsg("");
     setTyping(true);
 
-    // giả lập bot đang gõ rồi trả lời
     setTimeout(() => {
       setTyping(false);
       setMessages((prev) => [
@@ -80,10 +77,8 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
 
   return (
     <div className="cb-wrap">
-      {/* ── Chat window ── */}
       {open && (
         <div className="cb-window">
-          {/* Header */}
           <div className="cb-header">
             <div className="cb-header-left">
               <div className="cb-avatar-dot">
@@ -102,7 +97,6 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
             </button>
           </div>
 
-          {/* Body — chưa đăng nhập */}
           {!isLoggedIn ? (
             <div className="cb-login-notice">
               <LockOutlined className="cb-lock-icon" />
@@ -117,7 +111,6 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
             </div>
           ) : (
             <>
-              {/* Messages */}
               <div className="cb-messages">
                 {messages.map((m, i) => (
                   <div key={i} className={`cb-msg-row ${m.from}`}>
@@ -138,7 +131,6 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
                   </div>
                 ))}
 
-                {/* Typing indicator */}
                 {typing && (
                   <div className="cb-msg-row bot">
                     <div className="cb-msg-avatar">
@@ -153,7 +145,6 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
                 <div ref={bottomRef} />
               </div>
 
-              {/* Input row */}
               <div className="cb-input-row">
                 <button className="cb-emoji-btn" title="Emoji">
                   <SmileOutlined />
@@ -179,7 +170,6 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
         </div>
       )}
 
-      {/* ── Bubble button ── */}
       <button
         className={`cb-bubble-btn${open ? " open" : ""}`}
         onClick={() => setOpen((p) => !p)}

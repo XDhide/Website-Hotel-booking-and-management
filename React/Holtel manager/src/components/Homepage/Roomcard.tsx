@@ -8,7 +8,7 @@ import {
   FireOutlined,
   TagOutlined,
 } from "@ant-design/icons";
-import "./Roomcard.css";
+import "../../assets/css/Homepage/Roomcard.css";
 
 export interface Room {
   id: number;

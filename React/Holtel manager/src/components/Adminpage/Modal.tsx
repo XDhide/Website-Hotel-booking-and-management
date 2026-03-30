@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { CloseOutlined, SaveOutlined } from '@ant-design/icons'
-import './Modal.css'
+import '../../assets/css/Adminpage/Modal.css'
 
 interface ModalProps {
   title: string
