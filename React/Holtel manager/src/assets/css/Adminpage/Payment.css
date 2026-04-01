@@ -1,16 +1,53 @@
-
-.payment-wapper{
+.payment-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
 }
 
-.search-box {   
+.payment-stats {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    flex: 1;
+    min-width: 140px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 16px 20px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e0eaf4;
+}
+
+.stat-value.green { color: #81c784; }
+.stat-value.yellow { color: #ffcc80; }
+
+.payment-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.search-box {
     display: flex;
     align-items: center;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 8px;
+    border-radius: 6px;
     padding: 8px 14px;
     gap: 10px;
     flex: 1;
@@ -24,7 +61,7 @@
 
 .search-icon {
     color: rgba(255, 255, 255, 0.45);
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .search-box input {
@@ -39,29 +76,128 @@
 .search-box input::placeholder {
     color: rgba(255, 255, 255, 0.35);
 }
-.payment-body{
-    background-color: white;
-    max-width: 2600px;
-    border-radius: 30px;
-    border-style: groove;
+
+.payment-table-wrapper {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+    overflow: hidden;
 }
-.payment-bill{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+
+.payment-table {
+    width: 100%;
+    border-collapse: collapse;
 }
-.payment-bill-peason{
-    background-color: red;
-    width: 250px;
-    height: 250px;
-    margin: 15px;
-    border-radius: 30px;
+
+.payment-table thead tr {
+    background: rgba(21, 101, 192, 0.25);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.payment-table th {
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.payment-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.payment-row:last-child {
+    border-bottom: none;
+}
+
+.payment-row:hover {
+    background: rgba(21, 101, 192, 0.12);
+}
+
+.payment-table td {
+    padding: 12px 14px;
+    font-size: 14px;
+    color: #cdd9e8;
+}
+
+.price-cell {
+    font-weight: 600;
+    color: #90caf9 !important;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-paid {
+    background: rgba(76, 175, 80, 0.18);
+    color: #81c784;
+}
+
+.status-pending {
+    background: rgba(255, 193, 7, 0.18);
+    color: #ffcc80;
+}
+
+.status-cancelled {
+    background: rgba(244, 67, 54, 0.18);
+    color: #ef9a9a;
+}
+
+.pay-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(21, 101, 192, 0.3);
+    border: 1px solid rgba(21, 101, 192, 0.5);
+    color: #90caf9;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.pay-action-btn:hover {
+    background: rgba(21, 101, 192, 0.5);
+}
+
+/* Modal bill detail */
+.bill-detail {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
-.payment-bill-name{
-    background-color: rgb(235, 235, 17);
-    width: 100%;
-    height: 30%;
-    border-radius: 30px;
+
+.bill-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    font-size: 14px;
+}
+
+.bill-row span:first-child {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.bill-row span:last-child {
+    color: #e0eaf4;
+    font-weight: 500;
+}
+
+.bill-row.highlight span:last-child {
+    color: #90caf9;
+    font-size: 16px;
+    font-weight: 700;
 }

@@ -1,8 +1,12 @@
-
-.room-manager-wapper{
+.room-manager-wapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
+}
+
+.room-manager-header {
+    display: flex;
+    align-items: center;
 }
 
 .search-box {
@@ -10,7 +14,7 @@
     align-items: center;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 8px;
+    border-radius: 6px;
     padding: 8px 14px;
     gap: 10px;
     flex: 1;
@@ -24,7 +28,7 @@
 
 .search-icon {
     color: rgba(255, 255, 255, 0.45);
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .search-box input {
@@ -40,60 +44,81 @@
     color: rgba(255, 255, 255, 0.35);
 }
 
-.room-manager-body{
-    background-color: white;
-    max-width: 2600px;
-    border-radius: 30px;
-    border-style: groove;
-    
+.room-manager-body {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+    padding: 16px;
 }
-.body-manager{
+
+.body-manager {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    gap: 12px;
 }
-.body-manager-room{
-    text-align: center;
-    width: 300px;
-    height: 50px;
-    background: linear-gradient(135deg, #0a1a2e 0%, #081420 100%);
-    margin: 20px;
-    border-radius: 30px;
-    border-style:solid;
-    border-color: rgb(99, 96, 96);
+
+.body-manager-room {
+    width: 220px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
     position: relative;
 }
-.body-left-manager-name{
-    font-size:x-large;
-    font-weight: bolder;
-    flex: 3;
-     
+
+.body-manager-room:hover {
+    background: rgba(21, 101, 192, 0.18);
+    border-color: #1565c0;
 }
-.body-left-manager-status{
-    width: 15px;
-    height: 15px;
+
+.body-left-manager-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e0eaf4;
+}
+
+.body-left-manager-status {
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: #f00e0e;
-    position: absolute;
-    bottom: 13px;  
-    right: 35px;
+    flex-shrink: 0;
 }
-.form-value{
+
+/* Modal form */
+.form-value {
     display: flex;
     flex-direction: column;
+    gap: 8px;
 }
-.form-value-notchange{
-    margin: 10px;
-    font-size: large;
-    font-weight: bold;
-    padding: 10px;
-    background-color: white;
-    border-radius: 30px;
-    color: black;
+
+.form-value-notchange {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 9px 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 5px;
+    color: #e0eaf4;
 }
-.inout-btn{
-    border-radius: 30px;
-    padding: 10px;
+
+.inout-btn {
+    border: none;
+    border-radius: 5px;
+    padding: 9px 16px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: opacity 0.15s;
+}
+
+.inout-btn:hover {
+    opacity: 0.85;
 }
