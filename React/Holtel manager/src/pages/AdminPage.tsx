@@ -5,7 +5,7 @@ import RoomManager from '../components/Adminpage/RoomManager'
 import SupportChat from '../components/Adminpage/SupportChat'
 import Payment from '../components/Adminpage/Payment'
 import Report from '../components/Adminpage/Report'
-import './AdminPage.css'
+import '../assets/css/Adminpage/AdminPage.css'
 
 export type PageKey =
   | 'home'

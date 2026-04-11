@@ -1,0 +1,114 @@
+.fav-page { background: #f8faff; min-height: 100vh; }
+
+.fav-header {
+  background: linear-gradient(135deg, #ffe4e6 0%, #fff1f2 100%);
+  padding: 40px 24px;
+  border-bottom: 1px solid #fecdd3;
+}
+.fav-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fav-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1e3a5f;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fav-title-icon { color: #ef4444; font-size: 24px; }
+.fav-sub { font-size: 15px; color: #64748b; }
+
+.fav-clear-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid #fecdd3;
+  border-radius: 8px;
+  background: #fff;
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.fav-clear-btn:hover { background: #fef2f2; }
+
+.fav-body {
+  padding-top: 32px;
+  padding-bottom: 48px;
+}
+
+.fav-empty {
+  text-align: center;
+  padding: 80px 0;
+}
+.fav-empty-icon { font-size: 56px; margin-bottom: 16px; color: #fca5a5; }
+.fav-empty-title { font-size: 22px; font-weight: 700; color: #1e3a5f; margin-bottom: 8px; }
+.fav-empty-sub   { font-size: 14px; color: #94a3b8; margin-bottom: 24px; }
+.fav-browse-btn {
+  padding: 11px 28px;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.fav-browse-btn:hover { background: #2563eb; }
+
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.fav-item { display: flex; flex-direction: column; gap: 8px; }
+.fav-remove-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px;
+  border: 1px solid #fecdd3;
+  border-radius: 8px;
+  background: #fff;
+  color: #ef4444;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.fav-remove-btn:hover { background: #fef2f2; }
+
+.fav-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  padding: 16px 24px;
+}
+.fav-actions-info { font-size: 14px; color: #64748b; }
+.fav-book-all-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.fav-book-all-btn:hover { background: #2563eb; }
