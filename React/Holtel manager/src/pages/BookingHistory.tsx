@@ -10,7 +10,7 @@ import {
   StarOutlined,
   FileTextOutlined,
 } from "@ant-design/icons";
-import "../assets/css/BookingHistory/BookingHistory.css";
+import "../assets/css/Profile/BookingHistory.css";
 
 type Status = "completed" | "upcoming" | "cancelled";
 

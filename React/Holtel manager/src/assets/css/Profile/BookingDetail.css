@@ -1,0 +1,593 @@
+/* src/assets/css/CurrentBookings/BookingDetail.css */
+
+.bd-page {
+  background: #f8faff;
+  min-height: 100vh;
+}
+
+/* ── Back bar ── */
+.bd-back-bar {
+  background: #fff;
+  border-bottom: 1px solid #e8f0fe;
+  padding: 12px 24px;
+}
+
+.bd-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #3b82f6;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s;
+}
+
+.bd-back-btn:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* ── Body layout ── */
+.bd-body {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 22px;
+  padding-top: 26px;
+  padding-bottom: 48px;
+  align-items: start;
+}
+
+.bd-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Shared card ── */
+.bd-card {
+  background: #fff;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  padding: 22px 24px;
+}
+
+.bd-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e3a5f;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Room number banner ── */
+.bd-room-number-big {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  padding: 8px 20px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e40af;
+  margin-bottom: 18px;
+}
+
+/* ── Info grid ── */
+.bd-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.bd-info-item label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bd-info-item span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e3a5f;
+}
+
+.bd-code {
+  font-family: monospace !important;
+  font-size: 13px !important;
+  color: #3b82f6 !important;
+  letter-spacing: 0.06em;
+}
+
+/* ── Service grid ── */
+.bd-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.bd-service-btn {
+  background: #f8faff;
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+  padding: 14px 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  transition: border-color 0.15s, background 0.15s, transform 0.13s;
+}
+
+.bd-service-btn:hover {
+  border-color: #93c5fd;
+  background: #eff6ff;
+  transform: translateY(-2px);
+}
+
+.bd-svc-icon {
+  font-size: 20px;
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+}
+
+.bd-svc-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #475569;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ── Success message ── */
+.bd-success-msg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #166534;
+  animation: bd-fade-in 0.2s ease;
+}
+
+@keyframes bd-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Forms ── */
+.bd-request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bd-select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1e3a5f;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.bd-select:focus {
+  border-color: #3b82f6;
+}
+
+.bd-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1e3a5f;
+  background: #fff;
+  outline: none;
+  resize: vertical;
+  min-height: 84px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.bd-textarea:focus {
+  border-color: #3b82f6;
+}
+
+/* ── Buttons ── */
+.bd-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.13s;
+}
+
+.bd-btn-primary:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+.bd-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.bd-btn-danger:hover {
+  background: #fee2e2;
+}
+
+.bd-action-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── Chat ── */
+.bd-chat-card {
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.bd-chat-window {
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.bd-chat-header {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bd-chat-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #fff;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.bd-chat-online-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #4ade80;
+  border: 2px solid #2563eb;
+}
+
+.bd-chat-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.bd-chat-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 1px;
+}
+
+.bd-chat-msgs {
+  height: 240px;
+  overflow-y: auto;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #f8faff;
+}
+
+.bd-chat-msgs::-webkit-scrollbar { width: 4px; }
+.bd-chat-msgs::-webkit-scrollbar-thumb { background: #bfdbfe; border-radius: 4px; }
+
+.bd-msg-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.bd-msg-row.user {
+  flex-direction: row-reverse;
+}
+
+.bd-msg-av {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #dbeafe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+
+.bd-msg-av.user {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.bd-msg-bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 74%;
+}
+
+.bd-msg-row.user .bd-msg-bubble-wrap {
+  align-items: flex-end;
+}
+
+.bd-bubble {
+  border-radius: 14px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+.bd-bubble.bot {
+  background: #fff;
+  color: #1e3a5f;
+  border: 1px solid #dbeafe;
+  border-bottom-left-radius: 4px;
+}
+
+.bd-bubble.user {
+  background: #3b82f6;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.bd-msg-time {
+  font-size: 10px;
+  color: #94a3b8;
+  margin-top: 3px;
+  padding: 0 2px;
+}
+
+/* ── Typing ── */
+.bd-typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #fff;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  border-bottom-left-radius: 4px;
+  padding: 10px 14px;
+}
+
+.bd-typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #93c5fd;
+  animation: bd-bounce 1.2s infinite ease-in-out;
+}
+
+.bd-typing span:nth-child(1) { animation-delay: 0s; }
+.bd-typing span:nth-child(2) { animation-delay: 0.2s; }
+.bd-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bd-bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40%           { transform: translateY(-6px); }
+}
+
+/* ── Chat input row ── */
+.bd-chat-input-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border-top: 1px solid #e8f0fe;
+  background: #fff;
+}
+
+.bd-emoji-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.bd-emoji-btn:hover {
+  color: #f59e0b;
+  background: #fef9c3;
+}
+
+.bd-chat-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #1e3a5f;
+  outline: none;
+  background: #f8faff;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.bd-chat-input:focus {
+  border-color: #3b82f6;
+  background: #fff;
+}
+
+.bd-send-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e2eafb;
+  border: none;
+  color: #93c5fd;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: not-allowed;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+
+.bd-send-btn.active {
+  background: #3b82f6;
+  color: #fff;
+  cursor: pointer;
+}
+
+.bd-send-btn.active:hover {
+  background: #2563eb;
+  transform: scale(1.08);
+}
+
+/* ── Invoice sidebar ── */
+.bd-right {
+  position: sticky;
+  top: 20px;
+}
+
+.bd-invoice-card {
+  background: #fff;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  padding: 22px 20px;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.08);
+}
+
+.bd-invoice-rows {
+  margin-bottom: 4px;
+}
+
+.bd-invoice-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #475569;
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.bd-invoice-row:last-of-type {
+  border-bottom: none;
+}
+
+.bd-invoice-row.total {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e3a5f;
+  border-top: 1px dashed #bfdbfe;
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+.bd-total-amount {
+  color: #1d4ed8;
+}
+
+.bd-invoice-note {
+  margin-top: 14px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: #92400e;
+  line-height: 1.55;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .bd-body {
+    grid-template-columns: 1fr;
+  }
+
+  .bd-right {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .bd-service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bd-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bd-action-row {
+    flex-direction: column;
+  }
+
+  .bd-btn-primary,
+  .bd-btn-danger {
+    width: 100%;
+    justify-content: center;
+  }
+}
