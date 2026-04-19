@@ -17,13 +17,25 @@ namespace Manager.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var items = await _lostItemRepository.GetAllAsync();
-            if (items == null || items.Count == 0)
+            var result = await _lostItemRepository.GetAllAsync(page, limit);
+
+            if (result.Data == null || result.Data.Count == 0)
                 return NotFound("No lost items found.");
-            var dtos = items.Select(i => i.ToLostItemDto());
-            return Ok(dtos);
+
+            var dtos = result.Data
+                .Select(i => i.ToLostItemDto())
+                .ToList();
+
+            return Ok(new
+            {
+                result.Page,
+                result.Limit,
+                result.TotalCount,
+                result.TotalPages,
+                data = dtos
+            });
         }
 
         [HttpGet("{id}")]

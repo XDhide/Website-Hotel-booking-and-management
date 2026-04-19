@@ -14,14 +14,35 @@ namespace Manager.API.Repository
             _context = context;
         }
 
-        public async Task<List<Booking>> GetAllAsync()
+        public async Task<PagedResult<Booking>> GetAllAsync(int page, int limit)
         {
-            return await _context.Bookings
+            if (page < 1) page = 1;
+            if (limit < 1) limit = 10;
+
+            var query = _context.Bookings
                 .Include(b => b.Room)
                 .Include(b => b.User)
                 .Include(b => b.BookingServices)
-                    .ThenInclude(bs => bs.Service)
+                    .ThenInclude(bs => bs.Service);
+
+            var totalCount = await query.CountAsync();
+
+            var data = await query
+                .OrderByDescending(b => b.Id)
+                .Skip((page - 1) * limit)
+                .Take(limit)
                 .ToListAsync();
+
+            var totalPages = (int)Math.Ceiling((double)totalCount / limit);
+
+            return new PagedResult<Booking>
+            {
+                Page = page,
+                Limit = limit,
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                Data = data
+            };
         }
 
         public async Task<Booking?> GetByIdAsync(int id)

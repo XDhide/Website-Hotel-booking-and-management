@@ -5,7 +5,7 @@ namespace Manager.API.Interfaces
 {
     public interface ILostItemRepository
     {
-        Task<List<LostItem>> GetAllAsync();
+        Task<PagedResult<LostItem>> GetAllAsync(int page, int limit);
         Task<LostItem?> GetByIdAsync(int id);
         Task<LostItem> CreateAsync(LostItem lostItem);
         Task<LostItem?> UpdateAsync(int id, UpdateLostItemDto dto);

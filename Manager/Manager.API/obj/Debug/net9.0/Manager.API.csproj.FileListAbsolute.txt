@@ -414,7 +414,7 @@ D:\Code\Project\New folder\1\Website-Hotel-booking-and-management\Manager\Manage
 D:\Code\Project\New folder\1\Website-Hotel-booking-and-management\Manager\Manager.API\obj\Debug\net9.0\staticwebassets.build.json.cache
 D:\Code\Project\New folder\1\Website-Hotel-booking-and-management\Manager\Manager.API\obj\Debug\net9.0\staticwebassets.development.json
 D:\Code\Project\New folder\1\Website-Hotel-booking-and-management\Manager\Manager.API\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-D:\Code\Project\New folder\1\Website-Hotel-booking-and-management\Manager\Manager.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\Code\Project\New folder\1\Website-Hotel-booking-and-management\Manager\Manager.API\obj\Debug\net9.0\Manager..E91BF6A6.Up2Date
 D:\Code\Project\New folder\1\Website-Hotel-booking-and-management\Manager\Manager.API\obj\Debug\net9.0\Manager.API.genruntimeconfig.cache
 D:\Code\Project\New folder\1\Website-Hotel-booking-and-management\Manager\Manager.API\obj\Debug\net9.0\ref\Manager.API.dll
+D:\Code\Project\New folder\1\Website-Hotel-booking-and-management\Manager\Manager.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

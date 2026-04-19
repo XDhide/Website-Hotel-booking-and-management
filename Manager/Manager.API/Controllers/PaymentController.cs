@@ -38,7 +38,6 @@ namespace Manager.API.Controllers
             if (user == null)
                 return Unauthorized();
 
-            // Kiểm tra quyền sở hữu booking hoặc là admin/manager
             if (booking.UserId != user.Id && !User.IsInRole("Admin") && !User.IsInRole("Manager"))
                 return Forbid();
 
@@ -58,11 +57,9 @@ namespace Manager.API.Controllers
             if (booking == null)
                 return NotFound("Booking not found");
 
-            // Kiểm tra booking có trạng thái hợp lệ để thanh toán
             if (booking.Status == "Cancelled")
                 return BadRequest("Cannot process payment for cancelled booking");
 
-            // Kiểm tra số tiền thanh toán hợp lệ
             var totalPaid = await _paymentRepo.GetTotalPaidAmountAsync(dto.BookingId);
             if (totalPaid + dto.Amount > booking.TotalPrice)
                 return BadRequest("Payment amount exceeds booking total");
@@ -72,8 +69,6 @@ namespace Manager.API.Controllers
             payment.TransactionId = Guid.NewGuid().ToString();
 
             var createdPayment = await _paymentRepo.CreateAsync(payment);
-
-            // Cập nhật trạng thái booking nếu đã thanh toán đủ
             var newTotalPaid = totalPaid + dto.Amount;
             if (newTotalPaid >= booking.TotalPrice && booking.Status == "Pending")
             {
@@ -107,7 +102,6 @@ namespace Manager.API.Controllers
                 bookings.Add(booking);
             }
 
-            // Kiểm tra tất cả booking thuộc cùng một user
             var firstUserId = bookings[0].UserId;
             if (bookings.Any(b => b.UserId != firstUserId))
                 return BadRequest("All bookings must belong to the same user");

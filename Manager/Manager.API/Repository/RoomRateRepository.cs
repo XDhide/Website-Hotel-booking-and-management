@@ -47,10 +47,33 @@ namespace Manager.API.Repository
             return roomRate;
         }
 
-        public async Task<List<RoomRate>> GetAllAsync()
+        public async Task<PagedResult<RoomRate>> GetAllAsync(int page, int limit)
         {
-            var roomRates = await _dBContext.RoomRates.ToListAsync();
-            return roomRates;
+            if (page < 1) page = 1;
+            if (limit < 1) limit = 10;
+
+            var query = _dBContext.RoomRates.AsQueryable();
+
+            var totalCount = await query.CountAsync();
+
+            var data = await query
+                .OrderByDescending(r => r.Id) 
+                .Skip((page - 1) * limit)
+                .Take(limit)
+                .ToListAsync();
+
+            var totalPages = totalCount == 0
+                ? 0
+                : (int)Math.Ceiling((double)totalCount / limit);
+
+            return new PagedResult<RoomRate>
+            {
+                Page = page,
+                Limit = limit,
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                Data = data
+            };
         }
 
         public async Task<RoomRate?> GetByIdAsync(int id)

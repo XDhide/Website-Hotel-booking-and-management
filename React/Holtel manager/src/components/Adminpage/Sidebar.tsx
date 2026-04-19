@@ -1,5 +1,5 @@
-import {CreditCardOutlined,SnippetsOutlined,WarningOutlined,MailOutlined,BugOutlined, PieChartOutlined,HomeOutlined, UserOutlined, SettingOutlined, TeamOutlined, AppstoreOutlined } from '@ant-design/icons'
-import type { PageKey } from '../../pages/AdminPage'
+import {CreditCardOutlined,SnippetsOutlined,WarningOutlined,MailOutlined,BugOutlined, PieChartOutlined,HomeOutlined, SettingOutlined, TeamOutlined, AppstoreOutlined } from '@ant-design/icons'
+import type { PageKey } from '../../pages/AdminPage.tsx'
 import '../../assets/css/Adminpage/Sidebar.css'
 
 interface SidebarProps {

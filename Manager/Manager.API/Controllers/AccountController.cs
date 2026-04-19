@@ -4,6 +4,7 @@ using Manager.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace Manager.API.Controllers
@@ -15,104 +16,77 @@ namespace Manager.API.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly ITokenService _tokenService;
         private readonly SignInManager<AppUser> _signInManager;
-        public AccountController(UserManager<AppUser> userManager, ITokenService tokenService, SignInManager<AppUser> signInManager)
+
+        public AccountController(
+            UserManager<AppUser> userManager,
+            ITokenService tokenService,
+            SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _tokenService = tokenService;
             _signInManager = signInManager;
         }
+
+        // ================= REGISTER =================
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterDto registerRequestDto)
-        {
-
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-                var appUser = new AppUser
-                {
-                    UserName = registerRequestDto.Username,
-                    Email = registerRequestDto.Email,
-                };
-
-                var createUserResult = await _userManager.CreateAsync(appUser, registerRequestDto.Password);
-
-                if (createUserResult.Succeeded)
-                {
-                    var addRoleResult = await _userManager.AddToRoleAsync(appUser, "Guest");
-                    if (addRoleResult.Succeeded)
-                    {
-                        return Ok(
-                            new NewUserDto
-                            {
-                                UserName = appUser.UserName,
-                                Email = appUser.Email,
-                                Token = _tokenService.createToken(appUser)
-                            }
-                            );
-                    }
-                    else
-                    {
-                        return StatusCode(500, addRoleResult.Errors);
-                    }
-                }
-                else
-                {
-                    return StatusCode(500, createUserResult.Errors);
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred while registering the user: {ex.Message}");
-            }
-
-        }
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginDto loginRequestDto)
+        public async Task<IActionResult> Register([FromBody] RegisterDto dto)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
-            var user = await _userManager.FindByNameAsync(loginRequestDto.Username);
-            if (user == null)
+            var user = new AppUser
             {
-                return Unauthorized("Invalid username or password.");
-            }
+                UserName = dto.Username,
+                Email = dto.Email,
+            };
 
-            var result = await _signInManager.CheckPasswordSignInAsync(user, loginRequestDto.Password, false);
+            var result = await _userManager.CreateAsync(user, dto.Password);
+
             if (!result.Succeeded)
-            {
+                return StatusCode(500, result.Errors);
 
-                return Unauthorized("Invalid username or password.");
-            }
-            return Ok(
-                new NewUserDto
-                {
-                    UserName = user.UserName,
-                    Email = user.Email,
-                    Token = _tokenService.createToken(user)
-                }
-                );
+            await _userManager.AddToRoleAsync(user, "Admin");
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            return Ok(new
+            {
+                user.UserName,
+                user.Email,
+                Roles = roles,
+                Token = await _tokenService.createToken(user) // 🔥 FIX
+            });
         }
-        [HttpPost("assign-role")]
-        public async Task<IActionResult> AssignRole([FromBody] AssignRoleDto dto)
+
+        // ================= LOGIN =================
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var user = await _userManager.FindByNameAsync(dto.Username);
 
             if (user == null)
-                return NotFound("User not found");
+                return Unauthorized("Invalid username or password.");
 
-            var result = await _userManager.AddToRoleAsync(user, dto.Role);
+            var result = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, false);
 
             if (!result.Succeeded)
-                return BadRequest(result.Errors);
+                return Unauthorized("Invalid username or password.");
 
-            return Ok($"Role {dto.Role} assigned to {dto.Username}");
+            var roles = await _userManager.GetRolesAsync(user);
+
+            return Ok(new
+            {
+                user.UserName,
+                user.Email,
+                Roles = roles,
+                Token = await _tokenService.createToken(user) // 🔥 FIX
+            });
         }
+
+        // ================= GET ME =================
         [Authorize]
         [HttpGet("me")]
         public async Task<IActionResult> GetMe()
@@ -124,10 +98,55 @@ namespace Manager.API.Controllers
             if (user == null)
                 return NotFound();
 
+            var roles = await _userManager.GetRolesAsync(user);
+
             return Ok(new
             {
                 user.UserName,
-                user.Email
+                user.Email,
+                Roles = roles
+            });
+        }
+
+        // ================= USER LIST =================
+        [HttpGet("userlist")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UserList(int page = 1, int limit = 10)
+        {
+            if (page < 1) page = 1;
+            if (limit < 1) limit = 10;
+
+            var query = _userManager.Users;
+
+            var totalCount = await query.CountAsync();
+
+            var totalPages = totalCount == 0
+                ? 0
+                : (int)Math.Ceiling((double)totalCount / limit);
+
+            var users = await query
+                .OrderBy(u => u.UserName)
+                .Skip((page - 1) * limit)
+                .Take(limit)
+                .ToListAsync();
+
+            var tasks = users.Select(async user => new
+            {
+                Id = user.Id,
+                Username = user.UserName,
+                Email = user.Email,
+                Roles = await _userManager.GetRolesAsync(user)
+            });
+
+            var result = await Task.WhenAll(tasks);
+
+            return Ok(new
+            {
+                page,
+                limit,
+                totalCount,
+                totalPages, // 👈 đây chính là tổng số trang
+                data = result
             });
         }
     }

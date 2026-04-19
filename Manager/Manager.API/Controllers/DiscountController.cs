@@ -19,15 +19,22 @@ namespace Manager.API.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var discounts = await _discountRepository.GetAllAsync();
-            if (discounts == null || discounts.Count == 0)
+            var result = await _discountRepository.GetAllAsync(page, limit);
+
+            var discountDtos = result.Data
+                .Select(s => s.ToDiscountDto())
+                .ToList();
+
+            return Ok(new
             {
-                return NotFound("No discounts found.");
-            }
-            var discountDtos = discounts.Select(s => s.ToDiscountDto());
-            return Ok(discounts);
+                result.Page,
+                result.Limit,
+                result.TotalCount,
+                result.TotalPages,
+                data = discountDtos
+            });
         }
 
         [HttpGet]

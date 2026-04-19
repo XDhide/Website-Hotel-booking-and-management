@@ -1,68 +1,40 @@
 import { useState } from 'react'
 import Sidebar from '../components/Adminpage/Sidebar'
-import DataTable from '../components/Adminpage/DataTable'
-import RoomManager from '../components/Adminpage/RoomManager'
+import HomeAdmin from '../components/Adminpage/Homeadmin'
 import SupportChat from '../components/Adminpage/SupportChat'
 import Payment from '../components/Adminpage/Payment'
 import Report from '../components/Adminpage/Report'
+import Settings from '../components/Adminpage/Setting'
+import ApiDataTable from '../components/Adminpage/DataTable'
+import { API } from '../constant/config'
 import '../assets/css/Adminpage/AdminPage.css'
 
 export type PageKey =
-  | 'home'
-  | 'users'
-  | 'roomTypes'
-  | 'support'
-  | 'settings'
-  | 'room'
-  | 'bill'
-  | 'serve'
-  | 'voucher'
-  | 'lost'
-  | 'incident'
-  | 'report'
+  | 'home' | 'users' | 'roomTypes' | 'support' | 'settings'
+  | 'room' | 'bill' | 'serve' | 'voucher' | 'lost' | 'incident' | 'report'
 
-interface User {
-  id: number
-  name: string
-  email: string
-  role: string
-  status: string
-}
-
-interface RoomType {
-  id: number
-  typeName: string
-  capacity: number
-  pricePerNight: number
-  bedType: string
-  status: string
-}
-
-const USERS_DATA: User[] = [
-  { id: 1, name: 'Nguyễn Văn An', email: 'an@example.com', role: 'Admin', status: 'Hoạt động' },
-]
-
-const ROOM_TYPES_DATA: RoomType[] = [
-  { id: 1, typeName: 'Phòng Đơn', capacity: 1, pricePerNight: 500000, bedType: 'Single', status: 'Đang hoạt động' },
-]
-
-const StatusBadge = ({ value, activeLabel }: { value: string; activeLabel: string }) => (
-  <span
-    style={{
-      padding: '2px 10px',
-      borderRadius: '12px',
-      fontSize: '0.8rem',
-      fontWeight: 600,
-      background: value === activeLabel ? '#dcfce7' : '#fee2e2',
-      color: value === activeLabel ? '#16a34a' : '#dc2626',
-    }}
-  >
-    {value}
-  </span>
+const Badge = ({ value, color = '#22c55e' }: { value: string; color?: string }) => (
+  <span style={{
+    padding: '2px 10px', borderRadius: 12, fontSize: '0.78rem', fontWeight: 600,
+    background: `${color}20`, color,
+  }}>{value}</span>
 )
 
-const formatVND = (value: number) =>
-  new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value)
+const ROOM_STATUS: Record<string, { label: string; color: string }> = {
+  Available:   { label: 'Trống',         color: '#22c55e' },
+  Occupied:    { label: 'Đang sử dụng',  color: '#ef4444' },
+  Maintenance: { label: 'Bảo trì',        color: '#eab308' },
+  Reserved:    { label: 'Đã đặt',         color: '#3b82f6' },
+}
+const INCIDENT_COLOR: Record<string, string> = {
+  Pending: '#eab308', Resolved: '#22c55e', Cancelled: '#ef4444',
+}
+const LOST_COLOR: Record<string, string> = {
+  Lost: '#ef4444', Found: '#eab308', Returned: '#22c55e',
+}
+
+const fmt  = (v: number) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(v)
+const fmtD = (s: string) => { try { return new Date(s).toLocaleDateString('vi-VN') } catch { return s } }
 
 export default function AdminPage() {
   const [currentPage, setCurrentPage] = useState<PageKey>('home')
@@ -70,176 +42,130 @@ export default function AdminPage() {
   return (
     <div className="admin-layout">
       <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} />
-
       <main className="admin-content">
 
         {currentPage === 'home' && (
           <div className="page-section">
             <h1>Trang chủ</h1>
-            <RoomManager />
+            <HomeAdmin />
           </div>
         )}
 
+        {/* NGƯỜI DÙNG — GET /Account/userlist → { page, limit, totalCount, totalPages, data: [{Id,Username,Email,Roles}] } */}
         {currentPage === 'users' && (
-          <DataTable<User>
-            initialData={USERS_DATA}
-            pageSize={5}
-            emptyForm={{ name: '', email: '', role: 'Viewer', status: 'Hoạt động' }}
+          <ApiDataTable
+            apiPrefix="Account"
+            customGetUrl={(p, l) => `${API}/Account/userlist?page=${p}&limit=${l}`}
+            pageSize={10}
+            emptyForm={{ username: '', email: '' }}
             fieldsMeta={{
-              name: { label: 'Họ tên', inputType: 'text' },
-              email: { label: 'Email', inputType: 'text' },
-              role: {
-                label: 'Vai trò',
-                inputType: 'select',
-                options: ['Admin', 'Editor', 'Viewer'],
-              },
-              status: {
-                label: 'Trạng thái',
-                inputType: 'select',
-                options: ['Hoạt động', 'Không hoạt động'],
-                render: (val) => <StatusBadge value={val} activeLabel="Hoạt động" />,
-              },
+              username: { label: 'Tên đăng nhập', readOnly: true },
+              email:    { label: 'Email',          readOnly: true },
+              roles:    { label: 'Vai trò',
+                          render: (v) => Array.isArray(v)
+                            ? v.map((r: string) => <Badge key={r} value={r} color="#3b82f6" />)
+                            : <Badge value={String(v)} color="#3b82f6" /> },
             }}
           />
         )}
 
+        {/* LOẠI PHÒNG — model RoomType { name, capacity, description } */}
         {currentPage === 'roomTypes' && (
-          <DataTable<RoomType>
-            initialData={ROOM_TYPES_DATA}
-            pageSize={5}
-            emptyForm={{
-              typeName: '',
-              capacity: 1,
-              pricePerNight: 0,
-              bedType: 'Single',
-              status: 'Đang hoạt động',
-            }}
+          <ApiDataTable apiPrefix="RoomType" pageSize={10}
+            emptyForm={{ name: '', capacity: '', description: '' }}
             fieldsMeta={{
-              typeName: { label: 'Tên loại phòng', inputType: 'text' },
-              capacity: { label: 'Sức chứa', inputType: 'number' },
-              pricePerNight: {
-                label: 'Giá',
-                inputType: 'number',
-                render: (val) => formatVND(Number(val)),
-              },
-              bedType: {
-                label: 'Giường',
-                inputType: 'select',
-                options: ['Single', 'Double'],
-              },
-              status: {
-                label: 'Trạng thái',
-                inputType: 'select',
-                options: ['Đang hoạt động', 'Không hoạt động'],
-                render: (val) => <StatusBadge value={val} activeLabel="Đang hoạt động" />,
-              },
-            }}
-          />
+              name:        { label: 'Tên loại phòng', inputType: 'text' },
+              capacity:    { label: 'Sức chứa',       inputType: 'text' },
+              description: { label: 'Mô tả',          inputType: 'textarea' },
+            }} />
         )}
 
-        {currentPage === 'bill' && (
-          <Payment/>
-        )}
-
+        {/* PHÒNG — model Rooms { roomNumber, roomTypeId, currentStatus } */}
         {currentPage === 'room' && (
-          <DataTable<any>
-            initialData={[]}
-            pageSize={5}
-            emptyForm={{ roomNumber: '', type: '', status: 'Trống' }}
+          <ApiDataTable apiPrefix="room" pageSize={10}
+            emptyForm={{ roomNumber: '', roomTypeId: 1, currentStatus: 'Available' }}
             fieldsMeta={{
-              roomNumber: { label: 'Số phòng', inputType: 'text' },
-              type: { label: 'Loại phòng', inputType: 'text' },
-              status: {
-                label: 'Trạng thái',
-                inputType: 'select',
-                options: ['Trống', 'Đang sử dụng'],
-                render: (val) => <StatusBadge value={val} activeLabel="Trống" />,
+              roomNumber:    { label: 'Số phòng',      inputType: 'text' },
+              roomTypeId:    { label: 'Mã loại phòng', inputType: 'number' },
+              currentStatus: {
+                label: 'Trạng thái', inputType: 'select',
+                options: ['Available', 'Occupied', 'Maintenance', 'Reserved'],
+                render: (v) => {
+                  const s = ROOM_STATUS[v] ?? { label: v, color: '#94a3b8' }
+                  return <Badge value={s.label} color={s.color} />
+                },
               },
-            }}
-          />
+            }} />
         )}
 
+        {currentPage === 'bill' && <Payment />}
+
+        {/* DỊCH VỤ — model Services { serviceType, name, price, unit } */}
         {currentPage === 'serve' && (
-          <DataTable<any>
-            initialData={[]}
-            pageSize={5}
-            emptyForm={{ serviceName: '', price: 0, status: 'Đang hoạt động' }}
+          <ApiDataTable apiPrefix="Service" pageSize={10}
+            emptyForm={{ serviceType: '', name: '', price: 0, unit: '' }}
             fieldsMeta={{
-              serviceName: { label: 'Tên dịch vụ', inputType: 'text' },
-              price: {
-                label: 'Giá',
-                inputType: 'number',
-                render: (val) => formatVND(Number(val)),
-              },
-              status: {
-                label: 'Trạng thái',
-                inputType: 'select',
-                options: ['Đang hoạt động', 'Ngừng'],
-                render: (val) => <StatusBadge value={val} activeLabel="Đang hoạt động" />,
-              },
-            }}
-          />
+              serviceType: { label: 'Loại',      inputType: 'text' },
+              name:        { label: 'Tên',        inputType: 'text' },
+              price:       { label: 'Giá',        inputType: 'number', render: (v) => fmt(Number(v)) },
+              unit:        { label: 'Đơn vị',     inputType: 'text' },
+            }} />
         )}
 
+        {/* GIẢM GIÁ — model Discount { name, discountType, discountValue, fromDate, toDate, isActive } */}
         {currentPage === 'voucher' && (
-          <DataTable<any>
-            initialData={[]}
-            pageSize={5}
-            emptyForm={{ code: '', discount: 0, status: 'Còn hạn' }}
+          <ApiDataTable apiPrefix="Discount" pageSize={10}
+            emptyForm={{ name: '', discountType: 'Percentage', discountValue: 0, fromDate: '', toDate: '', isActive: true }}
             fieldsMeta={{
-              code: { label: 'Mã', inputType: 'text' },
-              discount: { label: '% Giảm', inputType: 'number' },
-              status: {
-                label: 'Trạng thái',
-                inputType: 'select',
-                options: ['Còn hạn', 'Hết hạn'],
-                render: (val) => <StatusBadge value={val} activeLabel="Còn hạn" />,
-              },
-            }}
-          />
+              name:          { label: 'Tên',       inputType: 'text' },
+              discountType:  { label: 'Loại',      inputType: 'select', options: ['Percentage', 'Fixed'],
+                               render: (v) => <Badge value={v} color={v === 'Percentage' ? '#3b82f6' : '#8b5cf6'} /> },
+              discountValue: { label: 'Giá trị',   inputType: 'number',
+                               render: (v, row) => row.discountType === 'Percentage' ? `${v}%` : fmt(Number(v)) },
+              fromDate:      { label: 'Từ ngày',   inputType: 'text', render: (v) => fmtD(v) },
+              toDate:        { label: 'Đến ngày',  inputType: 'text', render: (v) => fmtD(v) },
+              isActive:      { label: 'Trạng thái',
+                               render: (v) => <Badge value={v ? 'Đang dùng' : 'Tắt'} color={v ? '#22c55e' : '#6b7280'} /> },
+            }} />
         )}
 
+        {/* ĐỒ THẤT LẠC — model LostItem { bookingId, itemName, description, status, foundDate } */}
         {currentPage === 'lost' && (
-          <DataTable<any>
-            initialData={[]}
-            pageSize={5}
-            emptyForm={{ itemName: '', foundLocation: '', status: 'Chưa nhận' }}
+          <ApiDataTable apiPrefix="LostItem" pageSize={10}
+            emptyForm={{ bookingId: 0, itemName: '', description: '', status: 'Lost', foundDate: '' }}
             fieldsMeta={{
-              itemName: { label: 'Tên đồ', inputType: 'text' },
-              foundLocation: { label: 'Vị trí', inputType: 'text' },
-              status: {
-                label: 'Trạng thái',
-                inputType: 'select',
-                options: ['Chưa nhận', 'Đã trả'],
-                render: (val) => <StatusBadge value={val} activeLabel="Đã trả" />,
-              },
-            }}
-          />
+              bookingId:   { label: 'Booking ID',      inputType: 'number' },
+              itemName:    { label: 'Tên đồ vật',      inputType: 'text' },
+              description: { label: 'Mô tả',           inputType: 'textarea' },
+              foundDate:   { label: 'Ngày tìm thấy',  inputType: 'text', render: (v) => fmtD(v) },
+              status:      { label: 'Trạng thái',      inputType: 'select',
+                             options: ['Lost', 'Found', 'Returned'],
+                             render: (v) => <Badge value={v} color={LOST_COLOR[v] ?? '#94a3b8'} /> },
+            }} />
         )}
 
+        {/* SỰ CỐ — model Incident { bookingId, title, description, status } */}
         {currentPage === 'incident' && (
-          <DataTable<any>
-            initialData={[]}
-            pageSize={5}
-            emptyForm={{ title: '', description: '', status: 'Chưa xử lý' }}
+          <ApiDataTable apiPrefix="Incident" pageSize={10}
+            emptyForm={{ bookingId: 0, title: '', description: '', status: 'Pending' }}
             fieldsMeta={{
-              title: { label: 'Tiêu đề', inputType: 'text' },
-              description: { label: 'Mô tả', inputType: 'text' },
-              status: {
-                label: 'Trạng thái',
-                inputType: 'select',
-                options: ['Chưa xử lý', 'Hoàn thành'],
-                render: (val) => <StatusBadge value={val} activeLabel="Hoàn thành" />,
-              },
-            }}
-          />
+              bookingId:   { label: 'Booking ID',  inputType: 'number' },
+              title:       { label: 'Tiêu đề',     inputType: 'text' },
+              description: { label: 'Mô tả',       inputType: 'textarea' },
+              status:      { label: 'Trạng thái',  inputType: 'select',
+                             options: ['Pending', 'Resolved', 'Cancelled'],
+                             render: (v) => <Badge value={v} color={INCIDENT_COLOR[v] ?? '#94a3b8'} /> },
+            }} />
         )}
 
-        {currentPage === 'support' && (<SupportChat/>)}
-
-        {currentPage === 'report' && (<Report/>)}
-
-        {currentPage === 'settings' && <div>Settings Page</div>}
+        {currentPage === 'support' && <SupportChat />}
+        {currentPage === 'report'  && <Report />}
+        {currentPage === 'settings' && (
+          <div className="page-section">
+            <h1>Cài đặt</h1>
+            <Settings onLogout={() => setCurrentPage('home')} />
+          </div>
+        )}
 
       </main>
     </div>

@@ -18,13 +18,22 @@ namespace Manager.API.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var incidents = await _incidentRepository.GetAllAsync();
-            if (incidents == null || incidents.Count == 0)
-                return NotFound("No incidents found.");
-            var dtos = incidents.Select(i => i.ToIncidentDto());
-            return Ok(dtos);
+            var result = await _incidentRepository.GetAllAsync(page, limit);
+
+            var dtos = result.Data
+                .Select(i => i.ToIncidentDto())
+                .ToList();
+
+            return Ok(new
+            {
+                result.Page,
+                result.Limit,
+                result.TotalCount,
+                result.TotalPages,
+                data = dtos
+            });
         }
 
         [HttpGet("{id}")]

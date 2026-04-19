@@ -16,15 +16,28 @@ namespace Manager.API.Controllers
             _servicesRepository = repository;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var serviceModels = await _servicesRepository.GetAllAsync();
-            if (serviceModels == null || serviceModels.Count == 0)
+            var result = await _servicesRepository.GetAllAsync(page, limit);
+
+            if (result.Data == null || result.Data.Count == 0)
             {
                 return NotFound("No Service found.");
             }
-            var serviceDtos = serviceModels.Select(s => s.ToServicesDto());
-            return Ok(serviceModels);
+
+            var serviceDtos = result.Data
+                .Select(s => s.ToServicesDto())
+                .ToList();
+
+            return Ok(new
+            {
+                result.Page,
+                result.Limit,
+                result.TotalCount,
+                result.TotalPages,
+                data = serviceDtos
+            });
         }
         [HttpGet]
         [Route("{id}")]

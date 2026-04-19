@@ -5,7 +5,7 @@ namespace Manager.API.Interfaces
 {
     public interface IDiscountRepository
     {
-        Task<List<Discount>> GetAllAsync();
+        Task<PagedResult<Discount>> GetAllAsync(int page, int limit);
         Task<Discount?> GetByIdAsync(int id);
         Task<Discount> CreateAsync(Discount Discount);
         Task<Discount?> UpdateAsync(int id, UpdateDiscountRequetsDto DiscountDto);

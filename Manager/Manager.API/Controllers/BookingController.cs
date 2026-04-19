@@ -31,13 +31,25 @@ namespace Manager.API.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var bookings = await _bookingRepo.GetAllAsync();
-            if (bookings == null || bookings.Count == 0)
+            var result = await _bookingRepo.GetAllAsync(page, limit);
+
+            if (result.Data == null || result.Data.Count == 0)
                 return NotFound("No bookings found.");
-            var dtos = bookings.Select(b => b.ToBookingDto());
-            return Ok(dtos);
+
+            var dtos = result.Data
+                .Select(b => b.ToBookingDto())
+                .ToList();
+
+            return Ok(new
+            {
+                result.Page,
+                result.Limit,
+                result.TotalCount,
+                result.TotalPages,
+                data = dtos
+            });
         }
 
         [HttpGet("{id:int}")]

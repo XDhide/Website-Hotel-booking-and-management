@@ -18,16 +18,27 @@ namespace Manager.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var RoomTypeModels = await _RoomTypeRepository.GetAllAsync();
-            if (RoomTypeModels == null || RoomTypeModels.Count == 0)
+            var result = await _RoomTypeRepository.GetAllAsync(page, limit);
+
+            if (result.Data == null || result.Data.Count == 0)
             {
                 return NotFound("No RoomType found.");
             }
-            var RoomTypeDtos = RoomTypeModels.Select(s => s.ToRoomTypeDto());
 
-            return Ok(RoomTypeDtos);
+            var roomTypeDtos = result.Data
+                .Select(s => s.ToRoomTypeDto())
+                .ToList();
+
+            return Ok(new
+            {
+                result.Page,
+                result.Limit,
+                result.TotalCount,
+                result.TotalPages,
+                data = roomTypeDtos
+            });
         }
         [HttpGet]
         [Route("{id}")]

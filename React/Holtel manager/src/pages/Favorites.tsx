@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { HeartFilled, HeartOutlined, DeleteOutlined, ShoppingCartOutlined, InboxOutlined } from "@ant-design/icons";
+import { HeartFilled, HeartOutlined, DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import RoomCard from "../components/Homepage/Roomcard";
 import { ALL_ROOMS } from "../components/Homepage/rooms";
 import "../assets/css/Favorites/Favorites.css";
 
 export default function Favorites() {
-  // Demo: lấy vài phòng làm yêu thích
   const [favorites, setFavorites] = useState(ALL_ROOMS.slice(0, 4));
 
   const remove = (id: number) => setFavorites((prev) => prev.filter((r) => r.id !== id));

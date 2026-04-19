@@ -5,7 +5,7 @@ namespace Manager.API.Interfaces
 {
     public interface IIncidentRepository
     {
-        Task<List<Incident>> GetAllAsync();
+        Task<PagedResult<Incident>> GetAllAsync(int page, int limit);
         Task<Incident?> GetByIdAsync(int id);
         Task<Incident> CreateAsync(Incident incident);
         Task<Incident?> UpdateAsync(int id, UpdateIncidentDto dto);

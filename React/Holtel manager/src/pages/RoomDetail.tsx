@@ -18,7 +18,6 @@ import {
   CarOutlined,
   RestOutlined,
   AlertOutlined,
-  PictureOutlined,
   EnvironmentOutlined,
   SunOutlined,
   BgColorsOutlined,

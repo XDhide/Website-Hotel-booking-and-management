@@ -14,9 +14,33 @@ namespace Manager.API.Repository
             _context = context;
         }
 
-        public async Task<List<Incident>> GetAllAsync()
+        public async Task<PagedResult<Incident>> GetAllAsync(int page, int limit)
         {
-            return await _context.Incidents.ToListAsync();
+            if (page < 1) page = 1;
+            if (limit < 1) limit = 10;
+
+            var query = _context.Incidents.AsQueryable();
+
+            var totalCount = await query.CountAsync();
+
+            var data = await query
+                .OrderByDescending(i => i.Id)
+                .Skip((page - 1) * limit)
+                .Take(limit)
+                .ToListAsync();
+
+            var totalPages = totalCount == 0
+                ? 0
+                : (int)Math.Ceiling((double)totalCount / limit);
+
+            return new PagedResult<Incident>
+            {
+                Page = page,
+                Limit = limit,
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                Data = data
+            };
         }
 
         public async Task<Incident?> GetByIdAsync(int id)

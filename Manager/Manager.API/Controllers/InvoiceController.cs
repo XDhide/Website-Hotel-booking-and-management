@@ -16,15 +16,28 @@ namespace Manager.API.Controllers
             _invoiceRepository = invoiceRepository;
         }
 
-        [HttpGet]
+
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult> GetAll()
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var invoices = await _invoiceRepository.GetAllAsync();
-            if (invoices == null || invoices.Count == 0)
+            var result = await _invoiceRepository.GetAllAsync(page, limit);
+
+            if (result.Data == null || result.Data.Count == 0)
                 return NotFound("No invoices found.");
-            var dtos = invoices.Select(i => i.ToInvoiceDto());
-            return Ok(dtos);
+
+            var dtos = result.Data
+                .Select(i => i.ToInvoiceDto())
+                .ToList();
+
+            return Ok(new
+            {
+                result.Page,
+                result.Limit,
+                result.TotalCount,
+                result.TotalPages,
+                data = dtos
+            });
         }
 
         [HttpGet("{id}")]

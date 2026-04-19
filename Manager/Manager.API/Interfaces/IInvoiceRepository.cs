@@ -5,7 +5,7 @@ namespace Manager.API.Interfaces
 {
     public interface IInvoiceRepository
     {
-        Task<List<Invoice>> GetAllAsync();
+        Task<PagedResult<Invoice>> GetAllAsync(int page, int limit);
         Task<Invoice?> GetByIdAsync(int id);
         Task<Invoice> CreateAsync(Invoice invoice);
         Task<Invoice?> UpdateAsync(int id, UpdateInvoiceDto dto);

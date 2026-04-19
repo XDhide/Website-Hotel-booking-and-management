@@ -91,7 +91,7 @@ export default function BookingDetail({ booking, onBack }: Props) {
   const [chatTyping, setChatTyping]         = useState(false);
   const [botIdx, setBotIdx]                 = useState(0);
   const [messages, setMessages]             = useState<ChatMessage[]>([
-    { from: "bot", text: `Xin chào! 👋 Tôi có thể giúp gì về Phòng ${booking.roomNumber}?`, time: getTime() },
+    { from: "bot", text: `Xin chào! Tôi có thể giúp gì về Phòng ${booking.roomNumber}?`, time: getTime() },
   ]);
   const bottomRef = useRef<HTMLDivElement>(null);
 

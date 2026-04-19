@@ -32,9 +32,31 @@ namespace Manager.API.Repository
             return discount;
         }
 
-        public async Task<List<Discount>> GetAllAsync()
+        public async Task<PagedResult<Discount>> GetAllAsync(int page, int limit)
         {
-            return await _dBContext.Discounts.ToListAsync();
+            if (page < 1) page = 1;
+            if (limit < 1) limit = 10;
+
+            var query = _dBContext.Discounts.AsQueryable();
+
+            var totalCount = await query.CountAsync();
+
+            var data = await query
+                .OrderByDescending(d => d.Id)
+                .Skip((page - 1) * limit)
+                .Take(limit)
+                .ToListAsync();
+
+            var totalPages = (int)Math.Ceiling((double)totalCount / limit);
+
+            return new PagedResult<Discount>
+            {
+                Page = page,
+                Limit = limit,
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                Data = data
+            };
         }
 
         public async Task<Discount?> GetByIdAsync(int id)

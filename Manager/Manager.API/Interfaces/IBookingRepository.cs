@@ -4,7 +4,7 @@ namespace Manager.API.Interfaces
 {
     public interface IBookingRepository
     {
-        Task<List<Booking>> GetAllAsync();
+        Task<PagedResult<Booking>> GetAllAsync(int page, int limit);
         Task<Booking?> GetByIdAsync(int id);
         Task<List<Booking>> GetByUserIdAsync(string userId);
         Task<Booking> CreateAsync(Booking booking);

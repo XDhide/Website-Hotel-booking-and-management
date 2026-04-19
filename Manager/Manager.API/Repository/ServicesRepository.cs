@@ -32,9 +32,33 @@ namespace Manager.API.Repository
             return services;
         }
 
-        public async Task<List<Services>> GetAllAsync()
+        public async Task<PagedResult<Services>> GetAllAsync(int page, int limit)
         {
-            return await _dBContext.Services.ToListAsync();
+            if (page < 1) page = 1;
+            if (limit < 1) limit = 10;
+
+            var query = _dBContext.Services.AsQueryable();
+
+            var totalCount = await query.CountAsync();
+
+            var data = await query
+                .OrderBy(s => s.Id) 
+                .Skip((page - 1) * limit)
+                .Take(limit)
+                .ToListAsync();
+
+            var totalPages = totalCount == 0
+                ? 0
+                : (int)Math.Ceiling((double)totalCount / limit);
+
+            return new PagedResult<Services>
+            {
+                Page = page,
+                Limit = limit,
+                TotalCount = totalCount,
+                TotalPages = totalPages,
+                Data = data
+            };
         }
 
         public async Task<Services?> GetByIdAsync(int id)

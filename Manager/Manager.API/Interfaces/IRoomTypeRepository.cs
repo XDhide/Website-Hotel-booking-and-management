@@ -5,7 +5,7 @@ namespace Manager.API.Interfaces
 {
     public interface IRoomTypeRepository
     {
-        Task<List<RoomType>> GetAllAsync();
+        Task<PagedResult<RoomType>> GetAllAsync(int page, int limit);
         Task<RoomType?> GetByIdAsync(int id);
         Task<RoomType> CreateAsync(RoomType RoomType);
         Task<RoomType?> UpdateAsync(int id ,UpdateRoomTypeRequestDto RoomTypeDto);

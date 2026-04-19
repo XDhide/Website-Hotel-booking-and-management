@@ -1,4 +1,5 @@
 ﻿using Manager.API.Dtos.RoomRate;
+using Manager.API.Interfaces;
 using Manager.API.Mappers;
 using Manager.API.Repository;
 using Microsoft.AspNetCore.Authorization;
@@ -10,22 +11,35 @@ namespace Manager.API.Controllers
     [ApiController]
     public class RoomRateController : ControllerBase
     {
-        private readonly RoomRateRepository _roomRateRepository;
-        public RoomRateController(RoomRateRepository roomRateRepository)
+        private readonly IRoomRateRepository _roomRateRepository;
+
+        public RoomRateController(IRoomRateRepository roomRateRepository)
         {
             _roomRateRepository = roomRateRepository;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var roomRateModels = await _roomRateRepository.GetAllAsync();
-            if (roomRateModels == null || roomRateModels.Count == 0)
+            var result = await _roomRateRepository.GetAllAsync(page, limit);
+
+            if (result.Data == null || result.Data.Count == 0)
             {
                 return NotFound("No RoomRate found.");
             }
-            var roomRateDtos = roomRateModels.Select(s => s.ToRoomRateDto());
-            return Ok(roomRateModels);
+
+            var roomRateDtos = result.Data
+                .Select(s => s.ToRoomRateDto())
+                .ToList();
+
+            return Ok(new
+            {
+                result.Page,
+                result.Limit,
+                result.TotalCount,
+                result.TotalPages,
+                data = roomRateDtos
+            });
         }
         [HttpGet]
         [Route("{id}")]

@@ -1,4 +1,5 @@
 ﻿using Manager.API.Dtos.Room;
+using Manager.API.Interfaces;
 using Manager.API.Mappers;
 using Manager.API.Repository;
 using Microsoft.AspNetCore.Authorization;
@@ -10,22 +11,35 @@ namespace Manager.API.Controllers
     [ApiController]
     public class RoomController : ControllerBase
     {
-        private readonly RoomRepository _roomRepository;
-        public RoomController(RoomRepository roomRepository)
+        private readonly IRoomRepository _roomRepository;
+
+        public RoomController(IRoomRepository roomRepository)
         {
             _roomRepository = roomRepository;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var roomModels = await _roomRepository.GetAllAsync();
-            if (roomModels == null || roomModels.Count == 0)
+            var result = await _roomRepository.GetAllAsync(page, limit);
+
+            if (result.Data == null || result.Data.Count == 0)
             {
                 return NotFound("No Room found.");
             }
-            var roomDtos = roomModels.Select(s => s.ToRoomDto());
-            return Ok(roomDtos);
+
+            var roomDtos = result.Data
+                .Select(s => s.ToRoomDto())
+                .ToList();
+
+            return Ok(new
+            {
+                result.Page,
+                result.Limit,
+                result.TotalCount,
+                result.TotalPages,
+                data = roomDtos
+            });
         }
         [HttpGet]
         [Route("{id}")]
