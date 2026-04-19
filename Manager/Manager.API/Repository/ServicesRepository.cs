@@ -1,4 +1,8 @@
-﻿using Manager.API.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Manager.API.Data;
 using Manager.API.Dtos.Services;
 using Manager.API.Interfaces;
 using Manager.API.Models;
@@ -9,48 +13,46 @@ namespace Manager.API.Repository
     public class ServicesRepository : IServicesRepository
     {
         private readonly ApplicationDBContext _dBContext;
+
         public ServicesRepository(ApplicationDBContext dBContext)
         {
             _dBContext = dBContext;
         }
-        public async Task<Services> CreateAsync(Services Services)
+
+        public async Task<Services> CreateAsync(Services model)
         {
-            await _dBContext.Services.AddAsync(Services);
+            var newModel = new Services
+            {
+                ServiceType = model.ServiceType,
+                Name = model.Name,
+                Price = model.Price,
+                Unit = model.Unit,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+            };
+            await _dBContext.Services.AddAsync(newModel);
             await _dBContext.SaveChangesAsync();
-            return Services;
+            return newModel;
         }
 
-        public async Task<Services?> DeleteAsync(int id)
+        public async Task<Services> DeleteAsync(int id)
         {
-            var services = await _dBContext.Services.FindAsync(id);
-            if (services == null)
-            {
+            var model = await _dBContext.Services.FirstOrDefaultAsync(s => s.Id == id);
+            if (model == null)
                 return null;
-            }
-            _dBContext.Services.Remove(services);
+            _dBContext.Services.Remove(model);
             await _dBContext.SaveChangesAsync();
-            return services;
+            return model;
         }
 
         public async Task<PagedResult<Services>> GetAllAsync(int page, int limit)
         {
             if (page < 1) page = 1;
             if (limit < 1) limit = 10;
-
             var query = _dBContext.Services.AsQueryable();
-
             var totalCount = await query.CountAsync();
-
-            var data = await query
-                .OrderBy(s => s.Id) 
-                .Skip((page - 1) * limit)
-                .Take(limit)
-                .ToListAsync();
-
-            var totalPages = totalCount == 0
-                ? 0
-                : (int)Math.Ceiling((double)totalCount / limit);
-
+            var data = await query.OrderByDescending(r => r.Id).Skip((page - 1) * limit).Take(limit).ToListAsync();
+            int totalPages = totalCount == 0 ? 0 : (int)Math.Ceiling((double)totalCount / limit);
             return new PagedResult<Services>
             {
                 Page = page,
@@ -61,27 +63,24 @@ namespace Manager.API.Repository
             };
         }
 
-        public async Task<Services?> GetByIdAsync(int id)
+        public async Task<Services> GetByIdAsync(int id)
         {
-            var services = await _dBContext.Services.FindAsync(id);
-            return services;
+            return await _dBContext.Services.FindAsync(id);
         }
 
-        public async Task<Services?> UpdateAsync(int id, UpdateServicesRequestDto ServicesDto)
+        public async Task<Services> UpdateAsync(int id, UpdateServicesRequestDto dto)
         {
-            var services = await _dBContext.Services.FindAsync(id);
-            if (services == null)
-            {
+            var model = await _dBContext.Services.FirstOrDefaultAsync(s => s.Id == id);
+            if (model == null)
                 return null;
-            }
-            services.Name = ServicesDto.Name;
-            services.Price = ServicesDto.Price;
-            services.unit = ServicesDto.unit;
-            services.ServiceType = ServicesDto.ServiceType;
-            services.UpdateAt = DateTime.Now;
-
+            model.ServiceType = dto.ServiceType;
+            model.Name = dto.Name;
+            model.Price = dto.Price;
+            model.Unit = dto.Unit;
+            model.CreatedAt = DateTime.Now;
+            model.UpdatedAt = DateTime.Now;
             await _dBContext.SaveChangesAsync();
-            return services;
+            return model;
         }
     }
 }

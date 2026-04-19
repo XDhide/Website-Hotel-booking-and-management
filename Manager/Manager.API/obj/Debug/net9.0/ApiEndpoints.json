@@ -65,7 +65,7 @@
   {
     "ContainingType": "Manager.API.Controllers.BookingController",
     "Method": "GetAll",
-    "RelativePath": "api/Booking",
+    "RelativePath": "api/booking",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -86,11 +86,21 @@
   {
     "ContainingType": "Manager.API.Controllers.BookingController",
     "Method": "Create",
-    "RelativePath": "api/Booking",
+    "RelativePath": "api/booking",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "RoomTypeId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
       {
         "Name": "dto",
         "Type": "Manager.API.Dtos.Booking.CreateBookingRequestDto",
@@ -102,7 +112,7 @@
   {
     "ContainingType": "Manager.API.Controllers.BookingController",
     "Method": "GetById",
-    "RelativePath": "api/Booking/{id}",
+    "RelativePath": "api/booking/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -118,7 +128,7 @@
   {
     "ContainingType": "Manager.API.Controllers.BookingController",
     "Method": "Update",
-    "RelativePath": "api/Booking/{id}",
+    "RelativePath": "api/booking/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -138,8 +148,8 @@
   },
   {
     "ContainingType": "Manager.API.Controllers.BookingController",
-    "Method": "Cancel",
-    "RelativePath": "api/Booking/{id}",
+    "Method": "Delete",
+    "RelativePath": "api/booking/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -153,83 +163,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.BookingController",
-    "Method": "GetMyBookings",
-    "RelativePath": "api/Booking/my-bookings",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.CheckInOutController",
-    "Method": "CheckIn",
-    "RelativePath": "api/CheckInOut/checkin",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Manager.API.Dtos.CheckInOut.CheckInRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.CheckInOutController",
-    "Method": "CheckOut",
-    "RelativePath": "api/CheckInOut/checkout",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Manager.API.Dtos.CheckInOut.CheckOutRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.CheckInOutController",
-    "Method": "ExtendBooking",
-    "RelativePath": "api/CheckInOut/extend",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Manager.API.Dtos.CheckInOut.ExtendBookingRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.CheckInOutController",
-    "Method": "TransferRoom",
-    "RelativePath": "api/CheckInOut/transfer-room",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Manager.API.Dtos.CheckInOut.TransferRoomRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "Manager.API.Controllers.DiscountController",
     "Method": "GetAll",
-    "RelativePath": "api/Discount",
+    "RelativePath": "api/discount",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -250,14 +186,14 @@
   {
     "ContainingType": "Manager.API.Controllers.DiscountController",
     "Method": "Create",
-    "RelativePath": "api/Discount",
+    "RelativePath": "api/discount",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "createDiscountRequestDto",
-        "Type": "Manager.API.Dtos.Discount.CreateDiscountRequetsDto",
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Discount.CreateDiscountRequestDto",
         "IsRequired": true
       }
     ],
@@ -266,7 +202,7 @@
   {
     "ContainingType": "Manager.API.Controllers.DiscountController",
     "Method": "GetById",
-    "RelativePath": "api/Discount/{id}",
+    "RelativePath": "api/discount/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -282,7 +218,7 @@
   {
     "ContainingType": "Manager.API.Controllers.DiscountController",
     "Method": "Update",
-    "RelativePath": "api/Discount/{id}",
+    "RelativePath": "api/discount/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -293,8 +229,8 @@
         "IsRequired": true
       },
       {
-        "Name": "updateDiscountRequestDto",
-        "Type": "Manager.API.Dtos.Discount.UpdateDiscountRequetsDto",
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Discount.UpdateDiscountRequestDto",
         "IsRequired": true
       }
     ],
@@ -303,7 +239,7 @@
   {
     "ContainingType": "Manager.API.Controllers.DiscountController",
     "Method": "Delete",
-    "RelativePath": "api/Discount/{id}",
+    "RelativePath": "api/discount/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -317,9 +253,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.IncidentController",
+    "ContainingType": "Manager.API.Controllers.EvaluationController",
     "Method": "GetAll",
-    "RelativePath": "api/Incident",
+    "RelativePath": "api/evaluation",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -338,25 +274,35 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.IncidentController",
+    "ContainingType": "Manager.API.Controllers.EvaluationController",
     "Method": "Create",
-    "RelativePath": "api/Incident",
+    "RelativePath": "api/evaluation",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "RoomInUseId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
         "Name": "dto",
-        "Type": "Manager.API.Dtos.Incident.CreateIncidentDto",
+        "Type": "Manager.API.Dtos.Evaluation.CreateEvaluationRequestDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.IncidentController",
+    "ContainingType": "Manager.API.Controllers.EvaluationController",
     "Method": "GetById",
-    "RelativePath": "api/Incident/{id}",
+    "RelativePath": "api/evaluation/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -370,9 +316,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.IncidentController",
+    "ContainingType": "Manager.API.Controllers.EvaluationController",
     "Method": "Update",
-    "RelativePath": "api/Incident/{id}",
+    "RelativePath": "api/evaluation/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -384,16 +330,16 @@
       },
       {
         "Name": "dto",
-        "Type": "Manager.API.Dtos.Incident.UpdateIncidentDto",
+        "Type": "Manager.API.Dtos.Evaluation.UpdateEvaluationRequestDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.IncidentController",
+    "ContainingType": "Manager.API.Controllers.EvaluationController",
     "Method": "Delete",
-    "RelativePath": "api/Incident/{id}",
+    "RelativePath": "api/evaluation/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -409,7 +355,7 @@
   {
     "ContainingType": "Manager.API.Controllers.InvoiceController",
     "Method": "GetAll",
-    "RelativePath": "api/Invoice",
+    "RelativePath": "api/invoice",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -430,14 +376,24 @@
   {
     "ContainingType": "Manager.API.Controllers.InvoiceController",
     "Method": "Create",
-    "RelativePath": "api/Invoice",
+    "RelativePath": "api/invoice",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "RoomInUseId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
         "Name": "dto",
-        "Type": "Manager.API.Dtos.Invoice.CreateInvoiceDto",
+        "Type": "Manager.API.Dtos.Invoice.CreateInvoiceRequestDto",
         "IsRequired": true
       }
     ],
@@ -446,7 +402,7 @@
   {
     "ContainingType": "Manager.API.Controllers.InvoiceController",
     "Method": "GetById",
-    "RelativePath": "api/Invoice/{id}",
+    "RelativePath": "api/invoice/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -462,7 +418,7 @@
   {
     "ContainingType": "Manager.API.Controllers.InvoiceController",
     "Method": "Update",
-    "RelativePath": "api/Invoice/{id}",
+    "RelativePath": "api/invoice/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -474,7 +430,7 @@
       },
       {
         "Name": "dto",
-        "Type": "Manager.API.Dtos.Invoice.UpdateInvoiceDto",
+        "Type": "Manager.API.Dtos.Invoice.UpdateInvoiceRequestDto",
         "IsRequired": true
       }
     ],
@@ -483,7 +439,102 @@
   {
     "ContainingType": "Manager.API.Controllers.InvoiceController",
     "Method": "Delete",
-    "RelativePath": "api/Invoice/{id}",
+    "RelativePath": "api/invoice/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.InvoiceDetailController",
+    "Method": "GetAll",
+    "RelativePath": "api/invoicedetail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "limit",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.InvoiceDetailController",
+    "Method": "Create",
+    "RelativePath": "api/invoicedetail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "InvoiceId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.InvoiceDetail.CreateInvoiceDetailRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.InvoiceDetailController",
+    "Method": "GetById",
+    "RelativePath": "api/invoicedetail/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.InvoiceDetailController",
+    "Method": "Update",
+    "RelativePath": "api/invoicedetail/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.InvoiceDetail.UpdateInvoiceDetailRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.InvoiceDetailController",
+    "Method": "Delete",
+    "RelativePath": "api/invoicedetail/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -499,7 +550,7 @@
   {
     "ContainingType": "Manager.API.Controllers.LostItemController",
     "Method": "GetAll",
-    "RelativePath": "api/LostItem",
+    "RelativePath": "api/lostitem",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -520,14 +571,24 @@
   {
     "ContainingType": "Manager.API.Controllers.LostItemController",
     "Method": "Create",
-    "RelativePath": "api/LostItem",
+    "RelativePath": "api/lostitem",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "RoomsId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "RoomInUseId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
         "Name": "dto",
-        "Type": "Manager.API.Dtos.LostItem.CreateLostItemDto",
+        "Type": "Manager.API.Dtos.LostItem.CreateLostItemRequestDto",
         "IsRequired": true
       }
     ],
@@ -536,7 +597,7 @@
   {
     "ContainingType": "Manager.API.Controllers.LostItemController",
     "Method": "GetById",
-    "RelativePath": "api/LostItem/{id}",
+    "RelativePath": "api/lostitem/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -552,7 +613,7 @@
   {
     "ContainingType": "Manager.API.Controllers.LostItemController",
     "Method": "Update",
-    "RelativePath": "api/LostItem/{id}",
+    "RelativePath": "api/lostitem/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -564,7 +625,7 @@
       },
       {
         "Name": "dto",
-        "Type": "Manager.API.Dtos.LostItem.UpdateLostItemDto",
+        "Type": "Manager.API.Dtos.LostItem.UpdateLostItemRequestDto",
         "IsRequired": true
       }
     ],
@@ -573,7 +634,7 @@
   {
     "ContainingType": "Manager.API.Controllers.LostItemController",
     "Method": "Delete",
-    "RelativePath": "api/LostItem/{id}",
+    "RelativePath": "api/lostitem/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -587,31 +648,52 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.PaymentController",
-    "Method": "CreatePayment",
-    "RelativePath": "api/Payment",
+    "ContainingType": "Manager.API.Controllers.MasterController",
+    "Method": "GetAll",
+    "RelativePath": "api/master",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "limit",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.MasterController",
+    "Method": "Create",
+    "RelativePath": "api/master",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Manager.API.Dtos.Payment.CreatePaymentRequestDto",
+        "Type": "Manager.API.Dtos.Master.CreateMasterRequestDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.PaymentController",
-    "Method": "GetByBookingId",
-    "RelativePath": "api/Payment/booking/{bookingId}",
+    "ContainingType": "Manager.API.Controllers.MasterController",
+    "Method": "GetById",
+    "RelativePath": "api/master/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "bookingId",
+        "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -619,74 +701,232 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.PaymentController",
-    "Method": "MergeInvoices",
-    "RelativePath": "api/Payment/merge-invoices",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Manager.API.Dtos.Payment.MergeInvoicesRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.PaymentController",
-    "Method": "SplitInvoice",
-    "RelativePath": "api/Payment/split-invoice",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Manager.API.Dtos.Payment.SplitInvoiceRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.ProfileController",
-    "Method": "GetProfile",
-    "RelativePath": "api/Profile",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.ProfileController",
-    "Method": "UpdateProfile",
-    "RelativePath": "api/Profile",
+    "ContainingType": "Manager.API.Controllers.MasterController",
+    "Method": "Update",
+    "RelativePath": "api/master/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
         "Name": "dto",
-        "Type": "Manager.API.Dtos.Profile.UpdateProfileRequestDto",
+        "Type": "Manager.API.Dtos.Master.UpdateMasterRequestDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.ProfileController",
-    "Method": "ChangePassword",
-    "RelativePath": "api/Profile/change-password",
+    "ContainingType": "Manager.API.Controllers.MasterController",
+    "Method": "Delete",
+    "RelativePath": "api/master/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.MessengerController",
+    "Method": "GetAll",
+    "RelativePath": "api/messenger",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "limit",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.MessengerController",
+    "Method": "Create",
+    "RelativePath": "api/messenger",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MessengerBoxId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
         "Name": "dto",
-        "Type": "Manager.API.Dtos.Profile.ChangePasswordDto",
+        "Type": "Manager.API.Dtos.Messenger.CreateMessengerRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.MessengerController",
+    "Method": "GetById",
+    "RelativePath": "api/messenger/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.MessengerController",
+    "Method": "Update",
+    "RelativePath": "api/messenger/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Messenger.UpdateMessengerRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.MessengerController",
+    "Method": "Delete",
+    "RelativePath": "api/messenger/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.MessengerBoxController",
+    "Method": "GetAll",
+    "RelativePath": "api/messengerbox",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "limit",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.MessengerBoxController",
+    "Method": "Create",
+    "RelativePath": "api/messengerbox",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.MessengerBox.CreateMessengerBoxRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.MessengerBoxController",
+    "Method": "GetById",
+    "RelativePath": "api/messengerbox/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.MessengerBoxController",
+    "Method": "Update",
+    "RelativePath": "api/messengerbox/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.MessengerBox.UpdateMessengerBoxRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.MessengerBoxController",
+    "Method": "Delete",
+    "RelativePath": "api/messengerbox/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -694,124 +934,8 @@
   },
   {
     "ContainingType": "Manager.API.Controllers.ReportController",
-    "Method": "GetOccupancyReport",
-    "RelativePath": "api/Report/occupancy",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "date",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.ReportController",
-    "Method": "GetRevenueReport",
-    "RelativePath": "api/Report/revenue",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "startDate",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "endDate",
-        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.ReviewController",
     "Method": "GetAll",
-    "RelativePath": "api/Review",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.ReviewController",
-    "Method": "Create",
-    "RelativePath": "api/Review",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "Manager.API.Dtos.Review.CreateReviewDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.ReviewController",
-    "Method": "GetById",
-    "RelativePath": "api/Review/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.ReviewController",
-    "Method": "Update",
-    "RelativePath": "api/Review/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "dto",
-        "Type": "Manager.API.Dtos.Review.UpdateReviewDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.ReviewController",
-    "Method": "Delete",
-    "RelativePath": "api/Review/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.RoomController",
-    "Method": "GetAll",
-    "RelativePath": "api/room",
+    "RelativePath": "api/report",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -830,30 +954,30 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.RoomController",
+    "ContainingType": "Manager.API.Controllers.ReportController",
     "Method": "Create",
-    "RelativePath": "api/room",
+    "RelativePath": "api/report",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "IdRoomType",
-        "Type": "System.Int32",
+        "Name": "UserId",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "createRoomRequestDto",
-        "Type": "Manager.API.Dtos.Room.CreateRoomRequestDto",
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Report.CreateReportRequestDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.RoomController",
+    "ContainingType": "Manager.API.Controllers.ReportController",
     "Method": "GetById",
-    "RelativePath": "api/room/{id}",
+    "RelativePath": "api/report/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -867,9 +991,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.RoomController",
+    "ContainingType": "Manager.API.Controllers.ReportController",
     "Method": "Update",
-    "RelativePath": "api/room/{id}",
+    "RelativePath": "api/report/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -880,17 +1004,117 @@
         "IsRequired": true
       },
       {
-        "Name": "updateRoomRequestDto",
-        "Type": "Manager.API.Dtos.Room.UpdateRoomRequestDto",
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Report.UpdateReportRequestDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.RoomController",
+    "ContainingType": "Manager.API.Controllers.ReportController",
     "Method": "Delete",
-    "RelativePath": "api/room/{id}",
+    "RelativePath": "api/report/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomInUseController",
+    "Method": "GetAll",
+    "RelativePath": "api/roominuse",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "limit",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomInUseController",
+    "Method": "Create",
+    "RelativePath": "api/roominuse",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RoomsId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "BookingId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.RoomInUse.CreateRoomInUseRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomInUseController",
+    "Method": "GetById",
+    "RelativePath": "api/roominuse/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomInUseController",
+    "Method": "Update",
+    "RelativePath": "api/roominuse/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.RoomInUse.UpdateRoomInUseRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomInUseController",
+    "Method": "Delete",
+    "RelativePath": "api/roominuse/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -906,7 +1130,7 @@
   {
     "ContainingType": "Manager.API.Controllers.RoomRateController",
     "Method": "GetAll",
-    "RelativePath": "api/RoomRate",
+    "RelativePath": "api/roomrate",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -927,18 +1151,18 @@
   {
     "ContainingType": "Manager.API.Controllers.RoomRateController",
     "Method": "Create",
-    "RelativePath": "api/RoomRate",
+    "RelativePath": "api/roomrate",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "IdRoomType",
+        "Name": "RoomTypeId",
         "Type": "System.Int32",
         "IsRequired": false
       },
       {
-        "Name": "createRoomRateRequestDto",
+        "Name": "dto",
         "Type": "Manager.API.Dtos.RoomRate.CreateRoomRateRequestDto",
         "IsRequired": true
       }
@@ -948,7 +1172,7 @@
   {
     "ContainingType": "Manager.API.Controllers.RoomRateController",
     "Method": "GetById",
-    "RelativePath": "api/RoomRate/{id}",
+    "RelativePath": "api/roomrate/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -964,7 +1188,7 @@
   {
     "ContainingType": "Manager.API.Controllers.RoomRateController",
     "Method": "Update",
-    "RelativePath": "api/RoomRate/{id}",
+    "RelativePath": "api/roomrate/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -975,7 +1199,7 @@
         "IsRequired": true
       },
       {
-        "Name": "updateRoomRateRequestDto",
+        "Name": "dto",
         "Type": "Manager.API.Dtos.RoomRate.UpdateRoomRateRequestDto",
         "IsRequired": true
       }
@@ -985,7 +1209,102 @@
   {
     "ContainingType": "Manager.API.Controllers.RoomRateController",
     "Method": "Delete",
-    "RelativePath": "api/RoomRate/{id}",
+    "RelativePath": "api/roomrate/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomsController",
+    "Method": "GetAll",
+    "RelativePath": "api/rooms",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "limit",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomsController",
+    "Method": "Create",
+    "RelativePath": "api/rooms",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RoomTypeId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Rooms.CreateRoomsRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomsController",
+    "Method": "GetById",
+    "RelativePath": "api/rooms/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomsController",
+    "Method": "Update",
+    "RelativePath": "api/rooms/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Rooms.UpdateRoomsRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomsController",
+    "Method": "Delete",
+    "RelativePath": "api/rooms/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1001,7 +1320,7 @@
   {
     "ContainingType": "Manager.API.Controllers.RoomTypeController",
     "Method": "GetAll",
-    "RelativePath": "api/RoomType",
+    "RelativePath": "api/roomtype",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1022,13 +1341,13 @@
   {
     "ContainingType": "Manager.API.Controllers.RoomTypeController",
     "Method": "Create",
-    "RelativePath": "api/RoomType",
+    "RelativePath": "api/roomtype",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "createRoomTypeRequestDto",
+        "Name": "dto",
         "Type": "Manager.API.Dtos.RoomType.CreateRoomTypeRequestDto",
         "IsRequired": true
       }
@@ -1038,7 +1357,7 @@
   {
     "ContainingType": "Manager.API.Controllers.RoomTypeController",
     "Method": "GetById",
-    "RelativePath": "api/RoomType/{id}",
+    "RelativePath": "api/roomtype/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1054,7 +1373,7 @@
   {
     "ContainingType": "Manager.API.Controllers.RoomTypeController",
     "Method": "Update",
-    "RelativePath": "api/RoomType/{id}",
+    "RelativePath": "api/roomtype/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -1065,7 +1384,7 @@
         "IsRequired": true
       },
       {
-        "Name": "updateRoomTypeRequestDto",
+        "Name": "dto",
         "Type": "Manager.API.Dtos.RoomType.UpdateRoomTypeRequestDto",
         "IsRequired": true
       }
@@ -1075,7 +1394,7 @@
   {
     "ContainingType": "Manager.API.Controllers.RoomTypeController",
     "Method": "Delete",
-    "RelativePath": "api/RoomType/{id}",
+    "RelativePath": "api/roomtype/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1089,9 +1408,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.ServiceController",
+    "ContainingType": "Manager.API.Controllers.ServicesController",
     "Method": "GetAll",
-    "RelativePath": "api/Service",
+    "RelativePath": "api/services",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1110,15 +1429,15 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.ServiceController",
+    "ContainingType": "Manager.API.Controllers.ServicesController",
     "Method": "Create",
-    "RelativePath": "api/Service",
+    "RelativePath": "api/services",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "createServiceRequestDto",
+        "Name": "dto",
         "Type": "Manager.API.Dtos.Services.CreateServicesRequestDto",
         "IsRequired": true
       }
@@ -1126,9 +1445,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.ServiceController",
+    "ContainingType": "Manager.API.Controllers.ServicesController",
     "Method": "GetById",
-    "RelativePath": "api/Service/{id}",
+    "RelativePath": "api/services/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -1142,9 +1461,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.ServiceController",
+    "ContainingType": "Manager.API.Controllers.ServicesController",
     "Method": "Update",
-    "RelativePath": "api/Service/{id}",
+    "RelativePath": "api/services/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -1155,7 +1474,7 @@
         "IsRequired": true
       },
       {
-        "Name": "updateServiceRequestDto",
+        "Name": "dto",
         "Type": "Manager.API.Dtos.Services.UpdateServicesRequestDto",
         "IsRequired": true
       }
@@ -1163,9 +1482,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.ServiceController",
+    "ContainingType": "Manager.API.Controllers.ServicesController",
     "Method": "Delete",
-    "RelativePath": "api/Service/{id}",
+    "RelativePath": "api/services/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -1179,84 +1498,90 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.SupportChatController",
-    "Method": "GetById",
-    "RelativePath": "api/SupportChat/{id}",
+    "ContainingType": "Manager.API.Controllers.SurchargeController",
+    "Method": "GetAll",
+    "RelativePath": "api/surcharge",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "page",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.SupportChatController",
-    "Method": "CloseChat",
-    "RelativePath": "api/SupportChat/{id}/close",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+        "IsRequired": false
+      },
       {
-        "Name": "id",
+        "Name": "limit",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Manager.API.Controllers.SupportChatController",
-    "Method": "GetMessages",
-    "RelativePath": "api/SupportChat/{id}/messages",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.SupportChatController",
-    "Method": "GetMyChats",
-    "RelativePath": "api/SupportChat/my-chats",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.SupportChatController",
-    "Method": "OpenChat",
-    "RelativePath": "api/SupportChat/open",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Manager.API.Controllers.SupportChatController",
-    "Method": "SendMessage",
-    "RelativePath": "api/SupportChat/send-message",
+    "ContainingType": "Manager.API.Controllers.SurchargeController",
+    "Method": "Create",
+    "RelativePath": "api/surcharge",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "Manager.API.Dtos.SupportChat.SendMessageRequestDto",
+        "Type": "Manager.API.Dtos.Surcharge.CreateSurchargeRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.SurchargeController",
+    "Method": "GetById",
+    "RelativePath": "api/surcharge/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.SurchargeController",
+    "Method": "Update",
+    "RelativePath": "api/surcharge/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Surcharge.UpdateSurchargeRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.SurchargeController",
+    "Method": "Delete",
+    "RelativePath": "api/surcharge/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

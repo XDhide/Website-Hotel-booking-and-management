@@ -1,11 +1,14 @@
-﻿namespace Manager.API.Dtos.RoomRate
+namespace Manager.API.Dtos.RoomRate
 {
     public class CreateRoomRateRequestDto
     {
+        public int RoomTypeId { get; set; }
         public string RentType { get; set; }
-        public decimal Price { get; set; }
-        public DateTime FromDate { get; set; }
-        public DateTime ToDate { get; set; }
-        public bool IsActive { get; set; }
+        public double? Price { get; set; }
+        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; }
+        public bool? IsActive { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

@@ -1,92 +1,71 @@
-﻿using Manager.API.Dtos.RoomType;
+using System.Linq;
+using System.Threading.Tasks;
+using Manager.API.Dtos.RoomType;
 using Manager.API.Interfaces;
 using Manager.API.Mappers;
-using Manager.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers
 {
-    [Route("api/RoomType")]
+    [Route("api/roomtype")]
     [ApiController]
     public class RoomTypeController : ControllerBase
     {
-        private readonly IRoomTypeRepository _RoomTypeRepository;
-        public RoomTypeController(IRoomTypeRepository RoomTypeRepository)
+        private readonly IRoomTypeRepository _roomTypeRepository;
+
+        public RoomTypeController(IRoomTypeRepository roomTypeRepository)
         {
-            _RoomTypeRepository = RoomTypeRepository;
+            _roomTypeRepository = roomTypeRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var result = await _RoomTypeRepository.GetAllAsync(page, limit);
-
+            var result = await _roomTypeRepository.GetAllAsync(page, limit);
             if (result.Data == null || result.Data.Count == 0)
-            {
                 return NotFound("No RoomType found.");
-            }
-
-            var roomTypeDtos = result.Data
-                .Select(s => s.ToRoomTypeDto())
-                .ToList();
-
-            return Ok(new
-            {
-                result.Page,
-                result.Limit,
-                result.TotalCount,
-                result.TotalPages,
-                data = roomTypeDtos
-            });
+            var dtos = result.Data.Select(s => s.ToRoomTypeDto()).ToList();
+            return Ok(new { result.Page, result.Limit, result.TotalCount, result.TotalPages, data = dtos });
         }
-        [HttpGet]
-        [Route("{id}")]
+
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var RoomTypeModel = await _RoomTypeRepository.GetByIdAsync(id);
-            if (RoomTypeModel == null)
-            {
-                return NotFound($"No RoomType found with id {id}.");
-            }
-            var RoomTypeDto = RoomTypeModel.ToRoomTypeDto();
-            return Ok(RoomTypeDto);
-
+            var model = await _roomTypeRepository.GetByIdAsync(id);
+            if (model == null)
+                return NotFound("No RoomType found with id " + id + ".");
+            return Ok(model.ToRoomTypeDto());
         }
+
         [HttpPost]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult> Create(CreateRoomTypeRequestDto createRoomTypeRequestDto)
+        public async Task<IActionResult> Create(CreateRoomTypeRequestDto dto)
         {
-            var RoomTypeModel = createRoomTypeRequestDto.ToRoomTypeCreateDto();
-            var createdRoomType = await _RoomTypeRepository.CreateAsync(RoomTypeModel);
-            var RoomTypeDto = createdRoomType.ToRoomTypeDto();
-            return CreatedAtAction(nameof(GetById), new { id = RoomTypeDto.Id }, RoomTypeDto);
+            var model = dto.ToCreateRoomTypeModel();
+            var created = await _roomTypeRepository.CreateAsync(model);
+            var resultDto = created.ToRoomTypeDto();
+            return CreatedAtAction(nameof(GetById), new { id = resultDto.Id }, resultDto);
         }
-        [HttpPut]
-        [Route("{id}")]
+
+        [HttpPut("{id}")]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult> Update(int id, UpdateRoomTypeRequestDto updateRoomTypeRequestDto)
+        public async Task<IActionResult> Update(int id, UpdateRoomTypeRequestDto dto)
         {
-            var updatedRoomType = await _RoomTypeRepository.UpdateAsync(id, updateRoomTypeRequestDto);
-            if (updatedRoomType == null)
-            {
-                return NotFound($"No RoomType found with id {id}.");
-            }
-            var RoomTypeDto = updatedRoomType.ToRoomTypeDto();
-            return Ok(RoomTypeDto);
+            var updated = await _roomTypeRepository.UpdateAsync(id, dto);
+            if (updated == null)
+                return NotFound("No RoomType found with id " + id + ".");
+            return Ok(updated.ToRoomTypeDto());
         }
-        [HttpDelete]
-        [Route("{id}")]
+
+        [HttpDelete("{id}")]
         [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Delete(int id)
         {
-            var deletedRoomType = await _RoomTypeRepository.DeleteAsync(id);
-            if (deletedRoomType == null)
-            {
-                return NotFound($"No RoomType found with id {id}.");
-            }
-            var RoomTypeDto = deletedRoomType.ToRoomTypeDto();
-            return Ok(RoomTypeDto);
+            var deleted = await _roomTypeRepository.DeleteAsync(id);
+            if (deleted == null)
+                return NotFound("No RoomType found with id " + id + ".");
+            return Ok(deleted.ToRoomTypeDto());
         }
     }
 }

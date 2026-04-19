@@ -1,37 +1,60 @@
-﻿using Manager.API.Dtos.Discount;
+using System;
+using Manager.API.Dtos.Discount;
 using Manager.API.Models;
 
 namespace Manager.API.Mappers
 {
     public static class DiscountMapper
     {
-        public static DiscountDto ToDiscountDto (this Discount discount)
+        public static DiscountDto ToDiscountDto(this Discount model)
         {
             return new DiscountDto
             {
-                Id = discount.Id,
-                Name = discount.Name,
-                DiscountType = discount.DiscountType,
-                DiscountValue = discount.DiscountValue,
-                FromDate = discount.FromDate,
-                ToDate = discount.ToDate,
-                IsActive = discount.IsActive,
-                CreateAt = discount.CreateAt,
-                UpdateAt = discount.UpdateAt
+                DiscountId = model.DiscountId,
+                Name = model.Name,
+                DiscountType = model.DiscountType,
+                DiscountValue = model.DiscountValue,
+                MinAmount = model.MinAmount,
+                MaxDiscount = model.MaxDiscount,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                IsActive = model.IsActive,
+                CreatedAt = model.CreatedAt,
+                UpdatedAt = model.UpdatedAt,
             };
         }
 
-        public static Discount ToDiscount (this CreateDiscountRequetsDto discount)
+        public static Discount ToCreateDiscountModel(this CreateDiscountRequestDto dto)
         {
             return new Discount
             {
-                Name = discount.Name,
-                DiscountType = discount.DiscountType,
-                DiscountValue = discount.DiscountValue,
-                FromDate = discount.FromDate,
-                ToDate = discount.ToDate,
-                IsActive = discount.IsActive,
-                CreateAt = DateTime.Now,
+                Name = dto.Name,
+                DiscountType = dto.DiscountType,
+                DiscountValue = dto.DiscountValue,
+                MinAmount = dto.MinAmount,
+                MaxDiscount = dto.MaxDiscount,
+                FromDate = dto.FromDate,
+                ToDate = dto.ToDate,
+                IsActive = dto.IsActive,
+                CreatedAt = dto.CreatedAt,
+                UpdatedAt = DateTime.Now,
+            };
+        }
+
+        public static UpdateDiscountRequestDto ToUpdateDiscountRequestDto(this Discount model)
+        {
+            return new UpdateDiscountRequestDto
+            {
+                Name = model.Name,
+                DiscountType = model.DiscountType,
+                DiscountValue = model.DiscountValue,
+                MinAmount = model.MinAmount,
+                MaxDiscount = model.MaxDiscount,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                IsActive = model.IsActive,
+                CreatedAt = model.CreatedAt,
+                UpdatedAt = model.UpdatedAt,
             };
         }
     }

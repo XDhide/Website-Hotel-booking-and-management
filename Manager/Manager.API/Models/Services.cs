@@ -1,14 +1,18 @@
-﻿namespace Manager.API.Models
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace Manager.API.Models
 {
     public class Services
     {
+        [Key]
         public int Id { get; set; }
         public string ServiceType { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
-        public string unit { get; set; }
-        public DateTime CreateAt { get; set; }
-        public DateTime UpdateAt { get; set; } = DateTime.Now;
-
+        public double? Price { get; set; }
+        public string Unit { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

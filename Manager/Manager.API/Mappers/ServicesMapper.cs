@@ -1,33 +1,48 @@
-﻿using Manager.API.Dtos.Services;
+using System;
+using Manager.API.Dtos.Services;
 using Manager.API.Models;
 
 namespace Manager.API.Mappers
 {
     public static class ServicesMapper
     {
-        public static ServicesDto ToServicesDto (this Services service)
+        public static ServicesDto ToServicesDto(this Services model)
         {
             return new ServicesDto
             {
-                Id = service.Id,
-                ServiceType = service.ServiceType,
-                Name = service.Name,
-                Price = service.Price,
-                unit = service.unit,
-                CreateAt = service.CreateAt,
-                UpdateAt = service.UpdateAt
+                Id = model.Id,
+                ServiceType = model.ServiceType,
+                Name = model.Name,
+                Price = model.Price,
+                Unit = model.Unit,
+                CreatedAt = model.CreatedAt,
+                UpdatedAt = model.UpdatedAt,
             };
         }
 
-        public static Services ToServicesUpdateDto (this CreateServicesRequestDto service)
+        public static Services ToCreateServicesModel(this CreateServicesRequestDto dto)
         {
             return new Services
             {
-                ServiceType = service.ServiceType,
-                Name = service.Name,
-                Price = service.Price,
-                unit = service.unit,
-                CreateAt = DateTime.Now
+                ServiceType = dto.ServiceType,
+                Name = dto.Name,
+                Price = dto.Price,
+                Unit = dto.Unit,
+                CreatedAt = dto.CreatedAt,
+                UpdatedAt = DateTime.Now,
+            };
+        }
+
+        public static UpdateServicesRequestDto ToUpdateServicesRequestDto(this Services model)
+        {
+            return new UpdateServicesRequestDto
+            {
+                ServiceType = model.ServiceType,
+                Name = model.Name,
+                Price = model.Price,
+                Unit = model.Unit,
+                CreatedAt = model.CreatedAt,
+                UpdatedAt = model.UpdatedAt,
             };
         }
     }

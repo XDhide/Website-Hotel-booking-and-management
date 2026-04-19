@@ -59,17 +59,27 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<IRoomsRepository, RoomsRepository>();
 builder.Services.AddScoped<IRoomTypeRepository, RoomTypeRepository>();
-builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IRoomRateRepository, RoomRateRepository>();
-builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 builder.Services.AddScoped<IServicesRepository, ServicesRepository>();
+builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
-builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
-builder.Services.AddScoped<ISupportChatRepository, SupportChatRepository>();
-builder.Services.AddScoped<ILostItemRepository, LostItemRepository>();
+
+builder.Services.AddScoped<IRoomInUseRepository, RoomInUseRepository>();
+builder.Services.AddScoped<ISurchargeRepository, SurchargeRepository>();
+
 builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
-builder.Services.AddScoped<IIncidentRepository, IncidentRepository>();
+builder.Services.AddScoped<IInvoiceDetailRepository, InvoiceDetailRepository>();
+
+builder.Services.AddScoped<ILostItemRepository, LostItemRepository>();
+builder.Services.AddScoped<IEvaluationRepository, EvaluationRepository>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
+
+builder.Services.AddScoped<IMessengerBoxRepository, MessengerBoxRepository>();
+builder.Services.AddScoped<IMessengerRepository, MessengerRepository>();
+
+builder.Services.AddScoped<IMasterRepository, MasterRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();

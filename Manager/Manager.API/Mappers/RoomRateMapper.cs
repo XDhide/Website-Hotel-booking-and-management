@@ -1,30 +1,54 @@
-﻿using Manager.API.Dtos.RoomRate;
+using System;
+using Manager.API.Dtos.RoomRate;
 using Manager.API.Models;
 
 namespace Manager.API.Mappers
 {
     public static class RoomRateMapper
     {
-        public static RoomRateDto ToRoomRateDto(this RoomRate roomRate)
+        public static RoomRateDto ToRoomRateDto(this RoomRate model)
         {
             return new RoomRateDto
             {
-                Id = roomRate.Id,
-                RoomTypeId = roomRate.RoomTypeId,
-                Price = roomRate.Price,
-                CreateAt = roomRate.CreateAt,
-                UpdateAt = roomRate.UpdateAt
+                RoomRateId = model.RoomRateId,
+                RoomTypeId = model.RoomTypeId,
+                RentType = model.RentType,
+                Price = model.Price,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                IsActive = model.IsActive,
+                CreatedAt = model.CreatedAt,
+                UpdatedAt = model.UpdatedAt,
             };
         }
-        public static RoomRate ToCreateRoomRateDto(this CreateRoomRateRequestDto roomRateDto)
+
+        public static RoomRate ToCreateRoomRateModel(this CreateRoomRateRequestDto dto)
         {
             return new RoomRate
             {
-                Price = roomRateDto.Price,
-                FromDate = roomRateDto.FromDate,
-                ToDate = roomRateDto.ToDate,
-                IsActive = true,
-                CreateAt = DateTime.Now,
+                RoomTypeId = dto.RoomTypeId,
+                RentType = dto.RentType,
+                Price = dto.Price,
+                FromDate = dto.FromDate,
+                ToDate = dto.ToDate,
+                IsActive = dto.IsActive,
+                CreatedAt = dto.CreatedAt,
+                UpdatedAt = dto.UpdatedAt,
+            };
+        }
+
+        public static UpdateRoomRateRequestDto ToUpdateRoomRateRequestDto(this RoomRate model)
+        {
+            return new UpdateRoomRateRequestDto
+            {
+                RoomTypeId = model.RoomTypeId,
+                RentType = model.RentType,
+                Price = model.Price,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                IsActive = model.IsActive,
+                CreatedAt = model.CreatedAt,
+                UpdatedAt = model.UpdatedAt,
             };
         }
     }

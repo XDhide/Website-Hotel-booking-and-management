@@ -1,32 +1,51 @@
-﻿using Manager.API.Dtos.LostItem;
+using System;
+using Manager.API.Dtos.LostItem;
 using Manager.API.Models;
 
 namespace Manager.API.Mappers
 {
     public static class LostItemMapper
     {
-        public static LostItemDto ToLostItemDto(this LostItem lostItem)
+        public static LostItemDto ToLostItemDto(this LostItem model)
         {
             return new LostItemDto
             {
-                Id = lostItem.Id,
-                BookingId = lostItem.BookingId,
-                ItemName = lostItem.ItemName,
-                Description = lostItem.Description,
-                Status = lostItem.Status,
-                FoundDate = lostItem.FoundDate,
-                CreateAt = lostItem.CreateAt
+                LostItemId = model.LostItemId,
+                RoomId = model.RoomId,
+                RoomUseId = model.RoomUseId,
+                ItemName = model.ItemName,
+                Description = model.Description,
+                FoundAt = model.FoundAt,
+                Status = model.Status,
+                CreatedAt = model.CreatedAt,
             };
         }
 
-        public static LostItem ToLostItem(this CreateLostItemDto dto)
+        public static LostItem ToCreateLostItemModel(this CreateLostItemRequestDto dto)
         {
             return new LostItem
             {
-                BookingId = dto.BookingId,
+                RoomId = dto.RoomId,
+                RoomUseId = dto.RoomUseId,
                 ItemName = dto.ItemName,
                 Description = dto.Description,
-                FoundDate = dto.FoundDate
+                FoundAt = dto.FoundAt,
+                Status = dto.Status,
+                CreatedAt = dto.CreatedAt,
+            };
+        }
+
+        public static UpdateLostItemRequestDto ToUpdateLostItemRequestDto(this LostItem model)
+        {
+            return new UpdateLostItemRequestDto
+            {
+                RoomId = model.RoomId,
+                RoomUseId = model.RoomUseId,
+                ItemName = model.ItemName,
+                Description = model.Description,
+                FoundAt = model.FoundAt,
+                Status = model.Status,
+                CreatedAt = model.CreatedAt,
             };
         }
     }

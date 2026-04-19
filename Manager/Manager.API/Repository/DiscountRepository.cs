@@ -1,4 +1,8 @@
-﻿using Manager.API.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Manager.API.Data;
 using Manager.API.Dtos.Discount;
 using Manager.API.Interfaces;
 using Manager.API.Models;
@@ -9,46 +13,50 @@ namespace Manager.API.Repository
     public class DiscountRepository : IDiscountRepository
     {
         private readonly ApplicationDBContext _dBContext;
+
         public DiscountRepository(ApplicationDBContext dBContext)
         {
             _dBContext = dBContext;
         }
-        public async Task<Discount> CreateAsync(Discount Discount)
+
+        public async Task<Discount> CreateAsync(Discount model)
         {
-            await _dBContext.Discounts.AddAsync(Discount);
+            var newModel = new Discount
+            {
+                Name = model.Name,
+                DiscountType = model.DiscountType,
+                DiscountValue = model.DiscountValue,
+                MinAmount = model.MinAmount,
+                MaxDiscount = model.MaxDiscount,
+                FromDate = model.FromDate,
+                ToDate = model.ToDate,
+                IsActive = model.IsActive,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = model.UpdatedAt,
+            };
+            await _dBContext.Discounts.AddAsync(newModel);
             await _dBContext.SaveChangesAsync();
-            return Discount;
+            return newModel;
         }
 
-        public async Task<Discount?> DeleteAsync(int id)
+        public async Task<Discount> DeleteAsync(int id)
         {
-            var discount = await _dBContext.Discounts.FirstOrDefaultAsync(s => s.Id == id);
-            if (discount == null)
-            {
+            var model = await _dBContext.Discounts.FirstOrDefaultAsync(s => s.DiscountId == id);
+            if (model == null)
                 return null;
-            }
-            _dBContext.Discounts.Remove(discount);
+            _dBContext.Discounts.Remove(model);
             await _dBContext.SaveChangesAsync();
-            return discount;
+            return model;
         }
 
         public async Task<PagedResult<Discount>> GetAllAsync(int page, int limit)
         {
             if (page < 1) page = 1;
             if (limit < 1) limit = 10;
-
             var query = _dBContext.Discounts.AsQueryable();
-
             var totalCount = await query.CountAsync();
-
-            var data = await query
-                .OrderByDescending(d => d.Id)
-                .Skip((page - 1) * limit)
-                .Take(limit)
-                .ToListAsync();
-
-            var totalPages = (int)Math.Ceiling((double)totalCount / limit);
-
+            var data = await query.OrderByDescending(r => r.DiscountId).Skip((page - 1) * limit).Take(limit).ToListAsync();
+            int totalPages = totalCount == 0 ? 0 : (int)Math.Ceiling((double)totalCount / limit);
             return new PagedResult<Discount>
             {
                 Page = page,
@@ -59,28 +67,28 @@ namespace Manager.API.Repository
             };
         }
 
-        public async Task<Discount?> GetByIdAsync(int id)
+        public async Task<Discount> GetByIdAsync(int id)
         {
-            var discount = await _dBContext.Discounts.FindAsync(id);
-            return discount;
+            return await _dBContext.Discounts.FindAsync(id);
         }
 
-        public async Task<Discount?> UpdateAsync(int id, UpdateDiscountRequetsDto DiscountDto)
+        public async Task<Discount> UpdateAsync(int id, UpdateDiscountRequestDto dto)
         {
-            var discount = await _dBContext.Discounts.FirstOrDefaultAsync(s => s.Id == id);
-            if (discount == null)
-            {
+            var model = await _dBContext.Discounts.FirstOrDefaultAsync(s => s.DiscountId == id);
+            if (model == null)
                 return null;
-            }
-            discount.Name = DiscountDto.Name;
-            discount.DiscountType = DiscountDto.DiscountType;
-            discount.DiscountValue = DiscountDto.DiscountValue;
-            discount.FromDate = DiscountDto.FromDate;
-            discount.ToDate = DiscountDto.ToDate;
-            discount.UpdateAt = DateTime.Now;
-
+            model.Name = dto.Name;
+            model.DiscountType = dto.DiscountType;
+            model.DiscountValue = dto.DiscountValue;
+            model.MinAmount = dto.MinAmount;
+            model.MaxDiscount = dto.MaxDiscount;
+            model.FromDate = dto.FromDate;
+            model.ToDate = dto.ToDate;
+            model.IsActive = dto.IsActive;
+            model.CreatedAt = dto.CreatedAt;
+            model.UpdatedAt = DateTime.Now;
             await _dBContext.SaveChangesAsync();
-            return discount;
+            return model;
         }
     }
 }

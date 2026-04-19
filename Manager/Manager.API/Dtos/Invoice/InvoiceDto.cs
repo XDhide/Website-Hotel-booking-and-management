@@ -1,14 +1,21 @@
-﻿namespace Manager.API.Dtos.Invoice
+using System;
+
+namespace Manager.API.Dtos.Invoice
 {
     public class InvoiceDto
     {
-        public int Id { get; set; }
-        public int BookingId { get; set; }
-        public decimal RoomCharge { get; set; }
-        public decimal ServiceCharge { get; set; }
-        public decimal Discount { get; set; }
-        public decimal TotalAmount { get; set; }
-        public string Status { get; set; }
-        public DateTime CreateAt { get; set; }
+        public int InvoiceId { get; set; }
+        public int RoomUseId { get; set; }
+        public string UserId { get; set; }
+        public double? SubTotal { get; set; }
+        public double? DiscountAmount { get; set; }
+        public double? SurchargeAmount { get; set; }
+        public double? FinalAmount { get; set; }
+        public string PaymentStatus { get; set; }
+        public string PaymentMethod { get; set; }
+        public DateTime? PaidAt { get; set; }
+        public string Note { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

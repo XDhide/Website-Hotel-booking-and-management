@@ -1,13 +1,14 @@
-﻿using Manager.API.Dtos.RoomRate;
+using System.Linq;
+using System.Threading.Tasks;
+using Manager.API.Dtos.RoomRate;
 using Manager.API.Interfaces;
 using Manager.API.Mappers;
-using Manager.API.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers
 {
-    [Route("api/RoomRate")]
+    [Route("api/roomrate")]
     [ApiController]
     public class RoomRateController : ControllerBase
     {
@@ -22,71 +23,49 @@ namespace Manager.API.Controllers
         public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
             var result = await _roomRateRepository.GetAllAsync(page, limit);
-
             if (result.Data == null || result.Data.Count == 0)
-            {
                 return NotFound("No RoomRate found.");
-            }
-
-            var roomRateDtos = result.Data
-                .Select(s => s.ToRoomRateDto())
-                .ToList();
-
-            return Ok(new
-            {
-                result.Page,
-                result.Limit,
-                result.TotalCount,
-                result.TotalPages,
-                data = roomRateDtos
-            });
+            var dtos = result.Data.Select(s => s.ToRoomRateDto()).ToList();
+            return Ok(new { result.Page, result.Limit, result.TotalCount, result.TotalPages, data = dtos });
         }
-        [HttpGet]
-        [Route("{id}")]
+
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var roomRateModel = await _roomRateRepository.GetByIdAsync(id);
-            if (roomRateModel == null)
-            {
-                return NotFound($"No RoomRate found with id {id}.");
-            }
-            var roomRateDto = roomRateModel.ToRoomRateDto();
-            return Ok(roomRateDto);
+            var model = await _roomRateRepository.GetByIdAsync(id);
+            if (model == null)
+                return NotFound("No RoomRate found with id " + id + ".");
+            return Ok(model.ToRoomRateDto());
         }
+
         [HttpPost]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult> Create(int IdRoomType, CreateRoomRateRequestDto createRoomRateRequestDto)
+        public async Task<IActionResult> Create(int RoomTypeId, CreateRoomRateRequestDto dto)
         {
-            var roomRateModel = createRoomRateRequestDto.ToCreateRoomRateDto();
-            var createdRoomRate = await _roomRateRepository.CreateAsync(IdRoomType, roomRateModel);
-            var roomRateDto = createdRoomRate.ToRoomRateDto();
-            return CreatedAtAction(nameof(GetById), new { id = roomRateDto.Id }, roomRateDto);
+            var model = dto.ToCreateRoomRateModel();
+            var created = await _roomRateRepository.CreateAsync(RoomTypeId, model);
+            var resultDto = created.ToRoomRateDto();
+            return CreatedAtAction(nameof(GetById), new { id = resultDto.RoomRateId }, resultDto);
         }
-        [HttpPut]
-        [Route("{id}")]
+
+        [HttpPut("{id}")]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult> Update(int id, UpdateRoomRateRequestDto updateRoomRateRequestDto)
+        public async Task<IActionResult> Update(int id, UpdateRoomRateRequestDto dto)
         {
-            var updatedRoomRate = await _roomRateRepository.UpdateAsync(id, updateRoomRateRequestDto);
-            if (updatedRoomRate == null)
-            {
-                return NotFound($"No RoomRate found with id {id}.");
-            }
-            var roomRateDto = updatedRoomRate.ToRoomRateDto();
-            return Ok(roomRateDto);
+            var updated = await _roomRateRepository.UpdateAsync(id, dto);
+            if (updated == null)
+                return NotFound("No RoomRate found with id " + id + ".");
+            return Ok(updated.ToRoomRateDto());
         }
-        [HttpDelete]
-        [Route("{id}")]
+
+        [HttpDelete("{id}")]
         [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Delete(int id)
         {
-            var deletedRoomRate = await _roomRateRepository.DeleteAsync(id);
-            if (deletedRoomRate == null)
-            {
-                return NotFound($"No RoomRate found with id {id}.");
-            }
-            var roomRateDto = deletedRoomRate.ToRoomRateDto();
-            return Ok(roomRateDto);
+            var deleted = await _roomRateRepository.DeleteAsync(id);
+            if (deleted == null)
+                return NotFound("No RoomRate found with id " + id + ".");
+            return Ok(deleted.ToRoomRateDto());
         }
     }
 }

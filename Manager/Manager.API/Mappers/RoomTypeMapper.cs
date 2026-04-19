@@ -1,32 +1,45 @@
-﻿using Manager.API.Dtos.RoomType;
+using System;
+using Manager.API.Dtos.RoomType;
 using Manager.API.Models;
 
 namespace Manager.API.Mappers
 {
     public static class RoomTypeMapper
     {
-        public static RoomTypeDto ToRoomTypeDto(this RoomType roomTypeModel)
+        public static RoomTypeDto ToRoomTypeDto(this RoomType model)
         {
             return new RoomTypeDto
             {
-                Id = roomTypeModel.Id,
-                Name = roomTypeModel.Name,
-                Capacity = roomTypeModel.Capacity,
-                Description = roomTypeModel.Description,
-                CreateAt = roomTypeModel.CreateAt,
-                UpdateAt = roomTypeModel.UpdateAt
-
+                Id = model.Id,
+                Name = model.Name,
+                Capacity = model.Capacity,
+                Description = model.Description,
+                CreatedAt = model.CreatedAt,
+                UpdatedAt = model.UpdatedAt,
             };
-
         }
-        public static RoomType ToRoomTypeCreateDto(this CreateRoomTypeRequestDto createRoomTypeRequestDto)
+
+        public static RoomType ToCreateRoomTypeModel(this CreateRoomTypeRequestDto dto)
         {
             return new RoomType
             {
-                Name = createRoomTypeRequestDto.Name,
-                Capacity = createRoomTypeRequestDto.Capacity,
-                Description = createRoomTypeRequestDto.Description,
-                CreateAt = DateTime.Now,
+                Name = dto.Name,
+                Capacity = dto.Capacity,
+                Description = dto.Description,
+                CreatedAt = dto.CreatedAt,
+                UpdatedAt = dto.UpdatedAt,
+            };
+        }
+
+        public static UpdateRoomTypeRequestDto ToUpdateRoomTypeRequestDto(this RoomType model)
+        {
+            return new UpdateRoomTypeRequestDto
+            {
+                Name = model.Name,
+                Capacity = model.Capacity,
+                Description = model.Description,
+                CreatedAt = model.CreatedAt,
+                UpdatedAt = model.UpdatedAt,
             };
         }
     }

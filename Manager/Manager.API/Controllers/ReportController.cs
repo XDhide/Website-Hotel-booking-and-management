@@ -1,101 +1,71 @@
+using System.Linq;
+using System.Threading.Tasks;
 using Manager.API.Dtos.Report;
 using Manager.API.Interfaces;
+using Manager.API.Mappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/report")]
     [ApiController]
-    [Authorize(Roles = "Admin,Manager")]
     public class ReportController : ControllerBase
     {
-        private readonly IBookingRepository _bookingRepo;
-        private readonly IPaymentRepository _paymentRepo;
+        private readonly IReportRepository _reportRepository;
 
-        public ReportController(
-            IBookingRepository bookingRepo,
-            IPaymentRepository paymentRepo)
+        public ReportController(IReportRepository reportRepository)
         {
-            _bookingRepo = bookingRepo;
-            _paymentRepo = paymentRepo;
+            _reportRepository = reportRepository;
         }
 
-        [HttpGet("revenue")]
-        public async Task<IActionResult> GetRevenueReport([FromQuery] DateTime? startDate, [FromQuery] DateTime? endDate)
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var start = startDate ?? DateTime.Now.AddMonths(-1);
-            var end = endDate ?? DateTime.Now;
-
-            if (start > end)
-                return BadRequest("Start date must be before end date");
-
-            var bookings = await _bookingRepo.GetBookingsByDateRangeAsync(start, end);
-
-            var totalRevenue = 0m;
-            var completedBookings = 0;
-            var cancelledBookings = 0;
-
-            foreach (var booking in bookings)
-            {
-                if (booking.Status == "CheckedOut")
-                {
-                    var paidAmount = await _paymentRepo.GetTotalPaidAmountAsync(booking.Id);
-                    totalRevenue += paidAmount;
-                    completedBookings++;
-                }
-                else if (booking.Status == "Cancelled")
-                {
-                    cancelledBookings++;
-                }
-            }
-
-            var dailyRevenues = bookings
-                .Where(b => b.Status == "CheckedOut")
-                .GroupBy(b => b.CheckInDate.Date)
-                .Select(g => new DailyRevenueDto
-                {
-                    Date = g.Key,
-                    Revenue = g.Sum(b => b.TotalPrice),
-                    BookingCount = g.Count()
-                })
-                .OrderBy(d => d.Date)
-                .ToList();
-
-            var report = new RevenueReportDto
-            {
-                StartDate = start,
-                EndDate = end,
-                TotalRevenue = totalRevenue,
-                TotalBookings = bookings.Count,
-                CompletedBookings = completedBookings,
-                CancelledBookings = cancelledBookings,
-                AverageBookingValue = completedBookings > 0 ? totalRevenue / completedBookings : 0,
-                DailyRevenues = dailyRevenues
-            };
-
-            return Ok(report);
+            var result = await _reportRepository.GetAllAsync(page, limit);
+            if (result.Data == null || result.Data.Count == 0)
+                return NotFound("No Report found.");
+            var dtos = result.Data.Select(s => s.ToReportDto()).ToList();
+            return Ok(new { result.Page, result.Limit, result.TotalCount, result.TotalPages, data = dtos });
         }
 
-        [HttpGet("occupancy")]
-        public async Task<IActionResult> GetOccupancyReport([FromQuery] DateTime? date)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            var targetDate = date ?? DateTime.Now;
-            var startOfDay = targetDate.Date;
-            var endOfDay = startOfDay.AddDays(1);
+            var model = await _reportRepository.GetByIdAsync(id);
+            if (model == null)
+                return NotFound("No Report found with id " + id + ".");
+            return Ok(model.ToReportDto());
+        }
 
-            var bookings = await _bookingRepo.GetBookingsByDateRangeAsync(startOfDay, endOfDay);
-            var occupiedRooms = bookings.Count(b => b.Status == "CheckedIn");
+        [HttpPost]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> Create(string UserId, CreateReportRequestDto dto)
+        {
+            var model = dto.ToCreateReportModel();
+            var created = await _reportRepository.CreateAsync(UserId, model);
+            var resultDto = created.ToReportDto();
+            return CreatedAtAction(nameof(GetById), new { id = resultDto.ReportId }, resultDto);
+        }
 
-            return Ok(new
-            {
-                date = targetDate.Date,
-                occupiedRooms = occupiedRooms,
-                totalBookings = bookings.Count,
-                checkedInBookings = bookings.Count(b => b.Status == "CheckedIn"),
-                confirmedBookings = bookings.Count(b => b.Status == "Confirmed"),
-                pendingBookings = bookings.Count(b => b.Status == "Pending")
-            });
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> Update(int id, UpdateReportRequestDto dto)
+        {
+            var updated = await _reportRepository.UpdateAsync(id, dto);
+            if (updated == null)
+                return NotFound("No Report found with id " + id + ".");
+            return Ok(updated.ToReportDto());
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deleted = await _reportRepository.DeleteAsync(id);
+            if (deleted == null)
+                return NotFound("No Report found with id " + id + ".");
+            return Ok(deleted.ToReportDto());
         }
     }
 }

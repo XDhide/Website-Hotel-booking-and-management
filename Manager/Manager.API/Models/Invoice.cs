@@ -1,19 +1,33 @@
-﻿namespace Manager.API.Models
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace Manager.API.Models
 {
     public class Invoice
     {
-        public int Id { get; set; }
-        public int BookingId { get; set; }        // FK → Booking (1-1)
-        public decimal RoomCharge { get; set; }
-        public decimal ServiceCharge { get; set; }
-        public decimal Discount { get; set; }
-        public decimal TotalAmount { get; set; }
-        public string Status { get; set; }        // "Unpaid", "Paid", "Refunded"
-        public DateTime CreateAt { get; set; } = DateTime.Now;
-        public DateTime UpdateAt { get; set; } = DateTime.Now;
+        [Key]
+        public int InvoiceId { get; set; }
+        public int RoomUseId { get; set; }
+        public string UserId { get; set; }
+        public double? SubTotal { get; set; }
+        public double? DiscountAmount { get; set; }
+        public double? SurchargeAmount { get; set; }
+        public double? FinalAmount { get; set; }
+        public string PaymentStatus { get; set; }
+        public string PaymentMethod { get; set; }
+        public DateTime? PaidAt { get; set; }
+        public string Note { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         // Navigation
-        public Booking Booking { get; set; }
-        public ICollection<InvoiceService> InvoiceServices { get; set; }
+        public AppUser User { get; set; }
+
+        // Navigation
+        public RoomInUse RoomInUse { get; set; }
+
+        // Navigation Collections
+        public ICollection<InvoiceDetail> InvoiceDetails { get; set; }
     }
 }
