@@ -18,7 +18,13 @@ namespace Manager.API.Repository
         {
             _dBContext = dBContext;
         }
-
+        public async Task<List<Booking>> GetByUserIdAsync(string userId)
+        {
+            return await _dBContext.Bookings
+                .Where(b => b.UserId == userId)
+                .OrderByDescending(b => b.CreatedAt)
+                .ToListAsync();
+        }
         public async Task<Booking> CreateAsync(string UserId, int RoomTypeId, Booking model)
         {
             var user = await _dBContext.Users.FirstOrDefaultAsync(s => s.Id == UserId);

@@ -81,7 +81,9 @@ builder.Services.AddScoped<IMessengerRepository, MessengerRepository>();
 
 builder.Services.AddScoped<IMasterRepository, MasterRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
-
+builder.Services.AddScoped<ICheckInOutRepository, CheckInOutRepository>();
+builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+builder.Services.AddScoped<IRevenueReportRepository, RevenueReportRepository>();
 var app = builder.Build();
 
 

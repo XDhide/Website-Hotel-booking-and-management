@@ -17,27 +17,25 @@ namespace Manager.API.Data
         public DbSet<Services> Services { get; set; }
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-
         public DbSet<RoomInUse> RoomInUses { get; set; }
         public DbSet<Surcharge> Surcharges { get; set; }
-
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
-
         public DbSet<LostItem> LostItems { get; set; }
         public DbSet<Evaluation> Evaluations { get; set; }
         public DbSet<Report> Reports { get; set; }
-
         public DbSet<MessengerBox> MessengerBox { get; set; }
         public DbSet<Messenger> Messengers { get; set; }
-
         public DbSet<Master> Masters { get; set; }
+        public DbSet<SupportChat> SupportChats { get; set; }
+        public DbSet<SupportMessage> SupportMessages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             // ================= ROOM =================
+
             modelBuilder.Entity<Rooms>()
                 .HasOne(r => r.RoomType)
                 .WithMany(rt => rt.Rooms)
@@ -49,6 +47,7 @@ namespace Manager.API.Data
                 .HasForeignKey(rr => rr.RoomTypeId);
 
             // ================= BOOKING =================
+
             modelBuilder.Entity<Booking>()
                 .HasOne(b => b.User)
                 .WithMany()
@@ -60,6 +59,7 @@ namespace Manager.API.Data
                 .HasForeignKey(b => b.RoomTypeId);
 
             // ================= ROOM IN USE =================
+
             modelBuilder.Entity<RoomInUse>()
                 .HasOne(r => r.Booking)
                 .WithMany(b => b.RoomInUses)
@@ -73,6 +73,7 @@ namespace Manager.API.Data
                 .OnDelete(DeleteBehavior.NoAction);
 
             // ================= INVOICE =================
+
             modelBuilder.Entity<Invoice>()
                 .HasOne(i => i.RoomInUse)
                 .WithMany(riu => riu.Invoices)
@@ -84,12 +85,14 @@ namespace Manager.API.Data
                 .HasForeignKey(i => i.UserId);
 
             // ================= INVOICE DETAIL =================
+
             modelBuilder.Entity<InvoiceDetail>()
                 .HasOne(id => id.Invoice)
                 .WithMany(i => i.InvoiceDetails)
                 .HasForeignKey(id => id.InvoiceId);
 
             // ================= EVALUATION =================
+
             modelBuilder.Entity<Evaluation>()
                 .HasOne(e => e.User)
                 .WithMany()
@@ -101,12 +104,14 @@ namespace Manager.API.Data
                 .HasForeignKey(e => e.RoomUseId);
 
             // ================= REPORT =================
+
             modelBuilder.Entity<Report>()
                 .HasOne(r => r.GeneratedByUser)
                 .WithMany()
                 .HasForeignKey(r => r.GeneratedBy);
 
             // ================= LOST ITEM =================
+
             modelBuilder.Entity<LostItem>()
                 .HasOne(l => l.Rooms)
                 .WithMany()
@@ -117,7 +122,7 @@ namespace Manager.API.Data
                 .WithMany()
                 .HasForeignKey(l => l.RoomUseId);
 
-            // ================= MESSENGER (FIXED) =================
+            // ================= MESSENGER =================
 
             modelBuilder.Entity<Messenger>()
                 .HasOne(m => m.Box)
@@ -137,7 +142,28 @@ namespace Manager.API.Data
                 .HasForeignKey(mb => mb.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            // ================= SUPPORT CHAT (FIX: tránh multiple cascade paths) =================
+
+            modelBuilder.Entity<SupportChat>()
+                .HasOne(c => c.User)
+                .WithMany()
+                .HasForeignKey(c => c.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<SupportMessage>()
+                .HasOne(m => m.SupportChat)
+                .WithMany(c => c.Messages)
+                .HasForeignKey(m => m.SupportChatId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<SupportMessage>()
+                .HasOne(m => m.Sender)
+                .WithMany()
+                .HasForeignKey(m => m.SenderId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             // ================= PRECISION =================
+
             modelBuilder.Entity<RoomRate>().Property(p => p.Price).HasPrecision(10, 2);
             modelBuilder.Entity<RoomInUse>().Property(p => p.PricePerUnit).HasPrecision(10, 2);
             modelBuilder.Entity<RoomInUse>().Property(p => p.TotalAmount).HasPrecision(10, 2);
@@ -155,6 +181,7 @@ namespace Manager.API.Data
             modelBuilder.Entity<Discount>().Property(p => p.DiscountValue).HasPrecision(10, 2);
 
             // ================= ROLE =================
+
             modelBuilder.Entity<IdentityRole<int>>().HasData(
                 new IdentityRole<int> { Id = 1, Name = "Admin", NormalizedName = "ADMIN" },
                 new IdentityRole<int> { Id = 2, Name = "Manager", NormalizedName = "MANAGER" },
