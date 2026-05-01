@@ -43,7 +43,7 @@ namespace Manager.API.Controllers
         public async Task<IActionResult> Create([FromBody] CreateEvaluationRequestDto dto)
         {
             var model = dto.ToCreateEvaluationModel();
-            var created = await _evaluationRepository.CreateAsync(dto.UserId, dto.RoomInUseId, model);
+            var created = await _evaluationRepository.CreateAsync(dto.UserId, dto.RoomUseId, model);
             var resultDto = created.ToEvaluationDto();
             return CreatedAtAction(nameof(GetById), new { id = resultDto.EvaluationId }, resultDto);
         }

@@ -108,16 +108,6 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "UserId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "RoomTypeId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "dto",
         "Type": "Manager.API.Dtos.Booking.CreateBookingRequestDto",
         "IsRequired": true
@@ -372,16 +362,6 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "UserId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "RoomInUseId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "dto",
         "Type": "Manager.API.Dtos.Evaluation.CreateEvaluationRequestDto",
         "IsRequired": true
@@ -471,16 +451,6 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
-      {
-        "Name": "UserId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "RoomInUseId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
       {
         "Name": "dto",
         "Type": "Manager.API.Dtos.Invoice.CreateInvoiceRequestDto",
@@ -572,11 +542,6 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "InvoiceId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "dto",
         "Type": "Manager.API.Dtos.InvoiceDetail.CreateInvoiceDetailRequestDto",
         "IsRequired": true
@@ -666,16 +631,6 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
-      {
-        "Name": "RoomsId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "RoomInUseId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
       {
         "Name": "dto",
         "Type": "Manager.API.Dtos.LostItem.CreateLostItemRequestDto",
@@ -1094,11 +1049,6 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "UserId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
         "Name": "dto",
         "Type": "Manager.API.Dtos.Report.CreateReportRequestDto",
         "IsRequired": true
@@ -1315,16 +1265,6 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
-      {
-        "Name": "RoomsId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "BookingId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
       {
         "Name": "dto",
         "Type": "Manager.API.Dtos.RoomInUse.CreateRoomInUseRequestDto",
