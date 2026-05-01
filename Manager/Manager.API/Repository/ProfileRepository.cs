@@ -16,8 +16,6 @@ namespace Manager.API.Repository
             _userManager = userManager;
         }
 
-        // ─── GET PROFILE ─────────────────────────────────────────────────────────
-
         public async Task<ProfileDto> GetProfileAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -32,8 +30,6 @@ namespace Manager.API.Repository
                 PhoneNumber = user.PhoneNumber,
             };
         }
-
-        // ─── UPDATE PROFILE ──────────────────────────────────────────────────────
 
         public async Task<ProfileDto> UpdateProfileAsync(
             string userId, UpdateProfileRequestDto dto)
@@ -64,8 +60,6 @@ namespace Manager.API.Repository
                 PhoneNumber = user.PhoneNumber,
             };
         }
-
-        // ─── CHANGE PASSWORD ─────────────────────────────────────────────────────
 
         public async Task ChangePasswordAsync(string userId, ChangePasswordRequestDto dto)
         {

@@ -2,8 +2,13 @@ import { useState, useEffect } from "react";
 import { isLoggedIn, isAdmin } from "./constant/api";
 import AdminPage from "./pages/AdminPage";
 import HomePage from "./pages/Homepage";
+import RoomList from "./pages/RoomList";
+import RoomDetail from "./pages/RoomDetail";
+import Profile from "./pages/Profile";
+import Favorites from "./pages/Favorites";
+import BookingHistory from "./pages/BookingHistory";
+import CurrentBookings from "./pages/CurrentBookings";
 
-// Simple hash-based router (không cần react-router-dom)
 function getPath() {
   return window.location.pathname;
 }
@@ -14,17 +19,24 @@ export default function AppRouter() {
   useEffect(() => {
     const onPop = () => setPath(getPath());
     window.addEventListener("popstate", onPop);
-    // Lắng nghe navigation tùy chỉnh
-    window.addEventListener("navigate", (e: any) => {
+
+    const onNavigate = (e: any) => {
       window.history.pushState(null, "", e.detail);
       setPath(e.detail);
-    });
-    // Sau khi đăng xuất → về /
-    window.addEventListener("auth:logout", () => {
+    };
+    window.addEventListener("navigate", onNavigate);
+
+    const onLogout = () => {
       window.history.pushState(null, "", "/");
       setPath("/");
-    });
-    return () => window.removeEventListener("popstate", onPop);
+    };
+    window.addEventListener("auth:logout", onLogout);
+
+    return () => {
+      window.removeEventListener("popstate", onPop);
+      window.removeEventListener("navigate", onNavigate);
+      window.removeEventListener("auth:logout", onLogout);
+    };
   }, []);
 
   // Guard: /admin chỉ cho Admin/Manager
@@ -58,6 +70,47 @@ export default function AppRouter() {
       );
     }
     return <AdminPage />;
+  }
+
+  if (path.startsWith("/rooms/")) {
+    const id = parseInt(path.split("/rooms/")[1], 10);
+    return <RoomDetail roomTypeId={isNaN(id) ? undefined : id} />;
+  }
+
+  if (path === "/rooms") {
+    return <RoomList />;
+  }
+
+  if (path === "/favorites") {
+    if (!isLoggedIn()) {
+      window.history.replaceState(null, "", "/");
+      return <HomePage />;
+    }
+    return <Favorites />;
+  }
+
+  if (path === "/profile") {
+    if (!isLoggedIn()) {
+      window.history.replaceState(null, "", "/");
+      return <HomePage />;
+    }
+    return <Profile />;
+  }
+
+  if (path === "/bookings") {
+    if (!isLoggedIn()) {
+      window.history.replaceState(null, "", "/");
+      return <HomePage />;
+    }
+    return <CurrentBookings />;
+  }
+
+  if (path === "/booking-history") {
+    if (!isLoggedIn()) {
+      window.history.replaceState(null, "", "/");
+      return <HomePage />;
+    }
+    return <BookingHistory />;
   }
 
   return <HomePage />;

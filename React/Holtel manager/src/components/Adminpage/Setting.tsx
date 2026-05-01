@@ -24,7 +24,7 @@ export default function Settings({ onLogout }: SettingsProps) {
     clearAuth()
     setShowLogoutConfirm(false)
     if (onLogout) onLogout()
-    // Chuyển về trang chủ
+
     navigate('/')
   }
 
@@ -37,7 +37,7 @@ export default function Settings({ onLogout }: SettingsProps) {
     }
     setPwLoading(true); setPwMsg(null)
     try {
-      await apiClient.post(`${API}/Account/change-password`, {
+      await apiClient.post(`${API}/Profile/change-password`, {
         currentPassword: pwForm.currentPassword,
         newPassword: pwForm.newPassword,
       })
@@ -60,7 +60,7 @@ export default function Settings({ onLogout }: SettingsProps) {
 
   return (
     <div style={{ display: 'flex', gap: 24, padding: '4px 0', minHeight: 500 }}>
-      {/* Sidebar */}
+      {}
       <div style={{
         width: 200, flexShrink: 0,
         background: 'rgba(255,255,255,0.03)',
@@ -112,7 +112,7 @@ export default function Settings({ onLogout }: SettingsProps) {
         </button>
       </div>
 
-      {/* Content */}
+      {}
       <div style={{ flex: 1 }}>
 
         {activeSection === 'account' && (
@@ -120,7 +120,7 @@ export default function Settings({ onLogout }: SettingsProps) {
             <InfoRow label="Tên đăng nhập" value={user?.userName ?? '—'} />
             <InfoRow label="Email" value={user?.email ?? '—'} />
             <InfoRow label="Vai trò" value="Admin / Manager" />
-            <InfoRow label="Trạng thái" value="✅ Đang hoạt động" />
+            <InfoRow label="Trạng thái" value="Đang hoạt động" />
           </SettingCard>
         )}
 
@@ -197,7 +197,7 @@ export default function Settings({ onLogout }: SettingsProps) {
         )}
       </div>
 
-      {/* Logout confirm modal */}
+      {}
       {showLogoutConfirm && (
         <div style={{
           position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)',
@@ -207,7 +207,7 @@ export default function Settings({ onLogout }: SettingsProps) {
             background: '#1a1f2e', border: '1px solid rgba(255,255,255,0.1)',
             borderRadius: 16, padding: 32, width: 320, textAlign: 'center',
           }}>
-            <div style={{ fontSize: '2.5rem', marginBottom: 12 }}>👋</div>
+            <div style={{ fontSize: '2.5rem', marginBottom: 12 }}><LogoutOutlined style={{ color: '#f87171' }} /></div>
             <h3 style={{ color: '#fff', margin: '0 0 8px' }}>Đăng xuất?</h3>
             <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem', marginBottom: 24 }}>
               Bạn sẽ được chuyển về trang chủ.

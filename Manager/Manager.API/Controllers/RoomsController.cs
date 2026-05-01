@@ -40,10 +40,10 @@ namespace Manager.API.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult> Create(int RoomTypeId, CreateRoomsRequestDto dto)
+        public async Task<IActionResult> Create([FromBody] CreateRoomsRequestDto dto)
         {
             var model = dto.ToCreateRoomsModel();
-            var created = await _roomsRepository.CreateAsync(RoomTypeId, model);
+            var created = await _roomsRepository.CreateAsync(dto.RoomTypeId, model);
             var resultDto = created.ToRoomsDto();
             return CreatedAtAction(nameof(GetById), new { id = resultDto.RoomId }, resultDto);
         }

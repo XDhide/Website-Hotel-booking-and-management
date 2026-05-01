@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Manager.API.Dtos.Booking;
@@ -19,8 +19,6 @@ namespace Manager.API.Controllers
         {
             _bookingRepository = bookingRepository;
         }
-
-        // ─── GET ALL (admin) ─────────────────────────────────────────────────────
 
         [HttpGet]
         public async Task<IActionResult> GetAll(
@@ -43,8 +41,6 @@ namespace Manager.API.Controllers
             });
         }
 
-        // ─── GET BY ID ───────────────────────────────────────────────────────────
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -56,12 +52,6 @@ namespace Manager.API.Controllers
             return Ok(model.ToBookingDto());
         }
 
-        // ─── MY BOOKINGS ─────────────────────────────────────────────────────────
-
-        /// <summary>
-        /// GET /api/booking/my-bookings
-        /// Trả về danh sách booking của user đang đăng nhập.
-        /// </summary>
         [HttpGet("my-bookings")]
         [Authorize]
         public async Task<IActionResult> GetMyBookings()
@@ -71,7 +61,6 @@ namespace Manager.API.Controllers
             if (string.IsNullOrEmpty(userId))
                 return Unauthorized();
 
-            // Gọi method mới trong repository (xem BookingRepository_Extension.cs)
             var bookings = await _bookingRepository.GetByUserIdAsync(userId);
 
             var dtos = bookings.Select(b => b.ToBookingDto()).ToList();
@@ -79,21 +68,16 @@ namespace Manager.API.Controllers
             return Ok(dtos);
         }
 
-        // ─── CREATE ──────────────────────────────────────────────────────────────
-
         [HttpPost]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult> Create(
-            string UserId, int RoomTypeId, CreateBookingRequestDto dto)
+        public async Task<IActionResult> Create([FromBody] CreateBookingRequestDto dto)
         {
             var model = dto.ToCreateBookingModel();
-            var created = await _bookingRepository.CreateAsync(UserId, RoomTypeId, model);
+            var created = await _bookingRepository.CreateAsync(dto.UserId, dto.RoomTypeId, model);
             var result = created.ToBookingDto();
 
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
-
-        // ─── UPDATE ──────────────────────────────────────────────────────────────
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin,Manager")]
@@ -106,8 +90,6 @@ namespace Manager.API.Controllers
 
             return Ok(updated.ToBookingDto());
         }
-
-        // ─── DELETE ──────────────────────────────────────────────────────────────
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin,Manager")]

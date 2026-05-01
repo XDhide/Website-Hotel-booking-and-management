@@ -22,7 +22,6 @@ namespace Manager.API.Controllers
             _evaluationRepository = evaluationRepository;
         }
 
-
         [HttpGet]
         public async Task<IActionResult> GetAll(
             [FromQuery] int page = 1, [FromQuery] int limit = 50)
@@ -44,7 +43,6 @@ namespace Manager.API.Controllers
             });
         }
 
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -55,7 +53,6 @@ namespace Manager.API.Controllers
 
             return Ok(model.ToEvaluationDto());
         }
-
 
         [HttpPost]
         [Authorize]
@@ -89,7 +86,6 @@ namespace Manager.API.Controllers
             }
         }
 
-
         [HttpPut("{id}")]
         [Authorize]
         public async Task<IActionResult> Update(
@@ -102,7 +98,6 @@ namespace Manager.API.Controllers
 
             return Ok(updated.ToEvaluationDto());
         }
-
 
         [HttpDelete("{id}")]
         [Authorize]

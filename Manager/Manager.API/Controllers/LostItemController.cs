@@ -40,10 +40,11 @@ namespace Manager.API.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult> Create(int RoomsId, int RoomInUseId, CreateLostItemRequestDto dto)
+        public async Task<IActionResult> Create([FromBody] CreateLostItemRequestDto dto)
         {
             var model = dto.ToCreateLostItemModel();
-            var created = await _lostItemRepository.CreateAsync(RoomsId, RoomInUseId, model);
+            var created = await _lostItemRepository.CreateAsync(
+                dto.RoomId ?? 0, dto.RoomUseId ?? 0, model);
             var resultDto = created.ToLostItemDto();
             return CreatedAtAction(nameof(GetById), new { id = resultDto.LostItemId }, resultDto);
         }

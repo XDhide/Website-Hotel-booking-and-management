@@ -3,34 +3,36 @@ import { API } from "../constant/config";
 
 const prefix = `${API}/Profile`;
 
-// Lấy profile
 export const apiGetProfile = async (): Promise<any> => {
-  const res = await apiClient.get(`${prefix}`);
-  return res?.data;
+    try {
+        const res = await apiClient.get(prefix);
+        return res?.data;
+    } catch (err: any) {
+        console.error("[ProfileService.get]", err);
+        return null;
+    }
 };
 
-// Update profile
-export const apiUpdateProfile = async (data: {
-  userName?: string;
-  email?: string;
-  phoneNumber?: string;
-}): Promise<any> => {
-  const res = await apiClient.put(`${prefix}`, data);
-  return res?.data;
+export const apiUpdateProfile = async (data: any): Promise<any> => {
+    try {
+        const res = await apiClient.put(prefix, data);
+        return res?.data;
+    } catch (err: any) {
+        throw new Error(err?.response?.data || "Cập nhật profile thất bại");
+    }
 };
 
-// Change password
-export const apiChangePassword = async (data: {
-  currentPassword: string;
-  newPassword: string;
-}): Promise<any> => {
-  const res = await apiClient.post(`${prefix}/change-password`, data);
-  return res?.data;
+export const apiChangePassword = async (data: { currentPassword: string; newPassword: string }): Promise<any> => {
+    try {
+        const res = await apiClient.post(`${prefix}/change-password`, data);
+        return res?.data;
+    } catch (err: any) {
+        throw new Error(err?.response?.data || "Đổi mật khẩu thất bại");
+    }
 };
 
-// Service tổng hợp
 export const ProfileService = {
-  get: apiGetProfile,
-  update: apiUpdateProfile,
-  changePassword: apiChangePassword,
+    get:            apiGetProfile,
+    update:         apiUpdateProfile,
+    changePassword: apiChangePassword,
 };

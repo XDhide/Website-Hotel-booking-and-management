@@ -11,6 +11,8 @@ import {
   FileTextOutlined,
 } from "@ant-design/icons";
 import "../assets/css/Profile/BookingHistory.css";
+import Header from "../shared/Header";
+import Footer from "../shared/Fooder";
 
 type Status = "completed" | "upcoming" | "cancelled";
 
@@ -60,7 +62,9 @@ export default function BookingHistory() {
   });
 
   return (
-    <div className="bh-page">
+    <>
+      <Header />
+      <div className="bh-page">
       <div className="bh-header">
         <div className="container">
           <h1 className="bh-title"><HistoryOutlined /> Lịch Sử Đặt Phòng</h1>
@@ -69,7 +73,7 @@ export default function BookingHistory() {
       </div>
 
       <div className="container bh-body">
-        {/* Stats */}
+        {}
         <div className="bh-stats">
           {[
             { label: "Tổng đặt phòng", value: BOOKINGS.length,                               color: "#3b82f6" },
@@ -84,7 +88,7 @@ export default function BookingHistory() {
           ))}
         </div>
 
-        {/* Filters */}
+        {}
         <div className="bh-filters">
           <div className="bh-filter-tabs">
             {FILTER_TABS.map((t) => (
@@ -106,7 +110,7 @@ export default function BookingHistory() {
           </div>
         </div>
 
-        {/* Table */}
+        {}
         {bookings.length === 0 ? (
           <div className="bh-empty">
             <div className="bh-empty-icon"><FileTextOutlined /></div>
@@ -172,5 +176,7 @@ export default function BookingHistory() {
         )}
       </div>
     </div>
+      <Footer />
+    </>
   );
 }

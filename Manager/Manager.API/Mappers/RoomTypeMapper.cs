@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Manager.API.Dtos.RoomType;
 using Manager.API.Models;
 
@@ -16,6 +17,23 @@ namespace Manager.API.Mappers
                 Description = model.Description,
                 CreatedAt = model.CreatedAt,
                 UpdatedAt = model.UpdatedAt,
+                Images = model.Images?
+                    .OrderBy(i => i.DisplayOrder)
+                    .Select(i => i.ToRoomTypeImageDto())
+                    .ToList() ?? new(),
+            };
+        }
+
+        public static RoomTypeImageDto ToRoomTypeImageDto(this RoomTypeImage img)
+        {
+            return new RoomTypeImageDto
+            {
+                Id = img.Id,
+                RoomTypeId = img.RoomTypeId,
+                ImageUrl = img.ImageUrl,
+                AltText = img.AltText,
+                DisplayOrder = img.DisplayOrder,
+                CreatedAt = img.CreatedAt,
             };
         }
 
@@ -28,6 +46,18 @@ namespace Manager.API.Mappers
                 Description = dto.Description,
                 CreatedAt = dto.CreatedAt,
                 UpdatedAt = dto.UpdatedAt,
+            };
+        }
+
+        public static RoomTypeImage ToRoomTypeImageModel(this CreateRoomTypeImageRequestDto dto, int roomTypeId)
+        {
+            return new RoomTypeImage
+            {
+                RoomTypeId = roomTypeId,
+                ImageUrl = dto.ImageUrl,
+                AltText = dto.AltText,
+                DisplayOrder = dto.DisplayOrder,
+                CreatedAt = DateTime.Now,
             };
         }
 

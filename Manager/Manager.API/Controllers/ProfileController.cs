@@ -20,18 +20,11 @@ namespace Manager.API.Controllers
             _profileRepository = profileRepository;
         }
 
-        // Lấy userId từ JWT token hiện tại
         private string GetCurrentUserId()
         {
             return User.FindFirstValue(ClaimTypes.NameIdentifier);
         }
 
-        // ─── GET PROFILE ─────────────────────────────────────────────────────────
-
-        /// <summary>
-        /// GET /api/Profile
-        /// Trả về thông tin profile của user đang đăng nhập.
-        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetProfile()
         {
@@ -47,12 +40,6 @@ namespace Manager.API.Controllers
             }
         }
 
-        // ─── UPDATE PROFILE ──────────────────────────────────────────────────────
-
-        /// <summary>
-        /// PUT /api/Profile
-        /// Body: { "email": "...", "phoneNumber": "..." }
-        /// </summary>
         [HttpPut]
         public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileRequestDto dto)
         {
@@ -71,12 +58,6 @@ namespace Manager.API.Controllers
             }
         }
 
-        // ─── CHANGE PASSWORD ─────────────────────────────────────────────────────
-
-        /// <summary>
-        /// POST /api/Profile/change-password
-        /// Body: { "currentPassword": "...", "newPassword": "..." }
-        /// </summary>
         [HttpPost("change-password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequestDto dto)
         {

@@ -1,4 +1,4 @@
-import { SearchOutlined } from '@ant-design/icons'
+import { SearchOutlined, LoadingOutlined, CheckCircleOutlined } from '@ant-design/icons'
 import { useState, useEffect, useCallback } from 'react'
 import Modal from './Modal'
 import { apiSearch as apiSearchRooms, apiUpdate as apiUpdateRoom } from '../../services/RoomService'
@@ -56,15 +56,7 @@ export default function RoomManager() {
       setRooms(Array.isArray(roomRes) ? roomRes : roomRes?.data ?? [])
       setBookings(Array.isArray(bookingRes) ? bookingRes : bookingRes?.data ?? [])
     } catch (e) {
-      // dùng mock nếu API chưa sẵn sàng
-      setRooms([
-        { id: 1, roomNumber: 'P101', currentStatus: 'Occupied', roomTypeId: 1, floor: 1 },
-        { id: 2, roomNumber: 'P102', currentStatus: 'Available', roomTypeId: 1, floor: 1 },
-        { id: 3, roomNumber: 'P103', currentStatus: 'Maintenance', roomTypeId: 2, floor: 1 },
-        { id: 4, roomNumber: 'P201', currentStatus: 'Occupied', roomTypeId: 2, floor: 2 },
-        { id: 5, roomNumber: 'P202', currentStatus: 'Available', roomTypeId: 1, floor: 2 },
-        { id: 6, roomNumber: 'P203', currentStatus: 'Occupied', roomTypeId: 3, floor: 2 },
-      ])
+      setRooms([])
       setBookings([])
     } finally {
       setLoading(false)
@@ -91,14 +83,13 @@ export default function RoomManager() {
     if (!selectedRoom || !selectedBooking) return
     setPaying(true)
     try {
-      // 1. Tạo payment
+
       await apiCreatePayment({
         bookingId: selectedBooking.id,
         amount: selectedBooking.totalPrice,
         method: paymentMethod,
       })
 
-      // 2. Tạo invoice
       await apiCreateInvoice({
         bookingId: selectedBooking.id,
         totalAmount: selectedBooking.totalPrice,
@@ -106,10 +97,8 @@ export default function RoomManager() {
         status: 'Paid',
       })
 
-      // 3. Cancel (checkout) booking
       await apiCancelBooking(selectedBooking.id)
 
-      // 4. Cập nhật trạng thái phòng → Available
       await apiUpdateRoom(selectedRoom.id, { currentStatus: 'Available' })
 
       showToast(`Thanh toán phòng ${selectedRoom.roomNumber} thành công!`)
@@ -153,7 +142,7 @@ export default function RoomManager() {
   return (
     <div className="room-manager-wapper">
 
-      {/* Toast */}
+      {}
       {toast && (
         <div style={{
           position: 'fixed', top: 20, right: 20, zIndex: 9999,
@@ -166,7 +155,7 @@ export default function RoomManager() {
         </div>
       )}
 
-      {/* Stats */}
+      {}
       <div style={{ display: 'flex', gap: 16, marginBottom: 20 }}>
         {[
           { label: 'Đang sử dụng', val: stats.occupied, color: '#ef4444' },
@@ -225,7 +214,7 @@ export default function RoomManager() {
                       width: 14, height: 14, fontSize: '0.55rem',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       color: '#fff', fontWeight: 700,
-                    }} title="Có booking đang CheckedIn">●</div>
+                    }} title="Có booking đang CheckedIn"><CheckCircleOutlined style={{ fontSize: 8 }} /></div>
                   )}
                 </div>
               )
@@ -234,7 +223,7 @@ export default function RoomManager() {
         </div>
       )}
 
-      {/* Legend */}
+      {}
       <div style={{ display: 'flex', gap: 16, marginTop: 16, flexWrap: 'wrap' }}>
         {Object.entries(statusConfig).map(([k, v]) => (
           <div key={k} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.8rem', color: 'rgba(255,255,255,0.55)' }}>
@@ -244,7 +233,7 @@ export default function RoomManager() {
         ))}
       </div>
 
-      {/* Modal: Room Info */}
+      {}
       {modalMode === 'roomInfo' && selectedRoom && (
         <Modal
           title={`Phòng ${selectedRoom.roomNumber}`}
@@ -288,7 +277,7 @@ export default function RoomManager() {
         </Modal>
       )}
 
-      {/* Modal: Checkout & Payment */}
+      {}
       {modalMode === 'checkout' && selectedRoom && selectedBooking && (
         <Modal
           title="Thanh toán & Checkout"
@@ -328,7 +317,7 @@ export default function RoomManager() {
             </div>
 
             <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.8rem', marginTop: 8 }}>
-              {paying ? '⏳ Đang xử lý thanh toán...' : 'Nhấn "Lưu" để xác nhận thanh toán. Hoá đơn sẽ được lưu tự động.'}
+              {paying ? <><LoadingOutlined style={{ marginRight: 6 }} />Đang xử lý thanh toán...</> : 'Nhấn "Lưu" để xác nhận thanh toán. Hoá đơn sẽ được lưu tự động.'}
             </p>
           </div>
         </Modal>

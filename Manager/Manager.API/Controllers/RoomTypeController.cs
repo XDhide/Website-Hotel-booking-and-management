@@ -67,5 +67,34 @@ namespace Manager.API.Controllers
                 return NotFound("No RoomType found with id " + id + ".");
             return Ok(deleted.ToRoomTypeDto());
         }
+
+        [HttpGet("{id}/images")]
+        public async Task<IActionResult> GetImages(int id)
+        {
+            var images = await _roomTypeRepository.GetImagesAsync(id);
+            var dtos = images.Select(i => i.ToRoomTypeImageDto()).ToList();
+            return Ok(dtos);
+        }
+
+        [HttpPost("{id}/images")]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> AddImage(int id, [FromBody] CreateRoomTypeImageRequestDto dto)
+        {
+            var image = dto.ToRoomTypeImageModel(id);
+            var created = await _roomTypeRepository.AddImageAsync(id, image);
+            if (created == null)
+                return NotFound("No RoomType found with id " + id + ".");
+            return Ok(created.ToRoomTypeImageDto());
+        }
+
+        [HttpDelete("{id}/images/{imageId}")]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> DeleteImage(int id, int imageId)
+        {
+            var deleted = await _roomTypeRepository.DeleteImageAsync(imageId);
+            if (deleted == null)
+                return NotFound("No image found with id " + imageId + ".");
+            return Ok(deleted.ToRoomTypeImageDto());
+        }
     }
 }

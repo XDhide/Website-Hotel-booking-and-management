@@ -1,4 +1,4 @@
-﻿using Manager.API.Dtos.Account;
+using Manager.API.Dtos.Account;
 using Manager.API.Interfaces;
 using Manager.API.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -16,18 +16,20 @@ namespace Manager.API.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly ITokenService _tokenService;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public AccountController(
             UserManager<AppUser> userManager,
             ITokenService tokenService,
-            SignInManager<AppUser> signInManager)
+            SignInManager<AppUser> signInManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _tokenService = tokenService;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
-        // ================= REGISTER =================
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto dto)
         {
@@ -45,7 +47,13 @@ namespace Manager.API.Controllers
             if (!result.Succeeded)
                 return StatusCode(500, result.Errors);
 
-            await _userManager.AddToRoleAsync(user, "Admin");
+            const string defaultRole = "Guest";
+            if (!await _roleManager.RoleExistsAsync(defaultRole))
+                await _roleManager.CreateAsync(new IdentityRole(defaultRole));
+
+            var roleResult = await _userManager.AddToRoleAsync(user, defaultRole);
+            if (!roleResult.Succeeded)
+                return StatusCode(500, roleResult.Errors);
 
             var roles = await _userManager.GetRolesAsync(user);
 
@@ -54,11 +62,10 @@ namespace Manager.API.Controllers
                 user.UserName,
                 user.Email,
                 Roles = roles,
-                Token = await _tokenService.createToken(user) // 🔥 FIX
+                Token = await _tokenService.createToken(user)
             });
         }
 
-        // ================= LOGIN =================
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
@@ -68,12 +75,12 @@ namespace Manager.API.Controllers
             var user = await _userManager.FindByNameAsync(dto.Username);
 
             if (user == null)
-                return Unauthorized("Invalid username or password.");
+                return Unauthorized("Tên đăng nhập hoặc mật khẩu không đúng.");
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, false);
 
             if (!result.Succeeded)
-                return Unauthorized("Invalid username or password.");
+                return Unauthorized("Tên đăng nhập hoặc mật khẩu không đúng.");
 
             var roles = await _userManager.GetRolesAsync(user);
 
@@ -82,11 +89,31 @@ namespace Manager.API.Controllers
                 user.UserName,
                 user.Email,
                 Roles = roles,
-                Token = await _tokenService.createToken(user) // 🔥 FIX
+                Token = await _tokenService.createToken(user)
             });
         }
 
-        // ================= GET ME =================
+        [HttpPost("assign-role")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AssignRole([FromBody] AssignRoleDto dto)
+        {
+            var user = await _userManager.FindByNameAsync(dto.Username);
+            if (user == null)
+                return NotFound("Không tìm thấy user.");
+
+            if (!await _roleManager.RoleExistsAsync(dto.Role))
+                return BadRequest($"Role '{dto.Role}' không tồn tại.");
+
+            var currentRoles = await _userManager.GetRolesAsync(user);
+            await _userManager.RemoveFromRolesAsync(user, currentRoles);
+
+            var result = await _userManager.AddToRoleAsync(user, dto.Role);
+            if (!result.Succeeded)
+                return StatusCode(500, result.Errors);
+
+            return Ok(new { message = $"Đã gán role '{dto.Role}' cho user '{dto.Username}'." });
+        }
+
         [Authorize]
         [HttpGet("me")]
         public async Task<IActionResult> GetMe()
@@ -108,45 +135,54 @@ namespace Manager.API.Controllers
             });
         }
 
-        // ================= USER LIST =================
         [HttpGet("userlist")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UserList(int page = 1, int limit = 10)
+        public async Task<IActionResult> UserList(
+            [FromServices] Data.ApplicationDBContext db,
+            int page = 1, int limit = 10)
         {
             if (page < 1) page = 1;
             if (limit < 1) limit = 10;
 
-            var query = _userManager.Users;
-
-            var totalCount = await query.CountAsync();
+            var totalCount = await _userManager.Users.CountAsync();
 
             var totalPages = totalCount == 0
                 ? 0
                 : (int)Math.Ceiling((double)totalCount / limit);
 
-            var users = await query
-                .OrderBy(u => u.UserName)
-                .Skip((page - 1) * limit)
-                .Take(limit)
-                .ToListAsync();
-
-            var tasks = users.Select(async user => new
-            {
-                Id = user.Id,
-                Username = user.UserName,
-                Email = user.Email,
-                Roles = await _userManager.GetRolesAsync(user)
-            });
-
-            var result = await Task.WhenAll(tasks);
+            var usersWithRoles = await (
+                from u in db.Users
+                orderby u.UserName
+                select new
+                {
+                    u.Id,
+                    u.UserName,
+                    u.Email,
+                    Roles = (
+                        from ur in db.UserRoles
+                        join r  in db.Roles on ur.RoleId equals r.Id
+                        where ur.UserId == u.Id
+                        select r.Name
+                    ).ToList()
+                }
+            )
+            .Skip((page - 1) * limit)
+            .Take(limit)
+            .ToListAsync();
 
             return Ok(new
             {
                 page,
                 limit,
                 totalCount,
-                totalPages, // 👈 đây chính là tổng số trang
-                data = result
+                totalPages,
+                data = usersWithRoles.Select(u => new
+                {
+                    Id       = u.Id,
+                    Username = u.UserName,
+                    Email    = u.Email,
+                    Roles    = u.Roles
+                })
             });
         }
     }

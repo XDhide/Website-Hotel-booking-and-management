@@ -51,7 +51,7 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* NGƯỜI DÙNG — GET /Account/userlist → { page, limit, totalCount, totalPages, data: [{Id,Username,Email,Roles}] } */}
+        {}
         {currentPage === 'users' && (
           <ApiDataTable
             apiPrefix="Account"
@@ -69,7 +69,7 @@ export default function AdminPage() {
           />
         )}
 
-        {/* LOẠI PHÒNG — model RoomType { name, capacity, description } */}
+        {}
         {currentPage === 'roomTypes' && (
           <ApiDataTable apiPrefix="RoomType" pageSize={10}
             emptyForm={{ name: '', capacity: '', description: '' }}
@@ -80,9 +80,9 @@ export default function AdminPage() {
             }} />
         )}
 
-        {/* PHÒNG — model Rooms { roomNumber, roomTypeId, currentStatus } */}
+        {}
         {currentPage === 'room' && (
-          <ApiDataTable apiPrefix="room" pageSize={10}
+          <ApiDataTable apiPrefix="rooms" pageSize={10} idKey="roomId"
             emptyForm={{ roomNumber: '', roomTypeId: 1, currentStatus: 'Available' }}
             fieldsMeta={{
               roomNumber:    { label: 'Số phòng',      inputType: 'text' },
@@ -100,7 +100,7 @@ export default function AdminPage() {
 
         {currentPage === 'bill' && <Payment />}
 
-        {/* DỊCH VỤ — model Services { serviceType, name, price, unit } */}
+        {}
         {currentPage === 'serve' && (
           <ApiDataTable apiPrefix="Service" pageSize={10}
             emptyForm={{ serviceType: '', name: '', price: 0, unit: '' }}
@@ -112,7 +112,7 @@ export default function AdminPage() {
             }} />
         )}
 
-        {/* GIẢM GIÁ — model Discount { name, discountType, discountValue, fromDate, toDate, isActive } */}
+        {}
         {currentPage === 'voucher' && (
           <ApiDataTable apiPrefix="Discount" pageSize={10}
             emptyForm={{ name: '', discountType: 'Percentage', discountValue: 0, fromDate: '', toDate: '', isActive: true }}
@@ -129,7 +129,7 @@ export default function AdminPage() {
             }} />
         )}
 
-        {/* ĐỒ THẤT LẠC — model LostItem { bookingId, itemName, description, status, foundDate } */}
+        {}
         {currentPage === 'lost' && (
           <ApiDataTable apiPrefix="LostItem" pageSize={10}
             emptyForm={{ bookingId: 0, itemName: '', description: '', status: 'Lost', foundDate: '' }}
@@ -144,7 +144,7 @@ export default function AdminPage() {
             }} />
         )}
 
-        {/* SỰ CỐ — model Incident { bookingId, title, description, status } */}
+        {}
         {currentPage === 'incident' && (
           <ApiDataTable apiPrefix="Incident" pageSize={10}
             emptyForm={{ bookingId: 0, title: '', description: '', status: 'Pending' }}

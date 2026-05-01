@@ -15,7 +15,6 @@ export type FieldMeta = {
 }
 export type FieldsMeta = Record<string, FieldMeta>
 
-// API chuẩn: { page, limit, totalCount, totalPages, data: [] }
 function normalize(raw: any): { items: any[]; totalPages: number; totalCount: number } {
   if (Array.isArray(raw))
     return { items: raw, totalPages: 1, totalCount: raw.length }
@@ -31,10 +30,11 @@ interface ApiDataTableProps {
   pageSize?: number
   emptyForm: Record<string, any>
   customGetUrl?: (page: number, limit: number) => string
+  idKey?: string
 }
 
 export default function ApiDataTable({
-  apiPrefix, fieldsMeta = {}, pageSize = 10, emptyForm, customGetUrl,
+  apiPrefix, fieldsMeta = {}, pageSize = 10, emptyForm, customGetUrl, idKey = 'id',
 }: ApiDataTableProps) {
   const prefix = `${API}/${apiPrefix}`
   const [data, setData]             = useState<any[]>([])
@@ -93,7 +93,7 @@ export default function ApiDataTable({
     setSaving(true)
     try {
       if (modalMode === 'add') await apiClient.post(`${prefix}`, form)
-      else if (editTarget) await apiClient.put(`${prefix}/${editTarget.id}`, form)
+      else if (editTarget) await apiClient.put(`${prefix}/${editTarget[idKey]}`, form)
       setModalMode(null); await load(page)
     } catch (e: any) {
       const msg = e?.response?.data
@@ -127,7 +127,6 @@ export default function ApiDataTable({
     )
   }
 
-  // Trang hiển thị: tối đa 5 nút xung quanh trang hiện tại
   const pageNums = Array.from(
     { length: Math.min(5, totalPages) },
     (_, i) => Math.max(1, Math.min(page - 2, totalPages - 4)) + i
@@ -178,7 +177,7 @@ export default function ApiDataTable({
                 style={{ textAlign: 'center', padding: 40, color: 'rgba(255,255,255,0.35)' }}>
                 Không có dữ liệu</td></tr>
             ) : filtered.map((row, i) => (
-              <tr key={row.id ?? i} onClick={() => openEdit(row)} style={{ cursor: 'pointer' }}>
+              <tr key={row[idKey] ?? i} onClick={() => openEdit(row)} style={{ cursor: 'pointer' }}>
                 <td>{(page - 1) * pageSize + i + 1}</td>
                 {visibleKeys.map(k => (
                   <td key={k}>
@@ -186,7 +185,7 @@ export default function ApiDataTable({
                   </td>
                 ))}
                 <td onClick={e => e.stopPropagation()}>
-                  <button onClick={() => handleDelete(row.id)} title="Xoá">
+                  <button onClick={() => handleDelete(row[idKey])} title="Xoá">
                     <span className="btn-icon delete"><DeleteOutlined /></span>
                   </button>
                 </td>
@@ -196,7 +195,7 @@ export default function ApiDataTable({
         </table>
       </div>
 
-      {/* Pagination */}
+      {}
       <div className="pagination">
         <span className="pagination-info">
           Tổng {totalCount} bản ghi — Trang {page}/{totalPages}

@@ -1,4 +1,4 @@
-// src/components/CurrentBookings/BookingDetail.tsx
+
 import { useState, useRef, useEffect } from "react";
 import type { BookingRoom } from "./CurrentBookings";
 import {
@@ -26,7 +26,7 @@ import {
   ToolOutlined,
   WarningOutlined,
 } from "@ant-design/icons";
-import "../../assets/css/Profile/BookingDetail.css";
+import "../assets/css/Profile/BookingDetail.css";
 
 interface Props {
   booking: BookingRoom;
@@ -159,7 +159,7 @@ export default function BookingDetail({ booking, onBack }: Props) {
       <div className="container bd-body">
         <div className="bd-left">
 
-          {/* Thông tin cơ bản */}
+          {}
           <div className="bd-card">
             <div className="bd-room-number-big">
               <HomeOutlined /> Phòng {booking.roomNumber}
@@ -192,7 +192,7 @@ export default function BookingDetail({ booking, onBack }: Props) {
             </div>
           </div>
 
-          {/* Gọi dịch vụ */}
+          {}
           <div className="bd-card">
             <h2 className="bd-card-title">
               <CustomerServiceOutlined /> Gọi dịch vụ
@@ -216,7 +216,7 @@ export default function BookingDetail({ booking, onBack }: Props) {
             )}
           </div>
 
-          {/* Yêu cầu hỗ trợ */}
+          {}
           <div className="bd-card">
             <h2 className="bd-card-title">
               <WarningOutlined /> Yêu cầu hỗ trợ
@@ -249,7 +249,7 @@ export default function BookingDetail({ booking, onBack }: Props) {
             )}
           </div>
 
-          {/* Đổi phòng */}
+          {}
           <div className="bd-card">
             <h2 className="bd-card-title">
               <SwapOutlined /> Yêu cầu đổi phòng
@@ -287,7 +287,7 @@ export default function BookingDetail({ booking, onBack }: Props) {
             )}
           </div>
 
-          {/* Chat */}
+          {}
           <div className="bd-card bd-chat-card">
             <h2 className="bd-card-title">
               <MessageOutlined /> Nhắn tin hỗ trợ
@@ -360,7 +360,7 @@ export default function BookingDetail({ booking, onBack }: Props) {
           </div>
         </div>
 
-        {/* Sidebar: Hóa đơn */}
+        {}
         <div className="bd-right">
           <div className="bd-invoice-card">
             <h2 className="bd-card-title">

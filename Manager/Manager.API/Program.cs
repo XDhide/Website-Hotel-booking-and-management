@@ -1,4 +1,4 @@
-﻿using Manager.API.Data;
+using Manager.API.Data;
 using Manager.API.Interfaces;
 using Manager.API.Models;
 using Manager.API.Repository;
@@ -9,8 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
-
-
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
@@ -49,6 +47,7 @@ builder.Services.AddAuthentication(option =>
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])),
     };
 });
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -84,9 +83,25 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ICheckInOutRepository, CheckInOutRepository>();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<IRevenueReportRepository, RevenueReportRepository>();
+
 var app = builder.Build();
 
+// ─── SEED ROLES khi khởi động ────────────────────────────────────────────────
+// FIX: tạo các role Admin, Manager, Guest nếu chưa có trong DB
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    string[] roles = ["Admin", "Manager", "Guest"];
 
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+    }
+}
+// ─────────────────────────────────────────────────────────────────────────────
 
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");

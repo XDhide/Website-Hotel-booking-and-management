@@ -1,5 +1,6 @@
 // src/components/Footer.tsx  (hoặc src/layouts/Footer.tsx tùy cấu trúc dự án của bạn)
 import "../assets/css/Footer.css";
+import { navigate } from "../Approuter.tsx";
 
 export default function Footer() {
   const cols = [
@@ -44,7 +45,7 @@ export default function Footer() {
               <div className="column-title">{col.title}</div>
               <div className="column-links">
                 {col.links.map((link) => (
-                  <button key={link} className="column-link">
+                  <button key={link} className="column-link" onClick={() => navigate("/rooms")}>
                     {link}
                   </button>
                 ))}

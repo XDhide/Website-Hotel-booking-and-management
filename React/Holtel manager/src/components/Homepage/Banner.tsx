@@ -1,4 +1,4 @@
-// src/components/Banner/Banner.tsx
+
 import { useState, useEffect } from "react";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import "../../assets/css/Homepage/Banner.css";

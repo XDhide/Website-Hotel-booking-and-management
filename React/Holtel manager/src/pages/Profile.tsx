@@ -10,6 +10,8 @@ import {
   CameraOutlined,
 } from "@ant-design/icons";
 import "../assets/css/Profile/Profile.css";
+import Header from "../shared/Header";
+import Footer from "../shared/Fooder";
 
 const TABS = ["Thông tin cá nhân", "Đổi mật khẩu", "Thông báo"];
 
@@ -36,7 +38,9 @@ export default function Profile() {
   };
 
   return (
-    <div className="pf-page">
+    <>
+      <Header />
+      <div className="pf-page">
       <div className="pf-header">
         <div className="container">
           <h1 className="pf-title"><UserOutlined /> Trang Cá Nhân</h1>
@@ -44,7 +48,7 @@ export default function Profile() {
       </div>
 
       <div className="container pf-body">
-        {/* Sidebar avatar */}
+        {}
         <aside className="pf-sidebar">
           <div className="pf-avatar-wrap">
             <div className="pf-avatar">
@@ -83,7 +87,7 @@ export default function Profile() {
           </div>
         </aside>
 
-        {/* Main */}
+        {}
         <main className="pf-main">
           {tab === 0 && (
             <div className="pf-card">
@@ -229,5 +233,7 @@ export default function Profile() {
         </main>
       </div>
     </div>
+      <Footer />
+    </>
   );
 }

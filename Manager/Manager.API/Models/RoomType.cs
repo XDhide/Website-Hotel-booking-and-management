@@ -17,5 +17,6 @@ namespace Manager.API.Models
         public ICollection<Rooms> Rooms { get; set; }
         public ICollection<RoomRate> RoomRates { get; set; }
         public ICollection<Booking> Bookings { get; set; }
+        public ICollection<RoomTypeImage> Images { get; set; }
     }
 }

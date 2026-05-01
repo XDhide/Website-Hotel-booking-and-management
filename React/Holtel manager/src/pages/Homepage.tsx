@@ -1,4 +1,5 @@
-// src/pages/Homepage.tsx
+
+
 import Banner         from "../components/Homepage/Banner";
 import TopRooms       from "../components/Homepage/TopRooms";
 import CalendarSearch from "../components/Homepage/CalendarSearch";
@@ -7,11 +8,9 @@ import ChatBubble     from "../components/Homepage/ChatBubble";
 import "../assets/css/Homepage/Homepage.css";
 import Header from "../shared/Header";
 import Footer from "../shared/Fooder";
+import { isLoggedIn } from "../constant/api";
 
 export default function HomePage() {
-  // TODO: thay bằng auth context / store thực tế
-  const isLoggedIn = true;
-
   return (
     <div className="homepage">
       <Header/>
@@ -19,7 +18,7 @@ export default function HomePage() {
       <TopRooms />
       <CalendarSearch />
       <Comments />
-      <ChatBubble isLoggedIn={isLoggedIn} />
+      <ChatBubble isLoggedIn={isLoggedIn()} />
       <Footer/>
     </div>
   );

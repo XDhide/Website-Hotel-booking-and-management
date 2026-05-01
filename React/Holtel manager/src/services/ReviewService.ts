@@ -1,55 +1,48 @@
 import { apiClient } from "../constant/api";
 import { API } from "../constant/config";
 
-const prefix = `${API}/Review`;
+const prefix = `${API}/review`;
 
-// Get all reviews
-export const apiGetAllReviews = async (): Promise<any> => {
-  const res = await apiClient.get(`${prefix}`);
-  return res?.data;
+export const apiGetReviews = async (page = 1, limit = 10): Promise<any> => {
+    try {
+        const res = await apiClient.get(`${prefix}?page=${page}&limit=${limit}`);
+        return res?.data;
+    } catch (err: any) {
+        console.error("[ReviewService.getAll]", err);
+        return { data: [], totalCount: 0 };
+    }
 };
 
-// Get review by id
 export const apiGetReviewById = async (id: number): Promise<any> => {
-  const res = await apiClient.get(`${prefix}/${id}`);
-  return res?.data;
+    try {
+        const res = await apiClient.get(`${prefix}/${id}`);
+        return res?.data;
+    } catch {
+        return null;
+    }
 };
 
-// Create review
-export const apiCreateReview = async (data: {
-  rating: number;
-  comment: string;
-  bookingId?: number; // tùy DTO backend của bạn
-  roomId?: number;
-  userId?: string;
-}): Promise<any> => {
-  const res = await apiClient.post(`${prefix}`, data);
-  return res?.data;
+export const apiCreateReview = async (data: any): Promise<any> => {
+    try {
+        const res = await apiClient.post(prefix, data);
+        return res?.data;
+    } catch (err: any) {
+        throw new Error(err?.response?.data || "Gửi đánh giá thất bại");
+    }
 };
 
-// Update review
-export const apiUpdateReview = async (
-  id: number,
-  data: {
-    rating?: number;
-    comment?: string;
-  }
-): Promise<any> => {
-  const res = await apiClient.put(`${prefix}/${id}`, data);
-  return res?.data;
+export const apiUpdateReview = async (id: number, data: any): Promise<any> => {
+    try {
+        const res = await apiClient.put(`${prefix}/${id}`, data);
+        return res?.data;
+    } catch (err: any) {
+        throw new Error(err?.response?.data || "Cập nhật đánh giá thất bại");
+    }
 };
 
-// Delete review
-export const apiDeleteReview = async (id: number): Promise<any> => {
-  const res = await apiClient.delete(`${prefix}/${id}`);
-  return res?.data;
-};
-
-// Service tổng hợp
 export const ReviewService = {
-  getAll: apiGetAllReviews,
-  getById: apiGetReviewById,
-  create: apiCreateReview,
-  update: apiUpdateReview,
-  delete: apiDeleteReview,
+    getAll:  apiGetReviews,
+    getById: apiGetReviewById,
+    create:  apiCreateReview,
+    update:  apiUpdateReview,
 };

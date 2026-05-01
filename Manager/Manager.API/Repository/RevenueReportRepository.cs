@@ -17,8 +17,6 @@ namespace Manager.API.Repository
             _db = db;
         }
 
-        // ─── REVENUE REPORT ──────────────────────────────────────────────────────
-
         public async Task<RevenueReportDto> GetRevenueAsync(
             DateTime? startDate, DateTime? endDate)
         {
@@ -34,7 +32,7 @@ namespace Manager.API.Repository
                 .ToListAsync();
 
             var totalRevenue = invoices.Sum(i => i.FinalAmount ?? 0);
-            var totalBookings = invoices.Select(i => i.RoomUseId).Distinct().Count(); // FIX: RoomInUseId → RoomUseId
+            var totalBookings = invoices.Select(i => i.RoomUseId).Distinct().Count();
 
             var byDay = invoices
                 .GroupBy(i => i.PaidAt!.Value.Date)
@@ -56,8 +54,6 @@ namespace Manager.API.Repository
                 ByDay = byDay,
             };
         }
-
-        // ─── OCCUPANCY REPORT ────────────────────────────────────────────────────
 
         public async Task<OccupancyReportDto> GetOccupancyAsync(DateTime? date)
         {

@@ -39,7 +39,6 @@ export default function SupportChat() {
   const [error, setError]               = useState('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
-  // Lấy ID admin từ token (dùng để phân biệt bubble trái/phải)
   const getAdminId = () => {
     try {
       const token = localStorage.getItem('hotel_token') ?? ''
@@ -52,14 +51,14 @@ export default function SupportChat() {
   const loadChats = useCallback(async () => {
     setLoadingChats(true); setError('')
     try {
-      // Admin dùng endpoint lấy tất cả chat
+
       const res = await apiClient.get(`${API}/SupportChat/my-chats`)
       const raw = res.data
       const list = Array.isArray(raw) ? raw : raw?.data ?? []
       setChats(list)
     } catch (e: any) {
       setError('Không thể tải danh sách chat')
-      // fallback mock
+
       setChats([
         { id: 1, userId: 'user1', status: 'InProgress' },
         { id: 2, userId: 'user2', status: 'Open' },
@@ -107,7 +106,7 @@ export default function SupportChat() {
       })
       await loadMessages(selectedChat.id)
     } catch {
-      // Optimistic
+
       setMessages(prev => [...prev, {
         id: Date.now(), supportChatId: selectedChat.id,
         senderId: adminId, message: text,
@@ -134,7 +133,7 @@ export default function SupportChat() {
 
   return (
     <div className="support-wapper">
-      {/* ── Danh sách chat ── */}
+      {}
       <div className="support-user-box">
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -166,14 +165,15 @@ export default function SupportChat() {
             <div className="support-user-info">
               <div className="support-user-name">Chat #{chat.id}</div>
               <div style={{ fontSize: '0.75rem', color: STATUS_COLOR[chat.status] ?? '#94a3b8', marginTop: 2 }}>
-                ● {STATUS_LABEL[chat.status] ?? chat.status}
+                <span style={{ display: 'inline-block', width: 7, height: 7, borderRadius: '50%', background: STATUS_COLOR[chat.status] ?? '#94a3b8', marginRight: 4, verticalAlign: 'middle' }} />
+                {STATUS_LABEL[chat.status] ?? chat.status}
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* ── Khung chat ── */}
+      {}
       <div className="support-chat-box">
         {!selectedChat ? (
           <div className="support-chat-placeholder">
@@ -182,7 +182,7 @@ export default function SupportChat() {
           </div>
         ) : (
           <>
-            {/* Header */}
+            {}
             <div className="support-chat-header" style={{ justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <div className="support-user-icon small">
@@ -191,7 +191,8 @@ export default function SupportChat() {
                 <div>
                   <div className="support-chat-header-name">Chat #{selectedChat.id}</div>
                   <div style={{ fontSize: '0.72rem', color: STATUS_COLOR[selectedChat.status] }}>
-                    ● {STATUS_LABEL[selectedChat.status]}
+                    <span style={{ display: 'inline-block', width: 7, height: 7, borderRadius: '50%', background: STATUS_COLOR[selectedChat.status], marginRight: 4, verticalAlign: 'middle' }} />
+                    {STATUS_LABEL[selectedChat.status]}
                   </div>
                 </div>
               </div>
@@ -206,7 +207,7 @@ export default function SupportChat() {
               )}
             </div>
 
-            {/* Messages */}
+            {}
             <div className="support-chat-box-output">
               {loadingMsgs ? (
                 <div style={{ textAlign: 'center', padding: 20, color: 'rgba(255,255,255,0.3)' }}>Đang tải tin nhắn...</div>
@@ -226,7 +227,7 @@ export default function SupportChat() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
+            {}
             <div className="support-chat-box-input">
               {selectedChat.status === 'Closed' ? (
                 <div style={{ flex: 1, textAlign: 'center', color: 'rgba(255,255,255,0.3)', fontSize: '0.85rem', padding: '10px 0' }}>

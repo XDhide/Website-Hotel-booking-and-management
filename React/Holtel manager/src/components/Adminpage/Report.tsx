@@ -63,7 +63,7 @@ export default function Report() {
       const res = await apiClient.get(`${API}/Report/revenue?startDate=${startDate}&endDate=${endDate}`)
       setRevenueReport(res.data)
     } catch {
-      // Mock fallback
+
       setRevenueReport({
         startDate, endDate,
         totalRevenue: 81000000,
@@ -119,7 +119,7 @@ export default function Report() {
   return (
     <div className="report-wrapper">
 
-      {/* Summary cards */}
+      {}
       <div className="report-summary">
         {revenueReport && tab === 'revenue' ? (<>
           <div className="summary-card">
@@ -192,7 +192,7 @@ export default function Report() {
         </>) : null}
       </div>
 
-      {/* Chart controls */}
+      {}
       <div className="report-chart-card">
         <div className="chart-header">
           <div className="chart-title"><BarChartOutlined /> Biểu đồ doanh thu</div>
@@ -253,7 +253,7 @@ export default function Report() {
         ) : null}
       </div>
 
-      {/* Daily revenue table */}
+      {}
       {tab === 'revenue' && revenueReport && revenueReport.dailyRevenues.length > 0 && (
         <div className="report-table-card">
           <div className="report-table-title">Chi tiết doanh thu theo ngày</div>

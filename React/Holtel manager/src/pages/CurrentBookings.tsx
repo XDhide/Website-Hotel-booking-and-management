@@ -1,4 +1,4 @@
-// src/pages/CurrentBookings.tsx
+
 import { useState } from "react";
 import {
   HomeOutlined,
@@ -10,6 +10,8 @@ import {
 } from "@ant-design/icons";
 import BookingDetail from "./BookingDetail";
 import "../assets/css/Profile/CurrentBookings.css";
+import Header from "../shared/Header";
+import Footer from "../shared/Fooder";
 
 export interface BookingRoom {
   id: number;
@@ -91,7 +93,9 @@ export default function CurrentBookings() {
   }
 
   return (
-    <div className="cb-page">
+    <>
+      <Header />
+      <div className="cb-page">
       <div className="cb-header">
         <div className="container">
           <h1 className="cb-title">
@@ -150,5 +154,7 @@ export default function CurrentBookings() {
         </div>
       </div>
     </div>
+      <Footer />
+    </>
   );
 }

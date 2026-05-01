@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   CalendarOutlined,
   SearchOutlined,
@@ -8,10 +8,12 @@ import {
   CheckCircleOutlined,
   WarningOutlined,
   FilterOutlined,
+  LoadingOutlined,
 } from "@ant-design/icons";
 import RoomCard from "./Roomcard";
-import { ALL_ROOMS } from "./rooms";
+import { apiSearchRoomType } from "../../services/RoomTypeService";
 import "../../assets/css/Homepage/CalendarSearch.css";
+import { navigate } from "../../Approuter";
 
 const ROOM_TYPES = [
   { value: "all",      label: "Tất cả" },
@@ -21,7 +23,24 @@ const ROOM_TYPES = [
   { value: "Family",   label: "Gia đình" },
 ];
 
+function mapRoomType(rt: any) {
+  return {
+    id:        rt.roomTypeId ?? rt.id,
+    name:      rt.name ?? rt.typeName ?? "Phòng",
+    type:      rt.typeName ?? rt.name ?? "Standard",
+    price:     rt.pricePerNight ?? rt.basePrice ?? 0,
+    rating:    rt.averageRating ?? 4.5,
+    reviews:   rt.reviewCount ?? 0,
+    image:     rt.images?.[0]?.imageUrl ?? rt.imageUrl ?? null,
+    tags:      rt.amenities ? rt.amenities.split(",").map((s: string) => s.trim()) : [],
+    available: rt.availableRooms > 0 ?? true,
+    popular:   rt.isPopular ?? false,
+  };
+}
+
 export default function CalendarSearch() {
+  const [allRooms, setAllRooms] = useState<any[]>([]);
+  const [loading,  setLoading]  = useState(true);
   const [checkIn,  setCheckIn]  = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [roomType, setRoomType] = useState("all");
@@ -29,14 +48,18 @@ export default function CalendarSearch() {
 
   const today = new Date().toISOString().split("T")[0];
 
-  const isFullDate = checkIn === "2025-09-02";
+  useEffect(() => {
+    apiSearchRoomType(1, 100)
+      .then((res) => setAllRooms((res?.data ?? []).map(mapRoomType)))
+      .catch(() => setAllRooms([]))
+      .finally(() => setLoading(false));
+  }, []);
 
-  const filtered = ALL_ROOMS.filter((r) =>
+  const filtered = allRooms.filter((r) =>
     roomType === "all" ? true : r.type === roomType
-  ).map((r) => ({
-    ...r,
-    available: isFullDate ? r.id % 3 !== 0 : r.available,
-  }));
+  );
+
+  const isHighDemand = checkIn !== "" && new Date(checkIn).getDay() === 6; // Thứ 7
 
   return (
     <section className="section cs-section">
@@ -58,30 +81,20 @@ export default function CalendarSearch() {
               <CalendarOutlined className="cs-label-icon" /> Ngày nhận phòng
             </label>
             <input
-              type="date"
-              className="cs-input"
-              min={today}
-              value={checkIn}
-              onChange={(e) => setCheckIn(e.target.value)}
+              type="date" className="cs-input" min={today}
+              value={checkIn} onChange={(e) => setCheckIn(e.target.value)}
             />
 
             <label className="cs-label">
               <CalendarOutlined className="cs-label-icon" /> Ngày trả phòng
             </label>
             <input
-              type="date"
-              className="cs-input"
-              min={checkIn || today}
-              value={checkOut}
-              onChange={(e) => setCheckOut(e.target.value)}
+              type="date" className="cs-input" min={checkIn || today}
+              value={checkOut} onChange={(e) => setCheckOut(e.target.value)}
             />
 
             <label className="cs-label">Loại phòng</label>
-            <select
-              className="cs-select"
-              value={roomType}
-              onChange={(e) => setRoomType(e.target.value)}
-            >
+            <select className="cs-select" value={roomType} onChange={(e) => setRoomType(e.target.value)}>
               {ROOM_TYPES.map((t) => (
                 <option key={t.value} value={t.value}>{t.label}</option>
               ))}
@@ -91,49 +104,41 @@ export default function CalendarSearch() {
               <UserOutlined className="cs-label-icon" /> Số khách
             </label>
             <div className="cs-guest-counter">
-              <button
-                className="cs-counter-btn"
-                onClick={() => setGuests((g) => Math.max(1, g - 1))}
-              >
+              <button className="cs-counter-btn" onClick={() => setGuests((g) => Math.max(1, g - 1))}>
                 <MinusOutlined />
               </button>
               <span className="cs-guest-num">{guests}</span>
-              <button
-                className="cs-counter-btn"
-                onClick={() => setGuests((g) => Math.min(8, g + 1))}
-              >
+              <button className="cs-counter-btn" onClick={() => setGuests((g) => Math.min(8, g + 1))}>
                 <PlusOutlined />
               </button>
             </div>
 
             {checkIn && (
-              <div className={`cs-info-box ${isFullDate ? "warning" : "success"}`}>
-                {isFullDate ? (
-                  <>
-                    <WarningOutlined style={{ marginRight: 6 }} />
-                    Ngày 2/9 rất đông! Nhiều phòng đã được đặt.
-                  </>
+              <div className={`cs-info-box ${isHighDemand ? "warning" : "success"}`}>
+                {isHighDemand ? (
+                  <><WarningOutlined style={{ marginRight: 6 }} />Cuối tuần rất đông! Đặt sớm để đảm bảo phòng.</>
                 ) : (
-                  <>
-                    <CheckCircleOutlined style={{ marginRight: 6 }} />
-                    Còn nhiều phòng trống cho ngày này!
-                  </>
+                  <><CheckCircleOutlined style={{ marginRight: 6 }} />Còn nhiều phòng trống cho ngày này!</>
                 )}
               </div>
             )}
 
-            <button className="cs-search-btn">
+            <button className="cs-search-btn" onClick={() => navigate("/rooms")}>
               <SearchOutlined style={{ marginRight: 8 }} />
               Tìm phòng
             </button>
           </div>
 
           <div className="cs-results">
-            {filtered.length === 0 ? (
+            {loading ? (
+              <div style={{ textAlign: "center", padding: 40 }}>
+                <LoadingOutlined style={{ fontSize: 28 }} />
+              </div>
+            ) : filtered.length === 0 ? (
               <div className="cs-no-results">Không tìm thấy phòng phù hợp.</div>
             ) : (
               <div className="room-grid">
-                {filtered.map((room) => (
+                {filtered.slice(0, 6).map((room) => (
                   <RoomCard key={room.id} room={room} compact />
                 ))}
               </div>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Manager.API.Dtos.RoomType
 {
@@ -10,5 +11,6 @@ namespace Manager.API.Dtos.RoomType
         public string Description { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+        public List<RoomTypeImageDto> Images { get; set; } = new();
     }
 }

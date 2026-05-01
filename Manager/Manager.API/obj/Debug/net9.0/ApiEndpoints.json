@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "Manager.API.Controllers.AccountController",
+    "Method": "AssignRole",
+    "RelativePath": "api/Account/assign-role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Account.AssignRoleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.AccountController",
     "Method": "Login",
     "RelativePath": "api/Account/login",
     "HttpMethod": "POST",
@@ -1495,11 +1511,6 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "RoomTypeId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "dto",
         "Type": "Manager.API.Dtos.Rooms.CreateRoomsRequestDto",
         "IsRequired": true
@@ -1651,6 +1662,64 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Manager.API.Controllers.RoomTypeController",
+    "Method": "GetImages",
+    "RelativePath": "api/roomtype/{id}/images",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomTypeController",
+    "Method": "AddImage",
+    "RelativePath": "api/roomtype/{id}/images",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.RoomType.CreateRoomTypeImageRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomTypeController",
+    "Method": "DeleteImage",
+    "RelativePath": "api/roomtype/{id}/images/{imageId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "imageId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Manager.API.Controllers.ServicesController",
     "Method": "GetAll",
     "RelativePath": "api/services",
@@ -1735,6 +1804,84 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.SupportChatController",
+    "Method": "CreateChat",
+    "RelativePath": "api/SupportChat",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.SupportChatController",
+    "Method": "CloseChat",
+    "RelativePath": "api/SupportChat/{chatId}/close",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chatId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.SupportChatController",
+    "Method": "GetMessages",
+    "RelativePath": "api/SupportChat/{chatId}/messages",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chatId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.SupportChatController",
+    "Method": "GetMyChats",
+    "RelativePath": "api/SupportChat/my-chats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.SupportChatController",
+    "Method": "CreateChat",
+    "RelativePath": "api/SupportChat/open",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.SupportChatController",
+    "Method": "SendMessage",
+    "RelativePath": "api/SupportChat/send-message",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.SupportChat.SendMessageRequestDto",
         "IsRequired": true
       }
     ],

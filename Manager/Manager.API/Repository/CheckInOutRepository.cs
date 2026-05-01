@@ -18,8 +18,6 @@ namespace Manager.API.Repository
             _db = db;
         }
 
-        // ─── CHECK IN ────────────────────────────────────────────────────────────
-
         public async Task<CheckInOutResultDto> CheckInAsync(int bookingId)
         {
             var booking = await _db.Bookings
@@ -35,7 +33,6 @@ namespace Manager.API.Repository
             if (booking.Status == "Cancelled")
                 throw new Exception("Booking đã bị huỷ, không thể check-in.");
 
-            // Tìm RoomInUse đang chờ (nếu có) hoặc tự tạo
             var roomInUse = booking.RoomInUses?.FirstOrDefault(r => r.Status == "Pending");
 
             if (roomInUse != null)
@@ -57,8 +54,6 @@ namespace Manager.API.Repository
             };
         }
 
-        // ─── CHECK OUT ───────────────────────────────────────────────────────────
-
         public async Task<CheckInOutResultDto> CheckOutAsync(int bookingId)
         {
             var booking = await _db.Bookings
@@ -71,7 +66,6 @@ namespace Manager.API.Repository
             if (booking.Status != "CheckedIn")
                 throw new Exception("Booking chưa check-in, không thể check-out.");
 
-            // Đóng tất cả RoomInUse đang Active
             var activeRooms = booking.RoomInUses?
                 .Where(r => r.Status == "Active")
                 .ToList();
@@ -98,8 +92,6 @@ namespace Manager.API.Repository
             };
         }
 
-        // ─── TRANSFER ROOM ───────────────────────────────────────────────────────
-
         public async Task<CheckInOutResultDto> TransferRoomAsync(int bookingId, int newRoomId)
         {
             var booking = await _db.Bookings
@@ -116,13 +108,12 @@ namespace Manager.API.Repository
             if (newRoom.CurrentStatus != "Available")
                 throw new Exception("Phòng mới không khả dụng để chuyển.");
 
-            // Đóng RoomInUse hiện tại
             var current = booking.RoomInUses?
                 .FirstOrDefault(r => r.Status == "Active");
 
             if (current != null)
             {
-                // Đánh dấu phòng cũ là Available
+
                 var oldRoom = await _db.Rooms.FindAsync(current.RoomId);
                 if (oldRoom != null)
                     oldRoom.CurrentStatus = "Available";
@@ -131,7 +122,6 @@ namespace Manager.API.Repository
                 current.Status         = "Transferred";
             }
 
-            // Tạo RoomInUse mới
             var newRoomInUse = new RoomInUse
             {
                 BookingId      = bookingId,
@@ -154,8 +144,6 @@ namespace Manager.API.Repository
                 ActualDate = DateTime.Now,
             };
         }
-
-        // ─── EXTEND BOOKING ──────────────────────────────────────────────────────
 
         public async Task<CheckInOutResultDto> ExtendBookingAsync(
             int bookingId, DateTime newCheckOutDate)

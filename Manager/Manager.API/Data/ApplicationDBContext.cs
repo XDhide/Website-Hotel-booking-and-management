@@ -1,4 +1,4 @@
-﻿using Manager.API.Models;
+using Manager.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +13,7 @@ namespace Manager.API.Data
 
         public DbSet<Rooms> Rooms { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
+        public DbSet<RoomTypeImage> RoomTypeImages { get; set; }
         public DbSet<RoomRate> RoomRates { get; set; }
         public DbSet<Services> Services { get; set; }
         public DbSet<Discount> Discounts { get; set; }
@@ -45,6 +46,12 @@ namespace Manager.API.Data
                 .HasOne(rr => rr.RoomType)
                 .WithMany(rt => rt.RoomRates)
                 .HasForeignKey(rr => rr.RoomTypeId);
+
+            modelBuilder.Entity<RoomTypeImage>()
+                .HasOne(img => img.RoomType)
+                .WithMany(rt => rt.Images)
+                .HasForeignKey(img => img.RoomTypeId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // ================= BOOKING =================
 

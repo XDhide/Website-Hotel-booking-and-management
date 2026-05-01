@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   LeftOutlined,
   StarFilled,
@@ -18,15 +18,14 @@ import {
   CarOutlined,
   RestOutlined,
   AlertOutlined,
-  EnvironmentOutlined,
-  SunOutlined,
-  BgColorsOutlined,
+  PictureOutlined,
 } from "@ant-design/icons";
-import { ALL_ROOMS, COMMENTS } from "../components/Homepage/rooms";
+import { apiGetReviews } from "../services/ReviewService";
+import { navigate } from "../Approuter.tsx";
+import Header from "../shared/Header";
+import Footer from "../shared/Fooder";
+import { apiGetRoomTypeById } from "../services/RoomTypeService";
 import "../assets/css/RoomDetail/RoomDetail.css";
-
-// Dùng phòng đầu tiên làm demo
-const room = ALL_ROOMS[0];
 
 const AMENITIES = [
   { icon: <WifiOutlined />,        label: "WiFi tốc độ cao" },
@@ -39,53 +38,156 @@ const AMENITIES = [
   { icon: <AlertOutlined />,       label: "Hồ bơi" },
 ];
 
-export default function RoomDetail() {
-  const [liked, setLiked]       = useState(false);
-  const [checkIn, setCheckIn]   = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests]     = useState(1);
-  const [tab, setTab]           = useState<"info" | "reviews">("info");
+interface Props {
+  roomTypeId?: number;
+}
+
+export default function RoomDetail({ roomTypeId }: Props) {
+  const [roomType, setRoomType]   = useState<any>(null);
+  const [loading, setLoading]     = useState(true);
+  const [liked, setLiked]         = useState(false);
+  const [checkIn, setCheckIn]     = useState("");
+  const [checkOut, setCheckOut]   = useState("");
+  const [guests, setGuests]       = useState(1);
+  const [tab, setTab]             = useState<"info" | "reviews">("info");
+  const [activeImg, setActiveImg] = useState(0);
+  const [reviews, setReviews]     = useState<any[]>([]);
 
   const today = new Date().toISOString().split("T")[0];
 
-  const nights = checkIn && checkOut
-    ? Math.max(0, (new Date(checkOut).getTime() - new Date(checkIn).getTime()) / 86400000)
-    : 0;
-  const total = nights * room.price;
+  useEffect(() => {
+    apiGetReviews(1, 20)
+      .then((res) => setReviews(res?.data ?? []))
+      .catch(() => setReviews([]));
+  }, []);
+
+  useEffect(() => {
+    if (!roomTypeId) {
+      setLoading(false);
+      return;
+    }
+    apiGetRoomTypeById(roomTypeId).then((data) => {
+      setRoomType(data);
+      setLoading(false);
+    });
+  }, [roomTypeId]);
+
+  const nights =
+    checkIn && checkOut
+      ? Math.max(
+          0,
+          (new Date(checkOut).getTime() - new Date(checkIn).getTime()) / 86400000
+        )
+      : 0;
+
+  const images: any[] = roomType?.images ?? [];
+
+  if (loading) {
+    return (
+      <div className="rd-page">
+        <Header />
+        <div className="container rd-body" style={{ justifyContent: "center", padding: "80px 0" }}>
+          <p>Đang tải...</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (!roomType) {
+    return (
+      <div className="rd-page">
+        <Header />
+        <div className="container rd-body" style={{ justifyContent: "center", padding: "80px 0" }}>
+          <p>Không tìm thấy loại phòng.</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="rd-page">
-      {/* Back */}
+      <Header />
+
       <div className="rd-back-bar">
         <div className="container">
-          <button className="rd-back-btn">
+          <button className="rd-back-btn" onClick={() => navigate("/rooms")}>
             <LeftOutlined /> Quay lại danh sách
           </button>
         </div>
       </div>
 
       <div className="container rd-body">
-        {/* Left */}
         <div className="rd-left">
-          {/* Images */}
           <div className="rd-img-grid">
-            <div className="rd-img-main rd-img-placeholder"><HomeOutlined /></div>
-            <div className="rd-img-sub rd-img-placeholder"><EnvironmentOutlined /></div>
-            <div className="rd-img-sub rd-img-placeholder"><BgColorsOutlined /></div>
-            <div className="rd-img-sub rd-img-placeholder"><ExperimentOutlined /></div>
-            <div className="rd-img-sub rd-img-placeholder"><SunOutlined /></div>
+            {images.length > 0 ? (
+              <>
+                <div className="rd-img-main">
+                  <img
+                    src={images[activeImg]?.imageUrl}
+                    alt={images[activeImg]?.altText || roomType.name}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 8 }}
+                  />
+                </div>
+                {images.slice(1, 5).map((img: any, idx: number) => (
+                  <div
+                    key={img.id}
+                    className="rd-img-sub"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setActiveImg(idx + 1)}
+                  >
+                    <img
+                      src={img.imageUrl}
+                      alt={img.altText || roomType.name}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 8 }}
+                    />
+                  </div>
+                ))}
+                {Array.from({ length: Math.max(0, 4 - (images.length - 1)) }).map((_, i) => (
+                  <div key={`ph-${i}`} className="rd-img-sub rd-img-placeholder">
+                    <PictureOutlined />
+                  </div>
+                ))}
+              </>
+            ) : (
+              <>
+                <div className="rd-img-main rd-img-placeholder"><HomeOutlined /></div>
+                {[0,1,2,3].map(i => (
+                  <div key={i} className="rd-img-sub rd-img-placeholder"><PictureOutlined /></div>
+                ))}
+              </>
+            )}
           </div>
 
-          {/* Info */}
+          {images.length > 1 && (
+            <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
+              {images.map((img: any, idx: number) => (
+                <img
+                  key={img.id}
+                  src={img.imageUrl}
+                  alt={img.altText || `Ảnh ${idx + 1}`}
+                  onClick={() => setActiveImg(idx)}
+                  style={{
+                    width: 56,
+                    height: 56,
+                    objectFit: "cover",
+                    borderRadius: 6,
+                    cursor: "pointer",
+                    border: activeImg === idx ? "2px solid #6366f1" : "2px solid transparent",
+                  }}
+                />
+              ))}
+            </div>
+          )}
+
           <div className="rd-info-card">
             <div className="rd-info-top">
               <div>
-                <span className="rd-type-badge">{room.type}</span>
-                {room.popular && (
-                  <span className="rd-popular-badge">
-                    <FireOutlined /> Phổ biến
-                  </span>
-                )}
+                <span className="rd-type-badge">{roomType.name}</span>
+                <span className="rd-popular-badge">
+                  <FireOutlined /> {roomType.capacity}
+                </span>
               </div>
               <div className="rd-actions">
                 <button className="rd-action-btn" onClick={() => setLiked((p) => !p)}>
@@ -97,17 +199,16 @@ export default function RoomDetail() {
               </div>
             </div>
 
-            <h1 className="rd-name">{room.name}</h1>
+            <h1 className="rd-name">{roomType.name}</h1>
 
             <div className="rd-rating-row">
               {[1,2,3,4,5].map((i) => (
-                <StarFilled key={i} className={i <= Math.round(room.rating) ? "rd-star filled" : "rd-star"} />
+                <StarFilled key={i} className="rd-star filled" />
               ))}
-              <span className="rd-rating-num">{room.rating.toFixed(1)}</span>
-              <span className="rd-reviews">({room.reviews} đánh giá)</span>
+              <span className="rd-rating-num">5.0</span>
+              <span className="rd-reviews">({reviews.length} đánh giá)</span>
             </div>
 
-            {/* Tabs */}
             <div className="rd-tabs">
               <button
                 className={`rd-tab${tab === "info" ? " active" : ""}`}
@@ -116,17 +217,12 @@ export default function RoomDetail() {
               <button
                 className={`rd-tab${tab === "reviews" ? " active" : ""}`}
                 onClick={() => setTab("reviews")}
-              >Đánh giá ({COMMENTS.length})</button>
+              >Đánh giá ({reviews.length})</button>
             </div>
 
             {tab === "info" ? (
               <>
-                <p className="rd-desc">
-                  Phòng {room.name} mang đến không gian sang trọng với tầm nhìn tuyệt đẹp.
-                  Nội thất cao cấp, thiết bị hiện đại cùng dịch vụ 5 sao sẽ làm hài lòng
-                  mọi yêu cầu của quý khách. Diện tích 45m², đón gió tự nhiên và ánh sáng
-                  chan hòa suốt ngày.
-                </p>
+                <p className="rd-desc">{roomType.description}</p>
 
                 <h3 className="rd-section-title">Tiện nghi</h3>
                 <div className="rd-amenities">
@@ -156,18 +252,28 @@ export default function RoomDetail() {
               </>
             ) : (
               <div className="rd-reviews-list">
-                {COMMENTS.map((c) => (
-                  <div key={c.id} className="rd-review-item">
-                    <img src={c.avatar} alt={c.name} className="rd-review-avatar" />
+                {reviews.length === 0 ? (
+                  <div style={{ textAlign: "center", padding: 30, color: "#64748b" }}>Chưa có đánh giá nào.</div>
+                ) : reviews.map((c, i) => (
+                  <div key={c.evaluationId ?? c.id ?? i} className="rd-review-item">
+                    <div className="rd-review-avatar" style={{
+                      width: 40, height: 40, borderRadius: "50%",
+                      background: "#3b82f6", display: "flex", alignItems: "center",
+                      justifyContent: "center", color: "#fff", flexShrink: 0,
+                    }}>
+                      {(c.userName ?? c.author ?? "K")[0].toUpperCase()}
+                    </div>
                     <div className="rd-review-content">
-                      <div className="rd-review-name">{c.name}</div>
+                      <div className="rd-review-name">{c.userName ?? c.author ?? "Khách hàng"}</div>
                       <div className="rd-review-stars">
                         {[1,2,3,4,5].map((i) => (
-                          <StarFilled key={i} className={i <= c.rating ? "rd-star filled" : "rd-star"} style={{ fontSize: 12 }} />
+                          <StarFilled key={i} className={i <= (c.rating ?? 5) ? "rd-star filled" : "rd-star"} style={{ fontSize: 12 }} />
                         ))}
-                        <span style={{ fontSize: 12, color: "#94a3b8", marginLeft: 4 }}>{c.date}</span>
+                        <span style={{ fontSize: 12, color: "#94a3b8", marginLeft: 4 }}>
+                          {c.createdAt ? new Date(c.createdAt).toLocaleDateString("vi-VN") : ""}
+                        </span>
                       </div>
-                      <p className="rd-review-text">{c.text}</p>
+                      <p className="rd-review-text">{c.comment ?? c.text ?? ""}</p>
                     </div>
                   </div>
                 ))}
@@ -176,16 +282,10 @@ export default function RoomDetail() {
           </div>
         </div>
 
-        {/* Right - Booking */}
         <aside className="rd-booking-card">
           <div className="rd-price-block">
-            <span className="rd-price">{room.price.toLocaleString("vi-VN")}₫</span>
+            <span className="rd-price">Liên hệ</span>
             <span className="rd-price-unit"> /đêm</span>
-            {room.originalPrice && (
-              <div className="rd-orig-price">
-                {room.originalPrice.toLocaleString("vi-VN")}₫
-              </div>
-            )}
           </div>
 
           <div className="rd-booking-form">
@@ -220,7 +320,11 @@ export default function RoomDetail() {
               <label className="rd-form-label">
                 <UserOutlined /> Số khách
               </label>
-              <select className="rd-form-input" value={guests} onChange={(e) => setGuests(Number(e.target.value))}>
+              <select
+                className="rd-form-input"
+                value={guests}
+                onChange={(e) => setGuests(Number(e.target.value))}
+              >
                 {[1,2,3,4].map((n) => (
                   <option key={n} value={n}>{n} khách</option>
                 ))}
@@ -230,24 +334,18 @@ export default function RoomDetail() {
             {nights > 0 && (
               <div className="rd-price-calc">
                 <div className="rd-calc-row">
-                  <span>{room.price.toLocaleString("vi-VN")}₫ × {nights} đêm</span>
-                  <span>{total.toLocaleString("vi-VN")}₫</span>
-                </div>
-                <div className="rd-calc-row total">
-                  <span>Tổng cộng</span>
-                  <span>{total.toLocaleString("vi-VN")}₫</span>
+                  <span>{nights} đêm</span>
                 </div>
               </div>
             )}
 
-            <button className="rd-book-btn">
-              Đặt phòng ngay
-            </button>
-
+            <button className="rd-book-btn">Đặt phòng ngay</button>
             <p className="rd-book-note">Chưa bị trừ tiền — xác nhận sau</p>
           </div>
         </aside>
       </div>
+
+      <Footer />
     </div>
   );
 }

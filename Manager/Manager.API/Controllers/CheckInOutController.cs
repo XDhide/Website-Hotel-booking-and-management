@@ -20,12 +20,6 @@ namespace Manager.API.Controllers
             _checkInOutRepository = checkInOutRepository;
         }
 
-        // ─── CHECK IN ────────────────────────────────────────────────────────────
-
-        /// <summary>
-        /// POST /api/CheckInOut/checkin
-        /// Body: { "bookingId": 1 }
-        /// </summary>
         [HttpPost("checkin")]
         public async Task<IActionResult> CheckIn([FromBody] CheckInRequestDto dto)
         {
@@ -43,12 +37,6 @@ namespace Manager.API.Controllers
             }
         }
 
-        // ─── CHECK OUT ───────────────────────────────────────────────────────────
-
-        /// <summary>
-        /// POST /api/CheckInOut/checkout
-        /// Body: { "bookingId": 1 }
-        /// </summary>
         [HttpPost("checkout")]
         public async Task<IActionResult> CheckOut([FromBody] CheckOutRequestDto dto)
         {
@@ -66,12 +54,6 @@ namespace Manager.API.Controllers
             }
         }
 
-        // ─── TRANSFER ROOM ───────────────────────────────────────────────────────
-
-        /// <summary>
-        /// POST /api/CheckInOut/transfer-room
-        /// Body: { "bookingId": 1, "newRoomId": 5 }
-        /// </summary>
         [HttpPost("transfer-room")]
         public async Task<IActionResult> TransferRoom([FromBody] TransferRoomRequestDto dto)
         {
@@ -91,12 +73,6 @@ namespace Manager.API.Controllers
             }
         }
 
-        // ─── EXTEND BOOKING ──────────────────────────────────────────────────────
-
-        /// <summary>
-        /// POST /api/CheckInOut/extend
-        /// Body: { "bookingId": 1, "newCheckOutDate": "2026-05-01" }
-        /// </summary>
         [HttpPost("extend")]
         public async Task<IActionResult> Extend([FromBody] ExtendBookingRequestDto dto)
         {

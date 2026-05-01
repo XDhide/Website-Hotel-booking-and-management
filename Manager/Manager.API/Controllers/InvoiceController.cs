@@ -40,10 +40,10 @@ namespace Manager.API.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<IActionResult> Create(string UserId, int RoomInUseId, CreateInvoiceRequestDto dto)
+        public async Task<IActionResult> Create([FromBody] CreateInvoiceRequestDto dto)
         {
             var model = dto.ToCreateInvoiceModel();
-            var created = await _invoiceRepository.CreateAsync(UserId, RoomInUseId, model);
+            var created = await _invoiceRepository.CreateAsync(dto.UserId, dto.RoomUseId, model);
             var resultDto = created.ToInvoiceDto();
             return CreatedAtAction(nameof(GetById), new { id = resultDto.InvoiceId }, resultDto);
         }

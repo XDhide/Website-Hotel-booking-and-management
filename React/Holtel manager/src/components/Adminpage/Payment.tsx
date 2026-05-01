@@ -1,6 +1,6 @@
 import {
   SearchOutlined, MoneyCollectOutlined, ReloadOutlined,
-  CheckCircleOutlined, ClockCircleOutlined, CloseCircleOutlined,
+  CheckCircleOutlined, ClockCircleOutlined, CloseCircleOutlined, LoadingOutlined,
 } from "@ant-design/icons"
 import { useState, useEffect, useCallback } from "react"
 import Modal from './Modal'
@@ -8,7 +8,6 @@ import { apiClient } from '../../constant/api'
 import { API } from '../../constant/config'
 import '../../assets/css/Adminpage/Payment.css'
 
-// Model Invoice: { id, bookingId, roomCharge, serviceCharge, discount, totalAmount, status }
 interface Invoice {
   id: number
   bookingId: number
@@ -16,7 +15,7 @@ interface Invoice {
   serviceCharge: number
   discount: number
   totalAmount: number
-  status: string          // Unpaid | Paid | Refunded
+  status: string
   createAt?: string
 }
 
@@ -91,11 +90,11 @@ export default function Payment() {
     if (!selected || selected.status !== 'Unpaid') return
     setSaving(true)
     try {
-      await apiClient.put(`${API}/Invoice/${selected.id}`, { ...selected, status: 'Paid' })
-      setInvoices(prev => prev.map(i => i.id === selected.id ? { ...i, status: 'Paid' } : i))
+      await apiClient.put(`${API}/Invoice/${selected.invoiceId}`, { ...selected, status: 'Paid' })
+      setInvoices(prev => prev.map(i => i.invoiceId === selected.invoiceId ? { ...i, status: 'Paid' } : i))
       setSelected(prev => prev ? { ...prev, status: 'Paid' } : prev)
     } catch {
-      setInvoices(prev => prev.map(i => i.id === selected.id ? { ...i, status: 'Paid' } : i))
+      setInvoices(prev => prev.map(i => i.invoiceId === selected.invoiceId ? { ...i, status: 'Paid' } : i))
     } finally {
       setSaving(false)
     }
@@ -103,7 +102,7 @@ export default function Payment() {
 
   return (
     <div className="payment-wrapper">
-      {/* Stats */}
+      {}
       <div className="payment-stats">
         <div className="stat-card">
           <div className="stat-label">Đã thu</div>
@@ -171,7 +170,7 @@ export default function Payment() {
         </table>
       </div>
 
-      {/* Phân trang */}
+      {}
       <div className="pagination" style={{ marginTop: 12 }}>
         <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem' }}>
           Tổng: {totalCount} — Trang {page}/{totalPages}
@@ -198,16 +197,16 @@ export default function Payment() {
         </div>
       </div>
 
-      {/* Modal chi tiết */}
+      {}
       {selected && (
         <Modal
-          title={`Hoá đơn #${selected.id}`}
+          title={`Hoá đơn #${selected.invoiceId}`}
           onClose={() => setSelected(null)}
           onSave={selected.status === 'Unpaid' ? handleMarkPaid : () => setSelected(null)}
         >
           <div className="bill-detail">
             {[
-              ['Mã hoá đơn', `#${selected.id}`],
+              ['Mã hoá đơn', `#${selected.invoiceId}`],
               ['Booking ID', `#${selected.bookingId}`],
               ['Tiền phòng', fmt(selected.roomCharge)],
               ['Dịch vụ', fmt(selected.serviceCharge)],
@@ -227,7 +226,7 @@ export default function Payment() {
             </div>
             {selected.status === 'Unpaid' && (
               <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.82rem', marginTop: 8 }}>
-                {saving ? '⏳ Đang xử lý...' : 'Nhấn "Lưu" để đánh dấu đã thanh toán.'}
+                {saving ? <><LoadingOutlined style={{ marginRight: 6 }} />Đang xử lý...</> : 'Nhấn "Lưu" để đánh dấu đã thanh toán.'}
               </p>
             )}
           </div>
