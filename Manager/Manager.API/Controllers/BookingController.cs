@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -68,15 +69,78 @@ namespace Manager.API.Controllers
             return Ok(dtos);
         }
 
+        /// <summary>
+        /// User tự đặt phòng: yêu cầu cọc, tự động tìm phòng trống
+        /// </summary>
         [HttpPost]
-        [Authorize(Roles = "Admin,Manager")]
+        [Authorize(Roles = "Admin,Manager,User")]
         public async Task<IActionResult> Create([FromBody] CreateBookingRequestDto dto)
         {
-            var model = dto.ToCreateBookingModel();
-            var created = await _bookingRepository.CreateAsync(dto.UserId, dto.RoomTypeId, model);
-            var result = created.ToBookingDto();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                      ?? User.FindFirstValue(JwtRegisteredClaimNames.Sub)
+                      ?? dto.UserId;
 
-            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized("Không xác định được người dùng.");
+
+            dto.UserId = userId;
+
+            if (dto.FromDate == null || dto.ToDate == null)
+                return BadRequest("Vui lòng chọn ngày nhận và trả phòng.");
+
+            if (dto.ToDate <= dto.FromDate)
+                return BadRequest("Ngày trả phòng phải sau ngày nhận phòng.");
+
+            // User tự đặt: yêu cầu deposit > 0
+            bool isAdmin = User.IsInRole("Admin") || User.IsInRole("Manager");
+            if (!isAdmin && (dto.Deposit == null || dto.Deposit <= 0))
+            {
+                dto.Deposit = null; // sẽ được tính tự động
+            }
+
+            try
+            {
+                var model = dto.ToCreateBookingModel();
+                var created = await _bookingRepository.CreateAsync(dto.UserId, dto.RoomTypeId, model);
+                var result = created.ToBookingDto();
+                return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Admin tạo booking: không cọc, chọn loại phòng cụ thể
+        /// </summary>
+        [HttpPost("admin-create")]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> AdminCreate([FromBody] CreateBookingRequestDto dto)
+        {
+            if (string.IsNullOrEmpty(dto.UserId))
+                return BadRequest("Cần cung cấp UserId.");
+
+            if (dto.FromDate == null || dto.ToDate == null)
+                return BadRequest("Vui lòng chọn ngày nhận và trả phòng.");
+
+            if (dto.ToDate <= dto.FromDate)
+                return BadRequest("Ngày trả phòng phải sau ngày nhận phòng.");
+
+            // Admin đặt: deposit = 0
+            dto.Deposit = 0;
+
+            try
+            {
+                var model = dto.ToCreateBookingModel();
+                var created = await _bookingRepository.CreateAsync(dto.UserId, dto.RoomTypeId, model);
+                var result = created.ToBookingDto();
+                return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]

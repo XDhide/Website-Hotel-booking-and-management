@@ -120,15 +120,15 @@ export default function AppRouter() {
       window.history.replaceState(null, "", "/");
       return <HomePage />;
     }
-    return <CurrentBookings />;
+    return <BookingHistory />;
   }
 
-  if (path === "/booking-history") {
+  if (path === "/current-bookings" || path === "/booking-history") {
     if (!isLoggedIn()) {
       window.history.replaceState(null, "", "/");
       return <HomePage />;
     }
-    return <BookingHistory />;
+    return <CurrentBookings />;
   }
 
   return <HomePage />;

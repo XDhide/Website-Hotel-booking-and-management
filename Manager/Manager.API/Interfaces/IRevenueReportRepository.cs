@@ -11,24 +11,25 @@ namespace Manager.API.Interfaces
     }
 }
 
-// ─── DTOs nằm ngay đây cho tiện (hoặc chuyển sang Dtos/Report/) ───────────────
-
 namespace Manager.API.Interfaces
 {
-    public class RevenueReportDto
-    {
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
-        public double TotalRevenue { get; set; }
-        public int TotalBookings { get; set; }
-        public List<RevenueByDayDto> ByDay { get; set; }
-    }
-
-    public class RevenueByDayDto
+    public class DailyRevenueDto
     {
         public string Date { get; set; }
         public double Revenue { get; set; }
-        public int Bookings { get; set; }
+        public int BookingCount { get; set; }
+    }
+
+    public class RevenueReportDto
+    {
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+        public double TotalRevenue { get; set; }
+        public int TotalBookings { get; set; }
+        public int CompletedBookings { get; set; }
+        public int CancelledBookings { get; set; }
+        public double AverageBookingValue { get; set; }
+        public List<DailyRevenueDto> DailyRevenues { get; set; }
     }
 
     public class OccupancyReportDto
@@ -37,5 +38,9 @@ namespace Manager.API.Interfaces
         public int TotalRooms { get; set; }
         public int OccupiedRooms { get; set; }
         public double OccupancyRate { get; set; }
+        public int CheckedInBookings { get; set; }
+        public int ConfirmedBookings { get; set; }
+        public int PendingBookings { get; set; }
+        public int TotalBookings { get; set; }
     }
 }

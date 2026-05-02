@@ -13,6 +13,7 @@ namespace Manager.API.Mappers
                 Id = model.Id,
                 UserId = model.UserId,
                 RoomTypeId = model.RoomTypeId,
+                RoomTypeName = model.RoomType?.Name,
                 Deposit = model.Deposit,
                 FromDate = model.FromDate,
                 ToDate = model.ToDate,
@@ -30,7 +31,7 @@ namespace Manager.API.Mappers
                 Deposit = dto.Deposit,
                 FromDate = dto.FromDate,
                 ToDate = dto.ToDate,
-                Status = dto.Status,
+                Status = "Pending",
                 CreatedAt = DateTime.Now,
             };
         }

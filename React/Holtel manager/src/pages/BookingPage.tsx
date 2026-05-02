@@ -55,6 +55,10 @@ export default function BookingPage({ roomTypeId, checkIn = "", checkOut = "", g
     if (!ciDate || !coDate) { setError("Vui lòng chọn ngày nhận và trả phòng."); return; }
     if (nights <= 0) { setError("Ngày trả phòng phải sau ngày nhận phòng."); return; }
     if (!roomTypeId) { setError("Không tìm thấy loại phòng."); return; }
+    if (roomType && (roomType.availableRooms ?? 0) <= 0) {
+      setError("Loại phòng này hiện không còn phòng trống. Vui lòng chọn loại phòng khác.");
+      return;
+    }
 
     setSubmitting(true); setError("");
     try {
@@ -66,12 +70,12 @@ export default function BookingPage({ roomTypeId, checkIn = "", checkOut = "", g
       } catch { /* ignore */ }
 
       await apiCreateBooking({
-        userId:    userId,
+        userId:     userId,
         roomTypeId: roomTypeId,
-        fromDate:  ciDate,
-        toDate:    coDate,
-        status:    "Pending",
-        createdAt: new Date().toISOString(),
+        fromDate:   ciDate,   // đã validate !== '' ở trên
+        toDate:     coDate,
+        status:     "Pending",
+        createdAt:  new Date().toISOString(),
       });
 
       setSuccess(true);
@@ -223,9 +227,19 @@ export default function BookingPage({ roomTypeId, checkIn = "", checkOut = "", g
 
               <div className="bk-status-badge">Trạng thái sau đặt: <strong>Chờ xác nhận</strong></div>
 
+              {/* Hiển thị số phòng trống */}
+              {roomType && (
+                <div className={`bk-avail-badge ${(roomType.availableRooms ?? 0) > 0 ? 'ok' : 'none'}`}>
+                  {(roomType.availableRooms ?? 0) > 0
+                    ? <>✓ Còn <strong>{roomType.availableRooms}</strong> phòng trống</>
+                    : <>✗ Hết phòng trống — vui lòng chọn loại phòng khác</>}
+                </div>
+              )}
+
               {error && <div className="bk-error">{error}</div>}
 
-              <button className="bk-submit" onClick={handleSubmit} disabled={submitting}>
+              <button className="bk-submit" onClick={handleSubmit}
+                disabled={submitting || (roomType && (roomType.availableRooms ?? 0) <= 0)}>
                 {submitting
                   ? <><LoadingOutlined style={{ marginRight: 8 }} />Đang gửi...</>
                   : <><CheckCircleOutlined style={{ marginRight: 8 }} />Xác nhận đặt phòng</>}

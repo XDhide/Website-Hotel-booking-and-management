@@ -60,26 +60,11 @@ export default function Report() {
     setLoading(true); setError('')
     const { startDate, endDate } = getDateRange()
     try {
-      const res = await apiClient.get(`${API}/Report/revenue?startDate=${startDate}&endDate=${endDate}`)
+      const res = await apiClient.get(`${API}/report/revenue?startDate=${startDate}&endDate=${endDate}`)
       setRevenueReport(res.data)
-    } catch {
-
-      setRevenueReport({
-        startDate, endDate,
-        totalRevenue: 81000000,
-        totalBookings: 24,
-        completedBookings: 18,
-        cancelledBookings: 3,
-        averageBookingValue: 4500000,
-        dailyRevenues: [
-          { date: '2025-01-01', revenue: 12000000, bookingCount: 4 },
-          { date: '2025-02-01', revenue: 9500000, bookingCount: 3 },
-          { date: '2025-03-01', revenue: 14000000, bookingCount: 5 },
-          { date: '2025-04-01', revenue: 11000000, bookingCount: 4 },
-          { date: '2025-05-01', revenue: 16000000, bookingCount: 6 },
-          { date: '2025-06-01', revenue: 18500000, bookingCount: 7 },
-        ],
-      })
+    } catch (e: any) {
+      setRevenueReport(null)
+      setError('Không thể tải báo cáo doanh thu. Vui lòng kiểm tra kết nối.')
     } finally {
       setLoading(false)
     }
@@ -88,17 +73,11 @@ export default function Report() {
   const loadOccupancy = async () => {
     setLoading(true); setError('')
     try {
-      const res = await apiClient.get(`${API}/Report/occupancy`)
+      const res = await apiClient.get(`${API}/report/occupancy`)
       setOccupancyReport(res.data)
-    } catch {
-      setOccupancyReport({
-        date: new Date().toISOString(),
-        occupiedRooms: 12,
-        totalBookings: 20,
-        checkedInBookings: 12,
-        confirmedBookings: 5,
-        pendingBookings: 3,
-      })
+    } catch (e: any) {
+      setOccupancyReport(null)
+      setError('Không thể tải báo cáo công suất phòng.')
     } finally {
       setLoading(false)
     }
@@ -113,7 +92,7 @@ export default function Report() {
     new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(v)
 
   const maxRevenue = revenueReport
-    ? Math.max(...revenueReport.dailyRevenues.map(d => d.revenue), 1)
+    ? Math.max(...(revenueReport.dailyRevenues ?? []).map((d: any) => d.revenue), 1)
     : 1
 
   return (
@@ -222,7 +201,7 @@ export default function Report() {
           <div style={{ textAlign: 'center', padding: 60, color: 'rgba(255,255,255,0.35)' }}>Đang tải...</div>
         ) : tab === 'revenue' && revenueReport ? (
           <div className="chart-area">
-            {revenueReport.dailyRevenues.map((d, i) => {
+            {(revenueReport.dailyRevenues ?? []).map((d: any, i: number) => {
               const pct = Math.round((d.revenue / maxRevenue) * 100)
               const label = `${(d.revenue / 1_000_000).toFixed(1)}M`
               const monthLabel = new Date(d.date).toLocaleDateString('vi-VN', { month: 'short' })
@@ -254,7 +233,7 @@ export default function Report() {
       </div>
 
       {}
-      {tab === 'revenue' && revenueReport && revenueReport.dailyRevenues.length > 0 && (
+      {tab === 'revenue' && revenueReport && (revenueReport.dailyRevenues ?? []).length > 0 && (
         <div className="report-table-card">
           <div className="report-table-title">Chi tiết doanh thu theo ngày</div>
           <table className="report-table">
@@ -267,11 +246,11 @@ export default function Report() {
               </tr>
             </thead>
             <tbody>
-              {revenueReport.dailyRevenues.map((d, i) => (
+              {(revenueReport.dailyRevenues ?? []).map((d: any, i: number) => (
                 <tr key={i}>
                   <td>{i + 1}</td>
                   <td>{new Date(d.date).toLocaleDateString('vi-VN')}</td>
-                  <td>{d.bookingCount}</td>
+                  <td>{d.bookingCount ?? d.bookings ?? 0}</td>
                   <td className="amount-cell">{formatVND(d.revenue)}</td>
                 </tr>
               ))}

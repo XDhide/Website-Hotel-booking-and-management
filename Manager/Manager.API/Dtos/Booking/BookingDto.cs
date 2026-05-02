@@ -7,6 +7,7 @@ namespace Manager.API.Dtos.Booking
         public int Id { get; set; }
         public string UserId { get; set; }
         public int RoomTypeId { get; set; }
+        public string RoomTypeName { get; set; }
         public double? Deposit { get; set; }
         public DateTime? FromDate { get; set; }
         public DateTime? ToDate { get; set; }

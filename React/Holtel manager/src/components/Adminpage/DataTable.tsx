@@ -8,7 +8,7 @@ import '../../assets/css/Adminpage/DataTable.css'
 export type FieldMeta = {
   label?: string
   render?: (value: any, row: any) => React.ReactNode
-  inputType?: 'text' | 'select' | 'number' | 'email' | 'textarea'
+  inputType?: 'text' | 'select' | 'number' | 'email' | 'textarea' | 'date'
   options?: string[]
   hidden?: boolean
   readOnly?: boolean
@@ -104,7 +104,11 @@ export default function ApiDataTable({
   const renderField = (key: string) => {
     const meta  = fieldsMeta[key]
     if (meta?.readOnly || meta?.hidden) return null
-    const value = String(form[key] ?? '')
+    const rawVal = form[key]
+    // For date fields: show empty string if null, convert ISO to date-only
+    const value = meta?.inputType === 'date'
+      ? (rawVal ? String(rawVal).split('T')[0] : '')
+      : String(rawVal ?? '')
     const type  = meta?.inputType ?? 'text'
     const label = meta?.label ?? key
     return (
@@ -118,6 +122,9 @@ export default function ApiDataTable({
           <textarea value={value} rows={3}
             onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
             placeholder={`Nhập ${label.toLowerCase()}`} />
+        ) : type === 'date' ? (
+          <input type="date" value={value}
+            onChange={e => setForm(f => ({ ...f, [key]: e.target.value || null }))} />
         ) : (
           <input type={type} value={value}
             onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}

@@ -170,6 +170,22 @@
   },
   {
     "ContainingType": "Manager.API.Controllers.BookingController",
+    "Method": "AdminCreate",
+    "RelativePath": "api/booking/admin-create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Booking.CreateBookingRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.BookingController",
     "Method": "GetMyBookings",
     "RelativePath": "api/booking/my-bookings",
     "HttpMethod": "GET",
@@ -513,6 +529,43 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Manager.API.Controllers.InvoiceController",
+    "Method": "GetWithDetails",
+    "RelativePath": "api/invoice/{id}/details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.InvoiceController",
+    "Method": "Pay",
+    "RelativePath": "api/invoice/{id}/pay",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Controllers.PayInvoiceDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Manager.API.Controllers.InvoiceDetailController",
     "Method": "GetAll",
     "RelativePath": "api/invoicedetail",
@@ -596,6 +649,38 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.InvoiceDetailController",
+    "Method": "AddService",
+    "RelativePath": "api/invoicedetail/add-service",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Controllers.AddServiceDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.InvoiceDetailController",
+    "Method": "GetByInvoice",
+    "RelativePath": "api/invoicedetail/by-invoice/{invoiceId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoiceId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -1356,11 +1441,6 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "RoomTypeId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "dto",
         "Type": "Manager.API.Dtos.RoomRate.CreateRoomRateRequestDto",
         "IsRequired": true
@@ -1415,6 +1495,22 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.RoomRateController",
+    "Method": "GetByRoomType",
+    "RelativePath": "api/roomrate/by-roomtype/{roomTypeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomTypeId",
         "Type": "System.Int32",
         "IsRequired": true
       }

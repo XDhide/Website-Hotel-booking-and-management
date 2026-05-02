@@ -37,21 +37,24 @@ namespace Manager.API.Repository
             var byDay = invoices
                 .GroupBy(i => i.PaidAt!.Value.Date)
                 .OrderBy(g => g.Key)
-                .Select(g => new RevenueByDayDto
+                .Select(g => new DailyRevenueDto
                 {
                     Date = g.Key.ToString("yyyy-MM-dd"),
                     Revenue = g.Sum(i => i.FinalAmount ?? 0),
-                    Bookings = g.Count(),
+                    BookingCount = g.Count(),
                 })
                 .ToList();
 
             return new RevenueReportDto
             {
-                StartDate = start,
-                EndDate = end,
+                StartDate = start.ToString("yyyy-MM-dd"),
+                EndDate = end.ToString("yyyy-MM-dd"),
                 TotalRevenue = totalRevenue,
                 TotalBookings = totalBookings,
-                ByDay = byDay,
+                CompletedBookings = byDay.Sum(d => d.BookingCount),
+                CancelledBookings = 0,
+                AverageBookingValue = totalBookings > 0 ? totalRevenue / totalBookings : 0,
+                DailyRevenues = byDay,
             };
         }
 
@@ -71,16 +74,29 @@ namespace Manager.API.Repository
                 .Distinct()
                 .CountAsync();
 
-            var rate = totalRooms == 0
-                ? 0
-                : Math.Round((double)occupiedRooms / totalRooms * 100, 2);
+            // Count bookings by status for occupancy report
+            var bookings = await _db.Bookings
+                .Where(b => b.FromDate.HasValue && b.FromDate.Value.Date == targetDate.Date ||
+                            b.ToDate.HasValue && b.ToDate.Value.Date == targetDate.Date ||
+                            (b.FromDate.HasValue && b.ToDate.HasValue &&
+                             b.FromDate.Value.Date <= targetDate.Date &&
+                             b.ToDate.Value.Date >= targetDate.Date))
+                .ToListAsync();
+
+            var checkedIn    = await _db.RoomInUses.CountAsync(r => r.Status == "Active");
+            var confirmed    = bookings.Count(b => b.Status == "Confirmed");
+            var pending      = bookings.Count(b => b.Status == "Pending");
 
             return new OccupancyReportDto
             {
                 Date = targetDate.ToString("yyyy-MM-dd"),
                 TotalRooms = totalRooms,
                 OccupiedRooms = occupiedRooms,
-                OccupancyRate = rate,
+                OccupancyRate = totalRooms == 0 ? 0 : Math.Round((double)occupiedRooms / totalRooms * 100, 2),
+                CheckedInBookings = checkedIn,
+                ConfirmedBookings = confirmed,
+                PendingBookings = pending,
+                TotalBookings = bookings.Count,
             };
         }
     }

@@ -7,11 +7,12 @@ import Report from '../components/Adminpage/Report'
 import Settings from '../components/Adminpage/Setting'
 import ApiDataTable from '../components/Adminpage/DataTable'
 import RoomTypeManager from '../components/Adminpage/RoomTypeManager'
+import RoomRateManager from '../components/Adminpage/RoomRateManager'
 import { API } from '../constant/config'
 import '../assets/css/Adminpage/AdminPage.css'
 
 export type PageKey =
-  | 'home' | 'users' | 'roomTypes' | 'support' | 'settings'
+  | 'home' | 'users' | 'roomTypes' | 'roomRates' | 'support' | 'settings'
   | 'room' | 'bill' | 'serve' | 'voucher' | 'lost' | 'incident' | 'report'
 
 const Badge = ({ value, color = '#22c55e' }: { value: string; color?: string }) => (
@@ -73,6 +74,9 @@ export default function AdminPage() {
         {}
         {currentPage === 'roomTypes' && <RoomTypeManager />}
 
+        {/* Giá phòng */}
+        {currentPage === 'roomRates' && <RoomRateManager />}
+
         {}
         {currentPage === 'room' && (
           <ApiDataTable apiPrefix="rooms" pageSize={10} idKey="roomId"
@@ -93,61 +97,58 @@ export default function AdminPage() {
 
         {currentPage === 'bill' && <Payment />}
 
-        {}
+        {/* Dịch vụ — route: /api/services */}
         {currentPage === 'serve' && (
-          <ApiDataTable apiPrefix="Service" pageSize={10}
+          <ApiDataTable apiPrefix="services" pageSize={10}
             emptyForm={{ serviceType: '', name: '', price: 0, unit: '' }}
             fieldsMeta={{
-              serviceType: { label: 'Loại',      inputType: 'text' },
-              name:        { label: 'Tên',        inputType: 'text' },
-              price:       { label: 'Giá',        inputType: 'number', render: (v) => fmt(Number(v)) },
-              unit:        { label: 'Đơn vị',     inputType: 'text' },
+              serviceType: { label: 'Loại',    inputType: 'text' },
+              name:        { label: 'Tên',     inputType: 'text' },
+              price:       { label: 'Giá',     inputType: 'number', render: (v) => fmt(Number(v)) },
+              unit:        { label: 'Đơn vị', inputType: 'text' },
             }} />
         )}
 
-        {}
+        {/* Voucher — route: /api/discount */}
         {currentPage === 'voucher' && (
-          <ApiDataTable apiPrefix="Discount" pageSize={10}
-            emptyForm={{ name: '', discountType: 'Percentage', discountValue: 0, fromDate: '', toDate: '', isActive: true }}
+          <ApiDataTable apiPrefix="discount" pageSize={10}
+            emptyForm={{ name: '', discountType: 'Percentage', discountValue: 0, fromDate: null, toDate: null, isActive: true }}
             fieldsMeta={{
               name:          { label: 'Tên',       inputType: 'text' },
               discountType:  { label: 'Loại',      inputType: 'select', options: ['Percentage', 'Fixed'],
                                render: (v) => <Badge value={v} color={v === 'Percentage' ? '#3b82f6' : '#8b5cf6'} /> },
               discountValue: { label: 'Giá trị',   inputType: 'number',
                                render: (v, row) => row.discountType === 'Percentage' ? `${v}%` : fmt(Number(v)) },
-              fromDate:      { label: 'Từ ngày',   inputType: 'text', render: (v) => fmtD(v) },
-              toDate:        { label: 'Đến ngày',  inputType: 'text', render: (v) => fmtD(v) },
+              fromDate:      { label: 'Từ ngày',   inputType: 'date', render: (v) => v ? fmtD(v) : '—' },
+              toDate:        { label: 'Đến ngày',  inputType: 'date', render: (v) => v ? fmtD(v) : '—' },
               isActive:      { label: 'Trạng thái',
                                render: (v) => <Badge value={v ? 'Đang dùng' : 'Tắt'} color={v ? '#22c55e' : '#6b7280'} /> },
             }} />
         )}
 
-        {}
+        {/* Đồ thất lạc — route: /api/lostitem */}
         {currentPage === 'lost' && (
-          <ApiDataTable apiPrefix="LostItem" pageSize={10}
-            emptyForm={{ bookingId: 0, itemName: '', description: '', status: 'Lost', foundDate: '' }}
+          <ApiDataTable apiPrefix="lostitem" pageSize={10} idKey="lostItemId"
+            emptyForm={{ roomId: 0, roomUseId: 0, itemName: '', description: '', status: 'Lost', foundAt: null }}
             fieldsMeta={{
-              bookingId:   { label: 'Booking ID',      inputType: 'number' },
-              itemName:    { label: 'Tên đồ vật',      inputType: 'text' },
-              description: { label: 'Mô tả',           inputType: 'textarea' },
-              foundDate:   { label: 'Ngày tìm thấy',  inputType: 'text', render: (v) => fmtD(v) },
-              status:      { label: 'Trạng thái',      inputType: 'select',
+              roomId:      { label: 'Phòng ID',       inputType: 'number' },
+              roomUseId:   { label: 'RoomUse ID',     inputType: 'number' },
+              itemName:    { label: 'Tên đồ vật',     inputType: 'text' },
+              description: { label: 'Mô tả',          inputType: 'textarea' },
+              foundAt:     { label: 'Ngày tìm thấy', inputType: 'date', render: (v) => v ? fmtD(v) : '—' },
+              status:      { label: 'Trạng thái',     inputType: 'select',
                              options: ['Lost', 'Found', 'Returned'],
                              render: (v) => <Badge value={v} color={LOST_COLOR[v] ?? '#94a3b8'} /> },
             }} />
         )}
 
-        {}
+        {/* Sự cố — route: /api/master (không có Incident controller) */}
         {currentPage === 'incident' && (
-          <ApiDataTable apiPrefix="Incident" pageSize={10}
-            emptyForm={{ bookingId: 0, title: '', description: '', status: 'Pending' }}
+          <ApiDataTable apiPrefix="master" pageSize={10}
+            emptyForm={{ name: '', description: '' }}
             fieldsMeta={{
-              bookingId:   { label: 'Booking ID',  inputType: 'number' },
-              title:       { label: 'Tiêu đề',     inputType: 'text' },
-              description: { label: 'Mô tả',       inputType: 'textarea' },
-              status:      { label: 'Trạng thái',  inputType: 'select',
-                             options: ['Pending', 'Resolved', 'Cancelled'],
-                             render: (v) => <Badge value={v} color={INCIDENT_COLOR[v] ?? '#94a3b8'} /> },
+              name:        { label: 'Tên',   inputType: 'text' },
+              description: { label: 'Mô tả', inputType: 'textarea' },
             }} />
         )}
 

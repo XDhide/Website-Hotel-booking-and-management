@@ -13,10 +13,12 @@ export const apiGetAllBookings = async (page = 1, limit = 10): Promise<any> => {
     }
 };
 
-export const apiGetMyBookings = async (): Promise<any> => {
+export const apiGetMyBookings = async (): Promise<any[]> => {
     try {
         const res = await apiClient.get(`${prefix}/my-bookings`);
-        return res?.data ?? [];
+        const data = res?.data;
+        // API returns array directly
+        return Array.isArray(data) ? data : [];
     } catch (err: any) {
         console.error("[BookingService.getMyBookings]", err);
         return [];
@@ -35,6 +37,16 @@ export const apiGetBookingById = async (id: number): Promise<any> => {
 export const apiCreateBooking = async (data: any): Promise<any> => {
     try {
         const res = await apiClient.post(`${prefix}`, data);
+        return res?.data;
+    } catch (err: any) {
+        const msg = err?.response?.data;
+        throw new Error(typeof msg === "string" ? msg : "Tạo booking thất bại");
+    }
+};
+
+export const apiAdminCreateBooking = async (data: any): Promise<any> => {
+    try {
+        const res = await apiClient.post(`${prefix}/admin-create`, data);
         return res?.data;
     } catch (err: any) {
         const msg = err?.response?.data;
@@ -63,10 +75,11 @@ export const apiCancelBooking = async (id: number): Promise<any> => {
 };
 
 export const BookingService = {
-    getAll:    apiGetAllBookings,
+    getAll:        apiGetAllBookings,
     getMyBookings: apiGetMyBookings,
-    getById:   apiGetBookingById,
-    create:    apiCreateBooking,
-    update:    apiUpdateBooking,
-    cancel:    apiCancelBooking,
+    getById:       apiGetBookingById,
+    create:        apiCreateBooking,
+    adminCreate:   apiAdminCreateBooking,
+    update:        apiUpdateBooking,
+    cancel:        apiCancelBooking,
 };

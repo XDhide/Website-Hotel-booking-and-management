@@ -1,1 +1,4 @@
 wwwroot\uploads\roomtypes\.gitkeep
+wwwroot\uploads\roomtypes\1_83927ff6ed854f32bb2ff542ad82b59d.png
+wwwroot\uploads\roomtypes\1_554a77c1d2f8432aa35a2bb92bae9730.png
+wwwroot\uploads\roomtypes\1_0fedf3f02a094c68b4ab84cf8b039ee5.png
