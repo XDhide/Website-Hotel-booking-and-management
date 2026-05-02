@@ -14,6 +14,7 @@ namespace Manager.API.Interfaces
         Task<RoomType> DeleteAsync(int id);
         Task<RoomTypeImage> AddImageAsync(int roomTypeId, RoomTypeImage image);
         Task<RoomTypeImage> DeleteImageAsync(int imageId);
+        Task<RoomTypeImage> GetImageByIdAsync(int imageId);
         Task<List<RoomTypeImage>> GetImagesAsync(int roomTypeId);
     }
 }

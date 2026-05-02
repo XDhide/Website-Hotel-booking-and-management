@@ -104,6 +104,7 @@ using (var scope = app.Services.CreateScope())
 // ─────────────────────────────────────────────────────────────────────────────
 
 app.UseHttpsRedirection();
+app.UseStaticFiles(); // phục vụ wwwroot/uploads/...
 app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();

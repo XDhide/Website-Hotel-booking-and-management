@@ -11,13 +11,15 @@ namespace Manager.API.Mappers
         {
             return new RoomTypeDto
             {
-                Id = model.Id,
-                Name = model.Name,
-                Capacity = model.Capacity,
-                Description = model.Description,
-                CreatedAt = model.CreatedAt,
-                UpdatedAt = model.UpdatedAt,
-                Images = model.Images?
+                Id             = model.Id,
+                Name           = model.Name,
+                Capacity       = model.Capacity,
+                Description    = model.Description,
+                TotalRooms     = model.Rooms?.Count ?? 0,
+                AvailableRooms = model.Rooms?.Count(r => r.CurrentStatus == "Available") ?? 0,
+                CreatedAt      = model.CreatedAt,
+                UpdatedAt      = model.UpdatedAt,
+                Images         = model.Images?
                     .OrderBy(i => i.DisplayOrder)
                     .Select(i => i.ToRoomTypeImageDto())
                     .ToList() ?? new(),

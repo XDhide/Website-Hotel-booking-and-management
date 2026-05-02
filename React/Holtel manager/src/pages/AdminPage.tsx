@@ -6,6 +6,7 @@ import Payment from '../components/Adminpage/Payment'
 import Report from '../components/Adminpage/Report'
 import Settings from '../components/Adminpage/Setting'
 import ApiDataTable from '../components/Adminpage/DataTable'
+import RoomTypeManager from '../components/Adminpage/RoomTypeManager'
 import { API } from '../constant/config'
 import '../assets/css/Adminpage/AdminPage.css'
 
@@ -70,15 +71,7 @@ export default function AdminPage() {
         )}
 
         {}
-        {currentPage === 'roomTypes' && (
-          <ApiDataTable apiPrefix="RoomType" pageSize={10}
-            emptyForm={{ name: '', capacity: '', description: '' }}
-            fieldsMeta={{
-              name:        { label: 'Tên loại phòng', inputType: 'text' },
-              capacity:    { label: 'Sức chứa',       inputType: 'text' },
-              description: { label: 'Mô tả',          inputType: 'textarea' },
-            }} />
-        )}
+        {currentPage === 'roomTypes' && <RoomTypeManager />}
 
         {}
         {currentPage === 'room' && (

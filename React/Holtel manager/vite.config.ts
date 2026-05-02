@@ -5,12 +5,16 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-
       '/api': {
         target: 'https://localhost:7281',
         changeOrigin: true,
-        secure: false,    
-        rewrite: (path) => path, 
+        secure: false,
+        rewrite: (path) => path,
+      },
+      '/uploads': {
+        target: 'https://localhost:7281',
+        changeOrigin: true,
+        secure: false,
       },
     },
   },

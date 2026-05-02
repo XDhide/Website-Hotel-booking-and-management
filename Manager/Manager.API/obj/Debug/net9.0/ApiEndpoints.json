@@ -1660,6 +1660,37 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Manager.API.Controllers.RoomTypeController",
+    "Method": "UploadImage",
+    "RelativePath": "api/roomtype/{id}/images/upload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "altText",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "displayOrder",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Manager.API.Controllers.ServicesController",
     "Method": "GetAll",
     "RelativePath": "api/services",

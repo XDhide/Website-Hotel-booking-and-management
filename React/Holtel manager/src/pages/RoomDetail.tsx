@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { isLoggedIn } from "../constant/api";
 import {
   LeftOutlined,
   StarFilled,
@@ -339,7 +340,24 @@ export default function RoomDetail({ roomTypeId }: Props) {
               </div>
             )}
 
-            <button className="rd-book-btn">Đặt phòng ngay</button>
+            <button
+              className="rd-book-btn"
+              onClick={() => {
+                if (!isLoggedIn()) {
+                  navigate("/");
+                  return;
+                }
+                const params = new URLSearchParams({
+                  roomTypeId: String(roomTypeId ?? ""),
+                  checkIn:    checkIn,
+                  checkOut:   checkOut,
+                  guests:     String(guests),
+                });
+                navigate(`/booking?${params.toString()}`);
+              }}
+            >
+              Đặt phòng ngay
+            </button>
             <p className="rd-book-note">Chưa bị trừ tiền — xác nhận sau</p>
           </div>
         </aside>

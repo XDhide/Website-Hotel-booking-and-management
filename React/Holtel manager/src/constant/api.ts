@@ -19,10 +19,15 @@ apiClient.interceptors.response.use(
   (res) => res,
   (err) => {
     if (err.response?.status === 401) {
-      localStorage.removeItem(TOKEN_KEY);
-      localStorage.removeItem(USER_KEY);
-      localStorage.removeItem(ROLE_KEY);
-      window.dispatchEvent(new Event("auth:logout"));
+      // Chỉ auto-logout khi đang ở trang public (không phải /admin)
+      // Tránh trường hợp SupportChat gọi API bị 401 → tự đăng xuất admin
+      const isAdminPage = window.location.pathname.startsWith("/admin");
+      if (!isAdminPage) {
+        localStorage.removeItem(TOKEN_KEY);
+        localStorage.removeItem(USER_KEY);
+        localStorage.removeItem(ROLE_KEY);
+        window.dispatchEvent(new Event("auth:logout"));
+      }
     }
     return Promise.reject(err);
   }

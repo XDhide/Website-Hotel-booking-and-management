@@ -48,7 +48,10 @@ namespace Manager.API.Repository
         {
             if (page < 1) page = 1;
             if (limit < 1) limit = 10;
-            var query = _dBContext.RoomTypes.Include(rt => rt.Images).AsQueryable();
+            var query = _dBContext.RoomTypes
+                .Include(rt => rt.Images)
+                .Include(rt => rt.Rooms)
+                .AsQueryable();
             var totalCount = await query.CountAsync();
             var data = await query
                 .OrderByDescending(r => r.Id)
@@ -70,6 +73,7 @@ namespace Manager.API.Repository
         {
             return await _dBContext.RoomTypes
                 .Include(rt => rt.Images)
+                .Include(rt => rt.Rooms)
                 .FirstOrDefaultAsync(rt => rt.Id == id);
         }
 
@@ -105,6 +109,11 @@ namespace Manager.API.Repository
             _dBContext.RoomTypeImages.Remove(image);
             await _dBContext.SaveChangesAsync();
             return image;
+        }
+
+        public async Task<RoomTypeImage> GetImageByIdAsync(int imageId)
+        {
+            return await _dBContext.RoomTypeImages.FindAsync(imageId);
         }
 
         public async Task<List<RoomTypeImage>> GetImagesAsync(int roomTypeId)

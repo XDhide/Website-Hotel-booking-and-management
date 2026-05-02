@@ -9,6 +9,8 @@ namespace Manager.API.Dtos.RoomType
         public string Name { get; set; }
         public string Capacity { get; set; }
         public string Description { get; set; }
+        public int TotalRooms { get; set; }
+        public int AvailableRooms { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public List<RoomTypeImageDto> Images { get; set; } = new();

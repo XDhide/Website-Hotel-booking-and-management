@@ -4,6 +4,7 @@ import AdminPage from "./pages/AdminPage";
 import HomePage from "./pages/Homepage";
 import RoomList from "./pages/RoomList";
 import RoomDetail from "./pages/RoomDetail";
+import BookingPage from "./pages/BookingPage";
 import Profile from "./pages/Profile";
 import Favorites from "./pages/Favorites";
 import BookingHistory from "./pages/BookingHistory";
@@ -75,6 +76,23 @@ export default function AppRouter() {
   if (path.startsWith("/rooms/")) {
     const id = parseInt(path.split("/rooms/")[1], 10);
     return <RoomDetail roomTypeId={isNaN(id) ? undefined : id} />;
+  }
+
+  if (path.startsWith("/booking")) {
+    if (!isLoggedIn()) {
+      window.history.replaceState(null, "", "/");
+      return <HomePage />;
+    }
+    const params = new URLSearchParams(window.location.search);
+    const roomTypeId = parseInt(params.get("roomTypeId") ?? "", 10);
+    return (
+      <BookingPage
+        roomTypeId={isNaN(roomTypeId) ? undefined : roomTypeId}
+        checkIn={params.get("checkIn") ?? ""}
+        checkOut={params.get("checkOut") ?? ""}
+        guests={parseInt(params.get("guests") ?? "1", 10)}
+      />
+    );
   }
 
   if (path === "/rooms") {

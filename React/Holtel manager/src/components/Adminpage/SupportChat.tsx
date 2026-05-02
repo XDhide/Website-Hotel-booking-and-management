@@ -57,13 +57,8 @@ export default function SupportChat() {
       const list = Array.isArray(raw) ? raw : raw?.data ?? []
       setChats(list)
     } catch (e: any) {
-      setError('Không thể tải danh sách chat')
-
-      setChats([
-        { id: 1, userId: 'user1', status: 'InProgress' },
-        { id: 2, userId: 'user2', status: 'Open' },
-        { id: 3, userId: 'user3', status: 'Closed' },
-      ])
+      setError('Không thể tải danh sách chat. Vui lòng kiểm tra kết nối.')
+      setChats([])
     } finally { setLoadingChats(false) }
   }, [])
 
