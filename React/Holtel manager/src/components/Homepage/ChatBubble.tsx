@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import {
   MessageOutlined,
   CloseOutlined,
@@ -7,68 +7,116 @@ import {
   UserOutlined,
   RobotOutlined,
   LoginOutlined,
-  SmileOutlined,
+  LoadingOutlined,
 } from "@ant-design/icons";
 import "../../assets/css/Homepage/ChatBubble.css";
+import { apiClient } from "../../constant/api";
+import { API } from "../../constant/config";
+import {
+  apiOpenChat,
+  apiSendMessage,
+  apiGetMessages,
+} from "../../services/IncidencePaymentSupportChatServices";
 
 interface Message {
-  from: "bot" | "user";
-  text: string;
-  time: string;
+  id: number;
+  supportChatId: number;
+  senderId: string;
+  message: string;
+  isStaff: boolean;
+  sentAt: string;
 }
 
 interface ChatBubbleProps {
   isLoggedIn: boolean;
 }
 
-const BOT_REPLIES = [
-  "Cảm ơn bạn! Nhân viên sẽ phản hồi trong vài phút.",
-  "Tôi đã ghi nhận yêu cầu của bạn. Chúng tôi sẽ liên hệ sớm!",
-  "Rất vui được hỗ trợ bạn. Bạn có câu hỏi nào khác không?",
-  "Thông tin đã được gửi đến bộ phận hỗ trợ. Cảm ơn bạn đã liên hệ!",
-];
-
-function getTime() {
-  return new Date().toLocaleTimeString("vi-VN", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+function getTime(isoStr?: string) {
+  const d = isoStr ? new Date(isoStr) : new Date();
+  return d.toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
 }
 
 export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
-  const [open, setOpen]       = useState(false);
-  const [msg, setMsg]         = useState("");
-  const [typing, setTyping]   = useState(false);
-  const [replyIdx, setReplyIdx] = useState(0);
-  const [messages, setMessages] = useState<Message[]>([
-    { from: "bot", text: "Xin chào! 👋 Tôi có thể giúp gì cho bạn?", time: getTime() },
-  ]);
+  const [open, setOpen]         = useState(false);
+  const [msg, setMsg]           = useState("");
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [chatId, setChatId]     = useState<number | null>(null);
+  const [loading, setLoading]   = useState(false);
+  const [sending, setSending]   = useState(false);
+  const [closed, setClosed]     = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const scrollBottom = () =>
+    setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: "smooth" }), 80);
+
+  const loadMessages = useCallback(async (id: number) => {
+    try {
+      const raw = await apiGetMessages(id);
+      const list: Message[] = Array.isArray(raw) ? raw : raw?.data ?? [];
+      setMessages(list);
+      scrollBottom();
+    } catch { /* silent */ }
+  }, []);
+
+  const initChat = useCallback(async () => {
+    if (chatId) return;
+    setLoading(true);
+    try {
+      const res = await apiOpenChat();
+      const id  = res?.id ?? res?.data?.id;
+      if (id) {
+        setChatId(id);
+        setClosed(res?.status === "Closed");
+        await loadMessages(id);
+      }
+    } catch { /* ignore */ }
+    finally { setLoading(false); }
+  }, [chatId, loadMessages]);
 
   useEffect(() => {
-    if (open) bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, open, typing]);
+    if (!open || !chatId || closed) return;
+    pollingRef.current = setInterval(async () => {
+      try {
+        // Kiểm tra status trước (nếu admin xóa → 200 { status: "Deleted" })
+        const statusRes = await apiClient.get(`${API}/SupportChat/${chatId}/status`);
+        const st = statusRes?.data?.status;
+        if (st === "Deleted" || st === "Closed") {
+          setClosed(true);
+          setMessages(prev => [...prev]); // re-render
+          return;
+        }
+        // Load messages bình thường
+        const raw = await apiGetMessages(chatId);
+        const list: Message[] = Array.isArray(raw) ? raw : raw?.data ?? [];
+        setMessages(list);
+      } catch {
+        // Nếu 404 → chat bị xóa
+        setClosed(true);
+      }
+    }, 6000);
+    return () => { if (pollingRef.current) clearInterval(pollingRef.current); };
+  }, [open, chatId, closed]);
 
-  const send = () => {
+  useEffect(() => {
+    if (open && isLoggedIn) initChat();
+  }, [open, isLoggedIn, initChat]);
+
+  const send = async () => {
     const text = msg.trim();
-    if (!text) return;
-
-    setMessages((prev) => [...prev, { from: "user", text, time: getTime() }]);
+    if (!text || !chatId || sending) return;
+    setSending(true);
     setMsg("");
-    setTyping(true);
-
-    setTimeout(() => {
-      setTyping(false);
-      setMessages((prev) => [
-        ...prev,
-        {
-          from: "bot",
-          text: BOT_REPLIES[replyIdx % BOT_REPLIES.length],
-          time: getTime(),
-        },
-      ]);
-      setReplyIdx((i) => i + 1);
-    }, 1200);
+    try {
+      await apiSendMessage({ supportChatId: chatId, message: text });
+      await loadMessages(chatId);
+    } catch (e: any) {
+      // Nếu chat bị đóng (admin kết thúc), backend trả lỗi
+      if (e?.message?.includes("đóng") || e?.message?.includes("Closed")) {
+        setClosed(true);
+      }
+    }
+    finally { setSending(false); }
   };
 
   const handleKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -88,7 +136,7 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
               <div>
                 <div className="cb-header-title">Hỗ trợ trực tuyến</div>
                 <div className="cb-header-sub">
-                  {isLoggedIn ? "Đang hoạt động" : "Vui lòng đăng nhập"}
+                  {isLoggedIn ? (closed ? "Đã kết thúc" : "Đang hoạt động") : "Vui lòng đăng nhập"}
                 </div>
               </div>
             </div>
@@ -109,61 +157,68 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
                 Đăng nhập ngay
               </button>
             </div>
+          ) : loading ? (
+            <div className="cb-messages" style={{ justifyContent: "center", alignItems: "center" }}>
+              <LoadingOutlined style={{ fontSize: 28, color: "#3b82f6" }} />
+            </div>
           ) : (
             <>
               <div className="cb-messages">
-                {messages.map((m, i) => (
-                  <div key={i} className={`cb-msg-row ${m.from}`}>
-                    {m.from === "bot" && (
-                      <div className="cb-msg-avatar">
-                        <RobotOutlined />
-                      </div>
-                    )}
-                    <div className="cb-msg-bubble-wrap">
-                      <div className={`cb-bubble ${m.from}`}>{m.text}</div>
-                      <div className="cb-msg-time">{m.time}</div>
-                    </div>
-                    {m.from === "user" && (
-                      <div className="cb-msg-avatar user">
-                        <UserOutlined />
-                      </div>
-                    )}
-                  </div>
-                ))}
-
-                {typing && (
+                {messages.length === 0 && (
                   <div className="cb-msg-row bot">
-                    <div className="cb-msg-avatar">
-                      <RobotOutlined />
-                    </div>
-                    <div className="cb-typing">
-                      <span /><span /><span />
+                    <div className="cb-msg-avatar"><RobotOutlined /></div>
+                    <div className="cb-msg-bubble-wrap">
+                      <div className="cb-bubble bot">Xin chào! 👋 Tôi có thể giúp gì cho bạn?</div>
+                      <div className="cb-msg-time">{getTime()}</div>
                     </div>
                   </div>
                 )}
 
+                {messages.map((m) => {
+                  const isUser = !m.isStaff;
+                  return (
+                    <div key={m.id} className={`cb-msg-row ${isUser ? "user" : "bot"}`}>
+                      {!isUser && (
+                        <div className="cb-msg-avatar"><RobotOutlined /></div>
+                      )}
+                      <div className="cb-msg-bubble-wrap">
+                        <div className={`cb-bubble ${isUser ? "user" : "bot"}`}>{m.message}</div>
+                        <div className="cb-msg-time">{getTime(m.sentAt)}</div>
+                      </div>
+                      {isUser && (
+                        <div className="cb-msg-avatar user"><UserOutlined /></div>
+                      )}
+                    </div>
+                  );
+                })}
                 <div ref={bottomRef} />
               </div>
 
               <div className="cb-input-row">
-                <button className="cb-emoji-btn" title="Emoji">
-                  <SmileOutlined />
-                </button>
-                <input
-                  className="cb-input"
-                  value={msg}
-                  onChange={(e) => setMsg(e.target.value)}
-                  onKeyDown={handleKey}
-                  placeholder="Nhập tin nhắn..."
-                  maxLength={300}
-                />
-                <button
-                  className={`cb-send-btn${msg.trim() ? " active" : ""}`}
-                  onClick={send}
-                  disabled={!msg.trim()}
-                >
-                  <SendOutlined />
-                </button>
+                {closed ? (
+                  <div style={{ flex: 1, textAlign: "center", color: "#94a3b8", fontSize: 13, padding: "8px 0" }}>
+                    Cuộc hội thoại đã kết thúc
+                  </div>
+                ) : (
+                  <>
+                    <input
+                      className="cb-input"
+                      value={msg}
+                      onChange={(e) => setMsg(e.target.value)}
+                      onKeyDown={handleKey}
+                      placeholder="Nhập tin nhắn..."
+                      maxLength={300}
+                      disabled={sending}
+                    />
+                    <button
+                      className={`cb-send-btn${msg.trim() ? " active" : ""}`}
+                      onClick={send}
+                      disabled={!msg.trim() || sending}
+                    >
+                      {sending ? <LoadingOutlined /> : <SendOutlined />}
+                    </button>
+                  </>
+                )}
               </div>
             </>
           )}

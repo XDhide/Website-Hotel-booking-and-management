@@ -8,12 +8,13 @@ import Settings from '../components/Adminpage/Setting'
 import ApiDataTable from '../components/Adminpage/DataTable'
 import RoomTypeManager from '../components/Adminpage/RoomTypeManager'
 import RoomRateManager from '../components/Adminpage/RoomRateManager'
+import ServiceNotificationPanel from '../components/Adminpage/ServiceNotificationPanel'
 import { API } from '../constant/config'
 import '../assets/css/Adminpage/AdminPage.css'
 
 export type PageKey =
   | 'home' | 'users' | 'roomTypes' | 'roomRates' | 'support' | 'settings'
-  | 'room' | 'bill' | 'serve' | 'voucher' | 'lost' | 'incident' | 'report'
+  | 'room' | 'bill' | 'serve' | 'voucher' | 'lost' | 'incident' | 'report' | 'serviceNotif'
 
 const Badge = ({ value, color = '#22c55e' }: { value: string; color?: string }) => (
   <span style={{
@@ -153,6 +154,7 @@ export default function AdminPage() {
         )}
 
         {currentPage === 'support' && <SupportChat />}
+        {currentPage === 'serviceNotif' && <ServiceNotificationPanel />}
         {currentPage === 'report'  && <Report />}
         {currentPage === 'settings' && (
           <div className="page-section">

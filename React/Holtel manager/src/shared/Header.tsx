@@ -245,7 +245,7 @@ export default function Header() {
                                         {/* FIX: dropdown buttons có onClick điều hướng */}
                                         <button
                                             className="dropdown-item"
-                                            onClick={() => { navigate("/bookings"); setDropdownOpen(false); }}
+                                            onClick={() => { navigate("/current-bookings"); setDropdownOpen(false); }}
                                         >
                                             Phòng đang đặt
                                         </button>

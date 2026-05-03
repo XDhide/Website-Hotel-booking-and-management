@@ -1,4 +1,4 @@
-import {CreditCardOutlined,SnippetsOutlined,WarningOutlined,MailOutlined,BugOutlined, PieChartOutlined,HomeOutlined, SettingOutlined, TeamOutlined, AppstoreOutlined, TagsOutlined } from '@ant-design/icons'
+import {CreditCardOutlined,SnippetsOutlined,WarningOutlined,MailOutlined,BugOutlined, PieChartOutlined,HomeOutlined, SettingOutlined, TeamOutlined, AppstoreOutlined, TagsOutlined, BellOutlined } from '@ant-design/icons'
 import type { PageKey } from '../../pages/AdminPage.tsx'
 import '../../assets/css/Adminpage/Sidebar.css'
 
@@ -13,8 +13,9 @@ const navItems: { key: PageKey; label: string; icon: React.ReactNode }[] = [
   { key: 'roomTypes', label: 'Loại phòng', icon: <AppstoreOutlined />  },
   { key: 'roomRates', label: 'Giá phòng',  icon: <TagsOutlined />      },
   { key: 'room',      label: 'Phòng',      icon: <HomeOutlined />      },
-  { key: 'bill',      label: 'Hóa đơn',    icon: <CreditCardOutlined />},
-  { key: 'serve',     label: 'Dịch vụ',    icon: <SnippetsOutlined />  },
+  { key: 'bill',      label: 'Hóa đơn',      icon: <CreditCardOutlined />},
+  { key: 'serve',     label: 'Dịch vụ',       icon: <SnippetsOutlined />  },
+  { key: 'serviceNotif', label: 'Gọi dịch vụ', icon: <BellOutlined />     },
   { key: 'voucher',   label: 'Giảm giá',   icon: <SnippetsOutlined />  },
   { key: 'lost',      label: 'Thất lạc',   icon: <WarningOutlined />   },
   { key: 'incident',  label: 'Sự cố',      icon: <BugOutlined />       },

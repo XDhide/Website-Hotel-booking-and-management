@@ -1,73 +1,84 @@
 import { useState, useEffect } from "react"
-import type { ReactNode } from "react"
 import {
-  HistoryOutlined, CheckCircleOutlined, HomeOutlined,
-  SearchOutlined, EyeOutlined, FileTextOutlined, LoadingOutlined,
+  HistoryOutlined, SearchOutlined, FileTextOutlined,
+  LoadingOutlined, DollarOutlined, HomeOutlined,
+  CheckCircleOutlined, ClockCircleOutlined,
+  BankOutlined, ShoppingCartOutlined,
 } from "@ant-design/icons"
 import "../assets/css/Profile/BookingHistory.css"
 import Header from "../shared/Header"
 import Footer from "../shared/Fooder"
-import { apiGetMyBookings } from "../services/BookingService"
+import { apiGetMyTransactionHistory } from "../services/BookingService"
 
-interface Booking {
-  id: number
-  roomTypeId: number
+interface Transaction {
+  transactionId: string
+  type: "Deposit" | "Invoice" | string
+  typeLabel: string
+  bookingId: number
+  invoiceId?: number
   roomTypeName?: string
-  fromDate?: string
-  toDate?: string
-  deposit?: number
-  status: string
-  createdAt?: string
+  roomNumber?: string
+  amount?: number
+  status?: string
+  date?: string
+  paidAt?: string
+  note?: string
 }
 
-/* Chỉ 2 trạng thái hiển thị: Đã đặt / Đã kết thúc */
-const toDisplayStatus = (s: string): 'booked' | 'ended' => {
-  const l = (s ?? '').toLowerCase()
-  if (l === 'completed' || l === 'checkedout') return 'ended'
-  return 'booked'
+const fmt = (v?: number) =>
+  v != null
+    ? new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(v)
+    : "—"
+
+const fmtDate = (s?: string) => {
+  if (!s) return "—"
+  return new Date(s).toLocaleDateString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" })
+}
+const fmtDatetime = (s?: string) => {
+  if (!s) return "—"
+  return new Date(s).toLocaleString("vi-VN", {
+    day: "2-digit", month: "2-digit", year: "numeric",
+    hour: "2-digit", minute: "2-digit",
+  })
 }
 
-const STATUS_CFG: Record<'booked' | 'ended', { label: string; icon: ReactNode; cls: string }> = {
-  booked: { label: 'Đã đặt',      icon: <HomeOutlined />,        cls: 'upcoming' },
-  ended:  { label: 'Đã kết thúc', icon: <CheckCircleOutlined />, cls: 'completed' },
+const TYPE_CFG: Record<string, { icon: JSX.Element; color: string; bg: string }> = {
+  Deposit: { icon: <BankOutlined />,        color: "#3b82f6", bg: "#eff6ff" },
+  Invoice: { icon: <ShoppingCartOutlined />, color: "#8b5cf6", bg: "#f5f3ff" },
 }
-
-function calcNights(from?: string, to?: string) {
-  if (!from || !to) return 0
-  return Math.max(0, Math.round((new Date(to).getTime() - new Date(from).getTime()) / 86400000))
-}
-function fmtDate(d?: string) {
-  if (!d) return '—'
-  return new Date(d).toLocaleDateString('vi-VN')
+const STATUS_CFG: Record<string, { label: string; color: string; bg: string }> = {
+  Paid:    { label: "Đã thanh toán",  color: "#166534", bg: "rgba(34,197,94,0.12)" },
+  Unpaid:  { label: "Chưa thanh toán", color: "#b45309", bg: "rgba(245,158,11,0.12)" },
+  Pending: { label: "Chờ xử lý",      color: "#1d4ed8", bg: "rgba(59,130,246,0.1)" },
 }
 
 export default function BookingHistory() {
-  const [filter, setFilter]     = useState<'all' | 'booked' | 'ended'>('all')
-  const [search, setSearch]     = useState('')
-  const [bookings, setBookings] = useState<Booking[]>([])
+  const [txns, setTxns]         = useState<Transaction[]>([])
   const [loading, setLoading]   = useState(true)
-  const [error, setError]       = useState('')
+  const [search, setSearch]     = useState("")
+  const [typeFilter, setType]   = useState<"all" | "Deposit" | "Invoice">("all")
 
   useEffect(() => {
     setLoading(true)
-    apiGetMyBookings()
-      .then((data: any[]) => { setBookings(Array.isArray(data) ? data : []); setError('') })
-      .catch(() => setError('Không thể tải lịch sử đặt phòng.'))
+    apiGetMyTransactionHistory()
+      .then(data => setTxns(Array.isArray(data) ? data as Transaction[] : []))
       .finally(() => setLoading(false))
   }, [])
 
-  const bookedCount = bookings.filter(b => toDisplayStatus(b.status) === 'booked').length
-  const endedCount  = bookings.filter(b => toDisplayStatus(b.status) === 'ended').length
-
-  const filtered = bookings.filter(b => {
-    const ds = toDisplayStatus(b.status)
-    const matchFilter = filter === 'all' || ds === filter
+  const filtered = txns.filter(t => {
+    const matchType = typeFilter === "all" || t.type === typeFilter
     const q = search.toLowerCase()
     const matchSearch = !q ||
-      String(b.id).includes(q) ||
-      (b.roomTypeName ?? '').toLowerCase().includes(q)
-    return matchFilter && matchSearch
+      String(t.bookingId).includes(q) ||
+      (t.roomTypeName ?? "").toLowerCase().includes(q) ||
+      (t.roomNumber ?? "").toLowerCase().includes(q) ||
+      (t.typeLabel ?? "").toLowerCase().includes(q)
+    return matchType && matchSearch
   })
+
+  const totalPaid   = txns.filter(t => t.status === "Paid").reduce((s, t) => s + (t.amount ?? 0), 0)
+  const totalUnpaid = txns.filter(t => t.status === "Unpaid").reduce((s, t) => s + (t.amount ?? 0), 0)
+  const depositTotal = txns.filter(t => t.type === "Deposit").reduce((s, t) => s + (t.amount ?? 0), 0)
 
   return (
     <>
@@ -75,8 +86,8 @@ export default function BookingHistory() {
       <div className="bh-page">
         <div className="bh-header">
           <div className="container">
-            <h1 className="bh-title"><HistoryOutlined /> Lịch Sử Đặt Phòng</h1>
-            <p className="bh-sub">Tổng {bookings.length} lần đặt phòng</p>
+            <h1 className="bh-title"><HistoryOutlined /> Lịch Sử Giao Dịch</h1>
+            <p className="bh-sub">Toàn bộ giao dịch đặt cọc và hóa đơn của bạn</p>
           </div>
         </div>
 
@@ -84,12 +95,15 @@ export default function BookingHistory() {
           {/* Stats */}
           <div className="bh-stats">
             {[
-              { label: 'Tổng đặt phòng', value: bookings.length, color: '#3b82f6' },
-              { label: 'Đã đặt / Đang ở', value: bookedCount,    color: '#8b5cf6' },
-              { label: 'Đã kết thúc',     value: endedCount,     color: '#22c55e' },
+              { label: "Tổng giao dịch",  value: txns.length,         color: "#3b82f6", isCount: true },
+              { label: "Tổng đặt cọc",    value: depositTotal,        color: "#8b5cf6" },
+              { label: "Đã thanh toán",   value: totalPaid,           color: "#22c55e" },
+              { label: "Chưa thanh toán", value: totalUnpaid,         color: "#f59e0b" },
             ].map(s => (
               <div key={s.label} className="bh-stat-card">
-                <div className="bh-stat-num" style={{ color: s.color }}>{s.value}</div>
+                <div className="bh-stat-num" style={{ color: s.color }}>
+                  {s.isCount ? s.value : fmt(s.value as number)}
+                </div>
                 <div className="bh-stat-label">{s.label}</div>
               </div>
             ))}
@@ -99,14 +113,14 @@ export default function BookingHistory() {
           <div className="bh-filters">
             <div className="bh-filter-tabs">
               {([
-                { key: 'all',    label: 'Tất cả' },
-                { key: 'booked', label: 'Đã đặt' },
-                { key: 'ended',  label: 'Đã kết thúc' },
+                { key: "all",     label: "Tất cả" },
+                { key: "Deposit", label: "Đặt cọc" },
+                { key: "Invoice", label: "Hóa đơn" },
               ] as const).map(t => (
                 <button
                   key={t.key}
-                  className={`bh-filter-tab${filter === t.key ? ' active' : ''}`}
-                  onClick={() => setFilter(t.key)}
+                  className={`bh-filter-tab${typeFilter === t.key ? " active" : ""}`}
+                  onClick={() => setType(t.key)}
                 >{t.label}</button>
               ))}
             </div>
@@ -114,7 +128,7 @@ export default function BookingHistory() {
               <SearchOutlined className="bh-search-icon" />
               <input
                 className="bh-search-input"
-                placeholder="Tìm mã đặt phòng, tên phòng..."
+                placeholder="Tìm loại phòng, số phòng, mã đặt..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
               />
@@ -124,60 +138,57 @@ export default function BookingHistory() {
           {/* Content */}
           {loading ? (
             <div className="bh-empty"><LoadingOutlined style={{ fontSize: 32 }} /></div>
-          ) : error ? (
-            <div className="bh-empty"><p style={{ color: '#ef4444' }}>{error}</p></div>
           ) : filtered.length === 0 ? (
             <div className="bh-empty">
               <div className="bh-empty-icon"><FileTextOutlined /></div>
-              <p>Không tìm thấy đặt phòng nào</p>
+              <p>{txns.length === 0 ? "Chưa có giao dịch nào" : "Không tìm thấy kết quả"}</p>
             </div>
           ) : (
-            <div className="bh-table-wrap">
-              <table className="bh-table">
-                <thead>
-                  <tr>
-                    <th>Mã đặt</th>
-                    <th>Loại phòng</th>
-                    <th>Nhận phòng</th>
-                    <th>Trả phòng</th>
-                    <th>Số đêm</th>
-                    <th>Cọc</th>
-                    <th>Trạng thái</th>
-                    <th>Thao tác</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filtered.map(b => {
-                    const ds  = toDisplayStatus(b.status)
-                    const st  = STATUS_CFG[ds]
-                    const nights = calcNights(b.fromDate, b.toDate)
-                    return (
-                      <tr key={b.id}>
-                        <td><span className="bh-id">#{b.id}</span></td>
-                        <td><div className="bh-room-name">{b.roomTypeName ?? `Loại #${b.roomTypeId}`}</div></td>
-                        <td className="bh-date">{fmtDate(b.fromDate)}</td>
-                        <td className="bh-date">{fmtDate(b.toDate)}</td>
-                        <td className="bh-nights">{nights > 0 ? `${nights} đêm` : '—'}</td>
-                        <td>
-                          {b.deposit != null && b.deposit > 0
-                            ? <span className="bh-total">{b.deposit.toLocaleString('vi-VN')}₫</span>
-                            : <span style={{ color: 'rgba(255,255,255,0.3)' }}>Không cọc</span>}
-                        </td>
-                        <td>
-                          <span className={`bh-status ${st.cls}`}>
-                            {st.icon} {st.label}
-                          </span>
-                        </td>
-                        <td>
-                          <button className="bh-action-btn view" title="Chi tiết">
-                            <EyeOutlined />
-                          </button>
-                        </td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
+            <div className="bh-txn-list">
+              {filtered.map(t => {
+                const typeCfg   = TYPE_CFG[t.type] ?? TYPE_CFG.Invoice
+                const statusCfg = STATUS_CFG[t.status ?? ""] ?? { label: t.status, color: "#64748b", bg: "rgba(0,0,0,0.06)" }
+                return (
+                  <div key={t.transactionId} className="bh-txn-card">
+                    {/* Icon */}
+                    <div className="bh-txn-icon" style={{ background: typeCfg.bg, color: typeCfg.color }}>
+                      {typeCfg.icon}
+                    </div>
+
+                    {/* Info */}
+                    <div className="bh-txn-info">
+                      <div className="bh-txn-title">
+                        {t.typeLabel}
+                        {t.roomNumber && <span className="bh-txn-room"> · Phòng {t.roomNumber}</span>}
+                        {t.invoiceId && <span className="bh-txn-id"> · HĐ #{t.invoiceId}</span>}
+                      </div>
+                      <div className="bh-txn-meta">
+                        <span><HomeOutlined style={{ marginRight: 4 }} />{t.roomTypeName ?? `Booking #${t.bookingId}`}</span>
+                        <span style={{ color: "#cbd5e1" }}>·</span>
+                        <span><ClockCircleOutlined style={{ marginRight: 4 }} />{fmtDate(t.date)}</span>
+                        {t.paidAt && (
+                          <>
+                            <span style={{ color: "#cbd5e1" }}>·</span>
+                            <span><CheckCircleOutlined style={{ marginRight: 4, color: "#22c55e" }} />Thanh toán: {fmtDatetime(t.paidAt)}</span>
+                          </>
+                        )}
+                      </div>
+                      {t.note && <div className="bh-txn-note">{t.note}</div>}
+                    </div>
+
+                    {/* Amount + Status */}
+                    <div className="bh-txn-right">
+                      <div className="bh-txn-amount" style={{ color: typeCfg.color }}>
+                        <DollarOutlined style={{ marginRight: 4 }} />
+                        {fmt(t.amount)}
+                      </div>
+                      <span className="bh-txn-status" style={{ color: statusCfg.color, background: statusCfg.bg }}>
+                        {statusCfg.label}
+                      </span>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           )}
         </div>

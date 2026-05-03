@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import Favorites from "./pages/Favorites";
 import BookingHistory from "./pages/BookingHistory";
 import CurrentBookings from "./pages/CurrentBookings";
+import CheckoutPage from "./pages/CheckoutPage";
 
 function getPath() {
   return window.location.pathname;
@@ -73,28 +74,6 @@ export default function AppRouter() {
     return <AdminPage />;
   }
 
-  if (path.startsWith("/rooms/")) {
-    const id = parseInt(path.split("/rooms/")[1], 10);
-    return <RoomDetail roomTypeId={isNaN(id) ? undefined : id} />;
-  }
-
-  if (path.startsWith("/booking")) {
-    if (!isLoggedIn()) {
-      window.history.replaceState(null, "", "/");
-      return <HomePage />;
-    }
-    const params = new URLSearchParams(window.location.search);
-    const roomTypeId = parseInt(params.get("roomTypeId") ?? "", 10);
-    return (
-      <BookingPage
-        roomTypeId={isNaN(roomTypeId) ? undefined : roomTypeId}
-        checkIn={params.get("checkIn") ?? ""}
-        checkOut={params.get("checkOut") ?? ""}
-        guests={parseInt(params.get("guests") ?? "1", 10)}
-      />
-    );
-  }
-
   if (path === "/rooms") {
     return <RoomList />;
   }
@@ -115,7 +94,7 @@ export default function AppRouter() {
     return <Profile />;
   }
 
-  if (path === "/bookings") {
+  if (path === "/booking-history" || path === "/bookings") {
     if (!isLoggedIn()) {
       window.history.replaceState(null, "", "/");
       return <HomePage />;
@@ -123,12 +102,43 @@ export default function AppRouter() {
     return <BookingHistory />;
   }
 
-  if (path === "/current-bookings" || path === "/booking-history") {
+  if (path === "/current-bookings") {
     if (!isLoggedIn()) {
       window.history.replaceState(null, "", "/");
       return <HomePage />;
     }
     return <CurrentBookings />;
+  }
+
+  if (path.startsWith("/rooms/")) {
+    const id = parseInt(path.split("/rooms/")[1], 10);
+    return <RoomDetail roomTypeId={isNaN(id) ? undefined : id} />;
+  }
+
+  if (path.startsWith("/checkout/")) {
+    if (!isLoggedIn()) {
+      window.history.replaceState(null, "", "/");
+      return <HomePage />;
+    }
+    const id = parseInt(path.split("/checkout/")[1], 10);
+    return <CheckoutPage roomTypeId={isNaN(id) ? undefined : id} />;
+  }
+
+  if (path === "/booking" || path.startsWith("/booking?")) {
+    if (!isLoggedIn()) {
+      window.history.replaceState(null, "", "/");
+      return <HomePage />;
+    }
+    const params = new URLSearchParams(window.location.search);
+    const roomTypeId = parseInt(params.get("roomTypeId") ?? "", 10);
+    return (
+      <BookingPage
+        roomTypeId={isNaN(roomTypeId) ? undefined : roomTypeId}
+        checkIn={params.get("checkIn") ?? ""}
+        checkOut={params.get("checkOut") ?? ""}
+        guests={parseInt(params.get("guests") ?? "1", 10)}
+      />
+    );
   }
 
   return <HomePage />;

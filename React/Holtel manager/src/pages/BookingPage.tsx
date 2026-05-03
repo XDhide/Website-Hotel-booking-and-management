@@ -120,7 +120,7 @@ export default function BookingPage({ roomTypeId, checkIn = "", checkOut = "", g
           <button className="bk-btn-home" onClick={() => navigate("/")}>
             <HomeOutlined /> Về trang chủ
           </button>
-          <button className="bk-btn-history" onClick={() => navigate("/bookings")}>
+          <button className="bk-btn-history" onClick={() => navigate("/booking-history")}>
             Xem lịch sử đặt phòng
           </button>
         </div>

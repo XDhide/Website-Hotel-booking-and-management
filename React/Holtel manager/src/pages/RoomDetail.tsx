@@ -262,7 +262,7 @@ export default function RoomDetail({ roomTypeId }: Props) {
           <button className="rd-book-btn"
             disabled={(roomType.availableRooms??0)<=0}
             style={(roomType.availableRooms??0)<=0?{opacity:0.5,cursor:"not-allowed"}:{}}
-            onClick={()=>{ if(!isLoggedIn()){navigate("/");return;} setShowBooking(true); }}>
+            onClick={()=>{ if(!isLoggedIn()){navigate("/");return;} navigate(`/checkout/${roomTypeId}`); }}>
             {(roomType.availableRooms??0)<=0?"Hết phòng":"Đặt phòng ngay"}
           </button>
           <p className="rd-book-note">Admin sẽ xác nhận và làm thủ tục check-in</p>
@@ -284,7 +284,7 @@ export default function RoomDetail({ roomTypeId }: Props) {
                 </p>
                 <div style={{display:"flex",gap:10,justifyContent:"center"}}>
                   <button onClick={resetBooking} style={{padding:"10px 24px",borderRadius:10,background:"#f1f5f9",border:"none",cursor:"pointer",fontWeight:600,color:"#475569"}}>Đóng</button>
-                  <button onClick={()=>{resetBooking();navigate("/bookings");}} style={{padding:"10px 24px",borderRadius:10,background:"#3b82f6",border:"none",cursor:"pointer",fontWeight:600,color:"#fff"}}>Xem lịch sử đặt</button>
+                  <button onClick={()=>{resetBooking();navigate("/booking-history");}} style={{padding:"10px 24px",borderRadius:10,background:"#3b82f6",border:"none",cursor:"pointer",fontWeight:600,color:"#fff"}}>Xem lịch sử đặt</button>
                 </div>
               </div>
             ) : (<>

@@ -186,8 +186,28 @@
   },
   {
     "ContainingType": "Manager.API.Controllers.BookingController",
+    "Method": "GetMyActiveRooms",
+    "RelativePath": "api/booking/my-active-rooms",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.BookingController",
     "Method": "GetMyBookings",
     "RelativePath": "api/booking/my-bookings",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.BookingController",
+    "Method": "GetMyTransactionHistory",
+    "RelativePath": "api/booking/my-transaction-history",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -563,6 +583,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.InvoiceController",
+    "Method": "GetMyInvoices",
+    "RelativePath": "api/invoice/my-invoices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -1906,6 +1936,22 @@
     "ContainingType": "Manager.API.Controllers.SupportChatController",
     "Method": "GetMessages",
     "RelativePath": "api/SupportChat/{chatId}/messages",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chatId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.SupportChatController",
+    "Method": "GetChatStatus",
+    "RelativePath": "api/SupportChat/{chatId}/status",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

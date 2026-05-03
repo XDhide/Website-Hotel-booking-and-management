@@ -18,7 +18,7 @@ interface Message {
   senderId: string
   message: string
   sentAt: string
-  isRead?: boolean
+  isStaff?: boolean
 }
 
 const STATUS_COLOR: Record<string, string> = {
@@ -51,12 +51,12 @@ export default function SupportChat() {
   const loadChats = useCallback(async () => {
     setLoadingChats(true); setError('')
     try {
-
       const res = await apiClient.get(`${API}/SupportChat/my-chats`)
       const raw = res.data
       const list = Array.isArray(raw) ? raw : raw?.data ?? []
-      setChats(list)
-    } catch (e: any) {
+      // Chỉ hiển thị chat đang Open hoặc InProgress (không hiển thị Closed)
+      setChats(list.filter((c: Chat) => c.status !== 'Closed'))
+    } catch {
       setError('Không thể tải danh sách chat. Vui lòng kiểm tra kết nối.')
       setChats([])
     } finally { setLoadingChats(false) }
@@ -78,7 +78,7 @@ export default function SupportChat() {
   useEffect(() => { loadChats() }, [loadChats])
 
   useEffect(() => {
-    if (!selectedChat || selectedChat.status === 'Closed') return
+    if (!selectedChat) return
     const timer = setInterval(() => loadMessages(selectedChat.id), 8000)
     return () => clearInterval(timer)
   }, [selectedChat, loadMessages])
@@ -101,7 +101,6 @@ export default function SupportChat() {
       })
       await loadMessages(selectedChat.id)
     } catch {
-
       setMessages(prev => [...prev, {
         id: Date.now(), supportChatId: selectedChat.id,
         senderId: adminId, message: text,
@@ -111,14 +110,16 @@ export default function SupportChat() {
     } finally { setSending(false) }
   }
 
+  // Kết thúc hội thoại → xóa khỏi danh sách ngay lập tức
   const handleClose = async () => {
-    if (!selectedChat || !window.confirm('Đóng cuộc trò chuyện này?')) return
+    if (!selectedChat || !window.confirm('Kết thúc và xóa cuộc trò chuyện này?')) return
     try {
       await apiClient.post(`${API}/SupportChat/${selectedChat.id}/close`)
-      const updated = { ...selectedChat, status: 'Closed' }
-      setChats(prev => prev.map(c => c.id === selectedChat.id ? updated : c))
-      setSelectedChat(updated)
-    } catch (e: any) { alert(e?.response?.data || 'Không thể đóng chat') }
+      // Xóa khỏi danh sách hiển thị (không giữ lại chat đã đóng)
+      setChats(prev => prev.filter(c => c.id !== selectedChat.id))
+      setSelectedChat(null)
+      setMessages([])
+    } catch (e: any) { alert(e?.response?.data || 'Không thể kết thúc chat') }
   }
 
   const fmtTime = (s: string) => {
@@ -128,25 +129,29 @@ export default function SupportChat() {
 
   return (
     <div className="support-wapper">
-      {}
+      {/* Danh sách chat */}
       <div className="support-user-box">
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.07)',
         }}>
           <span style={{ color: 'rgba(255,255,255,0.7)', fontWeight: 600, fontSize: '0.82rem' }}>
-            CHAT ({chats.length})
+            HỖ TRỢ ({chats.length})
           </span>
           <button onClick={loadChats} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', cursor: 'pointer' }}>
             <ReloadOutlined />
           </button>
         </div>
 
+        {error && (
+          <div style={{ padding: '8px 14px', color: '#f87171', fontSize: '0.78rem' }}>{error}</div>
+        )}
+
         {loadingChats ? (
           <div style={{ textAlign: 'center', padding: 20, color: 'rgba(255,255,255,0.3)' }}>Đang tải...</div>
         ) : chats.length === 0 ? (
           <div style={{ textAlign: 'center', padding: 20, color: 'rgba(255,255,255,0.3)', fontSize: '0.85rem' }}>
-            Chưa có cuộc trò chuyện nào
+            Chưa có yêu cầu hỗ trợ nào
           </div>
         ) : chats.map(chat => (
           <div
@@ -158,7 +163,7 @@ export default function SupportChat() {
               <UserOutlined className="support-user-avatar-icon" />
             </div>
             <div className="support-user-info">
-              <div className="support-user-name">Chat #{chat.id}</div>
+              <div className="support-user-name">Khách #{chat.id}</div>
               <div style={{ fontSize: '0.75rem', color: STATUS_COLOR[chat.status] ?? '#94a3b8', marginTop: 2 }}>
                 <span style={{ display: 'inline-block', width: 7, height: 7, borderRadius: '50%', background: STATUS_COLOR[chat.status] ?? '#94a3b8', marginRight: 4, verticalAlign: 'middle' }} />
                 {STATUS_LABEL[chat.status] ?? chat.status}
@@ -168,48 +173,46 @@ export default function SupportChat() {
         ))}
       </div>
 
-      {}
+      {/* Khung chat */}
       <div className="support-chat-box">
         {!selectedChat ? (
           <div className="support-chat-placeholder">
             <MessageOutlined className="support-chat-placeholder-icon" />
-            <p>Chọn một cuộc trò chuyện để bắt đầu</p>
+            <p>Chọn một yêu cầu hỗ trợ để bắt đầu</p>
           </div>
         ) : (
           <>
-            {}
+            {/* Header */}
             <div className="support-chat-header" style={{ justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <div className="support-user-icon small">
                   <UserOutlined className="support-user-avatar-icon" />
                 </div>
                 <div>
-                  <div className="support-chat-header-name">Chat #{selectedChat.id}</div>
+                  <div className="support-chat-header-name">Khách #{selectedChat.id}</div>
                   <div style={{ fontSize: '0.72rem', color: STATUS_COLOR[selectedChat.status] }}>
                     <span style={{ display: 'inline-block', width: 7, height: 7, borderRadius: '50%', background: STATUS_COLOR[selectedChat.status], marginRight: 4, verticalAlign: 'middle' }} />
                     {STATUS_LABEL[selectedChat.status]}
                   </div>
                 </div>
               </div>
-              {selectedChat.status !== 'Closed' && (
-                <button onClick={handleClose} style={{
-                  background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)',
-                  color: '#f87171', borderRadius: 6, padding: '5px 12px',
-                  cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: 5,
-                }}>
-                  <CloseCircleOutlined /> Đóng chat
-                </button>
-              )}
+              <button onClick={handleClose} style={{
+                background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)',
+                color: '#f87171', borderRadius: 6, padding: '5px 12px',
+                cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: 5,
+              }}>
+                <CloseCircleOutlined /> Kết thúc hội thoại
+              </button>
             </div>
 
-            {}
+            {/* Messages */}
             <div className="support-chat-box-output">
               {loadingMsgs ? (
                 <div style={{ textAlign: 'center', padding: 20, color: 'rgba(255,255,255,0.3)' }}>Đang tải tin nhắn...</div>
               ) : messages.length === 0 ? (
                 <div className="support-chat-empty">Chưa có tin nhắn. Hãy bắt đầu trò chuyện!</div>
               ) : messages.map(msg => {
-                const isMe = msg.senderId === adminId
+                const isMe = msg.senderId === adminId || msg.isStaff === true
                 return (
                   <div key={msg.id} className={`support-message-row ${isMe ? 'admin' : 'user'}`}>
                     <div className="support-message-bubble">
@@ -222,27 +225,19 @@ export default function SupportChat() {
               <div ref={messagesEndRef} />
             </div>
 
-            {}
+            {/* Input */}
             <div className="support-chat-box-input">
-              {selectedChat.status === 'Closed' ? (
-                <div style={{ flex: 1, textAlign: 'center', color: 'rgba(255,255,255,0.3)', fontSize: '0.85rem', padding: '10px 0' }}>
-                  Cuộc trò chuyện đã đóng
-                </div>
-              ) : (
-                <>
-                  <input
-                    type="text"
-                    placeholder="Nhập tin nhắn... (Enter để gửi)"
-                    value={inputText}
-                    onChange={e => setInputText(e.target.value)}
-                    onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handleSend()}
-                    disabled={sending}
-                  />
-                  <button onClick={handleSend} disabled={sending || !inputText.trim()}>
-                    <SendOutlined /> {sending ? '...' : 'Gửi'}
-                  </button>
-                </>
-              )}
+              <input
+                type="text"
+                placeholder="Nhập tin nhắn... (Enter để gửi)"
+                value={inputText}
+                onChange={e => setInputText(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handleSend()}
+                disabled={sending}
+              />
+              <button onClick={handleSend} disabled={sending || !inputText.trim()}>
+                <SendOutlined /> {sending ? '...' : 'Gửi'}
+              </button>
             </div>
           </>
         )}

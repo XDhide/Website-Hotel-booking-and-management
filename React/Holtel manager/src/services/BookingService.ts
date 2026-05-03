@@ -83,3 +83,25 @@ export const BookingService = {
     update:        apiUpdateBooking,
     cancel:        apiCancelBooking,
 };
+
+export const apiGetMyActiveRooms = async (): Promise<any[]> => {
+    try {
+        const res = await apiClient.get(`${prefix}/my-active-rooms`);
+        const data = res?.data;
+        return Array.isArray(data) ? data : [];
+    } catch (err: any) {
+        console.error("[BookingService.getMyActiveRooms]", err);
+        return [];
+    }
+};
+
+export const apiGetMyTransactionHistory = async (): Promise<any[]> => {
+    try {
+        const res = await apiClient.get(`${prefix}/my-transaction-history`);
+        const data = res?.data;
+        return Array.isArray(data) ? data : [];
+    } catch (err: any) {
+        console.error("[BookingService.getMyTransactionHistory]", err);
+        return [];
+    }
+};

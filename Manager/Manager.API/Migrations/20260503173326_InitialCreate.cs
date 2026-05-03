@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Manager.API.Migrations
 {
     /// <inheritdoc />
-    public partial class InitClean : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -305,6 +305,27 @@ namespace Manager.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SupportChats",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ClosedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SupportChats", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SupportChats_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Bookings",
                 columns: table => new
                 {
@@ -385,6 +406,29 @@ namespace Manager.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RoomTypeImages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoomTypeId = table.Column<int>(type: "int", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AltText = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DisplayOrder = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoomTypeImages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RoomTypeImages_RoomTypes_RoomTypeId",
+                        column: x => x.RoomTypeId,
+                        principalTable: "RoomTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Messengers",
                 columns: table => new
                 {
@@ -415,6 +459,34 @@ namespace Manager.API.Migrations
                         column: x => x.MessengerBoxId,
                         principalTable: "MessengerBox",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SupportMessages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SupportChatId = table.Column<int>(type: "int", nullable: false),
+                    SenderId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsStaff = table.Column<bool>(type: "bit", nullable: false),
+                    SentAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SupportMessages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SupportMessages_AspNetUsers_SenderId",
+                        column: x => x.SenderId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SupportMessages_SupportChats_SupportChatId",
+                        column: x => x.SupportChatId,
+                        principalTable: "SupportChats",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -587,6 +659,35 @@ namespace Manager.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ServiceNotifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    InvoiceDetailId = table.Column<int>(type: "int", nullable: false),
+                    InvoiceId = table.Column<int>(type: "int", nullable: false),
+                    RoomUseId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoomNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoomTypeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ServiceName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Quantity = table.Column<double>(type: "float", nullable: false),
+                    TotalPrice = table.Column<double>(type: "float", nullable: false),
+                    IsRead = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceNotifications", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ServiceNotifications_InvoiceDetails_InvoiceDetailId",
+                        column: x => x.InvoiceDetailId,
+                        principalTable: "InvoiceDetails",
+                        principalColumn: "InvoiceDetailId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "IdentityRole<int>",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
@@ -740,6 +841,31 @@ namespace Manager.API.Migrations
                 name: "IX_Rooms_RoomTypeId",
                 table: "Rooms",
                 column: "RoomTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomTypeImages_RoomTypeId",
+                table: "RoomTypeImages",
+                column: "RoomTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceNotifications_InvoiceDetailId",
+                table: "ServiceNotifications",
+                column: "InvoiceDetailId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SupportChats_UserId",
+                table: "SupportChats",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SupportMessages_SenderId",
+                table: "SupportMessages",
+                column: "SenderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SupportMessages_SupportChatId",
+                table: "SupportMessages",
+                column: "SupportChatId");
         }
 
         /// <inheritdoc />
@@ -770,9 +896,6 @@ namespace Manager.API.Migrations
                 name: "IdentityRole<int>");
 
             migrationBuilder.DropTable(
-                name: "InvoiceDetails");
-
-            migrationBuilder.DropTable(
                 name: "LostItems");
 
             migrationBuilder.DropTable(
@@ -788,7 +911,16 @@ namespace Manager.API.Migrations
                 name: "RoomRates");
 
             migrationBuilder.DropTable(
+                name: "RoomTypeImages");
+
+            migrationBuilder.DropTable(
+                name: "ServiceNotifications");
+
+            migrationBuilder.DropTable(
                 name: "Services");
+
+            migrationBuilder.DropTable(
+                name: "SupportMessages");
 
             migrationBuilder.DropTable(
                 name: "Surcharges");
@@ -797,10 +929,16 @@ namespace Manager.API.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Invoices");
+                name: "MessengerBox");
 
             migrationBuilder.DropTable(
-                name: "MessengerBox");
+                name: "InvoiceDetails");
+
+            migrationBuilder.DropTable(
+                name: "SupportChats");
+
+            migrationBuilder.DropTable(
+                name: "Invoices");
 
             migrationBuilder.DropTable(
                 name: "RoomInUses");

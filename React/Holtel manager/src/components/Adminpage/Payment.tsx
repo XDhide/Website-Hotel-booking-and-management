@@ -26,6 +26,7 @@ interface Invoice {
   discountAmount: number
   surchargeAmount: number
   finalAmount: number
+  currentTotal?: number   // tổng invoiceDetails hiện tại (từ backend mới)
   paymentStatus: string   // "Unpaid" | "Paid"
   paymentMethod: string
   note: string
@@ -97,6 +98,18 @@ export default function Payment() {
   }, [])
 
   useEffect(() => { load(page) }, [load, page])
+
+  // Auto-refresh invoice detail mỗi 15s khi đang mở (để nhận dịch vụ user gọi)
+  useEffect(() => {
+    if (!detail) return
+    const timer = setInterval(async () => {
+      try {
+        const res = await apiClient.get(`${API}/invoice/${detail.invoiceId}/details`)
+        setDetail(res.data)
+      } catch { /* silent */ }
+    }, 15000)
+    return () => clearInterval(timer)
+  }, [detail?.invoiceId])
 
   const loadServices = async () => {
     try {
@@ -243,10 +256,25 @@ export default function Payment() {
               return (
                 <tr key={inv.invoiceId} className="pmt-row" onClick={() => openDetail(inv)}>
                   <td><span className="pmt-id">#{inv.invoiceId}</span></td>
-                  <td><span className="pmt-room">{inv.roomNumber ? `Phòng ${inv.roomNumber}` : '—'}</span></td>
-                  <td>{inv.roomTypeName ?? '—'}</td>
+                  <td>
+                    <span className="pmt-room">
+                      {inv.roomNumber
+                        ? <><span style={{color:'#60a5fa',marginRight:4}}>🏠</span>Phòng {inv.roomNumber}</>
+                        : '—'}
+                    </span>
+                  </td>
+                  <td>
+                    <span style={{color:'rgba(255,255,255,0.85)', fontWeight: 500}}>
+                      {inv.roomTypeName ?? '—'}
+                    </span>
+                  </td>
                   <td className="pmt-date">{fmtDate(inv.createdAt)}</td>
-                  <td className="pmt-amount">{fmt(inv.finalAmount ?? 0)}</td>
+                  <td className="pmt-amount">
+                    {isPaid
+                      ? fmt(inv.finalAmount ?? 0)
+                      : <span style={{color:'#f59e0b'}}>{fmt(inv.currentTotal ?? inv.subTotal ?? 0)}</span>
+                    }
+                  </td>
                   <td>
                     <span className={`pmt-badge ${isPaid ? 'paid' : 'unpaid'}`}>
                       {isPaid ? <><CheckCircleOutlined /> Đã TT</> : <><ClockCircleOutlined /> Chưa TT</>}

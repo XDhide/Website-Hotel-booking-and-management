@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\repository\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\repository\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -60,10 +64,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\models\\roomtypeimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\models\\roomtypeimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|solutionrelative:manager.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA043BBA-9DFE-4ACC-9436-3768EC7FDF56}|Manager.API\\Manager.API.csproj|d:\\code\\project\\new folder\\1\\website-hotel-booking-and-management\\manager\\manager.api\\controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -507,17 +507,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BookingRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Dung\\Downloads\\app_v5_fixed3\\app_v5_fixed\\backend\\Manager.API\\Repository\\BookingRepository.cs",
-              "ToolTip": "C:\\Users\\Dung\\Downloads\\app_v5_fixed3\\app_v5_fixed\\backend\\Manager.API\\Repository\\BookingRepository.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAIwIIAAABMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-02T15:11:27.693Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Evaluation.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Evaluation.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\Evaluation.cs",
@@ -529,7 +519,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "InvoiceDetail.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\InvoiceDetail.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\InvoiceDetail.cs",
@@ -541,7 +531,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "MessengerBox.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\MessengerBox.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\MessengerBox.cs",
@@ -553,7 +543,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Report.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Report.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\Report.cs",
@@ -565,7 +555,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "RoomInUse.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\RoomInUse.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\RoomInUse.cs",
@@ -577,7 +567,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "IBookingRepository.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Interfaces\\IBookingRepository.cs",
               "RelativeDocumentMoniker": "Manager.API\\Interfaces\\IBookingRepository.cs",
@@ -589,7 +579,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "BookingRepository.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Repository\\BookingRepository.cs",
               "RelativeDocumentMoniker": "Manager.API\\Repository\\BookingRepository.cs",
@@ -601,12 +591,35 @@
               "EditorCaption": ""
             },
             {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Manager.API\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Manager.API\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAgwCwAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T06:41:07.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookingRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dung\\Downloads\\app_v5_fixed3\\app_v5_fixed\\backend\\Manager.API\\Repository\\BookingRepository.cs",
+              "ToolTip": "C:\\Users\\Dung\\Downloads\\app_v5_fixed3\\app_v5_fixed\\backend\\Manager.API\\Repository\\BookingRepository.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAIwIIAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T15:11:27.693Z"
+            },
+            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Invoice.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Invoice.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\Invoice.cs",
@@ -618,7 +631,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Booking.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Booking.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\Booking.cs",
@@ -630,7 +643,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Review.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\Review.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\Review.cs",
@@ -642,7 +655,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "RoomRateController.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\RoomRateController.cs",
               "RelativeDocumentMoniker": "Manager.API\\Controllers\\RoomRateController.cs",
@@ -654,7 +667,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "RoomRate.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\RoomRate.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\RoomRate.cs",
@@ -666,7 +679,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "RoomType.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\RoomType.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\RoomType.cs",
@@ -678,7 +691,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "RoomTypeImage.cs",
               "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Models\\RoomTypeImage.cs",
               "RelativeDocumentMoniker": "Manager.API\\Models\\RoomTypeImage.cs",
@@ -687,18 +700,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-02T09:15:31.063Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Manager.API\\Controllers\\AccountController.cs",
-              "ToolTip": "D:\\Code\\Project\\New folder\\1\\Website-Hotel-booking-and-management\\Manager\\Manager.API\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Manager.API\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAgwDEAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T06:41:07.778Z"
             },
             {
               "$type": "Document",

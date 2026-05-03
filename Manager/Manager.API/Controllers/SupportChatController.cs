@@ -183,25 +183,40 @@ namespace Manager.API.Controllers
             var userId = GetUserId();
             if (string.IsNullOrEmpty(userId)) return Unauthorized();
 
-            var chat = await _db.SupportChats.FindAsync(chatId);
+            var chat = await _db.SupportChats
+                .Include(c => c.Messages)
+                .FirstOrDefaultAsync(c => c.Id == chatId);
             if (chat == null) return NotFound($"Chat {chatId} không tìm thấy.");
 
             if (!IsStaff() && chat.UserId != userId)
                 return Forbid();
 
-            chat.Status   = "Closed";
-            chat.ClosedAt = DateTime.Now;
+            // Xóa toàn bộ messages trước
+            if (chat.Messages != null && chat.Messages.Count > 0)
+                _db.SupportMessages.RemoveRange(chat.Messages);
 
+            // Xóa chat
+            _db.SupportChats.Remove(chat);
             await _db.SaveChangesAsync();
 
-            return Ok(new SupportChatDto
-            {
-                Id        = chat.Id,
-                UserId    = chat.UserId,
-                Status    = chat.Status,
-                CreatedAt = chat.CreatedAt,
-                ClosedAt  = chat.ClosedAt,
-            });
+            return Ok(new { message = "Cuộc hội thoại đã được kết thúc và xóa." });
+        }
+
+        /// <summary>Kiểm tra trạng thái chat hiện tại của user (để user biết chat bị đóng)</summary>
+        [HttpGet("{chatId}/status")]
+        public async Task<IActionResult> GetChatStatus(int chatId)
+        {
+            var userId = GetUserId();
+            if (string.IsNullOrEmpty(userId)) return Unauthorized();
+
+            var chat = await _db.SupportChats.FindAsync(chatId);
+            if (chat == null)
+                return Ok(new { status = "Deleted", message = "Cuộc hội thoại đã kết thúc" });
+
+            if (!IsStaff() && chat.UserId != userId)
+                return Forbid();
+
+            return Ok(new { status = chat.Status, chatId = chat.Id });
         }
     }
 }

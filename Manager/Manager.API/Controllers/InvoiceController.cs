@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Manager.API.Data;
 using Manager.API.Dtos.Invoice;
@@ -27,9 +28,44 @@ namespace Manager.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
-            var result = await _invoiceRepository.GetAllAsync(page, limit);
-            var dtos = result.Data?.Select(s => s.ToInvoiceDto()).ToList() ?? new System.Collections.Generic.List<InvoiceDto>();
-            return Ok(new { result.Page, result.Limit, result.TotalCount, result.TotalPages, data = dtos });
+            var query = _db.Invoices
+                .Include(i => i.InvoiceDetails)
+                .Include(i => i.RoomInUse).ThenInclude(r => r.Rooms)
+                .Include(i => i.RoomInUse).ThenInclude(r => r.Booking).ThenInclude(b => b.RoomType)
+                .OrderByDescending(i => i.CreatedAt);
+
+            var totalCount = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalCount / (double)limit);
+
+            var items = await query
+                .Skip((page - 1) * limit)
+                .Take(limit)
+                .ToListAsync();
+
+            var data = items.Select(i => new {
+                i.InvoiceId,
+                i.RoomUseId,
+                i.UserId,
+                i.SubTotal,
+                i.DiscountAmount,
+                i.SurchargeAmount,
+                i.FinalAmount,
+                i.PaymentStatus,
+                i.PaymentMethod,
+                i.PaidAt,
+                i.Note,
+                i.CreatedAt,
+                i.UpdatedAt,
+                RoomNumber   = i.RoomInUse != null && i.RoomInUse.Rooms != null
+                                 ? i.RoomInUse.Rooms.RoomNumber : null,
+                RoomTypeName = i.RoomInUse?.Booking?.RoomType?.Name,
+                BookingId    = i.RoomInUse?.BookingId,
+                // Tổng tiền hiện tại từ invoice details (chưa discount)
+                CurrentTotal = i.InvoiceDetails != null
+                                 ? i.InvoiceDetails.Sum(d => d.TotalPrice ?? 0) : 0,
+            });
+
+            return Ok(new { Page = page, Limit = limit, TotalCount = totalCount, TotalPages = totalPages, data });
         }
 
         [HttpGet("{id}")]
@@ -66,6 +102,38 @@ namespace Manager.API.Controllers
                     d.UnitPrice, d.Quantity, d.TotalPrice, d.CreatedAt,
                 })
             });
+        }
+
+        /// <summary>Lấy tất cả hóa đơn của user hiện tại (kèm bookingId để map)</summary>
+        [HttpGet("my-invoices")]
+        [Authorize]
+        public async Task<IActionResult> GetMyInvoices()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId)) return Unauthorized();
+
+            var invoices = await _db.Invoices
+                .Include(i => i.InvoiceDetails)
+                .Include(i => i.RoomInUse).ThenInclude(r => r.Booking)
+                .Where(i => i.UserId == userId)
+                .OrderByDescending(i => i.CreatedAt)
+                .ToListAsync();
+
+            var result = invoices.Select(i => new {
+                i.InvoiceId,
+                i.RoomUseId,
+                BookingId      = i.RoomInUse?.BookingId,
+                i.SubTotal,
+                i.DiscountAmount,
+                i.SurchargeAmount,
+                i.FinalAmount,
+                i.PaymentStatus,
+                i.PaymentMethod,
+                i.PaidAt,
+                i.CreatedAt,
+            });
+
+            return Ok(result);
         }
 
         [HttpPost]

@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Manager.API.Data;
 using Manager.API.Dtos.InvoiceDetail;
@@ -64,12 +65,14 @@ namespace Manager.API.Controllers
 
         /// <summary>
         /// Thêm dịch vụ vào hóa đơn (user gọi dịch vụ từ phòng đang ở)
-        /// Tự động tìm invoice đang Unpaid theo roomUseId
+        /// Tự động tìm invoice đang Unpaid theo roomUseId và tạo notification cho admin
         /// </summary>
         [HttpPost("add-service")]
         [Authorize]
         public async Task<IActionResult> AddService([FromBody] AddServiceDto dto)
         {
+            var userId = User.FindFirstValue(System.Security.Claims.ClaimTypes.NameIdentifier);
+
             // Tìm invoice đang Unpaid của phòng này
             var invoice = await _db.Invoices
                 .FirstOrDefaultAsync(i => i.RoomUseId == dto.RoomUseId && i.PaymentStatus == "Unpaid");
@@ -86,16 +89,40 @@ namespace Manager.API.Controllers
             var detail = new InvoiceDetail
             {
                 InvoiceId = invoice.InvoiceId,
-                ItemType = "Service",
-                ItemId = dto.ServiceId.ToString(),
-                ItemName = service.Name,
+                ItemType  = "Service",
+                ItemId    = dto.ServiceId.ToString(),
+                ItemName  = service.Name,
                 UnitPrice = service.Price,
-                Quantity = dto.Quantity,
+                Quantity  = dto.Quantity,
                 TotalPrice = total,
                 CreatedAt = System.DateTime.Now,
             };
 
             await _db.InvoiceDetails.AddAsync(detail);
+            await _db.SaveChangesAsync();
+
+            // Lấy thông tin phòng để tạo notification
+            var roomInUse = await _db.RoomInUses
+                .Include(r => r.Rooms)
+                .Include(r => r.Booking).ThenInclude(b => b.RoomType)
+                .FirstOrDefaultAsync(r => r.RoomUseId == dto.RoomUseId);
+
+            var notification = new ServiceNotification
+            {
+                InvoiceDetailId = detail.InvoiceDetailId,
+                InvoiceId       = invoice.InvoiceId,
+                RoomUseId       = dto.RoomUseId,
+                UserId          = userId ?? invoice.UserId,
+                RoomNumber      = roomInUse?.Rooms?.RoomNumber ?? "—",
+                RoomTypeName    = roomInUse?.Booking?.RoomType?.Name ?? "—",
+                ServiceName     = service.Name,
+                Quantity        = dto.Quantity,
+                TotalPrice      = total,
+                IsRead          = false,
+                CreatedAt       = System.DateTime.Now,
+            };
+
+            await _db.ServiceNotifications.AddAsync(notification);
             await _db.SaveChangesAsync();
 
             return Ok(new
@@ -106,7 +133,51 @@ namespace Manager.API.Controllers
                 detail.UnitPrice,
                 detail.Quantity,
                 detail.TotalPrice,
+                NotificationId = notification.Id,
             });
+        }
+
+        /// <summary>Lấy danh sách notifications gọi dịch vụ (admin)</summary>
+        [HttpGet("service-notifications")]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> GetServiceNotifications([FromQuery] bool unreadOnly = false)
+        {
+            var query = _db.ServiceNotifications.AsQueryable();
+            if (unreadOnly) query = query.Where(n => !n.IsRead);
+
+            var list = await query
+                .OrderByDescending(n => n.CreatedAt)
+                .ToListAsync();
+
+            return Ok(list.Select(n => new {
+                n.Id, n.InvoiceDetailId, n.InvoiceId, n.RoomUseId,
+                n.UserId, n.RoomNumber, n.RoomTypeName,
+                n.ServiceName, n.Quantity, n.TotalPrice,
+                n.IsRead, n.CreatedAt,
+            }));
+        }
+
+        /// <summary>Đánh dấu đã đọc notification</summary>
+        [HttpPost("service-notifications/{id}/read")]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> MarkRead(int id)
+        {
+            var n = await _db.ServiceNotifications.FindAsync(id);
+            if (n == null) return NotFound();
+            n.IsRead = true;
+            await _db.SaveChangesAsync();
+            return Ok(new { n.Id, n.IsRead });
+        }
+
+        /// <summary>Đánh dấu tất cả đã đọc</summary>
+        [HttpPost("service-notifications/read-all")]
+        [Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> MarkAllRead()
+        {
+            var unread = await _db.ServiceNotifications.Where(n => !n.IsRead).ToListAsync();
+            unread.ForEach(n => n.IsRead = true);
+            await _db.SaveChangesAsync();
+            return Ok(new { count = unread.Count });
         }
 
         [HttpPut("{id}")]

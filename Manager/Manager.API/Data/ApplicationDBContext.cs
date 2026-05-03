@@ -30,6 +30,7 @@ namespace Manager.API.Data
         public DbSet<Master> Masters { get; set; }
         public DbSet<SupportChat> SupportChats { get; set; }
         public DbSet<SupportMessage> SupportMessages { get; set; }
+        public DbSet<ServiceNotification> ServiceNotifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
