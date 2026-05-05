@@ -172,7 +172,7 @@ export default function RoomDetail({ roomTypeId }: Props) {
               <span className="rd-reviews">({reviews.length} đánh giá)</span>
             </div>
 
-            {/* Rate cards */}
+            {}
             {rates.length>0&&(
               <div style={{margin:"16px 0"}}>
                 <h3 className="rd-section-title">Bảng giá</h3>
@@ -231,7 +231,7 @@ export default function RoomDetail({ roomTypeId }: Props) {
           </div>
         </div>
 
-        {/* Sidebar */}
+        {}
         <aside className="rd-booking-card">
           <div className="rd-price-block">
             {dayRate
@@ -269,7 +269,7 @@ export default function RoomDetail({ roomTypeId }: Props) {
         </aside>
       </div>
 
-      {/* Booking modal */}
+      {}
       {showBooking&&(
         <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.5)",zIndex:1000,
           display:"flex",alignItems:"center",justifyContent:"center",padding:16}}
@@ -293,7 +293,7 @@ export default function RoomDetail({ roomTypeId }: Props) {
                 <button onClick={resetBooking} style={{background:"none",border:"none",cursor:"pointer",color:"#94a3b8",fontSize:18}}>✕</button>
               </div>
 
-              {/* Rent type toggle */}
+              {}
               <div style={{display:"flex",gap:8,marginBottom:18}}>
                 {(dayRate||rates.some(r=>["Day","Night"].includes(r.rentType)))&&(
                   <button onClick={()=>setRentType("Day")} style={{

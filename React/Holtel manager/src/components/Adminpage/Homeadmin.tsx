@@ -9,7 +9,6 @@ import Modal from './Modal'
 import { apiClient } from '../../constant/api'
 import { API } from '../../constant/config'
 
-/* ── Types ── */
 interface Booking {
   id: number; userId: string; roomTypeId: number; roomTypeName?: string
   fromDate: string; toDate: string; status: string; createdAt: string
@@ -51,7 +50,7 @@ const BOOKING_STATUS_LABEL: Record<string,string> = {
 }
 
 export default function HomeAdmin() {
-  /* Bookings list */
+  
   const [bookings,    setBookings]    = useState<Booking[]>([])
   const [loadingBk,   setLoadingBk]   = useState(true)
   const [bkSearch,    setBkSearch]    = useState('')
@@ -59,17 +58,17 @@ export default function HomeAdmin() {
   const [bkTotalPg,   setBkTotalPg]   = useState(1)
   const [bkTab,       setBkTab]       = useState<'pending'|'active'|'all'>('pending')
 
-  /* Invoices unpaid */
+  
   const [invoices,    setInvoices]    = useState<Invoice[]>([])
   const [loadingInv,  setLoadingInv]  = useState(true)
   const [invSearch,   setInvSearch]   = useState('')
 
-  /* Catalog */
+  
   const [roomTypes,  setRoomTypes]  = useState<RoomTypeItem[]>([])
   const [services,   setServices]   = useState<Service[]>([])
   const [loadingCat, setLoadingCat] = useState(true)
 
-  /* Wizard state */
+  
   const [step,         setStep]        = useState<Step>('main')
   const [selectedRT,   setSelectedRT]  = useState<RoomTypeItem|null>(null)
   const [checkIn,      setCheckIn]     = useState('')
@@ -79,7 +78,7 @@ export default function HomeAdmin() {
   const [rtSearch,     setRtSearch]    = useState('')
   const [toast,        setToast]       = useState<{msg:string;ok:boolean}|null>(null)
 
-  /* CheckIn modal */
+  
   const [checkInBk,    setCheckInBk]   = useState<Booking|null>(null)
   const [doingCheckIn, setDoingCheckIn] = useState(false)
 
@@ -136,7 +135,7 @@ export default function HomeAdmin() {
   useEffect(()=>{ loadInvoices() },[loadInvoices])
   useEffect(()=>{ loadCatalog() },[loadCatalog])
 
-  /* ── Tạo booking (admin) ── */
+  
   const handleCreateBooking = async () => {
     if (!selectedRT) { showToast('Vui lòng chọn loại phòng',false); return }
     if (!checkIn)    { showToast('Vui lòng chọn ngày nhận phòng',false); return }
@@ -160,7 +159,7 @@ export default function HomeAdmin() {
     } finally { setSaving(false) }
   }
 
-  /* ── Check-in: tạo RoomInUse + Invoice ── */
+  
   const handleCheckIn = async () => {
     if (!checkInBk) return
     setDoingCheckIn(true)
@@ -207,7 +206,7 @@ export default function HomeAdmin() {
         }}>{toast.msg}</div>
       )}
 
-      {/* Stats */}
+      {}
       <div style={{display:'flex',gap:16,marginBottom:24,flexWrap:'wrap'}}>
         {[
           {label:'Booking chờ xác nhận',val:pendingCount,   color:'#f59e0b',icon:<ClockCircleOutlined/>},
@@ -229,12 +228,12 @@ export default function HomeAdmin() {
         </button>
       </div>
 
-      {/* Bookings Table */}
+      {}
       <div style={{background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.07)',borderRadius:14,overflow:'hidden',marginBottom:28}}>
         <div style={{padding:'16px 20px',borderBottom:'1px solid rgba(255,255,255,0.07)',display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:8}}>
           <span style={{color:'#fff',fontWeight:700,fontSize:'1rem'}}><HomeOutlined/> Quản lý Booking</span>
           <div style={{display:'flex',gap:6,alignItems:'center',flexWrap:'wrap'}}>
-            {/* Tabs */}
+            {}
             {(['pending','active','all'] as const).map(t=>(
               <button key={t} onClick={()=>setBkTab(t)} style={{
                 padding:'5px 12px',borderRadius:8,cursor:'pointer',fontSize:'0.82rem',fontWeight:600,
@@ -316,7 +315,7 @@ export default function HomeAdmin() {
         )}
       </div>
 
-      {/* Invoices unpaid */}
+      {}
       <div style={{background:'rgba(255,255,255,0.03)',border:'1px solid rgba(255,255,255,0.07)',borderRadius:14,overflow:'hidden'}}>
         <div style={{padding:'16px 20px',borderBottom:'1px solid rgba(255,255,255,0.07)',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
           <span style={{color:'#fff',fontWeight:700,fontSize:'1rem'}}><FileTextOutlined/> Hoá đơn chưa thanh toán</span>
@@ -364,7 +363,7 @@ export default function HomeAdmin() {
         )}
       </div>
 
-      {/* ── Wizard: chọn loại phòng ── */}
+      {}
       {step==='pickRoom'&&(
         <Modal title="Chọn loại phòng" onClose={resetWizard} onSave={()=>selectedRT&&setStep('booking')}>
           <div style={{display:'flex',flexDirection:'column',gap:12}}>
@@ -416,7 +415,7 @@ export default function HomeAdmin() {
         </Modal>
       )}
 
-      {/* ── Wizard: nhập ngày ── */}
+      {}
       {step==='booking'&&selectedRT&&(
         <Modal title={`Booking — ${selectedRT.name}`} onClose={resetWizard} onSave={handleCreateBooking}>
           <div style={{display:'flex',flexDirection:'column',gap:14}}>
@@ -450,7 +449,7 @@ export default function HomeAdmin() {
         </Modal>
       )}
 
-      {/* ── Check-in modal ── */}
+      {}
       {checkInBk&&(
         <Modal title={`Check-in Booking #${checkInBk.id}`} onClose={()=>setCheckInBk(null)} onSave={handleCheckIn}>
           <div style={{display:'flex',flexDirection:'column',gap:12}}>

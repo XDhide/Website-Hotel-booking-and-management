@@ -1,5 +1,4 @@
-// File này chỉ giữ interface type — không còn dữ liệu hardcode.
-// Dữ liệu phòng được load từ API /api/roomtype
+
 
 export interface Room {
   id:             number;
@@ -24,6 +23,3 @@ export interface Comment {
   text:   string;
 }
 
-// Không còn ALL_ROOMS hay COMMENTS hardcode.
-// Dùng apiSearchRoomType() từ RoomTypeService để lấy danh sách phòng.
-// Dùng apiGetReviews() từ ReviewService để lấy đánh giá.

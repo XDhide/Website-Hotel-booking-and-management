@@ -105,7 +105,7 @@ export default function ApiDataTable({
     const meta  = fieldsMeta[key]
     if (meta?.readOnly || meta?.hidden) return null
     const rawVal = form[key]
-    // For date fields: show empty string if null, convert ISO to date-only
+    
     const value = meta?.inputType === 'date'
       ? (rawVal ? String(rawVal).split('T')[0] : '')
       : String(rawVal ?? '')

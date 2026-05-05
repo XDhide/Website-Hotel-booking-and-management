@@ -19,8 +19,8 @@ apiClient.interceptors.response.use(
   (res) => res,
   (err) => {
     if (err.response?.status === 401) {
-      // Chỉ auto-logout khi đang ở trang public (không phải /admin)
-      // Tránh trường hợp SupportChat gọi API bị 401 → tự đăng xuất admin
+      
+      
       const isAdminPage = window.location.pathname.startsWith("/admin");
       if (!isAdminPage) {
         localStorage.removeItem(TOKEN_KEY);

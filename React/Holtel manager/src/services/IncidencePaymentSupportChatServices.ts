@@ -1,7 +1,6 @@
 import { apiClient } from "../constant/api";
 import { API } from "../constant/config";
 
-// ==================== INCIDENT ====================
 const prefixIncident = `${API}/Incident`;
 
 export const apiSearchIncident = async (page = 1, limit = 10): Promise<any> => {
@@ -50,7 +49,6 @@ export const apiDeleteIncident = async (id: number): Promise<any> => {
     }
 };
 
-// ==================== PAYMENT ====================
 const prefixPayment = `${API}/Invoice`;
 
 export const apiGetPaymentsByBooking = async (bookingId: number): Promise<any> => {
@@ -99,7 +97,6 @@ export const PaymentService = {
     splitInvoice:  apiSplitInvoice,
 };
 
-// ==================== SUPPORT CHAT ====================
 const prefixChat = `${API}/SupportChat`;
 
 export const apiGetMyChats = async (): Promise<any> => {

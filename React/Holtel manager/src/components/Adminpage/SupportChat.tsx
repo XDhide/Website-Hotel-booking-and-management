@@ -54,7 +54,7 @@ export default function SupportChat() {
       const res = await apiClient.get(`${API}/SupportChat/my-chats`)
       const raw = res.data
       const list = Array.isArray(raw) ? raw : raw?.data ?? []
-      // Chỉ hiển thị chat đang Open hoặc InProgress (không hiển thị Closed)
+      
       setChats(list.filter((c: Chat) => c.status !== 'Closed'))
     } catch {
       setError('Không thể tải danh sách chat. Vui lòng kiểm tra kết nối.')
@@ -110,12 +110,12 @@ export default function SupportChat() {
     } finally { setSending(false) }
   }
 
-  // Kết thúc hội thoại → xóa khỏi danh sách ngay lập tức
+  
   const handleClose = async () => {
     if (!selectedChat || !window.confirm('Kết thúc và xóa cuộc trò chuyện này?')) return
     try {
       await apiClient.post(`${API}/SupportChat/${selectedChat.id}/close`)
-      // Xóa khỏi danh sách hiển thị (không giữ lại chat đã đóng)
+      
       setChats(prev => prev.filter(c => c.id !== selectedChat.id))
       setSelectedChat(null)
       setMessages([])
@@ -129,7 +129,7 @@ export default function SupportChat() {
 
   return (
     <div className="support-wapper">
-      {/* Danh sách chat */}
+      {}
       <div className="support-user-box">
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -173,7 +173,7 @@ export default function SupportChat() {
         ))}
       </div>
 
-      {/* Khung chat */}
+      {}
       <div className="support-chat-box">
         {!selectedChat ? (
           <div className="support-chat-placeholder">
@@ -182,7 +182,7 @@ export default function SupportChat() {
           </div>
         ) : (
           <>
-            {/* Header */}
+            {}
             <div className="support-chat-header" style={{ justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <div className="support-user-icon small">
@@ -205,7 +205,7 @@ export default function SupportChat() {
               </button>
             </div>
 
-            {/* Messages */}
+            {}
             <div className="support-chat-box-output">
               {loadingMsgs ? (
                 <div style={{ textAlign: 'center', padding: 20, color: 'rgba(255,255,255,0.3)' }}>Đang tải tin nhắn...</div>
@@ -225,7 +225,7 @@ export default function SupportChat() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
+            {}
             <div className="support-chat-box-input">
               <input
                 type="text"

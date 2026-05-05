@@ -17,7 +17,7 @@ export const apiGetMyBookings = async (): Promise<any[]> => {
     try {
         const res = await apiClient.get(`${prefix}/my-bookings`);
         const data = res?.data;
-        // API returns array directly
+        
         return Array.isArray(data) ? data : [];
     } catch (err: any) {
         console.error("[BookingService.getMyBookings]", err);

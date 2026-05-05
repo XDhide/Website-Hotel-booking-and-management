@@ -70,7 +70,7 @@ export default function Header() {
         setPassword("");
     };
 
-    // ─── LOGIN ───────────────────────────────────────────────────────────────────
+    
 
     const handleLogin = async () => {
         if (!username || !password) {
@@ -106,7 +106,7 @@ export default function Header() {
         }
     };
 
-    // ─── REGISTER ────────────────────────────────────────────────────────────────
+    
 
     const handleRegister = async () => {
         if (!username || !email || !password) {
@@ -118,7 +118,7 @@ export default function Header() {
         setError("");
 
         try {
-            // FIX: gọi đúng API register, trả về token sau khi đăng ký thành công
+            
             const res = await apiRegister({ username, email, password });
 
             if (!res?.token) {
@@ -158,7 +158,7 @@ export default function Header() {
         setDropdownOpen(false);
     };
 
-    // FIX: nav links có onClick để điều hướng
+    
     const navLinks = [
         { label: "Phòng",       path: "/rooms"   },
         { label: "Yêu thích",   path: "/favorites" },
@@ -193,7 +193,7 @@ export default function Header() {
                     </div>
 
                     <nav className="nav">
-                        {/* FIX: các nav link có onClick điều hướng */}
+                        {}
                         {navLinks.map((link) => (
                             <button
                                 key={link.label}
@@ -242,7 +242,7 @@ export default function Header() {
                                             </button>
                                         )}
 
-                                        {/* FIX: dropdown buttons có onClick điều hướng */}
+                                        {}
                                         <button
                                             className="dropdown-item"
                                             onClick={() => { navigate("/current-bookings"); setDropdownOpen(false); }}
@@ -275,7 +275,7 @@ export default function Header() {
                 </div>
             </header>
 
-            {/* Auth Modal */}
+            {}
             {authMode && (
                 <div className="auth-modal-overlay" ref={modalRef}>
                     <div className="auth-modal">

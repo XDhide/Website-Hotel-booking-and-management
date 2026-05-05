@@ -92,7 +92,7 @@ export default function BookingHistory() {
         </div>
 
         <div className="container bh-body">
-          {/* Stats */}
+          {}
           <div className="bh-stats">
             {[
               { label: "Tổng giao dịch",  value: txns.length,         color: "#3b82f6", isCount: true },
@@ -109,7 +109,7 @@ export default function BookingHistory() {
             ))}
           </div>
 
-          {/* Filters */}
+          {}
           <div className="bh-filters">
             <div className="bh-filter-tabs">
               {([
@@ -135,7 +135,7 @@ export default function BookingHistory() {
             </div>
           </div>
 
-          {/* Content */}
+          {}
           {loading ? (
             <div className="bh-empty"><LoadingOutlined style={{ fontSize: 32 }} /></div>
           ) : filtered.length === 0 ? (
@@ -150,12 +150,12 @@ export default function BookingHistory() {
                 const statusCfg = STATUS_CFG[t.status ?? ""] ?? { label: t.status, color: "#64748b", bg: "rgba(0,0,0,0.06)" }
                 return (
                   <div key={t.transactionId} className="bh-txn-card">
-                    {/* Icon */}
+                    {}
                     <div className="bh-txn-icon" style={{ background: typeCfg.bg, color: typeCfg.color }}>
                       {typeCfg.icon}
                     </div>
 
-                    {/* Info */}
+                    {}
                     <div className="bh-txn-info">
                       <div className="bh-txn-title">
                         {t.typeLabel}
@@ -176,7 +176,7 @@ export default function BookingHistory() {
                       {t.note && <div className="bh-txn-note">{t.note}</div>}
                     </div>
 
-                    {/* Amount + Status */}
+                    {}
                     <div className="bh-txn-right">
                       <div className="bh-txn-amount" style={{ color: typeCfg.color }}>
                         <DollarOutlined style={{ marginRight: 4 }} />

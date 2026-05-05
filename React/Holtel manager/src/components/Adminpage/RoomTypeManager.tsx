@@ -21,26 +21,26 @@ export default function RoomTypeManager() {
   const [search,  setSearch]  = useState('')
   const PAGE_SIZE = 10
 
-  // ── Add/Edit modal state ──────────────────────────────────────────
+  
   const [modalMode,  setModalMode]  = useState<'add' | 'edit' | null>(null)
   const [editTarget, setEditTarget] = useState<RoomType | null>(null)
   const [form,       setForm]       = useState({ ...EMPTY_FORM })
   const [saving,     setSaving]     = useState(false)
   const [formErr,    setFormErr]    = useState('')
 
-  // Pending images khi thêm mới (chưa upload vì chưa có roomTypeId)
+  
   const [pendingFiles,   setPendingFiles]   = useState<File[]>([])
   const [pendingPreviews, setPendingPreviews] = useState<string[]>([])
   const [uploadingIdx,   setUploadingIdx]   = useState<number | null>(null)
   const addFileRef = useRef<HTMLInputElement>(null)
 
-  // ── Image manager modal ──────────────────────────────────────────
+  
   const [imgTarget, setImgTarget] = useState<RoomType | null>(null)
   const [uploading, setUploading] = useState(false)
   const [imgErr,    setImgErr]    = useState('')
   const fileRef = useRef<HTMLInputElement>(null)
 
-  // ── Load data ────────────────────────────────────────────────────
+  
   const load = useCallback(async (p = page) => {
     setLoading(true)
     try {
@@ -58,7 +58,7 @@ export default function RoomTypeManager() {
     ? items.filter(r => r.name.toLowerCase().includes(search.toLowerCase()))
     : items
 
-  // ── Add / Edit ───────────────────────────────────────────────────
+  
   const openAdd = () => {
     setForm({ ...EMPTY_FORM })
     setPendingFiles([])
@@ -76,7 +76,7 @@ export default function RoomTypeManager() {
     setModalMode('edit')
   }
 
-  // Chọn ảnh trong form Add/Edit (chỉ preview, chưa upload)
+  
   const handleSelectFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? [])
     if (!files.length) return
@@ -94,7 +94,7 @@ export default function RoomTypeManager() {
     setPendingPreviews(prev => prev.filter((_, i) => i !== idx))
   }
 
-  // Upload một file lên server
+  
   const uploadFile = async (roomTypeId: number, file: File, order: number) => {
     const fd = new FormData()
     fd.append('file', file)
@@ -120,7 +120,7 @@ export default function RoomTypeManager() {
         roomTypeId = editTarget!.id
       }
 
-      // Upload tất cả ảnh pending
+      
       for (let i = 0; i < pendingFiles.length; i++) {
         setUploadingIdx(i)
         const existingCount = modalMode === 'edit' ? (editTarget?.images.length ?? 0) : 0
@@ -142,7 +142,7 @@ export default function RoomTypeManager() {
     catch { alert('Xoá thất bại.') }
   }
 
-  // ── Image Manager ────────────────────────────────────────────────
+  
   const openImages = (rt: RoomType) => { setImgTarget({ ...rt }); setImgErr('') }
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -183,7 +183,7 @@ export default function RoomTypeManager() {
 
   return (
     <div className="rtm-wrap">
-      {/* ── Header ── */}
+      {}
       <div className="rtm-header">
         <div className="rtm-header-left">
           <h2 className="rtm-title">Loại Phòng</h2>
@@ -204,7 +204,7 @@ export default function RoomTypeManager() {
         </div>
       </div>
 
-      {/* ── Table ── */}
+      {}
       <div className="rtm-table-wrap">
         {loading ? (
           <div className="rtm-loading"><LoadingOutlined /> Đang tải...</div>
@@ -255,7 +255,7 @@ export default function RoomTypeManager() {
         )}
       </div>
 
-      {/* ── Pagination ── */}
+      {}
       {totalPages > 1 && (
         <div className="rtm-pagination">
           {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
@@ -265,7 +265,7 @@ export default function RoomTypeManager() {
         </div>
       )}
 
-      {/* ── Add / Edit Modal ── */}
+      {}
       {modalMode && (
         <div className="rtm-overlay" onClick={() => setModalMode(null)}>
           <div className="rtm-modal" onClick={e => e.stopPropagation()}>
@@ -289,12 +289,12 @@ export default function RoomTypeManager() {
                 onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
                 placeholder="Mô tả chi tiết..." />
 
-              {/* ── Ảnh ── */}
+              {}
               <label className="rtm-label">
                 Ảnh phòng {modalMode === 'add' ? '(sẽ upload sau khi tạo)' : ''}
               </label>
 
-              {/* Preview pending */}
+              {}
               {pendingPreviews.length > 0 && (
                 <div className="rtm-pending-grid">
                   {pendingPreviews.map((src, idx) => (
@@ -345,7 +345,7 @@ export default function RoomTypeManager() {
         </div>
       )}
 
-      {/* ── Image Manager Modal ── */}
+      {}
       {imgTarget && (
         <div className="rtm-overlay" onClick={() => setImgTarget(null)}>
           <div className="rtm-modal rtm-img-modal" onClick={e => e.stopPropagation()}>

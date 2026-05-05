@@ -56,7 +56,7 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
       const list: Message[] = Array.isArray(raw) ? raw : raw?.data ?? [];
       setMessages(list);
       scrollBottom();
-    } catch { /* silent */ }
+    } catch {  }
   }, []);
 
   const initChat = useCallback(async () => {
@@ -70,7 +70,7 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
         setClosed(res?.status === "Closed");
         await loadMessages(id);
       }
-    } catch { /* ignore */ }
+    } catch {  }
     finally { setLoading(false); }
   }, [chatId, loadMessages]);
 
@@ -78,20 +78,20 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
     if (!open || !chatId || closed) return;
     pollingRef.current = setInterval(async () => {
       try {
-        // Kiểm tra status trước (nếu admin xóa → 200 { status: "Deleted" })
+        
         const statusRes = await apiClient.get(`${API}/SupportChat/${chatId}/status`);
         const st = statusRes?.data?.status;
         if (st === "Deleted" || st === "Closed") {
           setClosed(true);
-          setMessages(prev => [...prev]); // re-render
+          setMessages(prev => [...prev]); 
           return;
         }
-        // Load messages bình thường
+        
         const raw = await apiGetMessages(chatId);
         const list: Message[] = Array.isArray(raw) ? raw : raw?.data ?? [];
         setMessages(list);
       } catch {
-        // Nếu 404 → chat bị xóa
+        
         setClosed(true);
       }
     }, 6000);
@@ -111,7 +111,7 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
       await apiSendMessage({ supportChatId: chatId, message: text });
       await loadMessages(chatId);
     } catch (e: any) {
-      // Nếu chat bị đóng (admin kết thúc), backend trả lỗi
+      
       if (e?.message?.includes("đóng") || e?.message?.includes("Closed")) {
         setClosed(true);
       }

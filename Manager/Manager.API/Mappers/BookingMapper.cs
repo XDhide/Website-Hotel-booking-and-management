@@ -26,13 +26,14 @@ namespace Manager.API.Mappers
         {
             return new Booking
             {
-                UserId = dto.UserId,
+                UserId     = dto.UserId,
                 RoomTypeId = dto.RoomTypeId,
-                Deposit = dto.Deposit,
-                FromDate = dto.FromDate,
-                ToDate = dto.ToDate,
-                Status = "Pending",
-                CreatedAt = DateTime.Now,
+                Deposit    = dto.Deposit,
+                RentType   = dto.RentType ?? "Night",
+                FromDate   = dto.FromDate,
+                ToDate     = dto.ToDate,
+                Status     = "Pending",
+                CreatedAt  = DateTime.Now,
             };
         }
 

@@ -1,14 +1,13 @@
 import {
   SearchOutlined, ReloadOutlined, PlusOutlined, CloseOutlined,
   CheckCircleOutlined, ClockCircleOutlined, FileTextOutlined,
-  ShoppingCartOutlined, DollarOutlined, HomeOutlined, LoadingOutlined,
+  ShoppingCartOutlined, DollarOutlined, HomeOutlined, LoadingOutlined, CustomerServiceOutlined,
 } from '@ant-design/icons'
 import { useState, useEffect, useCallback } from 'react'
 import { apiClient } from '../../constant/api'
 import { API } from '../../constant/config'
 import '../../assets/css/Adminpage/Payment.css'
 
-/* ──────────────── Types ──────────────── */
 interface InvoiceDetail {
   invoiceDetailId: number
   itemType: string
@@ -26,8 +25,8 @@ interface Invoice {
   discountAmount: number
   surchargeAmount: number
   finalAmount: number
-  currentTotal?: number   // tổng invoiceDetails hiện tại (từ backend mới)
-  paymentStatus: string   // "Unpaid" | "Paid"
+  currentTotal?: number   
+  paymentStatus: string   
   paymentMethod: string
   note: string
   createdAt: string
@@ -53,7 +52,6 @@ const fmt = (v: number) =>
 const fmtDate = (s?: string) =>
   s ? new Date(s).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—'
 
-/* ──────────────── Main ──────────────── */
 export default function Payment() {
   const [invoices, setInvoices]   = useState<Invoice[]>([])
   const [loading, setLoading]     = useState(true)
@@ -64,24 +62,28 @@ export default function Payment() {
   const [totalCount, setTotalCount] = useState(0)
   const PAGE_SIZE = 12
 
-  // Detail modal
+  
   const [detail, setDetail]       = useState<Invoice | null>(null)
   const [loadingDetail, setLoadingDetail] = useState(false)
 
-  // Add service modal
+  
   const [showAddSvc, setShowAddSvc] = useState(false)
   const [services, setServices]   = useState<Service[]>([])
   const [selSvc, setSelSvc]       = useState<Service | null>(null)
   const [svcQty, setSvcQty]       = useState(1)
   const [addingSvc, setAddingSvc] = useState(false)
 
-  // Pay modal
+  
   const [paying, setPaying]       = useState(false)
   const [payDiscount, setPayDiscount]   = useState(0)
   const [paySurcharge, setPaySurcharge] = useState(0)
   const [payMethod, setPayMethod]       = useState('Cash')
   const [payNote, setPayNote]           = useState('')
   const [showPayModal, setShowPayModal] = useState(false)
+  const [voucherCode, setVoucherCode]   = useState('')
+  const [voucherInfo, setVoucherInfo]   = useState<any>(null)
+  const [voucherErr, setVoucherErr]     = useState('')
+  const [checkingVoucher, setCheckingVoucher] = useState(false)
 
   const load = useCallback(async (p: number) => {
     setLoading(true)
@@ -99,14 +101,14 @@ export default function Payment() {
 
   useEffect(() => { load(page) }, [load, page])
 
-  // Auto-refresh invoice detail mỗi 15s khi đang mở (để nhận dịch vụ user gọi)
+  
   useEffect(() => {
     if (!detail) return
     const timer = setInterval(async () => {
       try {
         const res = await apiClient.get(`${API}/invoice/${detail.invoiceId}/details`)
         setDetail(res.data)
-      } catch { /* silent */ }
+      } catch {  }
     }, 15000)
     return () => clearInterval(timer)
   }, [detail?.invoiceId])
@@ -125,7 +127,7 @@ export default function Payment() {
     try {
       const res = await apiClient.get(`${API}/invoice/${inv.invoiceId}/details`)
       setDetail(res.data)
-    } catch { /* keep basic data */ }
+    } catch {  }
     finally { setLoadingDetail(false) }
   }
 
@@ -138,7 +140,7 @@ export default function Payment() {
         serviceId: selSvc.id,
         quantity: svcQty,
       })
-      // Reload detail
+      
       const res = await apiClient.get(`${API}/invoice/${detail.invoiceId}/details`)
       setDetail(res.data)
       setShowAddSvc(false)
@@ -146,6 +148,41 @@ export default function Payment() {
     } catch (e: any) {
       alert(e?.response?.data ?? 'Thêm dịch vụ thất bại')
     } finally { setAddingSvc(false) }
+  }
+
+  const openPayModal = () => {
+    setPayDiscount(0); setPaySurcharge(0)
+    setPayMethod('Cash'); setPayNote('')
+    setVoucherCode(''); setVoucherInfo(null); setVoucherErr('')
+    setShowPayModal(true)
+  }
+
+  const checkVoucher = async () => {
+    if (!voucherCode.trim()) return
+    setCheckingVoucher(true); setVoucherErr(''); setVoucherInfo(null)
+    try {
+      const res = await apiClient.get(`${API}/discount?page=1&limit=100`)
+      const list = res.data?.data ?? res.data ?? []
+      const found = list.find((d: any) =>
+        (d.name ?? '').toLowerCase() === voucherCode.trim().toLowerCase() && d.isActive !== false
+      )
+      if (!found) { setVoucherErr('Mã giảm giá không hợp lệ hoặc đã hết hạn'); return }
+
+      
+      let discountAmt = 0
+      if (found.discountType === 'Percent' || found.discountType === 'Percentage') {
+        discountAmt = (detailSubTotal * (found.discountValue ?? 0)) / 100
+        if (found.maxDiscount) discountAmt = Math.min(discountAmt, found.maxDiscount)
+      } else {
+        discountAmt = found.discountValue ?? 0
+      }
+      if (found.minAmount && detailSubTotal < found.minAmount) {
+        setVoucherErr(`Hóa đơn tối thiểu ${fmt(found.minAmount)} để dùng mã này`); return
+      }
+      setVoucherInfo(found)
+      setPayDiscount(Math.round(discountAmt))
+    } catch { setVoucherErr('Không thể kiểm tra mã giảm giá') }
+    finally { setCheckingVoucher(false) }
   }
 
   const handlePay = async () => {
@@ -183,7 +220,7 @@ export default function Payment() {
   const paidTotal   = invoices.filter(i => (i.paymentStatus ?? '').toLowerCase() === 'paid')
                               .reduce((s, i) => s + (i.finalAmount ?? 0), 0)
 
-  /* ── Tính toán preview khi thanh toán ── */
+  
   const detailSubTotal = detail?.invoiceDetails?.reduce((s, d) => s + (d.totalPrice ?? 0), 0) ?? detail?.subTotal ?? 0
   const detailDeposit  = detail?.deposit ?? 0
   const previewFinal   = Math.max(0, detailSubTotal - detailDeposit - payDiscount + paySurcharge)
@@ -191,7 +228,7 @@ export default function Payment() {
   return (
     <div className="payment-wrapper">
 
-      {/* Stats */}
+      {}
       <div className="pmt-stats-row">
         <div className="pmt-stat-card blue">
           <div className="pmt-stat-icon"><FileTextOutlined /></div>
@@ -216,7 +253,7 @@ export default function Payment() {
         </div>
       </div>
 
-      {/* Toolbar */}
+      {}
       <div className="pmt-toolbar">
         <div className="pmt-tabs">
           {(['all','unpaid','paid'] as const).map(t => (
@@ -232,7 +269,7 @@ export default function Payment() {
         <button className="pmt-reload-btn" onClick={() => load(page)}><ReloadOutlined /></button>
       </div>
 
-      {/* Table */}
+      {}
       <div className="pmt-table-card">
         <table className="pmt-table">
           <thead>
@@ -259,7 +296,7 @@ export default function Payment() {
                   <td>
                     <span className="pmt-room">
                       {inv.roomNumber
-                        ? <><span style={{color:'#60a5fa',marginRight:4}}>🏠</span>Phòng {inv.roomNumber}</>
+                        ? <><HomeOutlined style={{color:'#60a5fa',marginRight:4}}/>Phòng {inv.roomNumber}</>
                         : '—'}
                     </span>
                   </td>
@@ -290,7 +327,7 @@ export default function Payment() {
         </table>
       </div>
 
-      {/* Pagination */}
+      {}
       {totalPages > 1 && (
         <div className="pmt-pagination">
           <span className="pmt-page-info">Trang {page}/{totalPages} — {totalCount} hóa đơn</span>
@@ -306,7 +343,7 @@ export default function Payment() {
         </div>
       )}
 
-      {/* ── Detail Modal ── */}
+      {}
       {detail && (
         <div className="pmt-modal-overlay" onClick={() => setDetail(null)}>
           <div className="pmt-modal" onClick={e => e.stopPropagation()}>
@@ -324,7 +361,7 @@ export default function Payment() {
                     <button className="pmt-btn-svc" onClick={() => { setShowAddSvc(true); loadServices() }}>
                       <PlusOutlined /> Thêm dịch vụ
                     </button>
-                    <button className="pmt-btn-pay" onClick={() => setShowPayModal(true)}>
+                    <button className="pmt-btn-pay" onClick={() => openPayModal()}>
                       <DollarOutlined /> Thanh toán
                     </button>
                   </>
@@ -337,7 +374,7 @@ export default function Payment() {
               <div className="pmt-detail-loading"><LoadingOutlined /> Đang tải chi tiết...</div>
             ) : (
               <div className="pmt-modal-body">
-                {/* Invoice Details list */}
+                {}
                 <div className="pmt-detail-section">
                   <div className="pmt-detail-section-title">Chi tiết hóa đơn</div>
                   {detail.invoiceDetails && detail.invoiceDetails.length > 0 ? (
@@ -349,7 +386,7 @@ export default function Payment() {
                         {detail.invoiceDetails.map(d => (
                           <tr key={d.invoiceDetailId}>
                             <td>{d.itemName}</td>
-                            <td><span className={`pmt-item-type ${d.itemType?.toLowerCase()}`}>{d.itemType === 'Room' ? '🏠 Phòng' : '🛎 Dịch vụ'}</span></td>
+                            <td><span className={`pmt-item-type ${d.itemType?.toLowerCase()}`}>{d.itemType === 'Room' ? <><HomeOutlined /> Phòng</> : <><CustomerServiceOutlined /> Dịch vụ</>}</span></td>
                             <td>{fmt(d.unitPrice ?? 0)}</td>
                             <td>{d.quantity}</td>
                             <td className="pmt-amount">{fmt(d.totalPrice ?? 0)}</td>
@@ -362,7 +399,7 @@ export default function Payment() {
                   )}
                 </div>
 
-                {/* Summary */}
+                {}
                 <div className="pmt-summary-box">
                   {[
                     ['Tạm tính', fmt(detailSubTotal)],
@@ -392,7 +429,7 @@ export default function Payment() {
         </div>
       )}
 
-      {/* ── Add Service Modal ── */}
+      {}
       {showAddSvc && detail && (
         <div className="pmt-modal-overlay" onClick={() => setShowAddSvc(false)}>
           <div className="pmt-modal pmt-modal-sm" onClick={e => e.stopPropagation()}>
@@ -430,7 +467,7 @@ export default function Payment() {
         </div>
       )}
 
-      {/* ── Pay Modal ── */}
+      {}
       {showPayModal && detail && (
         <div className="pmt-modal-overlay" onClick={() => setShowPayModal(false)}>
           <div className="pmt-modal pmt-modal-sm" onClick={e => e.stopPropagation()}>
@@ -446,9 +483,28 @@ export default function Payment() {
                   <option value="Card">Thẻ ngân hàng</option>
                   <option value="Transfer">Chuyển khoản</option>
                 </select>
+
+                <label>Mã giảm giá (Voucher)</label>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <input type="text" value={voucherCode} placeholder="Nhập mã voucher..."
+                    style={{ flex: 1, border: '1.5px solid rgba(255,255,255,0.12)', borderRadius: 8, padding: '8px 12px', background: 'rgba(255,255,255,0.06)', color: '#fff', fontSize: 13 }}
+                    onChange={e => { setVoucherCode(e.target.value); setVoucherInfo(null); setVoucherErr('') }}
+                    onKeyDown={e => e.key === 'Enter' && checkVoucher()} />
+                  <button onClick={checkVoucher} disabled={checkingVoucher || !voucherCode.trim()}
+                    style={{ padding: '8px 14px', borderRadius: 8, border: 'none', background: '#3b82f6', color: '#fff', cursor: 'pointer', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}>
+                    {checkingVoucher ? '...' : 'Áp dụng'}
+                  </button>
+                </div>
+                {voucherErr && <div style={{ color: '#f87171', fontSize: 12, marginTop: 4 }}>{voucherErr}</div>}
+                {voucherInfo && (
+                  <div style={{ color: '#22c55e', fontSize: 12, marginTop: 4, padding: '6px 10px', background: 'rgba(34,197,94,0.1)', borderRadius: 6, border: '1px solid rgba(34,197,94,0.3)' }}>
+                    ✓ {voucherInfo.name} — Giảm {voucherInfo.discountType === 'Percent' || voucherInfo.discountType === 'Percentage' ? `${voucherInfo.discountValue}%` : fmt(voucherInfo.discountValue)} → -{fmt(payDiscount)}
+                  </div>
+                )}
+
                 <label>Giảm giá thêm (₫)</label>
                 <input type="number" min={0} value={payDiscount}
-                  onChange={e => setPayDiscount(Number(e.target.value))} />
+                  onChange={e => { setPayDiscount(Number(e.target.value)); setVoucherInfo(null); setVoucherCode('') }} />
                 <label>Phụ thu thêm (₫)</label>
                 <input type="number" min={0} value={paySurcharge}
                   onChange={e => setPaySurcharge(Number(e.target.value))} />

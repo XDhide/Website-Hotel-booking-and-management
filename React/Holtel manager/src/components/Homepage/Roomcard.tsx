@@ -7,8 +7,8 @@ export interface Room {
   id:             number;
   name:           string;
   type:           string;
-  price:          number;         // giá ngày/đêm
-  hourPrice?:     number;         // giá theo giờ (nếu có)
+  price:          number;         
+  hourPrice?:     number;         
   originalPrice?: number;
   rating:         number;
   reviews:        number;

@@ -59,7 +59,7 @@ export default function CalendarSearch() {
     roomType === "all" ? true : r.type === roomType
   );
 
-  const isHighDemand = checkIn !== "" && new Date(checkIn).getDay() === 6; // Thứ 7
+  const isHighDemand = checkIn !== "" && new Date(checkIn).getDay() === 6; 
 
   return (
     <section className="section cs-section">

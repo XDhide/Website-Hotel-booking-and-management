@@ -28,7 +28,7 @@ namespace Manager.API.Repository
                 .ToListAsync();
         }
 
-        public async Task<Booking> CreateAsync(string UserId, int RoomTypeId, Booking model)
+        public async Task<Booking> CreateAsync(string UserId, int RoomTypeId, Booking model, string rentType = "Night")
         {
             var user = await _dBContext.Users.FirstOrDefaultAsync(s => s.Id == UserId);
             if (user == null) throw new Exception("User not found");
@@ -37,8 +37,6 @@ namespace Manager.API.Repository
                 .Include(rt => rt.Rooms)
                 .FirstOrDefaultAsync(s => s.Id == RoomTypeId);
             if (roomType == null) throw new Exception("RoomType not found");
-
-            bool isAdminBooking = model.Deposit == null || model.Deposit == 0;
 
             // Tìm phòng Available
             var availableRoom = roomType.Rooms?.FirstOrDefault(r => r.CurrentStatus == "Available");
@@ -51,36 +49,35 @@ namespace Manager.API.Repository
 
             var newModel = new Booking
             {
-                UserId = UserId,
+                UserId     = UserId,
                 RoomTypeId = RoomTypeId,
-                Deposit = isAdminBooking ? 0 : model.Deposit,
-                FromDate = model.FromDate,
-                ToDate = model.ToDate,
-                Status = "Pending",
-                CreatedAt = DateTime.Now
+                Deposit    = model.Deposit ?? 0,
+                RentType   = rentType,
+                FromDate   = model.FromDate,
+                ToDate     = model.ToDate,
+                Status     = "Pending",
+                CreatedAt  = DateTime.Now,
             };
 
             await _dBContext.Bookings.AddAsync(newModel);
             await _dBContext.SaveChangesAsync();
 
-            // Tạo RoomInUse với Status = "Pending" (chưa checkin)
+            // Tạo RoomInUse - RentType lưu ở đây
             var roomInUse = new RoomInUse
             {
-                BookingId = newModel.Id,
-                RoomId = availableRoom.RoomId,
-                RentType = "Night",
-                CheckInActual = null,   // chưa checkin
+                BookingId      = newModel.Id,
+                RoomId         = availableRoom.RoomId,
+                RentType       = rentType,
+                CheckInActual  = null,
                 CheckOutActual = null,
-                PricePerUnit = 0,       // sẽ được tính lúc checkin
-                TotalAmount = 0,
-                Status = "Pending",
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
+                PricePerUnit   = 0,
+                TotalAmount    = 0,
+                Status         = "Pending",
+                CreatedAt      = DateTime.Now,
+                UpdatedAt      = DateTime.Now,
             };
             await _dBContext.RoomInUses.AddAsync(roomInUse);
             await _dBContext.SaveChangesAsync();
-
-            // KHÔNG tạo Invoice ở đây. Invoice chỉ tạo khi CheckIn.
 
             return newModel;
         }

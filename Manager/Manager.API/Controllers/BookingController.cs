@@ -96,18 +96,29 @@ namespace Manager.API.Controllers
                 .OrderByDescending(b => b.CreatedAt)
                 .ToListAsync();
 
-            // Lọc thêm: nếu có roomInUse và tất cả invoice đều Paid → ẩn đi
+            // Lọc: ẩn booking khi tất cả invoice đã Paid (admin đã thanh toán xong)
             var result = bookings
                 .Where(b => {
                     var rooms = b.RoomInUses?.ToList() ?? new System.Collections.Generic.List<Models.RoomInUse>();
-                    if (!rooms.Any()) return true; // chưa checkin → vẫn hiện
-                    // Có room Active → hiện
-                    if (rooms.Any(r => r.Status == "Active")) return true;
-                    // Có room mà tất cả invoice đã Paid → ẩn
-                    var allPaid = rooms.All(r =>
-                        r.Invoices == null || !r.Invoices.Any() ||
-                        r.Invoices.All(i => i.PaymentStatus == "Paid"));
-                    return !allPaid;
+
+                    // Chưa checkin (không có room) → vẫn hiện
+                    if (!rooms.Any()) return true;
+
+                    // Kiểm tra tất cả invoice của tất cả rooms
+                    var allInvoices = rooms
+                        .Where(r => r.Invoices != null)
+                        .SelectMany(r => r.Invoices)
+                        .ToList();
+
+                    // Có invoice và tất cả đều Paid → ẩn (checkout xong)
+                    if (allInvoices.Any() && allInvoices.All(i => i.PaymentStatus == "Paid"))
+                        return false;
+
+                    // Không có invoice mà room đã CheckedOut → ẩn
+                    if (rooms.All(r => r.Status == "CheckedOut"))
+                        return false;
+
+                    return true;
                 })
                 .Select(b => {
                     var activeRoom = b.RoomInUses?.FirstOrDefault(r => r.Status == "Active")
@@ -211,7 +222,7 @@ namespace Manager.API.Controllers
         /// User tự đặt phòng: yêu cầu cọc, tự động tìm phòng trống
         /// </summary>
         [HttpPost]
-        [Authorize(Roles = "Admin,Manager,User")]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] CreateBookingRequestDto dto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)
@@ -240,7 +251,7 @@ namespace Manager.API.Controllers
             try
             {
                 var model = dto.ToCreateBookingModel();
-                var created = await _bookingRepository.CreateAsync(dto.UserId, dto.RoomTypeId, model);
+                var created = await _bookingRepository.CreateAsync(dto.UserId, dto.RoomTypeId, model, dto.RentType ?? "Night");
                 var result = created.ToBookingDto();
                 return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
             }
@@ -314,7 +325,7 @@ namespace Manager.API.Controllers
             try
             {
                 var model = dto.ToCreateBookingModel();
-                var created = await _bookingRepository.CreateAsync(dto.UserId, dto.RoomTypeId, model);
+                var created = await _bookingRepository.CreateAsync(dto.UserId, dto.RoomTypeId, model, "Night");
                 var result = created.ToBookingDto();
                 return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
             }

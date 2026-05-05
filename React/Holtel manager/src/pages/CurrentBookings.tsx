@@ -4,6 +4,7 @@ import {
   LoadingOutlined, CalendarOutlined, ClockCircleOutlined,
   CheckCircleOutlined, ShoppingCartOutlined, PlusOutlined,
   CloseOutlined, DollarOutlined, WarningOutlined, ReloadOutlined,
+  InboxOutlined,
 } from "@ant-design/icons"
 import "../assets/css/Profile/BookingHistory.css"
 import "../assets/css/Profile/CurrentBookings.css"
@@ -22,6 +23,7 @@ interface RoomEntry {
   toDate?: string
   roomTypeName?: string
   roomUseId?: number
+  roomId?: number
   roomNumber?: string
   roomStatus?: string
   checkInActual?: string
@@ -72,13 +74,18 @@ export default function CurrentBookings() {
   const [loading, setLoading]   = useState(true)
   const [search, setSearch]     = useState("")
   const [filter, setFilter]     = useState<"all" | "active" | "pending">("all")
+  const [activeTab, setActiveTab] = useState<"rooms" | "lostitem">("rooms")
 
-  // Invoice expand
+  
+  const [lostItems, setLostItems]     = useState<any[]>([])
+  const [loadingLost, setLoadingLost] = useState(false)
+
+  
   const [expandedId, setExpandedId]   = useState<number | null>(null)
   const [invoiceData, setInvoiceData] = useState<Record<number, any>>({})
   const [loadingInv, setLoadingInv]   = useState<number | null>(null)
 
-  // Service modal
+  
   const [svcRoomId, setSvcRoomId]   = useState<number | null>(null)
   const [services, setServices]     = useState<Service[]>([])
   const [selSvc, setSelSvc]         = useState<Service | null>(null)
@@ -86,8 +93,9 @@ export default function CurrentBookings() {
   const [adding, setAdding]         = useState(false)
   const [svcMsg, setSvcMsg]         = useState<Record<number, string>>({})
 
-  // Incident report modal
+  
   const [incidentRoomId, setIncidentRoomId] = useState<number | null>(null)
+  const [incidentTitle, setIncidentTitle]   = useState("")
   const [incidentDesc, setIncidentDesc]     = useState("")
   const [incidentImg, setIncidentImg]       = useState("")
   const [submittingInc, setSubmittingInc]   = useState(false)
@@ -97,17 +105,30 @@ export default function CurrentBookings() {
     try {
       const data = await apiGetMyActiveRooms()
       setRooms(Array.isArray(data) ? data : [])
-    } catch { /* ignore */ }
+    } catch {  }
     finally { setLoading(false) }
   }, [])
 
   useEffect(() => { loadRooms() }, [loadRooms])
 
-  // Auto-refresh mỗi 30s để detect khi admin thanh toán HĐ
+  
   useEffect(() => {
     const t = setInterval(loadRooms, 30000)
     return () => clearInterval(t)
   }, [loadRooms])
+
+  const loadLostItems = useCallback(async () => {
+    setLoadingLost(true)
+    try {
+      const res = await apiClient.get(`${API}/lostitem/my-lostitem`)
+      setLostItems(Array.isArray(res.data) ? res.data : [])
+    } catch { setLostItems([]) }
+    finally { setLoadingLost(false) }
+  }, [])
+
+  useEffect(() => {
+    if (activeTab === "lostitem") loadLostItems()
+  }, [activeTab, loadLostItems])
 
   const activeCount  = rooms.filter(r => r.roomStatus === "Active").length
   const pendingCount = rooms.filter(r => r.roomStatus !== "Active").length
@@ -136,7 +157,7 @@ export default function CurrentBookings() {
     try {
       const data = await apiGetInvoiceWithDetails(room.invoiceId)
       setInvoiceData(prev => ({ ...prev, [room.id]: data }))
-    } catch { /* ignore */ }
+    } catch {  }
     finally { setLoadingInv(null) }
   }
 
@@ -171,20 +192,23 @@ export default function CurrentBookings() {
     if (!incidentDesc.trim() || !room.roomUseId) return
     setSubmittingInc(true)
     try {
-      await apiClient.post(`${API}/report`, {
-        roomUseId: room.roomUseId,
+      await apiClient.post(`${API}/lostitem`, {
+        roomId:      room.roomId ?? 0,
+        roomUseId:   room.roomUseId,
+        itemName:    incidentTitle.trim() || "Báo cáo sự cố",
         description: incidentDesc,
-        imageUrl: incidentImg || null,
-        status: "Pending",
-        createdAt: new Date().toISOString(),
+        status:      "Pending",
+        foundAt:     null,
       })
       setIncMsg(prev => ({ ...prev, [room.id]: "✓ Báo cáo sự cố đã gửi thành công!" }))
       setIncidentRoomId(null)
+      setIncidentTitle("")
       setIncidentDesc("")
       setIncidentImg("")
       setTimeout(() => setIncMsg(prev => { const n = {...prev}; delete n[room.id]; return n }), 5000)
     } catch (e: any) {
-      setIncMsg(prev => ({ ...prev, [room.id]: `✗ ${e?.response?.data ?? e?.message ?? "Lỗi gửi báo cáo"}` }))
+      const msg = e?.response?.data?.message ?? e?.response?.data ?? e?.message ?? "Lỗi gửi báo cáo"
+      setIncMsg(prev => ({ ...prev, [room.id]: `✗ ${typeof msg === 'string' ? msg : JSON.stringify(msg)}` }))
       setTimeout(() => setIncMsg(prev => { const n = {...prev}; delete n[room.id]; return n }), 4000)
     } finally { setSubmittingInc(false) }
   }
@@ -208,7 +232,81 @@ export default function CurrentBookings() {
         </div>
 
         <div className="container bh-body">
-          {/* Stats */}
+          {}
+          <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
+            {[
+              { key: "rooms",    label: "Phòng đang đặt",  icon: <HomeOutlined /> },
+              { key: "lostitem", label: "Đồ thất lạc",     icon: <InboxOutlined /> },
+            ].map(t => (
+              <button key={t.key}
+                onClick={() => setActiveTab(t.key as "rooms" | "lostitem")}
+                style={{
+                  padding: "9px 20px", borderRadius: 10, border: "none",
+                  fontWeight: 700, fontSize: 14, cursor: "pointer",
+                  display: "flex", alignItems: "center", gap: 6,
+                  background: activeTab === t.key ? "#3b82f6" : "rgba(255,255,255,0.08)",
+                  color: activeTab === t.key ? "#fff" : "rgba(255,255,255,0.55)",
+                  transition: "all 0.15s",
+                }}>
+                {t.icon} {t.label}
+              </button>
+            ))}
+          </div>
+
+          {}
+          {activeTab === "lostitem" && (
+            <div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
+                <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, margin: 0 }}>
+                  Đồ thất lạc được tìm thấy trong các phòng bạn đã lưu trú
+                </p>
+                <button onClick={loadLostItems} style={{ background: "rgba(59,130,246,0.1)", border: "1px solid #bfdbfe", borderRadius: 8, padding: "5px 12px", cursor: "pointer", fontSize: 13, color: "#3b82f6", display: "flex", alignItems: "center", gap: 4 }}>
+                  <ReloadOutlined /> Làm mới
+                </button>
+              </div>
+              {loadingLost ? (
+                <div style={{ textAlign: "center", padding: 40 }}><LoadingOutlined style={{ fontSize: 28 }} /></div>
+              ) : lostItems.length === 0 ? (
+                <div className="bh-empty">
+                  <div className="bh-empty-icon"><InboxOutlined /></div>
+                  <p>Không có đồ thất lạc nào được ghi nhận</p>
+                </div>
+              ) : (
+                <div className="bh-txn-list">
+                  {lostItems.map(item => (
+                    <div key={item.lostItemId} className="bh-txn-card">
+                      <div className="bh-txn-icon" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", fontSize: 22 }}>
+                        📦
+                      </div>
+                      <div className="bh-txn-info">
+                        <div className="bh-txn-title">
+                          {item.itemName}
+                          {item.roomNumber && <span className="bh-txn-room"> · Phòng {item.roomNumber}</span>}
+                        </div>
+                        <div className="bh-txn-meta">
+                          {item.description && <span>{item.description}</span>}
+                          {item.foundAt && <><span style={{ color: "#cbd5e1" }}>·</span><span>Tìm thấy: {new Date(item.foundAt).toLocaleDateString("vi-VN")}</span></>}
+                          <span style={{ color: "#cbd5e1" }}>·</span>
+                          <span>Báo cáo: {new Date(item.createdAt).toLocaleDateString("vi-VN")}</span>
+                        </div>
+                      </div>
+                      <div className="bh-txn-right">
+                        <span className="bh-txn-status" style={{
+                          color: item.status === "Returned" ? "#166534" : item.status === "Found" ? "#1d4ed8" : "#b45309",
+                          background: item.status === "Returned" ? "rgba(34,197,94,0.12)" : item.status === "Found" ? "rgba(59,130,246,0.1)" : "rgba(245,158,11,0.12)",
+                        }}>
+                          {item.status === "Returned" ? "Đã trả" : item.status === "Found" ? "Đã tìm thấy" : item.status === "Pending" ? "Chờ xử lý" : item.status}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {}
+          {activeTab === "rooms" && (<>
           <div className="bh-stats">
             {[
               { label: "Tổng phòng đặt",    value: rooms.length,  color: "#3b82f6", isCount: true },
@@ -225,7 +323,7 @@ export default function CurrentBookings() {
             ))}
           </div>
 
-          {/* Filters */}
+          {}
           <div className="bh-filters">
             <div className="bh-filter-tabs">
               {([
@@ -251,7 +349,7 @@ export default function CurrentBookings() {
             </div>
           </div>
 
-          {/* List */}
+          {}
           {loading ? (
             <div className="bh-empty"><LoadingOutlined style={{ fontSize: 32 }} /></div>
           ) : filtered.length === 0 ? (
@@ -272,14 +370,14 @@ export default function CurrentBookings() {
 
                 return (
                   <div key={room.id} className="bh-txn-card cb-room-card" style={{ flexDirection: "column", alignItems: "stretch", gap: 0 }}>
-                    {/* Main row */}
+                    {}
                     <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                      {/* Icon */}
+                      {}
                       <div className="bh-txn-icon" style={{ background: stCfg.bg, color: stCfg.color, flexShrink: 0 }}>
                         <HomeOutlined />
                       </div>
 
-                      {/* Info */}
+                      {}
                       <div className="bh-txn-info">
                         <div className="bh-txn-title">
                           {room.roomTypeName ?? `Booking #${room.id}`}
@@ -311,7 +409,7 @@ export default function CurrentBookings() {
                         )}
                       </div>
 
-                      {/* Right: price + status + actions */}
+                      {}
                       <div className="bh-txn-right" style={{ flexShrink: 0 }}>
                         {room.pricePerUnit && (
                           <div className="bh-txn-amount" style={{ color: "#3b82f6" }}>
@@ -322,7 +420,7 @@ export default function CurrentBookings() {
                           {stCfg.icon} {stCfg.label}
                         </span>
 
-                        {/* Action buttons */}
+                        {}
                         <div style={{ display: "flex", gap: 6, marginTop: 4, flexWrap: "wrap" }}>
                           {room.invoiceId && (
                             <button
@@ -353,7 +451,7 @@ export default function CurrentBookings() {
                           )}
                           {isActive && (
                             <button
-                              onClick={() => { setIncidentRoomId(room.id); setIncidentDesc(""); setIncidentImg(""); }}
+                              onClick={() => { setIncidentRoomId(room.id); setIncidentTitle(""); setIncidentDesc(""); setIncidentImg(""); }}
                               style={{
                                 padding: "5px 10px", fontSize: 12, fontWeight: 600,
                                 border: "1px solid #fecaca", borderRadius: 7,
@@ -368,7 +466,7 @@ export default function CurrentBookings() {
                       </div>
                     </div>
 
-                    {/* Expanded invoice */}
+                    {}
                     {isExpanded && (
                       <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid #e8f0fe" }}>
                         {loadingInv === room.id ? (
@@ -428,10 +526,11 @@ export default function CurrentBookings() {
               })}
             </div>
           )}
+          </>)}
         </div>
       </div>
 
-      {/* Modal gọi dịch vụ */}
+      {}
       {svcRoomId !== null && svcRoom && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}
           onClick={() => setSvcRoomId(null)}>
@@ -488,7 +587,7 @@ export default function CurrentBookings() {
         </div>
       )}
 
-      {/* Modal báo cáo sự cố */}
+      {}
       {incidentRoomId !== null && incidentRoom && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}
           onClick={() => setIncidentRoomId(null)}>
@@ -499,20 +598,20 @@ export default function CurrentBookings() {
               <button onClick={() => setIncidentRoomId(null)} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 16, color: "#94a3b8" }}><CloseOutlined /></button>
             </div>
             <div style={{ padding: "20px" }}>
-              <label style={{ display: "block", fontWeight: 600, fontSize: 13, color: "#475569", marginBottom: 6 }}>Mô tả sự cố *</label>
+              <label style={{ display: "block", fontWeight: 600, fontSize: 13, color: "#475569", marginBottom: 6 }}>Tên / Tiêu đề sự cố *</label>
+              <input
+                value={incidentTitle}
+                onChange={e => setIncidentTitle(e.target.value)}
+                placeholder="VD: Điều hòa hỏng, Vòi nước bị rỉ, Đồ thất lạc..."
+                style={{ width: "100%", border: "1.5px solid #dbeafe", borderRadius: 10, padding: "10px 14px", fontSize: 14, boxSizing: "border-box", outline: "none", marginBottom: 14 }}
+              />
+              <label style={{ display: "block", fontWeight: 600, fontSize: 13, color: "#475569", marginBottom: 6 }}>Mô tả chi tiết *</label>
               <textarea
                 value={incidentDesc}
                 onChange={e => setIncidentDesc(e.target.value)}
                 placeholder="Mô tả chi tiết sự cố (ví dụ: điều hòa không hoạt động, vòi nước bị rỉ...)"
                 rows={4}
                 style={{ width: "100%", border: "1.5px solid #dbeafe", borderRadius: 10, padding: "10px 14px", fontSize: 14, boxSizing: "border-box", resize: "vertical", outline: "none" }}
-              />
-              <label style={{ display: "block", fontWeight: 600, fontSize: 13, color: "#475569", marginBottom: 6, marginTop: 14 }}>Link ảnh (tuỳ chọn)</label>
-              <input
-                value={incidentImg}
-                onChange={e => setIncidentImg(e.target.value)}
-                placeholder="https://..."
-                style={{ width: "100%", border: "1.5px solid #dbeafe", borderRadius: 10, padding: "10px 14px", fontSize: 14, boxSizing: "border-box", outline: "none" }}
               />
             </div>
             <div style={{ display: "flex", gap: 10, padding: "14px 20px", borderTop: "1px solid #e8f0fe" }}>

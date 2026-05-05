@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { BellOutlined, CheckOutlined, ReloadOutlined, HomeOutlined, ClockCircleOutlined } from '@ant-design/icons'
+import { BellOutlined, CheckOutlined, ReloadOutlined, HomeOutlined, ClockCircleOutlined, CustomerServiceOutlined } from '@ant-design/icons'
 import { apiClient } from '../../constant/api'
 import { API } from '../../constant/config'
 
@@ -49,7 +49,7 @@ export default function ServiceNotificationPanel() {
 
   useEffect(() => { load() }, [load])
 
-  // Auto-refresh mỗi 15s
+  
   useEffect(() => {
     const t = setInterval(load, 15000)
     return () => clearInterval(t)
@@ -60,7 +60,7 @@ export default function ServiceNotificationPanel() {
     try {
       await apiClient.post(`${API}/invoicedetail/service-notifications/${id}/read`)
       setNotifs(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n))
-    } catch { /* ignore */ }
+    } catch {  }
     finally { setMarking(null) }
   }
 
@@ -68,7 +68,7 @@ export default function ServiceNotificationPanel() {
     try {
       await apiClient.post(`${API}/invoicedetail/service-notifications/read-all`)
       setNotifs(prev => prev.map(n => ({ ...n, isRead: true })))
-    } catch { /* ignore */ }
+    } catch {  }
   }
 
   const filtered = filter === 'unread' ? notifs.filter(n => !n.isRead) : notifs
@@ -76,7 +76,7 @@ export default function ServiceNotificationPanel() {
 
   return (
     <div style={{ padding: '24px 28px' }}>
-      {/* Header */}
+      {}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
         <div>
           <h2 style={{ margin: 0, color: '#fff', fontSize: 22, fontWeight: 800, display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -112,7 +112,7 @@ export default function ServiceNotificationPanel() {
         </div>
       </div>
 
-      {/* Filter */}
+      {}
       <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
         {[
           { key: 'all',    label: `Tất cả (${notifs.length})` },
@@ -127,7 +127,7 @@ export default function ServiceNotificationPanel() {
         ))}
       </div>
 
-      {/* List */}
+      {}
       {loading ? (
         <div style={{ textAlign: 'center', padding: 40, color: 'rgba(255,255,255,0.3)' }}>Đang tải...</div>
       ) : filtered.length === 0 ? (
@@ -145,17 +145,17 @@ export default function ServiceNotificationPanel() {
               display: 'flex', alignItems: 'center', gap: 16,
               transition: 'all 0.2s',
             }}>
-              {/* Icon */}
+              {}
               <div style={{
                 width: 46, height: 46, borderRadius: 12, flexShrink: 0,
                 background: n.isRead ? 'rgba(255,255,255,0.07)' : 'rgba(59,130,246,0.2)',
                 color: n.isRead ? 'rgba(255,255,255,0.4)' : '#60a5fa',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20,
               }}>
-                🛎️
+                <CustomerServiceOutlined />
               </div>
 
-              {/* Info */}
+              {}
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontWeight: 700, color: n.isRead ? 'rgba(255,255,255,0.6)' : '#fff', marginBottom: 4 }}>
                   <HomeOutlined style={{ marginRight: 6, color: '#60a5fa' }} />
@@ -173,7 +173,7 @@ export default function ServiceNotificationPanel() {
                 </div>
               </div>
 
-              {/* Amount + action */}
+              {}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8, flexShrink: 0 }}>
                 <span style={{ fontWeight: 800, fontSize: 16, color: '#f59e0b' }}>{fmt(n.totalPrice)}</span>
                 {!n.isRead && (

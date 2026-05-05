@@ -1,10 +1,15 @@
+using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Manager.API.Data;
 using Manager.API.Dtos.LostItem;
 using Manager.API.Interfaces;
 using Manager.API.Mappers;
+using Manager.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Manager.API.Controllers
 {
@@ -13,13 +18,16 @@ namespace Manager.API.Controllers
     public class LostItemController : ControllerBase
     {
         private readonly ILostItemRepository _lostItemRepository;
+        private readonly ApplicationDBContext _db;
 
-        public LostItemController(ILostItemRepository lostItemRepository)
+        public LostItemController(ILostItemRepository lostItemRepository, ApplicationDBContext db)
         {
             _lostItemRepository = lostItemRepository;
+            _db = db;
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
             var result = await _lostItemRepository.GetAllAsync(page, limit);
@@ -38,8 +46,40 @@ namespace Manager.API.Controllers
             return Ok(model.ToLostItemDto());
         }
 
+        [HttpGet("my-lostitem")]
+        [Authorize]
+        public async Task<IActionResult> GetMyLostItems()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId)) return Unauthorized();
+
+            var roomUseIds = await _db.Bookings
+                .Where(b => b.UserId == userId)
+                .SelectMany(b => b.RoomInUses.Select(r => (int?)r.RoomUseId))
+                .ToListAsync();
+
+            var items = await _db.LostItems
+                .Include(l => l.Rooms)
+                .Where(l => l.RoomUseId != null && roomUseIds.Contains(l.RoomUseId))
+                .OrderByDescending(l => l.CreatedAt)
+                .ToListAsync();
+
+            return Ok(items.Select(l => new
+            {
+                l.LostItemId,
+                l.ItemName,
+                l.Description,
+                l.FoundAt,
+                l.Status,
+                l.CreatedAt,
+                RoomNumber = l.Rooms?.RoomNumber,
+                l.RoomId,
+                l.RoomUseId,
+            }));
+        }
+
         [HttpPost]
-        [Authorize(Roles = "Admin,Manager")]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] CreateLostItemRequestDto dto)
         {
             var model = dto.ToCreateLostItemModel();

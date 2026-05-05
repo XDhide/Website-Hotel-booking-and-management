@@ -186,6 +186,22 @@
   },
   {
     "ContainingType": "Manager.API.Controllers.BookingController",
+    "Method": "CalculateDeposit",
+    "RelativePath": "api/booking/calculate-deposit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Booking.CalculateDepositDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.BookingController",
     "Method": "GetMyActiveRooms",
     "RelativePath": "api/booking/my-active-rooms",
     "HttpMethod": "GET",
@@ -718,6 +734,48 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Manager.API.Controllers.InvoiceDetailController",
+    "Method": "GetServiceNotifications",
+    "RelativePath": "api/invoicedetail/service-notifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "unreadOnly",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.InvoiceDetailController",
+    "Method": "MarkRead",
+    "RelativePath": "api/invoicedetail/service-notifications/{id}/read",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.InvoiceDetailController",
+    "Method": "MarkAllRead",
+    "RelativePath": "api/invoicedetail/service-notifications/read-all",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Manager.API.Controllers.LostItemController",
     "Method": "GetAll",
     "RelativePath": "api/lostitem",
@@ -805,6 +863,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.LostItemController",
+    "Method": "GetMyLostItems",
+    "RelativePath": "api/lostitem/my-lostitem",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

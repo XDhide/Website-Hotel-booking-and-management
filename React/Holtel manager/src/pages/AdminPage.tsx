@@ -9,12 +9,14 @@ import ApiDataTable from '../components/Adminpage/DataTable'
 import RoomTypeManager from '../components/Adminpage/RoomTypeManager'
 import RoomRateManager from '../components/Adminpage/RoomRateManager'
 import ServiceNotificationPanel from '../components/Adminpage/ServiceNotificationPanel'
+import IncidentAdminTable from '../components/Adminpage/IncidentAdminTable'
+import RoomAdminTable from '../components/Adminpage/RoomAdminTable'
 import { API } from '../constant/config'
 import '../assets/css/Adminpage/AdminPage.css'
 
 export type PageKey =
   | 'home' | 'users' | 'roomTypes' | 'roomRates' | 'support' | 'settings'
-  | 'room' | 'bill' | 'serve' | 'voucher' | 'lost' | 'incident' | 'report' | 'serviceNotif'
+  | 'room' | 'bill' | 'serve' | 'voucher' | 'lost' | 'report' | 'serviceNotif'
 
 const Badge = ({ value, color = '#22c55e' }: { value: string; color?: string }) => (
   <span style={{
@@ -75,30 +77,17 @@ export default function AdminPage() {
         {}
         {currentPage === 'roomTypes' && <RoomTypeManager />}
 
-        {/* Giá phòng */}
+        {}
         {currentPage === 'roomRates' && <RoomRateManager />}
 
         {}
         {currentPage === 'room' && (
-          <ApiDataTable apiPrefix="rooms" pageSize={10} idKey="roomId"
-            emptyForm={{ roomNumber: '', roomTypeId: 1, currentStatus: 'Available' }}
-            fieldsMeta={{
-              roomNumber:    { label: 'Số phòng',      inputType: 'text' },
-              roomTypeId:    { label: 'Mã loại phòng', inputType: 'number' },
-              currentStatus: {
-                label: 'Trạng thái', inputType: 'select',
-                options: ['Available', 'Occupied', 'Maintenance', 'Reserved'],
-                render: (v) => {
-                  const s = ROOM_STATUS[v] ?? { label: v, color: '#94a3b8' }
-                  return <Badge value={s.label} color={s.color} />
-                },
-              },
-            }} />
+          <RoomAdminTable />
         )}
 
         {currentPage === 'bill' && <Payment />}
 
-        {/* Dịch vụ — route: /api/services */}
+        {}
         {currentPage === 'serve' && (
           <ApiDataTable apiPrefix="services" pageSize={10}
             emptyForm={{ serviceType: '', name: '', price: 0, unit: '' }}
@@ -110,7 +99,7 @@ export default function AdminPage() {
             }} />
         )}
 
-        {/* Voucher — route: /api/discount */}
+        {}
         {currentPage === 'voucher' && (
           <ApiDataTable apiPrefix="discount" pageSize={10}
             emptyForm={{ name: '', discountType: 'Percentage', discountValue: 0, fromDate: null, toDate: null, isActive: true }}
@@ -127,30 +116,9 @@ export default function AdminPage() {
             }} />
         )}
 
-        {/* Đồ thất lạc — route: /api/lostitem */}
+        {}
         {currentPage === 'lost' && (
-          <ApiDataTable apiPrefix="lostitem" pageSize={10} idKey="lostItemId"
-            emptyForm={{ roomId: 0, roomUseId: 0, itemName: '', description: '', status: 'Lost', foundAt: null }}
-            fieldsMeta={{
-              roomId:      { label: 'Phòng ID',       inputType: 'number' },
-              roomUseId:   { label: 'RoomUse ID',     inputType: 'number' },
-              itemName:    { label: 'Tên đồ vật',     inputType: 'text' },
-              description: { label: 'Mô tả',          inputType: 'textarea' },
-              foundAt:     { label: 'Ngày tìm thấy', inputType: 'date', render: (v) => v ? fmtD(v) : '—' },
-              status:      { label: 'Trạng thái',     inputType: 'select',
-                             options: ['Lost', 'Found', 'Returned'],
-                             render: (v) => <Badge value={v} color={LOST_COLOR[v] ?? '#94a3b8'} /> },
-            }} />
-        )}
-
-        {/* Sự cố — route: /api/master (không có Incident controller) */}
-        {currentPage === 'incident' && (
-          <ApiDataTable apiPrefix="master" pageSize={10}
-            emptyForm={{ name: '', description: '' }}
-            fieldsMeta={{
-              name:        { label: 'Tên',   inputType: 'text' },
-              description: { label: 'Mô tả', inputType: 'textarea' },
-            }} />
+          <IncidentAdminTable />
         )}
 
         {currentPage === 'support' && <SupportChat />}

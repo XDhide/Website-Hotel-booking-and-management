@@ -11,6 +11,7 @@ namespace Manager.API.Models
         public string UserId { get; set; }
         public int RoomTypeId { get; set; }
         public double? Deposit { get; set; }
+        public string RentType { get; set; } = "Night";
         public DateTime? FromDate { get; set; }
         public DateTime? ToDate { get; set; }
         public string Status { get; set; }

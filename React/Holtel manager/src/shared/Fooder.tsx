@@ -1,6 +1,7 @@
-// src/components/Footer.tsx  (hoặc src/layouts/Footer.tsx tùy cấu trúc dự án của bạn)
+
 import "../assets/css/Footer.css";
 import { navigate } from "../Approuter.tsx";
+import { HomeOutlined, EnvironmentOutlined, PhoneOutlined, MailOutlined, ClockCircleOutlined, FacebookOutlined, InstagramOutlined, TwitterOutlined, YoutubeOutlined } from "@ant-design/icons";
 
 export default function Footer() {
   const cols = [
@@ -22,24 +23,24 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-grid">
-          {/* Brand & Contact */}
+          {}
           <div className="footer-brand">
             <div className="brand-name">
-              <span>🏨</span> LuxStay
+              <HomeOutlined /> LuxStay
             </div>
             <p className="brand-desc">
               Hệ thống quản lý khách sạn hiện đại, mang đến trải nghiệm lưu trú đẳng cấp và tiện
               nghi tuyệt vời cho mọi khách hàng.
             </p>
             <div className="footer-contacts">
-              <div className="contact-item"><span>📍</span> 123 Đường Lê Lợi, Quận 1, TP.HCM</div>
-              <div className="contact-item"><span>📞</span> (028) 3822 1234</div>
-              <div className="contact-item"><span>✉️</span> info@luxstay.vn</div>
-              <div className="contact-item"><span>🕐</span> 24/7 Phục vụ</div>
+              <div className="contact-item"><EnvironmentOutlined /> 123 Đường Lê Lợi, Quận 1, TP.HCM</div>
+              <div className="contact-item"><PhoneOutlined /> (028) 3822 1234</div>
+              <div className="contact-item"><MailOutlined /> info@luxstay.vn</div>
+              <div className="contact-item"><ClockCircleOutlined /> 24/7 Phục vụ</div>
             </div>
           </div>
 
-          {/* Columns */}
+          {}
           {cols.map((col) => (
             <div key={col.title} className="footer-column">
               <div className="column-title">{col.title}</div>
@@ -54,11 +55,11 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom Bar */}
+        {}
         <div className="footer-bottom">
           <div className="copyright">© 2025 LuxStay. Bảo lưu mọi quyền.</div>
           <div className="social-icons">
-            {["📘", "📸", "🐦", "▶️"].map((icon, i) => (
+            {[<FacebookOutlined />, <InstagramOutlined />, <TwitterOutlined />, <YoutubeOutlined />].map((icon, i) => (
               <button key={i} className="social-btn">
                 {icon}
               </button>

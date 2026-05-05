@@ -41,7 +41,7 @@ export default function AppRouter() {
     };
   }, []);
 
-  // Guard: /admin chỉ cho Admin/Manager
+  
   if (path.startsWith("/admin")) {
     if (!isLoggedIn()) {
       window.history.replaceState(null, "", "/");
@@ -144,7 +144,6 @@ export default function AppRouter() {
   return <HomePage />;
 }
 
-// Helper để navigate từ bất kỳ đâu
 export const navigate = (to: string) => {
   window.dispatchEvent(new CustomEvent("navigate", { detail: to }));
 };

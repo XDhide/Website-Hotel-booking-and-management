@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Manager.API.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20260503173326_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260419163013_InitClean")]
+    partial class InitClean
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -577,38 +577,6 @@ namespace Manager.API.Migrations
                     b.ToTable("RoomTypes");
                 });
 
-            modelBuilder.Entity("Manager.API.Models.RoomTypeImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AltText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoomTypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoomTypeId");
-
-                    b.ToTable("RoomTypeImages");
-                });
-
             modelBuilder.Entity("Manager.API.Models.Rooms", b =>
                 {
                     b.Property<int>("RoomId")
@@ -639,58 +607,6 @@ namespace Manager.API.Migrations
                     b.HasIndex("RoomTypeId");
 
                     b.ToTable("Rooms");
-                });
-
-            modelBuilder.Entity("Manager.API.Models.ServiceNotification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("InvoiceDetailId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InvoiceId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsRead")
-                        .HasColumnType("bit");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<string>("RoomNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RoomTypeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoomUseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ServiceName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("TotalPrice")
-                        .HasColumnType("float");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InvoiceDetailId");
-
-                    b.ToTable("ServiceNotifications");
                 });
 
             modelBuilder.Entity("Manager.API.Models.Services", b =>
@@ -726,69 +642,6 @@ namespace Manager.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Services");
-                });
-
-            modelBuilder.Entity("Manager.API.Models.SupportChat", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("ClosedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("SupportChats");
-                });
-
-            modelBuilder.Entity("Manager.API.Models.SupportMessage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("IsStaff")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SenderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("SentAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("SupportChatId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SenderId");
-
-                    b.HasIndex("SupportChatId");
-
-                    b.ToTable("SupportMessages");
                 });
 
             modelBuilder.Entity("Manager.API.Models.Surcharge", b =>
@@ -1177,17 +1030,6 @@ namespace Manager.API.Migrations
                     b.Navigation("RoomType");
                 });
 
-            modelBuilder.Entity("Manager.API.Models.RoomTypeImage", b =>
-                {
-                    b.HasOne("Manager.API.Models.RoomType", "RoomType")
-                        .WithMany("Images")
-                        .HasForeignKey("RoomTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RoomType");
-                });
-
             modelBuilder.Entity("Manager.API.Models.Rooms", b =>
                 {
                     b.HasOne("Manager.API.Models.RoomType", "RoomType")
@@ -1197,47 +1039,6 @@ namespace Manager.API.Migrations
                         .IsRequired();
 
                     b.Navigation("RoomType");
-                });
-
-            modelBuilder.Entity("Manager.API.Models.ServiceNotification", b =>
-                {
-                    b.HasOne("Manager.API.Models.InvoiceDetail", "InvoiceDetail")
-                        .WithMany()
-                        .HasForeignKey("InvoiceDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("InvoiceDetail");
-                });
-
-            modelBuilder.Entity("Manager.API.Models.SupportChat", b =>
-                {
-                    b.HasOne("Manager.API.Models.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Manager.API.Models.SupportMessage", b =>
-                {
-                    b.HasOne("Manager.API.Models.AppUser", "Sender")
-                        .WithMany()
-                        .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Manager.API.Models.SupportChat", "SupportChat")
-                        .WithMany("Messages")
-                        .HasForeignKey("SupportChatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Sender");
-
-                    b.Navigation("SupportChat");
                 });
 
             modelBuilder.Entity("Messenger", b =>
@@ -1342,8 +1143,6 @@ namespace Manager.API.Migrations
                 {
                     b.Navigation("Bookings");
 
-                    b.Navigation("Images");
-
                     b.Navigation("RoomRates");
 
                     b.Navigation("Rooms");
@@ -1354,11 +1153,6 @@ namespace Manager.API.Migrations
                     b.Navigation("LostItems");
 
                     b.Navigation("RoomInUses");
-                });
-
-            modelBuilder.Entity("Manager.API.Models.SupportChat", b =>
-                {
-                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

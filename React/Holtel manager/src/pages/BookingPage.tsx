@@ -67,12 +67,12 @@ export default function BookingPage({ roomTypeId, checkIn = "", checkOut = "", g
       try {
         const payload = JSON.parse(atob(token.split(".")[1]));
         userId = payload?.sub ?? payload?.nameid ?? payload?.userId ?? "";
-      } catch { /* ignore */ }
+      } catch {  }
 
       await apiCreateBooking({
         userId:     userId,
         roomTypeId: roomTypeId,
-        fromDate:   ciDate,   // đã validate !== '' ở trên
+        fromDate:   ciDate,   
         toDate:     coDate,
         status:     "Pending",
         createdAt:  new Date().toISOString(),
@@ -139,7 +139,7 @@ export default function BookingPage({ roomTypeId, checkIn = "", checkOut = "", g
         <h1 className="bk-title">Đặt phòng</h1>
 
         <div className="bk-layout">
-          {/* ── LEFT: Form ── */}
+          {}
           <div className="bk-left">
             <div className="bk-section">
               <h3 className="bk-section-title"><CalendarOutlined /> Thông tin lưu trú</h3>
@@ -188,7 +188,7 @@ export default function BookingPage({ roomTypeId, checkIn = "", checkOut = "", g
             </div>
           </div>
 
-          {/* ── RIGHT: Summary ── */}
+          {}
           <div className="bk-right">
             <div className="bk-summary">
               <h3 className="bk-summary-title">Tóm tắt đặt phòng</h3>
@@ -227,7 +227,7 @@ export default function BookingPage({ roomTypeId, checkIn = "", checkOut = "", g
 
               <div className="bk-status-badge">Trạng thái sau đặt: <strong>Chờ xác nhận</strong></div>
 
-              {/* Hiển thị số phòng trống */}
+              {}
               {roomType && (
                 <div className={`bk-avail-badge ${(roomType.availableRooms ?? 0) > 0 ? 'ok' : 'none'}`}>
                   {(roomType.availableRooms ?? 0) > 0

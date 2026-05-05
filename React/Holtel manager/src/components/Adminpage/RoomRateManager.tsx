@@ -43,7 +43,7 @@ export default function RoomRateManager() {
   const [rates, setRates]         = useState<RoomRate[]>([])
   const [roomTypes, setRoomTypes] = useState<RoomType[]>([])
   const [loading, setLoading]     = useState(true)
-  const [filterRT, setFilterRT]   = useState(0)   // 0 = all
+  const [filterRT, setFilterRT]   = useState(0)   
   const [filterType, setFilterType] = useState('')
 
   const [showForm, setShowForm]   = useState(false)
@@ -140,7 +140,7 @@ export default function RoomRateManager() {
   return (
     <div className="rrm-wrapper">
 
-      {/* Header */}
+      {}
       <div className="rrm-header">
         <div>
           <h2 className="rrm-title"><TagsOutlined /> Quản lý giá phòng</h2>
@@ -151,7 +151,7 @@ export default function RoomRateManager() {
         </button>
       </div>
 
-      {/* Filters */}
+      {}
       <div className="rrm-filters">
         <select
           className="rrm-filter-select"
@@ -176,7 +176,7 @@ export default function RoomRateManager() {
         <span className="rrm-count">{filtered.length} mức giá</span>
       </div>
 
-      {/* Cards grid */}
+      {}
       {loading ? (
         <div className="rrm-loading"><LoadingOutlined /> Đang tải...</div>
       ) : filtered.length === 0 ? (
@@ -230,7 +230,7 @@ export default function RoomRateManager() {
         </div>
       )}
 
-      {/* Form Modal */}
+      {}
       {showForm && (
         <div className="rrm-overlay" onClick={() => setShowForm(false)}>
           <div className="rrm-modal" onClick={e => e.stopPropagation()}>

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Manager.API.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class AddBookingRentType : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -334,6 +334,7 @@ namespace Manager.API.Migrations
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     RoomTypeId = table.Column<int>(type: "int", nullable: false),
                     Deposit = table.Column<double>(type: "float", nullable: true),
+                    RentType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FromDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ToDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),

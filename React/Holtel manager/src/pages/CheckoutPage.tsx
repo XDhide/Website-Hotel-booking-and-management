@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {
   LeftOutlined, CalendarOutlined, ClockCircleOutlined,
   CheckCircleOutlined, LoadingOutlined, DollarOutlined,
-  CreditCardOutlined, SafetyOutlined, UserOutlined,
+  CreditCardOutlined, SafetyOutlined, UserOutlined, BankOutlined,
 } from "@ant-design/icons";
 import { navigate } from "../Approuter";
 import Header from "../shared/Header";
@@ -40,7 +40,7 @@ export default function CheckoutPage({ roomTypeId }: Props) {
   const [rates, setRates]       = useState<RoomRate[]>([]);
   const [loading, setLoading]   = useState(true);
 
-  // Form state
+  
   const [rentType, setRentType] = useState<string>("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate]     = useState("");
@@ -48,12 +48,12 @@ export default function CheckoutPage({ roomTypeId }: Props) {
   const [toHour, setToHour]     = useState("");
   const [guests, setGuests]     = useState(1);
 
-  // Calculated
+  
   const [estimate, setEstimate]   = useState(0);
   const [deposit, setDeposit]     = useState(0);
   const [units, setUnits]         = useState(0);
 
-  // Payment flow
+  
   const [step, setStep]         = useState<Step>("select");
   const [payMethod, setPayMethod] = useState<"bank" | "card">("bank");
   const [paying, setPaying]     = useState(false);
@@ -73,12 +73,12 @@ export default function CheckoutPage({ roomTypeId }: Props) {
       setRoomType(rt);
       const active: RoomRate[] = Array.isArray(rr) ? rr.filter((r: RoomRate) => r.isActive !== false) : [];
       setRates(active);
-      // Default: chọn loại đầu tiên
+      
       if (active.length > 0) setRentType(active[0].rentType);
     }).finally(() => setLoading(false));
   }, [roomTypeId]);
 
-  // Tính estimate + deposit mỗi khi thay đổi
+  
   useEffect(() => {
     const rate = rates.find(r => r.rentType === rentType);
     if (!rate) { setEstimate(0); setDeposit(0); setUnits(0); return; }
@@ -127,10 +127,11 @@ export default function CheckoutPage({ roomTypeId }: Props) {
 
   const handlePay = async () => {
     setPaying(true);
-    // Giả lập xử lý thanh toán 2 giây
+    setError("");
+    
     await new Promise(r => setTimeout(r, 2000));
     setPaying(false);
-    // Tạo booking
+    
     await handleCreateBooking();
   };
 
@@ -143,6 +144,9 @@ export default function CheckoutPage({ roomTypeId }: Props) {
       if (rentType === "Hour") {
         fromDateTime = `${fromDate}T${fromHour}:00`;
         toDateTime   = `${fromDate}T${toHour}:00`;
+      } else {
+        fromDateTime = `${fromDate}T14:00:00`; 
+        toDateTime   = `${toDate}T12:00:00`;   
       }
 
       const res = await apiClient.post(`${API}/booking`, {
@@ -151,16 +155,20 @@ export default function CheckoutPage({ roomTypeId }: Props) {
         toDate: toDateTime,
         rentType,
         estimatedTotal: estimate,
-        deposit: deposit,
+        deposit,
         status: "Pending",
-        createdAt: new Date().toISOString(),
       });
 
-      setCreatedBookingId(res.data?.id ?? res.data?.Id);
+      const bookingId = res.data?.id ?? res.data?.Id ?? res.data?.data?.id;
+      setCreatedBookingId(bookingId);
       setStep("done");
     } catch (e: any) {
-      setError(e?.response?.data?.message ?? e?.response?.data ?? e?.message ?? "Đặt phòng thất bại.");
-      setStep("payment"); // back to payment on error
+      const msg = e?.response?.data?.message
+        ?? e?.response?.data
+        ?? e?.message
+        ?? "Đặt phòng thất bại. Vui lòng thử lại.";
+      setError(typeof msg === "string" ? msg : JSON.stringify(msg));
+      setStep("payment");
     } finally {
       setBooking(false);
     }
@@ -184,7 +192,7 @@ export default function CheckoutPage({ roomTypeId }: Props) {
     <div className="bp-page">
       <Header />
 
-      {/* Back bar */}
+      {}
       <div className="bp-back-bar">
         <div className="container">
           <button className="bp-back-btn" onClick={() => navigate(`/rooms/${roomTypeId}`)}>
@@ -194,7 +202,7 @@ export default function CheckoutPage({ roomTypeId }: Props) {
       </div>
 
       <div className="container bp-body">
-        {/* ── STEP INDICATOR ── */}
+        {}
         <div className="bp-steps">
           {[
             { key: "select",  label: "Chọn thời gian" },
@@ -211,15 +219,15 @@ export default function CheckoutPage({ roomTypeId }: Props) {
         </div>
 
         <div className="bp-content">
-          {/* ── LEFT: main form / payment ── */}
+          {}
           <div className="bp-main">
 
-            {/* STEP 1: Chọn loại & thời gian */}
+            {}
             {step === "select" && (
               <div className="bp-card">
                 <h2 className="bp-card-title"><CalendarOutlined /> Thông tin lưu trú</h2>
 
-                {/* Chọn loại thuê */}
+                {}
                 <div className="bp-field">
                   <label className="bp-label">Loại thuê phòng</label>
                   <div className="bp-rent-tabs">
@@ -239,7 +247,7 @@ export default function CheckoutPage({ roomTypeId }: Props) {
                   </div>
                 </div>
 
-                {/* Ngày / giờ */}
+                {}
                 {rentType !== "Hour" ? (
                   <div className="bp-date-row">
                     <div className="bp-field">
@@ -275,7 +283,7 @@ export default function CheckoutPage({ roomTypeId }: Props) {
                   </>
                 )}
 
-                {/* Số khách */}
+                {}
                 <div className="bp-field">
                   <label className="bp-label"><UserOutlined /> Số khách</label>
                   <select className="bp-input" value={guests} onChange={e => setGuests(Number(e.target.value))}>
@@ -296,12 +304,12 @@ export default function CheckoutPage({ roomTypeId }: Props) {
               </div>
             )}
 
-            {/* STEP 2: Thanh toán */}
+            {}
             {step === "payment" && (
               <div className="bp-card">
                 <h2 className="bp-card-title"><CreditCardOutlined /> Thanh toán cọc đặt phòng</h2>
 
-                {/* Tóm tắt đơn */}
+                {}
                 <div className="bp-summary-box">
                   <div className="bp-summary-row">
                     <span>Loại thuê:</span>
@@ -334,12 +342,12 @@ export default function CheckoutPage({ roomTypeId }: Props) {
                   </div>
                 </div>
 
-                {/* Phương thức thanh toán */}
+                {}
                 <label className="bp-label" style={{ marginTop: 20 }}>Phương thức thanh toán</label>
                 <div className="bp-pay-methods">
                   {[
-                    { key: "bank", label: "Chuyển khoản ngân hàng", icon: "🏦" },
-                    { key: "card", label: "Thẻ tín dụng / Ghi nợ", icon: "💳" },
+                    { key: "bank", label: "Chuyển khoản ngân hàng", icon: <BankOutlined /> },
+                    { key: "card", label: "Thẻ tín dụng / Ghi nợ", icon: <CreditCardOutlined /> },
                   ].map(m => (
                     <div
                       key={m.key}
@@ -389,8 +397,10 @@ export default function CheckoutPage({ roomTypeId }: Props) {
                     ← Quay lại
                   </button>
                   <button className="bp-primary-btn" onClick={handlePay} disabled={paying || booking}>
-                    {paying || booking
-                      ? <><LoadingOutlined style={{ marginRight: 8 }} />{paying ? "Đang xử lý..." : "Đang tạo booking..."}</>
+                    {paying
+                      ? <><LoadingOutlined style={{ marginRight: 8 }} />Đang xử lý thanh toán...</>
+                      : booking
+                      ? <><LoadingOutlined style={{ marginRight: 8 }} />Đang tạo đặt phòng...</>
                       : <><SafetyOutlined style={{ marginRight: 8 }} />Xác nhận thanh toán {fmt(deposit)}</>
                     }
                   </button>
@@ -399,7 +409,7 @@ export default function CheckoutPage({ roomTypeId }: Props) {
               </div>
             )}
 
-            {/* STEP 3: Hoàn tất */}
+            {}
             {step === "done" && (
               <div className="bp-card" style={{ textAlign: "center", padding: "48px 32px" }}>
                 <CheckCircleOutlined style={{ fontSize: 64, color: "#22c55e", marginBottom: 20 }} />
@@ -425,7 +435,7 @@ export default function CheckoutPage({ roomTypeId }: Props) {
             )}
           </div>
 
-          {/* ── RIGHT: summary sidebar ── */}
+          {}
           {step !== "done" && (
             <aside className="bp-sidebar">
               <div className="bp-sidebar-card">
