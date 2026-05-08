@@ -52,7 +52,9 @@
   font-size: 15px;
   cursor: pointer;
   position: relative;
-  transition: background 0.18s, color 0.18s;
+  transition:
+    background 0.18s,
+    color 0.18s;
   text-align: left;
   width: 100%;
 }
@@ -87,4 +89,8 @@
   height: 60%;
   background: #fff;
   border-radius: 2px 0 0 2px;
+}
+
+.logo-dot-manager {
+  background: #f59e0b;
 }

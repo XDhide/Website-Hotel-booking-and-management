@@ -60,3 +60,9 @@ export const RoomService = {
     update:  apiUpdate,
     delete:  apiDelete,
 };
+
+
+export const apiGetAllRooms    = (page = 1, limit = 10) => apiSearch(page, limit);
+export const apiCreateRoom     = (data: any)            => apiCreate(data);
+export const apiUpdateRoom     = (id: number, data: any)=> apiUpdate(id, data);
+export const apiDeleteRoom     = (id: number)           => apiDelete(id);

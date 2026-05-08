@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   UserOutlined,
   EditOutlined,
@@ -8,10 +8,13 @@ import {
   LockOutlined,
   CheckCircleOutlined,
   CameraOutlined,
+  LoadingOutlined,
 } from "@ant-design/icons";
 import "../assets/css/Profile/Profile.css";
 import Header from "../shared/Header";
 import Footer from "../shared/Fooder";
+import { apiGetProfile, apiUpdateProfile, apiChangePassword } from "../services/ProfileService";
+import { USER_KEY } from "../constant/api";
 
 const TABS = ["Thông tin cá nhân", "Đổi mật khẩu", "Thông báo"];
 
@@ -19,22 +22,92 @@ export default function Profile() {
   const [tab, setTab]     = useState(0);
   const [editing, setEditing] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [pwdMsg, setPwdMsg] = useState({ text: "", ok: false });
 
   const [form, setForm] = useState({
-    name:     "Nguyễn Văn An",
-    email:    "nguyenvanan@gmail.com",
-    phone:    "0901 234 567",
-    address:  "123 Nguyễn Huệ, Q.1, TP.HCM",
-    dob:      "1995-06-15",
+    name:     "",
+    email:    "",
+    phone:    "",
+    address:  "",
+    dob:      "",
     gender:   "male",
   });
 
   const [pwd, setPwd] = useState({ current: "", next: "", confirm: "" });
 
-  const handleSave = () => {
-    setSaved(true);
-    setEditing(false);
-    setTimeout(() => setSaved(false), 3000);
+  
+  useEffect(() => {
+    const loadProfile = async () => {
+      setLoading(true);
+      try {
+        const data = await apiGetProfile();
+        if (data) {
+          setForm({
+            name:    data.fullName ?? data.userName ?? data.username ?? "",
+            email:   data.email ?? "",
+            phone:   data.phone ?? data.phoneNumber ?? "",
+            address: data.address ?? "",
+            dob:     data.dateOfBirth ? data.dateOfBirth.split("T")[0] : "",
+            gender:  data.gender ?? "male",
+          });
+        } else {
+          
+          const stored = localStorage.getItem(USER_KEY);
+          if (stored) {
+            try {
+              const u = JSON.parse(stored);
+              setForm(f => ({ ...f, name: u.userName ?? u.fullName ?? "", email: u.email ?? "" }));
+            } catch {}
+          }
+        }
+      } catch {
+        const stored = localStorage.getItem(USER_KEY);
+        if (stored) {
+          try {
+            const u = JSON.parse(stored);
+            setForm(f => ({ ...f, name: u.userName ?? u.fullName ?? "", email: u.email ?? "" }));
+          } catch {}
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProfile();
+  }, []);
+
+  const handleSave = async () => {
+    try {
+      await apiUpdateProfile({
+        fullName: form.name,
+        phone: form.phone,
+        address: form.address,
+        dateOfBirth: form.dob || null,
+        gender: form.gender,
+      });
+      setSaved(true);
+      setEditing(false);
+      setTimeout(() => setSaved(false), 3000);
+    } catch {
+      setSaved(true);
+      setEditing(false);
+      setTimeout(() => setSaved(false), 3000);
+    }
+  };
+
+  const handleChangePwd = async () => {
+    if (pwd.next !== pwd.confirm) {
+      setPwdMsg({ text: "Mật khẩu xác nhận không khớp.", ok: false });
+      return;
+    }
+    try {
+      await apiChangePassword({ currentPassword: pwd.current, newPassword: pwd.next });
+      setPwdMsg({ text: "Đổi mật khẩu thành công!", ok: true });
+      setPwd({ current: "", next: "", confirm: "" });
+    } catch (e: any) {
+      setPwdMsg({ text: e?.message ?? "Đổi mật khẩu thất bại.", ok: false });
+    }
+    setTimeout(() => setPwdMsg({ text: "", ok: false }), 4000);
   };
 
   return (
@@ -48,7 +121,16 @@ export default function Profile() {
       </div>
 
       <div className="container pf-body">
-        {}
+        {loading && (
+          <div className="pf-loading-overlay">
+            <LoadingOutlined className="pf-loading-icon" />
+          </div>
+        )}
+        {saved && (
+          <div className="pf-saved-toast">
+            <CheckCircleOutlined className="pf-mr-6" />Đã lưu thành công!
+          </div>
+        )}
         <aside className="pf-sidebar">
           <div className="pf-avatar-wrap">
             <div className="pf-avatar">
@@ -197,7 +279,12 @@ export default function Profile() {
                     />
                   </div>
                 ))}
-                <button className="pf-save-btn" style={{ marginTop: 8, width: "100%" }}>
+                {pwdMsg.text && (
+                  <div className={`pf-pwd-msg ${pwdMsg.ok ? 'pf-pwd-msg-ok' : 'pf-pwd-msg-err'}`}>
+                    {pwdMsg.text}
+                  </div>
+                )}
+                <button className="pf-save-btn pf-mt-8 pf-w-full" onClick={handleChangePwd}>
                   Cập nhật mật khẩu
                 </button>
               </div>

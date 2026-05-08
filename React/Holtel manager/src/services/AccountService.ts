@@ -7,8 +7,8 @@ const prefix = `${API}/Account`;
 export const apiLogin = async (data: { username: string; password: string }): Promise<any> => {
     try {
         const res = await apiClient.post(`${prefix}/login`, data);
-        const { token, userName, email, roles } = res.data;
-        saveAuth(token, { userName, email }, roles);
+        const { token, userName, email, roles, Roles } = res.data;
+        saveAuth(token, { userName, email }, roles ?? Roles ?? []);
         return res.data;
     } catch (err: any) {
         const msg = err?.response?.data;
@@ -38,10 +38,21 @@ export const apiGetMe = async (): Promise<any> => {
 export const apiGetUserList = async (page = 1, limit = 10): Promise<any> => {
     try {
         const res = await apiClient.get(`${prefix}/userlist?page=${page}&limit=${limit}`);
+        
         return res?.data;
     } catch (err: any) {
         console.error("[AccountService.userlist]", err);
         return { page, limit, totalCount: 0, totalPages: 0, data: [] };
+    }
+};
+
+export const apiAssignRole = async (username: string, role: string): Promise<any> => {
+    try {
+        const res = await apiClient.post(`${prefix}/assign-role`, { username, role });
+        return res.data;
+    } catch (err: any) {
+        const msg = err?.response?.data;
+        throw new Error(typeof msg === "string" ? msg : "Gán role thất bại");
     }
 };
 
@@ -50,4 +61,5 @@ export const AccountService = {
     register:    apiRegister,
     getMe:       apiGetMe,
     getUserList: apiGetUserList,
+    assignRole:  apiAssignRole,
 };

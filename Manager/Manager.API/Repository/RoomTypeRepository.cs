@@ -36,10 +36,64 @@ namespace Manager.API.Repository
 
         public async Task<RoomType> DeleteAsync(int id)
         {
-            var model = await _dBContext.RoomTypes.FirstOrDefaultAsync(s => s.Id == id);
+            var model = await _dBContext.RoomTypes
+                .Include(rt => rt.Rooms)
+                    .ThenInclude(r => r.RoomInUses)
+                        .ThenInclude(riu => riu.Invoices)
+                            .ThenInclude(inv => inv.InvoiceDetails)
+                .Include(rt => rt.Rooms)
+                    .ThenInclude(r => r.RoomInUses)
+                        .ThenInclude(riu => riu.Invoices)
+                .Include(rt => rt.Rooms)
+                    .ThenInclude(r => r.RoomInUses)
+                        .ThenInclude(riu => riu.Evaluations)
+                .Include(rt => rt.Rooms)
+                    .ThenInclude(r => r.RoomInUses)
+                        .ThenInclude(riu => riu.LostItems)
+                .Include(rt => rt.Rooms)
+                    .ThenInclude(r => r.RoomInUses)
+                .Include(rt => rt.Images)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
             if (model == null)
                 return null;
+
+            // Cascade delete in correct order to avoid FK constraint violations
+            foreach (var room in model.Rooms ?? new List<Rooms>())
+            {
+                foreach (var riu in room.RoomInUses ?? new List<RoomInUse>())
+                {
+                    // Delete invoice details
+                    foreach (var inv in riu.Invoices ?? new List<Invoice>())
+                    {
+                        if (inv.InvoiceDetails != null)
+                            _dBContext.InvoiceDetails.RemoveRange(inv.InvoiceDetails);
+                    }
+                    _dBContext.Invoices.RemoveRange(riu.Invoices ?? new List<Invoice>());
+                    _dBContext.Evaluations.RemoveRange(riu.Evaluations ?? new List<Evaluation>());
+                    _dBContext.LostItems.RemoveRange(riu.LostItems ?? new List<LostItem>());
+                }
+                _dBContext.RoomInUses.RemoveRange(room.RoomInUses ?? new List<RoomInUse>());
+            }
+
+            // Delete associated bookings (RoomInUses deleted above, so FK is clear)
+            var roomIds = model.Rooms?.Select(r => r.RoomId).ToList() ?? new List<int>();
+            var relatedRoomTypeId = model.Id;
+            var bookings = await _dBContext.Bookings
+                .Where(b => b.RoomTypeId == relatedRoomTypeId)
+                .ToListAsync();
+            _dBContext.Bookings.RemoveRange(bookings);
+
+            // Delete room rate entries
+            var roomRates = await _dBContext.RoomRates
+                .Where(rr => rr.RoomTypeId == relatedRoomTypeId)
+                .ToListAsync();
+            _dBContext.RoomRates.RemoveRange(roomRates);
+
+            _dBContext.RoomTypeImages.RemoveRange(model.Images ?? new List<RoomTypeImage>());
+            _dBContext.Rooms.RemoveRange(model.Rooms ?? new List<Rooms>());
             _dBContext.RoomTypes.Remove(model);
+
             await _dBContext.SaveChangesAsync();
             return model;
         }

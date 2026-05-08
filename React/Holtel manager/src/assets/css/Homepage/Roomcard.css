@@ -1,11 +1,11 @@
-/* src/components/Roomcard/Roomcard.css */
-
 .room-card {
   background: #fff;
   border: 1px solid #dbeafe;
   border-radius: 14px;
   overflow: hidden;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
   cursor: pointer;
   position: relative;
 }
@@ -14,7 +14,6 @@
   transform: translateY(-2px);
 }
 
-/* ── Image ── */
 .rc-img-wrap {
   position: relative;
   height: 180px;
@@ -39,7 +38,6 @@
   background: #eff6ff;
 }
 
-/* ── Badges ── */
 .rc-badge-full {
   position: absolute;
   inset: 0;
@@ -79,7 +77,6 @@
   align-items: center;
 }
 
-/* ── Like button ── */
 .rc-like-btn {
   position: absolute;
   top: 10px;
@@ -96,12 +93,17 @@
   font-size: 15px;
   color: #94a3b8;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  transition: color 0.2s, transform 0.15s;
+  transition:
+    color 0.2s,
+    transform 0.15s;
 }
-.rc-like-btn:hover { transform: scale(1.15); }
-.rc-like-btn.liked { color: #ef4444; }
+.rc-like-btn:hover {
+  transform: scale(1.15);
+}
+.rc-like-btn.liked {
+  color: #ef4444;
+}
 
-/* ── Body ── */
 .rc-body {
   padding: 14px 16px;
 }
@@ -122,9 +124,10 @@
   color: #1e3a5f;
   margin-bottom: 6px;
 }
-.rc-name.compact { font-size: 14px; }
+.rc-name.compact {
+  font-size: 14px;
+}
 
-/* ── Stars ── */
 .star-row {
   display: inline-flex;
   gap: 2px;
@@ -153,7 +156,6 @@
   color: #94a3b8;
 }
 
-/* ── Tags ── */
 .rc-tags {
   display: flex;
   flex-wrap: wrap;
@@ -171,22 +173,28 @@
   align-items: center;
   gap: 3px;
 }
-.rc-tag-icon { font-size: 10px; }
+.rc-tag-icon {
+  font-size: 10px;
+}
 
-/* ── Price row ── */
 .rc-price-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 4px;
 }
-.rc-price-group { display: flex; flex-direction: column; }
+.rc-price-group {
+  display: flex;
+  flex-direction: column;
+}
 .rc-price {
   font-size: 17px;
   font-weight: 700;
   color: #1d4ed8;
 }
-.rc-price.compact { font-size: 15px; }
+.rc-price.compact {
+  font-size: 15px;
+}
 .rc-price-unit {
   font-size: 12px;
   color: #64748b;
@@ -199,14 +207,15 @@
   margin-top: 1px;
 }
 
-/* ── Book button ── */
 .rc-book-btn {
   padding: 7px 16px;
   border: none;
   border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
-  transition: opacity 0.15s, transform 0.15s;
+  transition:
+    opacity 0.15s,
+    transform 0.15s;
   white-space: nowrap;
 }
 .rc-book-btn.available {
@@ -222,4 +231,27 @@
   background: #e5e7eb;
   color: #9ca3af;
   cursor: not-allowed;
+}
+
+.rc-cursor-pointer {
+  cursor: pointer;
+}
+.rc-mr-4 {
+  margin-right: 4px;
+}
+.rc-mr-3 {
+  margin-right: 3px;
+}
+.rc-hour-price {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+.rc-hour-icon {
+  margin-right: 3px;
+  color: #f59e0b;
+}
+.rc-price-contact {
+  font-size: 0.85rem;
+  color: #64748b;
 }

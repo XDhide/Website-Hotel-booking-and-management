@@ -6,21 +6,23 @@ import "../../assets/css/Homepage/TopRooms.css";
 
 function mapRoomType(rt: any) {
   return {
-    id:        rt.roomTypeId ?? rt.id,
-    name:      rt.name ?? rt.typeName ?? "Phòng",
-    type:      rt.typeName ?? rt.name ?? "Standard",
-    price:     rt.pricePerNight ?? rt.basePrice ?? 0,
-    rating:    rt.averageRating ?? 4.5,
-    reviews:   rt.reviewCount ?? 0,
-    image:     rt.images?.[0]?.imageUrl ?? rt.imageUrl ?? null,
-    tags:      rt.amenities ? rt.amenities.split(",").map((s: string) => s.trim()) : [],
-    available: rt.availableRooms > 0 ?? true,
-    popular:   rt.isPopular ?? true,
+    id: rt.roomTypeId ?? rt.id,
+    name: rt.name ?? rt.typeName ?? "Phòng",
+    type: rt.typeName ?? rt.name ?? "Standard",
+    price: rt.pricePerNight ?? rt.basePrice ?? 0,
+    rating: rt.averageRating ?? 4.5,
+    reviews: rt.reviewCount ?? 0,
+    image: rt.images?.[0]?.imageUrl ?? rt.imageUrl ?? null,
+    tags: rt.amenities
+      ? rt.amenities.split(",").map((s: string) => s.trim())
+      : [],
+    available: rt.availableRooms > 0,
+    popular: rt.isPopular ?? true,
   };
 }
 
 export default function TopRooms() {
-  const [rooms,   setRooms]   = useState<any[]>([]);
+  const [rooms, setRooms] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -40,13 +42,11 @@ export default function TopRooms() {
         <p className="section-subtitle">Top 5 phòng được đặt nhiều nhất</p>
 
         {loading ? (
-          <div style={{ textAlign: "center", padding: 40 }}>
-            <LoadingOutlined style={{ fontSize: 28 }} />
+          <div className="top-rooms-loading-container">
+            <LoadingOutlined className="top-rooms-loading-icon" />
           </div>
         ) : rooms.length === 0 ? (
-          <div style={{ textAlign: "center", padding: 40, color: "#94a3b8" }}>
-            Chưa có dữ liệu phòng
-          </div>
+          <div className="top-rooms-empty-state">Chưa có dữ liệu phòng</div>
         ) : (
           <div className="room-grid">
             {rooms.map((room) => (

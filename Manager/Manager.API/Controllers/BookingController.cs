@@ -202,6 +202,7 @@ namespace Manager.API.Controllers
                             TypeLabel     = "Hóa đơn",
                             BookingId     = b.Id,
                             InvoiceId     = inv.InvoiceId,
+                            RoomUseId     = room.RoomUseId,
                             RoomTypeName  = b.RoomType?.Name,
                             RoomNumber    = room.Rooms?.RoomNumber,
                             Amount        = inv.FinalAmount ?? inv.SubTotal ?? 0,

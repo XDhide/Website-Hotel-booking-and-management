@@ -56,3 +56,11 @@ export const RoomRateService = {
   update: apiUpdateRoomRate,
   delete: apiDeleteRoomRate,
 };
+export const apiGetRoomRateByRoomType = async (roomTypeId: number): Promise<any[]> => {
+  try {
+    const res = await apiClient.get(`${prefix}/by-roomtype/${roomTypeId}`);
+    return Array.isArray(res?.data) ? res.data : [];
+  } catch {
+    return [];
+  }
+};

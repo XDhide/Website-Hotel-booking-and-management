@@ -1,176 +1,224 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
-import { UserOutlined, SendOutlined, MessageOutlined, ReloadOutlined, CloseCircleOutlined } from '@ant-design/icons'
-import { apiClient } from '../../constant/api'
-import { API } from '../../constant/config'
-import '../../assets/css/Adminpage/SupportChat.css'
+import {
+  apiGetMyChats,
+  apiGetMessages,
+  apiSendMessage,
+  apiCloseChat,
+} from "../../services/SupportChatService";
+import { useState, useEffect, useRef, useCallback } from "react";
+import {
+  UserOutlined,
+  SendOutlined,
+  MessageOutlined,
+  ReloadOutlined,
+  CloseCircleOutlined,
+} from "@ant-design/icons";
+import "../../assets/css/Adminpage/SupportChat.css";
 
 interface Chat {
-  id: number
-  userId: string
-  status: string
-  createdAt?: string
-  closedAt?: string
+  id: number;
+  userId: string;
+  status: string;
+  createdAt?: string;
+  closedAt?: string;
 }
 
 interface Message {
-  id: number
-  supportChatId: number
-  senderId: string
-  message: string
-  sentAt: string
-  isStaff?: boolean
+  id: number;
+  supportChatId: number;
+  senderId: string;
+  message: string;
+  sentAt: string;
+  isStaff?: boolean;
 }
 
 const STATUS_COLOR: Record<string, string> = {
-  Open: '#22c55e', InProgress: '#3b82f6', Closed: '#6b7280',
-}
+  Open: "#22c55e",
+  InProgress: "#3b82f6",
+  Closed: "#6b7280",
+};
 const STATUS_LABEL: Record<string, string> = {
-  Open: 'Mở', InProgress: 'Đang xử lý', Closed: 'Đã đóng',
-}
+  Open: "Mở",
+  InProgress: "Đang xử lý",
+  Closed: "Đã đóng",
+};
 
 export default function SupportChat() {
-  const [chats, setChats]               = useState<Chat[]>([])
-  const [selectedChat, setSelectedChat] = useState<Chat | null>(null)
-  const [messages, setMessages]         = useState<Message[]>([])
-  const [inputText, setInputText]       = useState('')
-  const [loadingChats, setLoadingChats] = useState(true)
-  const [loadingMsgs, setLoadingMsgs]   = useState(false)
-  const [sending, setSending]           = useState(false)
-  const [error, setError]               = useState('')
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const [chats, setChats] = useState<Chat[]>([]);
+  const [selectedChat, setSelectedChat] = useState<Chat | null>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [inputText, setInputText] = useState("");
+  const [loadingChats, setLoadingChats] = useState(true);
+  const [loadingMsgs, setLoadingMsgs] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const getAdminId = () => {
     try {
-      const token = localStorage.getItem('hotel_token') ?? ''
-      const payload = JSON.parse(atob(token.split('.')[1]))
-      return payload?.sub ?? payload?.nameid ?? payload?.userId ?? 'admin'
-    } catch { return 'admin' }
-  }
-  const adminId = getAdminId()
+      const token = localStorage.getItem("hotel_token") ?? "";
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      return payload?.sub ?? payload?.nameid ?? payload?.userId ?? "admin";
+    } catch {
+      return "admin";
+    }
+  };
+  const adminId = getAdminId();
 
   const loadChats = useCallback(async () => {
-    setLoadingChats(true); setError('')
+    setLoadingChats(true);
+    setError("");
     try {
-      const res = await apiClient.get(`${API}/SupportChat/my-chats`)
-      const raw = res.data
-      const list = Array.isArray(raw) ? raw : raw?.data ?? []
-      
-      setChats(list.filter((c: Chat) => c.status !== 'Closed'))
+      const res = await apiGetMyChats();
+      const raw = res;
+      const list = Array.isArray(raw) ? raw : (raw?.data ?? []);
+
+      setChats(list.filter((c: Chat) => c.status !== "Closed"));
     } catch {
-      setError('Không thể tải danh sách chat. Vui lòng kiểm tra kết nối.')
-      setChats([])
-    } finally { setLoadingChats(false) }
-  }, [])
+      setError("Không thể tải danh sách chat. Vui lòng kiểm tra kết nối.");
+      setChats([]);
+    } finally {
+      setLoadingChats(false);
+    }
+  }, []);
 
   const loadMessages = useCallback(async (chatId: number) => {
-    setLoadingMsgs(true)
+    setLoadingMsgs(true);
     try {
-      const res = await apiClient.get(`${API}/SupportChat/${chatId}/messages`)
-      const raw = res.data
-      const list = Array.isArray(raw) ? raw : raw?.data ?? []
-      setMessages(list)
-      setTimeout(() => messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 80)
+      const res = await apiGetMessages(chatId);
+      const raw = res;
+      const list = Array.isArray(raw) ? raw : (raw?.data ?? []);
+      setMessages(list);
+      setTimeout(
+        () => messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }),
+        80,
+      );
     } catch {
-      setMessages([])
-    } finally { setLoadingMsgs(false) }
-  }, [])
-
-  useEffect(() => { loadChats() }, [loadChats])
+      setMessages([]);
+    } finally {
+      setLoadingMsgs(false);
+    }
+  }, []);
 
   useEffect(() => {
-    if (!selectedChat) return
-    const timer = setInterval(() => loadMessages(selectedChat.id), 8000)
-    return () => clearInterval(timer)
-  }, [selectedChat, loadMessages])
+    loadChats();
+  }, [loadChats]);
+
+  useEffect(() => {
+    if (!selectedChat) return;
+    const timer = setInterval(() => loadMessages(selectedChat.id), 8000);
+    return () => clearInterval(timer);
+  }, [selectedChat, loadMessages]);
 
   const selectChat = (chat: Chat) => {
-    setSelectedChat(chat)
-    setMessages([])
-    loadMessages(chat.id)
-  }
+    setSelectedChat(chat);
+    setMessages([]);
+    loadMessages(chat.id);
+  };
 
   const handleSend = async () => {
-    if (!inputText.trim() || !selectedChat) return
-    setSending(true)
-    const text = inputText.trim()
-    setInputText('')
+    if (!inputText.trim() || !selectedChat) return;
+    setSending(true);
+    const text = inputText.trim();
+    setInputText("");
     try {
-      await apiClient.post(`${API}/SupportChat/send-message`, {
+      await apiSendMessage({
         supportChatId: selectedChat.id,
         message: text,
-      })
-      await loadMessages(selectedChat.id)
+      });
+      await loadMessages(selectedChat.id);
     } catch {
-      setMessages(prev => [...prev, {
-        id: Date.now(), supportChatId: selectedChat.id,
-        senderId: adminId, message: text,
-        sentAt: new Date().toISOString(),
-      }])
-      setTimeout(() => messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 80)
-    } finally { setSending(false) }
-  }
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now(),
+          supportChatId: selectedChat.id,
+          senderId: adminId,
+          message: text,
+          sentAt: new Date().toISOString(),
+        },
+      ]);
+      setTimeout(
+        () => messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }),
+        80,
+      );
+    } finally {
+      setSending(false);
+    }
+  };
 
-  
   const handleClose = async () => {
-    if (!selectedChat || !window.confirm('Kết thúc và xóa cuộc trò chuyện này?')) return
+    if (
+      !selectedChat ||
+      !window.confirm("Kết thúc và xóa cuộc trò chuyện này?")
+    )
+      return;
     try {
-      await apiClient.post(`${API}/SupportChat/${selectedChat.id}/close`)
-      
-      setChats(prev => prev.filter(c => c.id !== selectedChat.id))
-      setSelectedChat(null)
-      setMessages([])
-    } catch (e: any) { alert(e?.response?.data || 'Không thể kết thúc chat') }
-  }
+      await apiCloseChat(selectedChat.id);
+
+      setChats((prev) => prev.filter((c) => c.id !== selectedChat.id));
+      setSelectedChat(null);
+      setMessages([]);
+    } catch (e: any) {
+      alert(e?.response?.data || "Không thể kết thúc chat");
+    }
+  };
 
   const fmtTime = (s: string) => {
-    try { return new Date(s).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) }
-    catch { return '' }
-  }
+    try {
+      return new Date(s).toLocaleTimeString("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    } catch {
+      return "";
+    }
+  };
 
   return (
     <div className="support-wapper">
       {}
       <div className="support-user-box">
-        <div style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.07)',
-        }}>
-          <span style={{ color: 'rgba(255,255,255,0.7)', fontWeight: 600, fontSize: '0.82rem' }}>
-            HỖ TRỢ ({chats.length})
-          </span>
-          <button onClick={loadChats} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', cursor: 'pointer' }}>
+        <div className="support-user-header">
+          <span className="support-user-title">HỖ TRỢ ({chats.length})</span>
+          <button onClick={loadChats} className="support-reload-btn">
             <ReloadOutlined />
           </button>
         </div>
 
-        {error && (
-          <div style={{ padding: '8px 14px', color: '#f87171', fontSize: '0.78rem' }}>{error}</div>
-        )}
+        {error && <div className="support-error-msg">{error}</div>}
 
         {loadingChats ? (
-          <div style={{ textAlign: 'center', padding: 20, color: 'rgba(255,255,255,0.3)' }}>Đang tải...</div>
+          <div className="support-loading">Đang tải...</div>
         ) : chats.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: 20, color: 'rgba(255,255,255,0.3)', fontSize: '0.85rem' }}>
-            Chưa có yêu cầu hỗ trợ nào
-          </div>
-        ) : chats.map(chat => (
-          <div
-            key={chat.id}
-            className={`support-user-person ${selectedChat?.id === chat.id ? 'active' : ''}`}
-            onClick={() => selectChat(chat)}
-          >
-            <div className="support-user-icon">
-              <UserOutlined className="support-user-avatar-icon" />
-            </div>
-            <div className="support-user-info">
-              <div className="support-user-name">Khách #{chat.id}</div>
-              <div style={{ fontSize: '0.75rem', color: STATUS_COLOR[chat.status] ?? '#94a3b8', marginTop: 2 }}>
-                <span style={{ display: 'inline-block', width: 7, height: 7, borderRadius: '50%', background: STATUS_COLOR[chat.status] ?? '#94a3b8', marginRight: 4, verticalAlign: 'middle' }} />
-                {STATUS_LABEL[chat.status] ?? chat.status}
+          <div className="support-empty-state">Chưa có yêu cầu hỗ trợ nào</div>
+        ) : (
+          chats.map((chat) => (
+            <div
+              key={chat.id}
+              className={`support-user-person ${selectedChat?.id === chat.id ? "active" : ""}`}
+              onClick={() => selectChat(chat)}
+            >
+              <div className="support-user-icon">
+                <UserOutlined className="support-user-avatar-icon" />
+              </div>
+              <div className="support-user-info">
+                <div className="support-user-name">Khách #{chat.id}</div>
+                <div
+                  className="support-status-text"
+                  style={{ color: STATUS_COLOR[chat.status] ?? "#94a3b8" }}
+                >
+                  <span
+                    className="support-status-dot"
+                    style={{
+                      background: STATUS_COLOR[chat.status] ?? "#94a3b8",
+                    }}
+                  />
+                  {STATUS_LABEL[chat.status] ?? chat.status}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
 
       {}
@@ -183,24 +231,28 @@ export default function SupportChat() {
         ) : (
           <>
             {}
-            <div className="support-chat-header" style={{ justifyContent: 'space-between' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div className="support-chat-header">
+              <div className="support-header-left">
                 <div className="support-user-icon small">
                   <UserOutlined className="support-user-avatar-icon" />
                 </div>
                 <div>
-                  <div className="support-chat-header-name">Khách #{selectedChat.id}</div>
-                  <div style={{ fontSize: '0.72rem', color: STATUS_COLOR[selectedChat.status] }}>
-                    <span style={{ display: 'inline-block', width: 7, height: 7, borderRadius: '50%', background: STATUS_COLOR[selectedChat.status], marginRight: 4, verticalAlign: 'middle' }} />
+                  <div className="support-chat-header-name">
+                    Khách #{selectedChat.id}
+                  </div>
+                  <div
+                    className="support-header-status"
+                    style={{ color: STATUS_COLOR[selectedChat.status] }}
+                  >
+                    <span
+                      className="support-status-dot"
+                      style={{ background: STATUS_COLOR[selectedChat.status] }}
+                    />
                     {STATUS_LABEL[selectedChat.status]}
                   </div>
                 </div>
               </div>
-              <button onClick={handleClose} style={{
-                background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)',
-                color: '#f87171', borderRadius: 6, padding: '5px 12px',
-                cursor: 'pointer', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: 5,
-              }}>
+              <button onClick={handleClose} className="support-close-btn">
                 <CloseCircleOutlined /> Kết thúc hội thoại
               </button>
             </div>
@@ -208,20 +260,29 @@ export default function SupportChat() {
             {}
             <div className="support-chat-box-output">
               {loadingMsgs ? (
-                <div style={{ textAlign: 'center', padding: 20, color: 'rgba(255,255,255,0.3)' }}>Đang tải tin nhắn...</div>
+                <div className="support-loading">Đang tải tin nhắn...</div>
               ) : messages.length === 0 ? (
-                <div className="support-chat-empty">Chưa có tin nhắn. Hãy bắt đầu trò chuyện!</div>
-              ) : messages.map(msg => {
-                const isMe = msg.senderId === adminId || msg.isStaff === true
-                return (
-                  <div key={msg.id} className={`support-message-row ${isMe ? 'admin' : 'user'}`}>
-                    <div className="support-message-bubble">
-                      <span>{msg.message}</span>
-                      <span className="support-message-time">{fmtTime(msg.sentAt)}</span>
+                <div className="support-chat-empty">
+                  Chưa có tin nhắn. Hãy bắt đầu trò chuyện!
+                </div>
+              ) : (
+                messages.map((msg) => {
+                  const isMe = msg.senderId === adminId || msg.isStaff === true;
+                  return (
+                    <div
+                      key={msg.id}
+                      className={`support-message-row ${isMe ? "admin" : "user"}`}
+                    >
+                      <div className="support-message-bubble">
+                        <span>{msg.message}</span>
+                        <span className="support-message-time">
+                          {fmtTime(msg.sentAt)}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                )
-              })}
+                  );
+                })
+              )}
               <div ref={messagesEndRef} />
             </div>
 
@@ -231,17 +292,22 @@ export default function SupportChat() {
                 type="text"
                 placeholder="Nhập tin nhắn... (Enter để gửi)"
                 value={inputText}
-                onChange={e => setInputText(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handleSend()}
+                onChange={(e) => setInputText(e.target.value)}
+                onKeyDown={(e) =>
+                  e.key === "Enter" && !e.shiftKey && handleSend()
+                }
                 disabled={sending}
               />
-              <button onClick={handleSend} disabled={sending || !inputText.trim()}>
-                <SendOutlined /> {sending ? '...' : 'Gửi'}
+              <button
+                onClick={handleSend}
+                disabled={sending || !inputText.trim()}
+              >
+                <SendOutlined /> {sending ? "..." : "Gửi"}
               </button>
             </div>
           </>
         )}
       </div>
     </div>
-  )
+  );
 }

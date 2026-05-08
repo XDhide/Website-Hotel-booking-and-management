@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { isLoggedIn, isAdmin } from "./constant/api";
+import { isLoggedIn, isAdmin, isManager } from "./constant/api";
 import AdminPage from "./pages/AdminPage";
+import ManagerPage from "./pages/ManagerPage";
 import HomePage from "./pages/Homepage";
 import RoomList from "./pages/RoomList";
 import RoomDetail from "./pages/RoomDetail";
@@ -15,25 +16,66 @@ function getPath() {
   return window.location.pathname;
 }
 
+function AccessDenied({
+  message,
+  onHome,
+}: {
+  message: string;
+  onHome: () => void;
+}) {
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#0f1117",
+        color: "#fff",
+        gap: 16,
+      }}
+    >
+      <div style={{ fontSize: "3rem" }}>🔒</div>
+      <h2>{message}</h2>
+      <p style={{ color: "rgba(255,255,255,0.5)" }}>
+        Tài khoản của bạn không có quyền truy cập trang này.
+      </p>
+      <button
+        onClick={onHome}
+        style={{
+          background: "#3b82f6",
+          color: "#fff",
+          border: "none",
+          borderRadius: 8,
+          padding: "10px 24px",
+          cursor: "pointer",
+          fontSize: "0.95rem",
+        }}
+      >
+        Về trang chủ
+      </button>
+    </div>
+  );
+}
+
 export default function AppRouter() {
   const [path, setPath] = useState(getPath());
 
   useEffect(() => {
     const onPop = () => setPath(getPath());
-    window.addEventListener("popstate", onPop);
-
     const onNavigate = (e: any) => {
       window.history.pushState(null, "", e.detail);
       setPath(e.detail);
     };
-    window.addEventListener("navigate", onNavigate);
-
     const onLogout = () => {
       window.history.pushState(null, "", "/");
       setPath("/");
     };
-    window.addEventListener("auth:logout", onLogout);
 
+    window.addEventListener("popstate", onPop);
+    window.addEventListener("navigate", onNavigate);
+    window.addEventListener("auth:logout", onLogout);
     return () => {
       window.removeEventListener("popstate", onPop);
       window.removeEventListener("navigate", onNavigate);
@@ -41,42 +83,43 @@ export default function AppRouter() {
     };
   }, []);
 
-  
+  const goHome = () => {
+    window.history.pushState(null, "", "/");
+    setPath("/");
+  };
+
   if (path.startsWith("/admin")) {
     if (!isLoggedIn()) {
       window.history.replaceState(null, "", "/");
       return <HomePage />;
     }
-    if (!isAdmin()) {
+    if (!isAdmin())
       return (
-        <div style={{
-          minHeight: "100vh", display: "flex", flexDirection: "column",
-          alignItems: "center", justifyContent: "center",
-          background: "#0f1117", color: "#fff", gap: 16,
-        }}>
-          <div style={{ fontSize: "3rem" }}>🔒</div>
-          <h2>Bạn không có quyền truy cập trang Admin</h2>
-          <p style={{ color: "rgba(255,255,255,0.5)" }}>
-            Tài khoản của bạn không có vai trò Admin hoặc Manager.
-          </p>
-          <button
-            onClick={() => { window.history.pushState(null, "", "/"); setPath("/"); }}
-            style={{
-              background: "#3b82f6", color: "#fff", border: "none",
-              borderRadius: 8, padding: "10px 24px", cursor: "pointer", fontSize: "0.95rem",
-            }}
-          >
-            Về trang chủ
-          </button>
-        </div>
+        <AccessDenied
+          message="Bạn không có quyền truy cập trang Admin"
+          onHome={goHome}
+        />
       );
-    }
+
     return <AdminPage />;
   }
 
-  if (path === "/rooms") {
-    return <RoomList />;
+  if (path.startsWith("/manager")) {
+    if (!isLoggedIn()) {
+      window.history.replaceState(null, "", "/");
+      return <HomePage />;
+    }
+    if (!isManager() && !isAdmin())
+      return (
+        <AccessDenied
+          message="Bạn không có quyền truy cập trang Manager"
+          onHome={goHome}
+        />
+      );
+    return <ManagerPage />;
   }
+
+  if (path === "/rooms") return <RoomList />;
 
   if (path === "/favorites") {
     if (!isLoggedIn()) {

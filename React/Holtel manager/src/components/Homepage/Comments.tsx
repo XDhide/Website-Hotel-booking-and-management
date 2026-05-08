@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { StarFilled, UserOutlined, LoadingOutlined } from "@ant-design/icons";
 import { apiGetReviews } from "../../services/ReviewService";
+import "../../assets/css/Homepage/Comments.css";
 
 function StarRow({ rating }: { rating: number }) {
   return (
     <span>
       {[1, 2, 3, 4, 5].map((i) => (
-        <StarFilled key={i} style={{ color: i <= Math.round(rating) ? "#f59e0b" : "#e2e8f0", fontSize: 14 }} />
+        <StarFilled
+          key={i}
+          className={`cmt-star ${i <= Math.round(rating) ? "cmt-star-filled" : ""}`}
+        />
       ))}
     </span>
   );
@@ -14,7 +18,7 @@ function StarRow({ rating }: { rating: number }) {
 
 export default function Comments() {
   const [comments, setComments] = useState<any[]>([]);
-  const [loading,  setLoading]  = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     apiGetReviews(1, 6)
@@ -26,8 +30,8 @@ export default function Comments() {
   if (loading) {
     return (
       <section className="section">
-        <div className="container" style={{ textAlign: "center", padding: 40 }}>
-          <LoadingOutlined style={{ fontSize: 28 }} />
+        <div className="container cmt-loading-container">
+          <LoadingOutlined className="cmt-loading-icon" />
         </div>
       </section>
     );
@@ -39,34 +43,26 @@ export default function Comments() {
     <section className="section">
       <div className="container">
         <h2 className="section-title">Đánh Giá Của Khách</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 16 }}>
+        <div className="cmt-grid">
           {comments.map((c, i) => (
-            <div key={c.evaluationId ?? c.id ?? i} style={{
-              background: "var(--bg-secondary, #1e293b)",
-              borderRadius: 12,
-              padding: 20,
-              border: "1px solid var(--border, #334155)",
-            }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
-                <div style={{
-                  width: 40, height: 40, borderRadius: "50%",
-                  background: "#3b82f6", display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
-                  <UserOutlined style={{ color: "#fff" }} />
+            <div key={c.evaluationId ?? c.id ?? i} className="cmt-card">
+              <div className="cmt-header">
+                <div className="cmt-avatar-placeholder">
+                  <UserOutlined className="cmt-avatar-icon" />
                 </div>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: "0.9rem" }}>
+                <div className="cmt-meta">
+                  <div className="cmt-name">
                     {c.userName ?? c.author ?? "Khách hàng"}
                   </div>
-                  <div style={{ fontSize: "0.75rem", color: "#64748b" }}>
-                    {c.createdAt ? new Date(c.createdAt).toLocaleDateString("vi-VN") : ""}
+                  <div className="cmt-date">
+                    {c.createdAt
+                      ? new Date(c.createdAt).toLocaleDateString("vi-VN")
+                      : ""}
                   </div>
                 </div>
               </div>
               <StarRow rating={c.rating ?? 5} />
-              <p style={{ marginTop: 10, fontSize: "0.875rem", color: "#cbd5e1", lineHeight: 1.6 }}>
-                {c.comment ?? c.text ?? ""}
-              </p>
+              <p className="cmt-text">{c.comment ?? c.text ?? ""}</p>
             </div>
           ))}
         </div>

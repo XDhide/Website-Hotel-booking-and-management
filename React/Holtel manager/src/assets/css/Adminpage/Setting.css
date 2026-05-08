@@ -1,0 +1,286 @@
+.setting-layout {
+  display: flex;
+  gap: 24px;
+  padding: 4px 0;
+  min-height: 500px;
+}
+
+.setting-sidenav {
+  width: 200px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 12px 8px;
+  align-self: flex-start;
+}
+
+.setting-nav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 4px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+  font-size: 0.88rem;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.setting-nav-btn.active {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+.setting-nav-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.setting-nav-divider {
+  margin: 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.setting-nav-btn-home {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 4px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.setting-nav-btn-logout {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: rgba(239, 68, 68, 0.08);
+  color: #f87171;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.setting-content {
+  flex: 1;
+}
+
+.setting-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.setting-card-title {
+  color: #fff;
+  margin: 0 0 20px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.setting-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.setting-info-label {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.88rem;
+}
+
+.setting-info-value {
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.88rem;
+}
+
+.setting-toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.setting-toggle-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+}
+
+.setting-toggle-track {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative;
+}
+
+.setting-toggle-track.on {
+  background: #3b82f6;
+}
+
+.setting-toggle-track.off {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.setting-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left 0.2s;
+}
+
+.setting-toggle-thumb.on {
+  left: 23px;
+}
+
+.setting-toggle-thumb.off {
+  left: 3px;
+}
+
+.setting-pw-msg {
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 0.85rem;
+}
+
+.setting-pw-msg.ok {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
+.setting-pw-msg.err {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  color: #f87171;
+}
+
+.setting-pw-field {
+  margin-bottom: 14px;
+}
+
+.setting-pw-label {
+  display: block;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.setting-pw-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.setting-pw-btn {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.setting-pw-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.setting-logout-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.setting-logout-modal {
+  background: #1a1f2e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  width: 320px;
+  text-align: center;
+}
+
+.setting-logout-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  color: #f87171;
+}
+
+.setting-logout-title {
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+.setting-logout-desc {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+.setting-logout-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.setting-logout-btn-cancel {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.setting-logout-btn-confirm {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 600;
+}

@@ -1,4 +1,3 @@
-/* ── Payment wrapper ── */
 .payment-wrapper {
   display: flex;
   flex-direction: column;
@@ -6,7 +5,6 @@
   padding: 4px 0;
 }
 
-/* ── Stats row ── */
 .pmt-stats-row {
   display: flex;
   gap: 14px;
@@ -20,19 +18,34 @@
   gap: 14px;
   padding: 18px 22px;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
 }
-.pmt-stat-card.blue  { border-color: rgba(59,130,246,0.3); background: rgba(59,130,246,0.08); }
-.pmt-stat-card.yellow{ border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.08); }
-.pmt-stat-card.green { border-color: rgba(34,197,94,0.3);  background: rgba(34,197,94,0.08);  }
+.pmt-stat-card.blue {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.08);
+}
+.pmt-stat-card.yellow {
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.08);
+}
+.pmt-stat-card.green {
+  border-color: rgba(34, 197, 94, 0.3);
+  background: rgba(34, 197, 94, 0.08);
+}
 .pmt-stat-icon {
   font-size: 24px;
   opacity: 0.7;
 }
-.pmt-stat-card.blue  .pmt-stat-icon { color: #3b82f6; }
-.pmt-stat-card.yellow .pmt-stat-icon{ color: #f59e0b; }
-.pmt-stat-card.green .pmt-stat-icon { color: #22c55e; }
+.pmt-stat-card.blue .pmt-stat-icon {
+  color: #3b82f6;
+}
+.pmt-stat-card.yellow .pmt-stat-icon {
+  color: #f59e0b;
+}
+.pmt-stat-card.green .pmt-stat-icon {
+  color: #22c55e;
+}
 .pmt-stat-val {
   font-size: 1.4rem;
   font-weight: 700;
@@ -41,12 +54,11 @@
 }
 .pmt-stat-lbl {
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.45);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
-/* ── Toolbar ── */
 .pmt-toolbar {
   display: flex;
   align-items: center;
@@ -55,8 +67,8 @@
 }
 .pmt-tabs {
   display: flex;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -64,14 +76,14 @@
   padding: 7px 18px;
   font-size: 0.82rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   background: transparent;
   border: none;
   cursor: pointer;
   transition: all 0.2s;
 }
 .pmt-tab.active {
-  background: rgba(139,92,246,0.25);
+  background: rgba(139, 92, 246, 0.25);
   color: #a78bfa;
 }
 .pmt-search {
@@ -81,10 +93,10 @@
   align-items: center;
   gap: 8px;
   padding: 7px 14px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.4);
 }
 .pmt-search input {
   flex: 1;
@@ -94,23 +106,27 @@
   color: #fff;
   font-size: 0.85rem;
 }
-.pmt-search input::placeholder { color: rgba(255,255,255,0.3); }
+.pmt-search input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
 .pmt-reload-btn {
   padding: 7px 14px;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   font-size: 1rem;
   transition: all 0.2s;
 }
-.pmt-reload-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.pmt-reload-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
 
-/* ── Table ── */
 .pmt-table-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -120,8 +136,8 @@
   font-size: 0.85rem;
 }
 .pmt-table thead tr {
-  background: rgba(255,255,255,0.05);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .pmt-table th {
   padding: 12px 16px;
@@ -130,16 +146,25 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.4);
 }
 .pmt-table td {
   padding: 13px 16px;
-  color: rgba(255,255,255,0.8);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-.pmt-row { cursor: pointer; transition: background 0.15s; }
-.pmt-row:hover td { background: rgba(255,255,255,0.03); }
-.pmt-empty { text-align: center; padding: 40px; color: rgba(255,255,255,0.3); }
+.pmt-row {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.pmt-row:hover td {
+  background: rgba(255, 255, 255, 0.03);
+}
+.pmt-empty {
+  text-align: center;
+  padding: 40px;
+  color: rgba(255, 255, 255, 0.3);
+}
 .pmt-id {
   font-weight: 600;
   color: #a78bfa;
@@ -149,8 +174,14 @@
   font-weight: 600;
   color: #fff;
 }
-.pmt-date { color: rgba(255,255,255,0.5); font-size: 0.82rem; }
-.pmt-amount { font-weight: 700; color: #34d399; }
+.pmt-date {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.82rem;
+}
+.pmt-amount {
+  font-weight: 700;
+  color: #34d399;
+}
 .pmt-badge {
   display: inline-flex;
   align-items: center;
@@ -160,49 +191,72 @@
   font-size: 0.78rem;
   font-weight: 600;
 }
-.pmt-badge.paid   { background: rgba(34,197,94,0.15); color: #22c55e; }
-.pmt-badge.unpaid { background: rgba(245,158,11,0.15); color: #f59e0b; }
+.pmt-badge.paid {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+.pmt-badge.unpaid {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
 .pmt-detail-btn {
   padding: 5px 12px;
   border-radius: 6px;
-  border: 1px solid rgba(139,92,246,0.4);
-  background: rgba(139,92,246,0.1);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.1);
   color: #a78bfa;
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.2s;
 }
-.pmt-detail-btn:hover { background: rgba(139,92,246,0.25); }
+.pmt-detail-btn:hover {
+  background: rgba(139, 92, 246, 0.25);
+}
 
-/* ── Pagination ── */
 .pmt-pagination {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 4px 0;
 }
-.pmt-page-info { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
-.pmt-page-btns { display: flex; gap: 4px; }
+.pmt-page-info {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+.pmt-page-btns {
+  display: flex;
+  gap: 4px;
+}
 .pmt-page-btns button {
   min-width: 32px;
   height: 32px;
   border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.04);
-  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   font-size: 0.85rem;
   transition: all 0.2s;
 }
-.pmt-page-btns button:hover:not(:disabled) { background: rgba(139,92,246,0.2); color: #a78bfa; border-color: rgba(139,92,246,0.4); }
-.pmt-page-btns button.active { background: rgba(139,92,246,0.3); color: #c4b5fd; border-color: #8b5cf6; }
-.pmt-page-btns button:disabled { opacity: 0.3; cursor: not-allowed; }
+.pmt-page-btns button:hover:not(:disabled) {
+  background: rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+  border-color: rgba(139, 92, 246, 0.4);
+}
+.pmt-page-btns button.active {
+  background: rgba(139, 92, 246, 0.3);
+  color: #c4b5fd;
+  border-color: #8b5cf6;
+}
+.pmt-page-btns button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
 
-/* ── Modal overlay ── */
 .pmt-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(6px);
   z-index: 1000;
   display: flex;
@@ -212,21 +266,23 @@
 }
 .pmt-modal {
   background: #1a1a2e;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
   width: 100%;
   max-width: 680px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
 }
-.pmt-modal-sm { max-width: 440px; }
+.pmt-modal-sm {
+  max-width: 440px;
+}
 .pmt-modal-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   padding: 22px 24px 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   position: sticky;
   top: 0;
   background: #1a1a2e;
@@ -239,7 +295,7 @@
 }
 .pmt-modal-sub {
   font-size: 0.82rem;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.4);
   margin-top: 3px;
 }
 .pmt-modal-actions {
@@ -247,16 +303,23 @@
   align-items: center;
   gap: 8px;
 }
-.pmt-modal-body { padding: 20px 24px 24px; }
+.pmt-modal-body {
+  padding: 20px 24px 24px;
+}
 
-/* ── Detail modal content ── */
-.pmt-detail-loading { padding: 40px; text-align: center; color: rgba(255,255,255,0.4); }
-.pmt-detail-section { margin-bottom: 20px; }
+.pmt-detail-loading {
+  padding: 40px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+}
+.pmt-detail-section {
+  margin-bottom: 20px;
+}
 .pmt-detail-section-title {
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.4);
   margin-bottom: 10px;
   font-weight: 600;
 }
@@ -271,14 +334,14 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: rgba(255,255,255,0.35);
-  background: rgba(255,255,255,0.04);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 .pmt-detail-table td {
   padding: 10px 12px;
-  color: rgba(255,255,255,0.8);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 .pmt-item-type {
   font-size: 0.75rem;
@@ -286,14 +349,24 @@
   border-radius: 10px;
   font-weight: 500;
 }
-.pmt-item-type.room    { background: rgba(59,130,246,0.15); color: #60a5fa; }
-.pmt-item-type.service { background: rgba(245,158,11,0.15); color: #f59e0b; }
-.pmt-empty-detail { padding: 20px; text-align: center; color: rgba(255,255,255,0.3); font-size: 0.85rem; }
+.pmt-item-type.room {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+.pmt-item-type.service {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+.pmt-empty-detail {
+  padding: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.85rem;
+}
 
-/* ── Summary box ── */
 .pmt-summary-box {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
   padding: 16px 18px;
   display: flex;
@@ -304,7 +377,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 .pmt-summary-total {
   display: flex;
@@ -312,26 +385,33 @@
   font-size: 1rem;
   font-weight: 700;
   color: #fff;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 10px;
   margin-top: 4px;
 }
 .pmt-summary-status {
   font-size: 0.82rem;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.4);
   padding-top: 6px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
-.pmt-summary-status .paid   { color: #22c55e; font-weight: 600; }
-.pmt-summary-status .unpaid { color: #f59e0b; font-weight: 600; }
+.pmt-summary-status .paid {
+  color: #22c55e;
+  font-weight: 600;
+}
+.pmt-summary-status .unpaid {
+  color: #f59e0b;
+  font-weight: 600;
+}
 
-/* ── Button styles ── */
 .pmt-btn-svc {
-  display: flex; align-items: center; gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   padding: 7px 14px;
   border-radius: 8px;
-  border: 1px solid rgba(59,130,246,0.4);
-  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  background: rgba(59, 130, 246, 0.1);
   color: #60a5fa;
   font-size: 0.82rem;
   font-weight: 600;
@@ -339,9 +419,14 @@
   transition: all 0.2s;
   white-space: nowrap;
 }
-.pmt-btn-svc:hover { background: rgba(59,130,246,0.25); }
+.pmt-btn-svc:hover {
+  background: rgba(59, 130, 246, 0.25);
+}
 .pmt-btn-pay {
-  display: flex; align-items: center; justify-content: center; gap: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   padding: 8px 18px;
   border-radius: 8px;
   border: none;
@@ -353,21 +438,29 @@
   transition: all 0.2s;
   white-space: nowrap;
 }
-.pmt-btn-pay:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(139,92,246,0.4); }
-.pmt-btn-pay:disabled { opacity: 0.5; cursor: not-allowed; }
+.pmt-btn-pay:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4);
+}
+.pmt-btn-pay:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .pmt-btn-close {
   padding: 6px 10px;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.04);
-  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.2s;
 }
-.pmt-btn-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.pmt-btn-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
 
-/* ── Add service list ── */
 .pmt-svc-list {
   display: flex;
   flex-direction: column;
@@ -379,65 +472,93 @@
 .pmt-svc-item {
   padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
   cursor: pointer;
   transition: all 0.18s;
 }
-.pmt-svc-item:hover { border-color: rgba(139,92,246,0.4); background: rgba(139,92,246,0.08); }
-.pmt-svc-item.selected { border-color: #8b5cf6; background: rgba(139,92,246,0.18); }
-.pmt-svc-name { font-weight: 600; color: #fff; font-size: 0.88rem; }
-.pmt-svc-meta { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 2px; }
+.pmt-svc-item:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.08);
+}
+.pmt-svc-item.selected {
+  border-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.18);
+}
+.pmt-svc-name {
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.88rem;
+}
+.pmt-svc-meta {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 2px;
+}
 .pmt-svc-qty-row {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  background: rgba(139,92,246,0.08);
-  border: 1px solid rgba(139,92,246,0.25);
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.25);
   border-radius: 8px;
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
-.pmt-svc-qty-row label { white-space: nowrap; }
+.pmt-svc-qty-row label {
+  white-space: nowrap;
+}
 .pmt-svc-qty-row input {
   width: 70px;
   padding: 4px 8px;
   border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.07);
   color: #fff;
   font-size: 0.85rem;
   text-align: center;
   outline: none;
 }
-.pmt-svc-total { margin-left: auto; font-weight: 700; color: #34d399; }
+.pmt-svc-total {
+  margin-left: auto;
+  font-weight: 700;
+  color: #34d399;
+}
 
-/* ── Pay form ── */
 .pmt-pay-form {
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin-bottom: 16px;
 }
-.pmt-pay-form label { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.04em; }
+.pmt-pay-form label {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
 .pmt-pay-form input,
 .pmt-pay-form select {
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
   color: #fff;
   font-size: 0.88rem;
   outline: none;
   transition: border-color 0.2s;
 }
 .pmt-pay-form input:focus,
-.pmt-pay-form select:focus { border-color: rgba(139,92,246,0.6); }
-.pmt-pay-form select option { background: #1a1a2e; }
+.pmt-pay-form select:focus {
+  border-color: rgba(139, 92, 246, 0.6);
+}
+.pmt-pay-form select option {
+  background: #1a1a2e;
+}
 .pmt-pay-preview {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
   padding: 14px 16px;
   display: flex;
@@ -449,7 +570,7 @@
 .pmt-pay-preview > div {
   display: flex;
   justify-content: space-between;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 .pmt-pay-final {
   display: flex;
@@ -457,7 +578,119 @@
   font-size: 1rem !important;
   font-weight: 700;
   color: #fff !important;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 10px;
   margin-top: 4px;
+}
+
+.pmt-room-icon {
+  color: #60a5fa;
+  margin-right: 4px;
+}
+.pmt-room-type-text {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+.pmt-amount-pending {
+  color: #f59e0b;
+}
+
+.pmt-confirm-info-box {
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.pmt-confirm-title {
+  color: #60a5fa;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.pmt-confirm-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.pmt-confirm-label {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+}
+.pmt-confirm-value {
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+}
+.pmt-confirm-warning {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: #fbbf24;
+}
+.pmt-confirm-actions {
+  display: flex;
+  gap: 10px;
+}
+.pmt-btn-cancel-modal {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+.pmt-btn-confirm-modal {
+  flex: 2;
+  margin-top: 0;
+}
+
+.pmt-voucher-wrap {
+  display: flex;
+  gap: 8px;
+}
+.pmt-voucher-input {
+  flex: 1;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-size: 13px;
+}
+.pmt-voucher-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #3b82f6;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.pmt-voucher-err {
+  color: #f87171;
+  font-size: 12px;
+  margin-top: 4px;
+}
+.pmt-voucher-success {
+  color: #22c55e;
+  font-size: 12px;
+  margin-top: 4px;
+  padding: 6px 10px;
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.pmt-w-100 {
+  width: 100%;
+}
+.pmt-mt-12 {
+  margin-top: 12px;
 }

@@ -40,9 +40,35 @@ namespace Manager.API.Repository
 
         public async Task<Rooms> DeleteAsync(int id)
         {
-            var model = await _dBContext.Rooms.FirstOrDefaultAsync(s => s.RoomId == id);
+            var model = await _dBContext.Rooms
+                .Include(r => r.RoomInUses)
+                    .ThenInclude(riu => riu.Invoices)
+                        .ThenInclude(inv => inv.InvoiceDetails)
+                .Include(r => r.RoomInUses)
+                    .ThenInclude(riu => riu.Invoices)
+                .Include(r => r.RoomInUses)
+                    .ThenInclude(riu => riu.Evaluations)
+                .Include(r => r.RoomInUses)
+                    .ThenInclude(riu => riu.LostItems)
+                .FirstOrDefaultAsync(s => s.RoomId == id);
+
             if (model == null)
                 return null;
+
+            // Cascade delete in correct order
+            foreach (var riu in model.RoomInUses ?? new List<RoomInUse>())
+            {
+                foreach (var inv in riu.Invoices ?? new List<Invoice>())
+                {
+                    if (inv.InvoiceDetails != null)
+                        _dBContext.InvoiceDetails.RemoveRange(inv.InvoiceDetails);
+                }
+                _dBContext.Invoices.RemoveRange(riu.Invoices ?? new List<Invoice>());
+                _dBContext.Evaluations.RemoveRange(riu.Evaluations ?? new List<Evaluation>());
+                _dBContext.LostItems.RemoveRange(riu.LostItems ?? new List<LostItem>());
+            }
+            _dBContext.RoomInUses.RemoveRange(model.RoomInUses ?? new List<RoomInUse>());
+
             _dBContext.Rooms.Remove(model);
             await _dBContext.SaveChangesAsync();
             return model;

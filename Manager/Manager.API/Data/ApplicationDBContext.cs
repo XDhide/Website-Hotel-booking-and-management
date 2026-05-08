@@ -32,6 +32,9 @@ namespace Manager.API.Data
         public DbSet<SupportMessage> SupportMessages { get; set; }
         public DbSet<ServiceNotification> ServiceNotifications { get; set; }
 
+        // ===== FAVORITES =====
+        public DbSet<UserFavorite> UserFavorites { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -187,6 +190,24 @@ namespace Manager.API.Data
             modelBuilder.Entity<Services>().Property(p => p.Price).HasPrecision(10, 2);
             modelBuilder.Entity<Surcharge>().Property(p => p.Price).HasPrecision(10, 2);
             modelBuilder.Entity<Discount>().Property(p => p.DiscountValue).HasPrecision(10, 2);
+
+            // ================= USER FAVORITES =================
+
+            modelBuilder.Entity<UserFavorite>()
+                .HasOne(f => f.User)
+                .WithMany()
+                .HasForeignKey(f => f.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserFavorite>()
+                .HasOne(f => f.RoomType)
+                .WithMany()
+                .HasForeignKey(f => f.RoomTypeId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserFavorite>()
+                .HasIndex(f => new { f.UserId, f.RoomTypeId })
+                .IsUnique();
 
             // ================= ROLE =================
 

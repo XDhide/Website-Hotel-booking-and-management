@@ -79,3 +79,33 @@ export const apiGetInvoiceDetails = async (invoiceId: number): Promise<any[]> =>
     return [];
   }
 };
+
+export const apiPayInvoice = async (invoiceId: number, data: {
+  paymentMethod: string;
+  discountAmount?: number;
+  surchargeAmount?: number;
+  note?: string;
+}): Promise<any> => {
+  const res = await apiClient.post(`${API}/invoice/${invoiceId}/pay`, data);
+  return res?.data;
+};
+
+export const apiGetChatStatus = async (chatId: number): Promise<any> => {
+  const res = await apiClient.get(`${API}/SupportChat/${chatId}/status`);
+  return res?.data;
+};
+
+export const apiGetServiceNotifications = async (): Promise<any[]> => {
+  try {
+    const res = await apiClient.get(`${API}/invoicedetail/service-notifications`);
+    return Array.isArray(res?.data) ? res.data : [];
+  } catch { return []; }
+};
+
+export const apiMarkNotificationRead = async (id: number): Promise<void> => {
+  await apiClient.post(`${API}/invoicedetail/service-notifications/${id}/read`);
+};
+
+export const apiMarkAllNotificationsRead = async (): Promise<void> => {
+  await apiClient.post(`${API}/invoicedetail/service-notifications/read-all`);
+};

@@ -1,5 +1,15 @@
-/* src/components/TopRooms/TopRooms.css */
-/* Layout riêng cho TopRooms nếu cần override */
 .top-rooms-section {
   background: #f8faff;
+}
+.top-rooms-loading-container {
+  text-align: center;
+  padding: 40px;
+}
+.top-rooms-loading-icon {
+  font-size: 28px;
+}
+.top-rooms-empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #94a3b8;
 }

@@ -19,9 +19,7 @@ apiClient.interceptors.response.use(
   (res) => res,
   (err) => {
     if (err.response?.status === 401) {
-      
-      
-      const isAdminPage = window.location.pathname.startsWith("/admin");
+      const isAdminPage = window.location.pathname.startsWith("/admin") || window.location.pathname.startsWith("/manager");
       if (!isAdminPage) {
         localStorage.removeItem(TOKEN_KEY);
         localStorage.removeItem(USER_KEY);
@@ -40,11 +38,9 @@ export const saveAuth = (
 ) => {
   localStorage.setItem(TOKEN_KEY, token);
   localStorage.setItem(USER_KEY, JSON.stringify(user));
-
   if (roles) {
     localStorage.setItem(ROLE_KEY, JSON.stringify(roles));
   }
-
   window.dispatchEvent(new Event("auth:login"));
 };
 
@@ -64,9 +60,18 @@ export const getRole = (): string[] => {
   const raw = localStorage.getItem(ROLE_KEY);
   return raw ? JSON.parse(raw) : [];
 };
-export const getToken  = () => localStorage.getItem(TOKEN_KEY);
+
+export const getToken   = () => localStorage.getItem(TOKEN_KEY);
 export const isLoggedIn = () => !!getToken();
-export const isAdmin = () => {
+
+
+export const isAdmin = () => getRole().includes("Admin");
+
+
+export const isManager = () => {
   const roles = getRole();
-  return roles.includes("Admin") || roles.includes("Manager");
+  return roles.includes("Manager") && !roles.includes("Admin");
 };
+
+
+export const isAdminOrManager = () => isAdmin() || isManager();

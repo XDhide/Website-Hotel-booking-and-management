@@ -12,8 +12,7 @@ import Header from "../shared/Header"
 import Footer from "../shared/Fooder"
 import { apiGetMyActiveRooms } from "../services/BookingService"
 import { apiAddService, apiGetServices, apiGetInvoiceWithDetails } from "../services/InvoiceService"
-import { apiClient } from "../constant/api"
-import { API } from "../constant/config"
+import { apiGetMyLostItems, apiReportLostItem } from "../services/LostItemService"
 
 interface RoomEntry {
   id: number
@@ -55,11 +54,11 @@ function calcNights(from?: string, to?: string) {
   return Math.max(0, Math.round((new Date(to).getTime() - new Date(from).getTime()) / 86400000))
 }
 
-const STATUS_CFG: Record<string, { label: string; color: string; bg: string; icon: JSX.Element }> = {
-  Active:   { label: "Đang ở",           color: "#166534", bg: "rgba(34,197,94,0.12)",   icon: <CheckCircleOutlined /> },
-  Pending:  { label: "Chờ nhận phòng",   color: "#b45309", bg: "rgba(245,158,11,0.12)",  icon: <ClockCircleOutlined /> },
-  Booked:   { label: "Đã đặt",           color: "#1d4ed8", bg: "rgba(59,130,246,0.1)",   icon: <CalendarOutlined /> },
-  CheckedIn:{ label: "Đang ở",           color: "#166534", bg: "rgba(34,197,94,0.12)",   icon: <CheckCircleOutlined /> },
+const STATUS_CFG: Record<string, { label: string; color: string; bg: string; icon: React.ReactElement }> = {
+  Active:    { label: "Đang ở",         color: "#166534", bg: "rgba(34,197,94,0.12)",  icon: <CheckCircleOutlined /> },
+  Pending:   { label: "Chờ nhận phòng", color: "#b45309", bg: "rgba(245,158,11,0.12)", icon: <ClockCircleOutlined /> },
+  Booked:    { label: "Đã đặt",         color: "#1d4ed8", bg: "rgba(59,130,246,0.1)",  icon: <CalendarOutlined /> },
+  CheckedIn: { label: "Đang ở",         color: "#166534", bg: "rgba(34,197,94,0.12)",  icon: <CheckCircleOutlined /> },
 }
 
 const getBookingStatus = (room: RoomEntry) => {
@@ -70,22 +69,19 @@ const getBookingStatus = (room: RoomEntry) => {
 }
 
 export default function CurrentBookings() {
-  const [rooms, setRooms]       = useState<RoomEntry[]>([])
-  const [loading, setLoading]   = useState(true)
-  const [search, setSearch]     = useState("")
-  const [filter, setFilter]     = useState<"all" | "active" | "pending">("all")
+  const [rooms, setRooms]         = useState<RoomEntry[]>([])
+  const [loading, setLoading]     = useState(true)
+  const [search, setSearch]       = useState("")
+  const [filter, setFilter]       = useState<"all" | "active" | "pending">("all")
   const [activeTab, setActiveTab] = useState<"rooms" | "lostitem">("rooms")
 
-  
   const [lostItems, setLostItems]     = useState<any[]>([])
   const [loadingLost, setLoadingLost] = useState(false)
 
-  
   const [expandedId, setExpandedId]   = useState<number | null>(null)
   const [invoiceData, setInvoiceData] = useState<Record<number, any>>({})
   const [loadingInv, setLoadingInv]   = useState<number | null>(null)
 
-  
   const [svcRoomId, setSvcRoomId]   = useState<number | null>(null)
   const [services, setServices]     = useState<Service[]>([])
   const [selSvc, setSelSvc]         = useState<Service | null>(null)
@@ -93,11 +89,9 @@ export default function CurrentBookings() {
   const [adding, setAdding]         = useState(false)
   const [svcMsg, setSvcMsg]         = useState<Record<number, string>>({})
 
-  
   const [incidentRoomId, setIncidentRoomId] = useState<number | null>(null)
   const [incidentTitle, setIncidentTitle]   = useState("")
   const [incidentDesc, setIncidentDesc]     = useState("")
-  const [incidentImg, setIncidentImg]       = useState("")
   const [submittingInc, setSubmittingInc]   = useState(false)
   const [incMsg, setIncMsg]                 = useState<Record<number, string>>({})
 
@@ -105,13 +99,11 @@ export default function CurrentBookings() {
     try {
       const data = await apiGetMyActiveRooms()
       setRooms(Array.isArray(data) ? data : [])
-    } catch {  }
+    } catch {}
     finally { setLoading(false) }
   }, [])
 
   useEffect(() => { loadRooms() }, [loadRooms])
-
-  
   useEffect(() => {
     const t = setInterval(loadRooms, 30000)
     return () => clearInterval(t)
@@ -120,8 +112,8 @@ export default function CurrentBookings() {
   const loadLostItems = useCallback(async () => {
     setLoadingLost(true)
     try {
-      const res = await apiClient.get(`${API}/lostitem/my-lostitem`)
-      setLostItems(Array.isArray(res.data) ? res.data : [])
+      const data = await apiGetMyLostItems()
+      setLostItems(data)
     } catch { setLostItems([]) }
     finally { setLoadingLost(false) }
   }, [])
@@ -157,13 +149,14 @@ export default function CurrentBookings() {
     try {
       const data = await apiGetInvoiceWithDetails(room.invoiceId)
       setInvoiceData(prev => ({ ...prev, [room.id]: data }))
-    } catch {  }
+    } catch {}
     finally { setLoadingInv(null) }
   }
 
   const openSvcModal = async (room: RoomEntry) => {
     setSvcRoomId(room.id)
-    setSelSvc(null); setQty(1)
+    setSelSvc(null)
+    setQty(1)
     if (services.length === 0) {
       const data = await apiGetServices()
       setServices(data)
@@ -181,10 +174,10 @@ export default function CurrentBookings() {
         const data = await apiGetInvoiceWithDetails(room.invoiceId)
         setInvoiceData(prev => ({ ...prev, [room.id]: data }))
       }
-      setTimeout(() => setSvcMsg(prev => { const n = {...prev}; delete n[room.id]; return n }), 4000)
+      setTimeout(() => setSvcMsg(prev => { const n = { ...prev }; delete n[room.id]; return n }), 4000)
     } catch (e: any) {
       setSvcMsg(prev => ({ ...prev, [room.id]: `✗ ${e?.message ?? "Lỗi gọi dịch vụ"}` }))
-      setTimeout(() => setSvcMsg(prev => { const n = {...prev}; delete n[room.id]; return n }), 4000)
+      setTimeout(() => setSvcMsg(prev => { const n = { ...prev }; delete n[room.id]; return n }), 4000)
     } finally { setAdding(false) }
   }
 
@@ -192,7 +185,7 @@ export default function CurrentBookings() {
     if (!incidentDesc.trim() || !room.roomUseId) return
     setSubmittingInc(true)
     try {
-      await apiClient.post(`${API}/lostitem`, {
+      await apiReportLostItem({
         roomId:      room.roomId ?? 0,
         roomUseId:   room.roomUseId,
         itemName:    incidentTitle.trim() || "Báo cáo sự cố",
@@ -204,16 +197,21 @@ export default function CurrentBookings() {
       setIncidentRoomId(null)
       setIncidentTitle("")
       setIncidentDesc("")
-      setIncidentImg("")
-      setTimeout(() => setIncMsg(prev => { const n = {...prev}; delete n[room.id]; return n }), 5000)
+      setTimeout(() => setIncMsg(prev => { const n = { ...prev }; delete n[room.id]; return n }), 5000)
     } catch (e: any) {
       const msg = e?.response?.data?.message ?? e?.response?.data ?? e?.message ?? "Lỗi gửi báo cáo"
-      setIncMsg(prev => ({ ...prev, [room.id]: `✗ ${typeof msg === 'string' ? msg : JSON.stringify(msg)}` }))
-      setTimeout(() => setIncMsg(prev => { const n = {...prev}; delete n[room.id]; return n }), 4000)
+      setIncMsg(prev => ({ ...prev, [room.id]: `✗ ${typeof msg === "string" ? msg : JSON.stringify(msg)}` }))
+      setTimeout(() => setIncMsg(prev => { const n = { ...prev }; delete n[room.id]; return n }), 4000)
     } finally { setSubmittingInc(false) }
   }
 
-  const svcRoom = rooms.find(r => r.id === svcRoomId)
+  const openIncident = (room: RoomEntry) => {
+    setIncidentRoomId(room.id)
+    setIncidentTitle("")
+    setIncidentDesc("")
+  }
+
+  const svcRoom      = rooms.find(r => r.id === svcRoomId)
   const incidentRoom = rooms.find(r => r.id === incidentRoomId)
 
   return (
@@ -222,50 +220,48 @@ export default function CurrentBookings() {
       <div className="bh-page">
         <div className="bh-header">
           <div className="container">
-            <h1 className="bh-title"><HomeOutlined /> Phòng Đang Đặt
-            <button onClick={loadRooms} style={{ marginLeft: 12, background: "rgba(59,130,246,0.1)", border: "1px solid #bfdbfe", borderRadius: 8, padding: "4px 12px", cursor: "pointer", fontSize: 13, color: "#3b82f6", display: "inline-flex", alignItems: "center", gap: 4 }}>
-              <ReloadOutlined /> Làm mới
-            </button>
-          </h1>
-            <p className="bh-sub">Danh sách các phòng bạn đã đặt và đang lưu trú · Tự động cập nhật mỗi 30 giây</p>
+            <h1 className="bh-title">
+              <HomeOutlined /> Phòng Đang Đặt
+              <button className="cb-reload-btn" onClick={loadRooms}>
+                <ReloadOutlined /> Làm mới
+              </button>
+            </h1>
+            <p className="bh-sub">
+              Danh sách các phòng bạn đã đặt và đang lưu trú · Tự động cập nhật mỗi 30 giây
+            </p>
           </div>
         </div>
 
         <div className="container bh-body">
-          {}
-          <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
-            {[
-              { key: "rooms",    label: "Phòng đang đặt",  icon: <HomeOutlined /> },
-              { key: "lostitem", label: "Đồ thất lạc",     icon: <InboxOutlined /> },
-            ].map(t => (
-              <button key={t.key}
-                onClick={() => setActiveTab(t.key as "rooms" | "lostitem")}
-                style={{
-                  padding: "9px 20px", borderRadius: 10, border: "none",
-                  fontWeight: 700, fontSize: 14, cursor: "pointer",
-                  display: "flex", alignItems: "center", gap: 6,
-                  background: activeTab === t.key ? "#3b82f6" : "rgba(255,255,255,0.08)",
-                  color: activeTab === t.key ? "#fff" : "rgba(255,255,255,0.55)",
-                  transition: "all 0.15s",
-                }}>
+          
+          <div className="cb-tab-bar">
+            {([
+              { key: "rooms",    label: "Phòng đang đặt", icon: <HomeOutlined /> },
+              { key: "lostitem", label: "Đồ thất lạc",    icon: <InboxOutlined /> },
+            ] as const).map(t => (
+              <button
+                key={t.key}
+                className={`cb-tab-btn ${activeTab === t.key ? "active" : "inactive"}`}
+                onClick={() => setActiveTab(t.key)}
+              >
                 {t.icon} {t.label}
               </button>
             ))}
           </div>
 
-          {}
+          
           {activeTab === "lostitem" && (
             <div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-                <p style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, margin: 0 }}>
+              <div className="cb-lostitem-header">
+                <p className="cb-lostitem-desc">
                   Đồ thất lạc được tìm thấy trong các phòng bạn đã lưu trú
                 </p>
-                <button onClick={loadLostItems} style={{ background: "rgba(59,130,246,0.1)", border: "1px solid #bfdbfe", borderRadius: 8, padding: "5px 12px", cursor: "pointer", fontSize: 13, color: "#3b82f6", display: "flex", alignItems: "center", gap: 4 }}>
+                <button className="cb-refresh-btn" onClick={loadLostItems}>
                   <ReloadOutlined /> Làm mới
                 </button>
               </div>
               {loadingLost ? (
-                <div style={{ textAlign: "center", padding: 40 }}><LoadingOutlined style={{ fontSize: 28 }} /></div>
+                <div className="bh-empty"><LoadingOutlined className="cb-loading-icon" /></div>
               ) : lostItems.length === 0 ? (
                 <div className="bh-empty">
                   <div className="bh-empty-icon"><InboxOutlined /></div>
@@ -275,7 +271,7 @@ export default function CurrentBookings() {
                 <div className="bh-txn-list">
                   {lostItems.map(item => (
                     <div key={item.lostItemId} className="bh-txn-card">
-                      <div className="bh-txn-icon" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", fontSize: 22 }}>
+                      <div className="bh-txn-icon cb-bg-orange-light cb-text-orange cb-fs-22">
                         📦
                       </div>
                       <div className="bh-txn-info">
@@ -285,16 +281,16 @@ export default function CurrentBookings() {
                         </div>
                         <div className="bh-txn-meta">
                           {item.description && <span>{item.description}</span>}
-                          {item.foundAt && <><span style={{ color: "#cbd5e1" }}>·</span><span>Tìm thấy: {new Date(item.foundAt).toLocaleDateString("vi-VN")}</span></>}
-                          <span style={{ color: "#cbd5e1" }}>·</span>
+                          {item.foundAt && (
+                            <><span className="cb-text-gray-light">·</span>
+                            <span>Tìm thấy: {new Date(item.foundAt).toLocaleDateString("vi-VN")}</span></>
+                          )}
+                          <span className="cb-text-gray-light">·</span>
                           <span>Báo cáo: {new Date(item.createdAt).toLocaleDateString("vi-VN")}</span>
                         </div>
                       </div>
                       <div className="bh-txn-right">
-                        <span className="bh-txn-status" style={{
-                          color: item.status === "Returned" ? "#166534" : item.status === "Found" ? "#1d4ed8" : "#b45309",
-                          background: item.status === "Returned" ? "rgba(34,197,94,0.12)" : item.status === "Found" ? "rgba(59,130,246,0.1)" : "rgba(245,158,11,0.12)",
-                        }}>
+                        <span className={`bh-txn-status ${item.status === "Returned" ? "cb-status-returned" : item.status === "Found" ? "cb-status-found" : "cb-status-pending"}`}>
                           {item.status === "Returned" ? "Đã trả" : item.status === "Found" ? "Đã tìm thấy" : item.status === "Pending" ? "Chờ xử lý" : item.status}
                         </span>
                       </div>
@@ -305,322 +301,292 @@ export default function CurrentBookings() {
             </div>
           )}
 
-          {}
-          {activeTab === "rooms" && (<>
-          <div className="bh-stats">
-            {[
-              { label: "Tổng phòng đặt",    value: rooms.length,  color: "#3b82f6", isCount: true },
-              { label: "Đang ở",            value: activeCount,   color: "#22c55e", isCount: true },
-              { label: "Chờ nhận phòng",    value: pendingCount,  color: "#f59e0b", isCount: true },
-              { label: "Tổng tiền cọc",     value: totalDeposit,  color: "#8b5cf6" },
-            ].map(s => (
-              <div key={s.label} className="bh-stat-card">
-                <div className="bh-stat-num" style={{ color: s.color }}>
-                  {s.isCount ? s.value : fmt(s.value as number)}
-                </div>
-                <div className="bh-stat-label">{s.label}</div>
-              </div>
-            ))}
-          </div>
-
-          {}
-          <div className="bh-filters">
-            <div className="bh-filter-tabs">
-              {([
-                { key: "all",     label: "Tất cả" },
-                { key: "active",  label: "Đang ở" },
-                { key: "pending", label: "Chờ nhận" },
-              ] as const).map(t => (
-                <button
-                  key={t.key}
-                  className={`bh-filter-tab${filter === t.key ? " active" : ""}`}
-                  onClick={() => setFilter(t.key)}
-                >{t.label}</button>
-              ))}
-            </div>
-            <div className="bh-search-wrap">
-              <SearchOutlined className="bh-search-icon" />
-              <input
-                className="bh-search-input"
-                placeholder="Tìm mã đặt, loại phòng, số phòng..."
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-              />
-            </div>
-          </div>
-
-          {}
-          {loading ? (
-            <div className="bh-empty"><LoadingOutlined style={{ fontSize: 32 }} /></div>
-          ) : filtered.length === 0 ? (
-            <div className="bh-empty">
-              <div className="bh-empty-icon"><HomeOutlined /></div>
-              <p>{rooms.length === 0 ? "Bạn chưa có phòng nào đang đặt" : "Không tìm thấy kết quả"}</p>
-            </div>
-          ) : (
-            <div className="bh-txn-list">
-              {filtered.map(room => {
-                const stCfg    = getBookingStatus(room)
-                const isActive = room.roomStatus === "Active"
-                const nights   = calcNights(room.fromDate, room.toDate)
-                const inv      = invoiceData[room.id]
-                const details  = inv?.invoiceDetails ?? []
-                const invTotal = details.reduce((s: number, d: any) => s + (d.totalPrice ?? 0), 0)
-                const isExpanded = expandedId === room.id
-
-                return (
-                  <div key={room.id} className="bh-txn-card cb-room-card" style={{ flexDirection: "column", alignItems: "stretch", gap: 0 }}>
-                    {}
-                    <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                      {}
-                      <div className="bh-txn-icon" style={{ background: stCfg.bg, color: stCfg.color, flexShrink: 0 }}>
-                        <HomeOutlined />
-                      </div>
-
-                      {}
-                      <div className="bh-txn-info">
-                        <div className="bh-txn-title">
-                          {room.roomTypeName ?? `Booking #${room.id}`}
-                          {room.roomNumber && <span className="bh-txn-room"> · Phòng {room.roomNumber}</span>}
-                        </div>
-                        <div className="bh-txn-meta">
-                          <span><CalendarOutlined style={{ marginRight: 4 }} />
-                            Nhận: {fmtDate(room.fromDate)} · Trả: {fmtDate(room.toDate)}
-                          </span>
-                          {nights > 0 && <><span style={{ color: "#cbd5e1" }}>·</span><span>{nights} đêm</span></>}
-                          {room.checkInActual && (
-                            <><span style={{ color: "#cbd5e1" }}>·</span>
-                            <span><CheckCircleOutlined style={{ marginRight: 4, color: "#22c55e" }} />
-                              Check-in: {fmtDate(room.checkInActual)}
-                            </span></>
-                          )}
-                        </div>
-                        {svcMsg[room.id] && (
-                          <div style={{
-                            marginTop: 6, fontSize: 12, fontWeight: 600,
-                            color: svcMsg[room.id].startsWith("✓") ? "#166534" : "#b91c1c"
-                          }}>{svcMsg[room.id]}</div>
-                        )}
-                        {incMsg[room.id] && (
-                          <div style={{
-                            marginTop: 6, fontSize: 12, fontWeight: 600,
-                            color: incMsg[room.id].startsWith("✓") ? "#166534" : "#b91c1c"
-                          }}>{incMsg[room.id]}</div>
-                        )}
-                      </div>
-
-                      {}
-                      <div className="bh-txn-right" style={{ flexShrink: 0 }}>
-                        {room.pricePerUnit && (
-                          <div className="bh-txn-amount" style={{ color: "#3b82f6" }}>
-                            {fmt(room.pricePerUnit)}<span style={{ fontSize: 11, fontWeight: 400, color: "#94a3b8" }}>/đêm</span>
-                          </div>
-                        )}
-                        <span className="bh-txn-status" style={{ color: stCfg.color, background: stCfg.bg }}>
-                          {stCfg.icon} {stCfg.label}
-                        </span>
-
-                        {}
-                        <div style={{ display: "flex", gap: 6, marginTop: 4, flexWrap: "wrap" }}>
-                          {room.invoiceId && (
-                            <button
-                              onClick={() => toggleInvoice(room)}
-                              style={{
-                                padding: "5px 10px", fontSize: 12, fontWeight: 600,
-                                border: "1px solid #bfdbfe", borderRadius: 7,
-                                background: isExpanded ? "#eff6ff" : "#fff",
-                                color: "#3b82f6", cursor: "pointer",
-                                display: "flex", alignItems: "center", gap: 4,
-                              }}
-                            >
-                              <FileTextOutlined /> Xem giá
-                            </button>
-                          )}
-                          {isActive && (
-                            <button
-                              onClick={() => openSvcModal(room)}
-                              style={{
-                                padding: "5px 10px", fontSize: 12, fontWeight: 600,
-                                border: "1px solid #bbf7d0", borderRadius: 7,
-                                background: "#f0fdf4", color: "#166534",
-                                cursor: "pointer", display: "flex", alignItems: "center", gap: 4,
-                              }}
-                            >
-                              <ShoppingCartOutlined /> Gọi dịch vụ
-                            </button>
-                          )}
-                          {isActive && (
-                            <button
-                              onClick={() => { setIncidentRoomId(room.id); setIncidentTitle(""); setIncidentDesc(""); setIncidentImg(""); }}
-                              style={{
-                                padding: "5px 10px", fontSize: 12, fontWeight: 600,
-                                border: "1px solid #fecaca", borderRadius: 7,
-                                background: "#fef2f2", color: "#b91c1c",
-                                cursor: "pointer", display: "flex", alignItems: "center", gap: 4,
-                              }}
-                            >
-                              <WarningOutlined /> Báo cáo sự cố
-                            </button>
-                          )}
-                        </div>
-                      </div>
+          
+          {activeTab === "rooms" && (
+            <>
+              <div className="bh-stats">
+                {[
+                  { label: "Tổng phòng đặt",  value: rooms.length, color: "#3b82f6", isCount: true },
+                  { label: "Đang ở",           value: activeCount,  color: "#22c55e", isCount: true },
+                  { label: "Chờ nhận phòng",   value: pendingCount, color: "#f59e0b", isCount: true },
+                  { label: "Tổng tiền cọc",    value: totalDeposit, color: "#8b5cf6" },
+                ].map(s => (
+                  <div key={s.label} className="bh-stat-card">
+                    <div className="bh-stat-num" style={{ color: s.color }}>
+                      {s.isCount ? s.value : fmt(s.value as number)}
                     </div>
+                    <div className="bh-stat-label">{s.label}</div>
+                  </div>
+                ))}
+              </div>
 
-                    {}
-                    {isExpanded && (
-                      <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid #e8f0fe" }}>
-                        {loadingInv === room.id ? (
-                          <div style={{ textAlign: "center", padding: 12 }}><LoadingOutlined /> Đang tải...</div>
-                        ) : details.length === 0 ? (
-                          <div style={{ color: "#94a3b8", fontSize: 13, padding: "4px 0" }}>
-                            <DollarOutlined style={{ marginRight: 6 }} />Hóa đơn chưa có dịch vụ nào
+              <div className="bh-filters">
+                <div className="bh-filter-tabs">
+                  {([
+                    { key: "all",     label: "Tất cả" },
+                    { key: "active",  label: "Đang ở" },
+                    { key: "pending", label: "Chờ nhận" },
+                  ] as const).map(t => (
+                    <button
+                      key={t.key}
+                      className={`bh-filter-tab${filter === t.key ? " active" : ""}`}
+                      onClick={() => setFilter(t.key)}
+                    >{t.label}</button>
+                  ))}
+                </div>
+                <div className="bh-search-wrap">
+                  <SearchOutlined className="bh-search-icon" />
+                  <input
+                    className="bh-search-input"
+                    placeholder="Tìm mã đặt, loại phòng, số phòng..."
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {loading ? (
+                <div className="bh-empty"><LoadingOutlined className="cb-loading-icon-large" /></div>
+              ) : filtered.length === 0 ? (
+                <div className="bh-empty">
+                  <div className="bh-empty-icon"><HomeOutlined /></div>
+                  <p>{rooms.length === 0 ? "Bạn chưa có phòng nào đang đặt" : "Không tìm thấy kết quả"}</p>
+                </div>
+              ) : (
+                <div className="bh-txn-list">
+                  {filtered.map(room => {
+                    const stCfg    = getBookingStatus(room)
+                    const isActive = room.roomStatus === "Active"
+                    const nights   = calcNights(room.fromDate, room.toDate)
+                    const inv      = invoiceData[room.id]
+                    const details  = inv?.invoiceDetails ?? []
+                    const invTotal = details.reduce((s: number, d: any) => s + (d.totalPrice ?? 0), 0)
+                    const isExpanded = expandedId === room.id
+
+                    return (
+                      <div key={room.id} className="bh-txn-card cb-room-card">
+                        <div className="cb-card-row">
+                          <div className="bh-txn-icon cb-flex-shrink-0" style={{ background: stCfg.bg, color: stCfg.color }}>
+                            <HomeOutlined />
                           </div>
-                        ) : (
-                          <div>
-                            <div style={{ fontSize: 12, fontWeight: 700, color: "#64748b", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                              Chi tiết hóa đơn
+
+                          <div className="bh-txn-info">
+                            <div className="bh-txn-title">
+                              {room.roomTypeName ?? `Booking #${room.id}`}
+                              {room.roomNumber && <span className="bh-txn-room"> · Phòng {room.roomNumber}</span>}
                             </div>
-                            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
-                              <thead>
-                                <tr>
-                                  {["Dịch vụ / Hàng hóa", "Đơn giá", "SL", "Thành tiền"].map(h => (
-                                    <th key={h} style={{ textAlign: "left", color: "#64748b", fontWeight: 600, padding: "6px 8px", borderBottom: "1px solid #e8f0fe" }}>{h}</th>
-                                  ))}
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {details.map((d: any, i: number) => (
-                                  <tr key={d.invoiceDetailId ?? i}>
-                                    <td style={{ padding: "8px 8px", borderBottom: "1px solid #f1f5f9", color: "#1e3a5f" }}>{d.itemName}</td>
-                                    <td style={{ padding: "8px 8px", borderBottom: "1px solid #f1f5f9" }}>{fmt(d.unitPrice)}</td>
-                                    <td style={{ padding: "8px 8px", borderBottom: "1px solid #f1f5f9" }}>{d.quantity ?? 1}</td>
-                                    <td style={{ padding: "8px 8px", borderBottom: "1px solid #f1f5f9", fontWeight: 700 }}>{fmt(d.totalPrice)}</td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                              <tfoot>
-                                <tr>
-                                  <td colSpan={3} style={{ textAlign: "right", color: "#64748b", padding: "8px 8px" }}>Tạm tính:</td>
-                                  <td style={{ fontWeight: 700, padding: "8px 8px" }}>{fmt(invTotal)}</td>
-                                </tr>
-                                {(room.deposit ?? 0) > 0 && (
-                                  <tr>
-                                    <td colSpan={3} style={{ textAlign: "right", color: "#64748b", padding: "4px 8px" }}>Đã cọc:</td>
-                                    <td style={{ color: "#22c55e", fontWeight: 600, padding: "4px 8px" }}>- {fmt(room.deposit)}</td>
-                                  </tr>
-                                )}
-                                <tr style={{ borderTop: "2px solid #e8f0fe" }}>
-                                  <td colSpan={3} style={{ textAlign: "right", fontWeight: 700, padding: "8px 8px" }}>Ước tính cần trả:</td>
-                                  <td style={{ color: "#f59e0b", fontWeight: 800, fontSize: 15, padding: "8px 8px" }}>
-                                    {fmt(Math.max(0, invTotal - (room.deposit ?? 0)))}
-                                  </td>
-                                </tr>
-                              </tfoot>
-                            </table>
+                            <div className="bh-txn-meta">
+                              <span>
+                                <CalendarOutlined className="cb-mr-4" />
+                                Nhận: {fmtDate(room.fromDate)} · Trả: {fmtDate(room.toDate)}
+                              </span>
+                              {nights > 0 && <><span className="cb-text-gray-light">·</span><span>{nights} đêm</span></>}
+                              {room.checkInActual && (
+                                <><span className="cb-text-gray-light">·</span>
+                                <span>
+                                  <CheckCircleOutlined className="cb-mr-4 cb-text-green" />
+                                  Check-in: {fmtDate(room.checkInActual)}
+                                </span></>
+                              )}
+                            </div>
+                            {svcMsg[room.id] && (
+                              <div className={svcMsg[room.id].startsWith("✓") ? "cb-msg-ok" : "cb-msg-err"}>
+                                {svcMsg[room.id]}
+                              </div>
+                            )}
+                            {incMsg[room.id] && (
+                              <div className={incMsg[room.id].startsWith("✓") ? "cb-msg-ok" : "cb-msg-err"}>
+                                {incMsg[room.id]}
+                              </div>
+                            )}
+                          </div>
+
+                          <div className="bh-txn-right cb-flex-shrink-0">
+                            {room.pricePerUnit && (
+                              <div className="bh-txn-amount cb-text-blue">
+                                {fmt(room.pricePerUnit)}
+                                <span className="cb-text-sm cb-font-normal cb-text-gray">/đêm</span>
+                              </div>
+                            )}
+                            <span className="bh-txn-status" style={{ color: stCfg.color, background: stCfg.bg }}>
+                              {stCfg.icon} {stCfg.label}
+                            </span>
+
+                            <div className="cb-action-group">
+                              {room.invoiceId && (
+                                <button
+                                  className={`cb-btn-invoice${isExpanded ? " expanded" : ""}`}
+                                  onClick={() => toggleInvoice(room)}
+                                >
+                                  <FileTextOutlined /> Xem giá
+                                </button>
+                              )}
+                              {isActive && (
+                                <button className="cb-btn-service" onClick={() => openSvcModal(room)}>
+                                  <ShoppingCartOutlined /> Gọi dịch vụ
+                                </button>
+                              )}
+                              {isActive && (
+                                <button className="cb-btn-incident" onClick={() => openIncident(room)}>
+                                  <WarningOutlined /> Báo cáo sự cố
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        {isExpanded && (
+                          <div className="cb-invoice-panel">
+                            {loadingInv === room.id ? (
+                              <div className="cb-text-center cb-p-12">
+                                <LoadingOutlined /> Đang tải...
+                              </div>
+                            ) : details.length === 0 ? (
+                              <div className="cb-empty-text">
+                                <DollarOutlined className="cb-mr-6" />Hóa đơn chưa có dịch vụ nào
+                              </div>
+                            ) : (
+                              <div>
+                                <div className="cb-invoice-section-label">Chi tiết hóa đơn</div>
+                                <table className="cb-invoice-table">
+                                  <thead>
+                                    <tr>
+                                      {["Dịch vụ / Hàng hóa", "Đơn giá", "SL", "Thành tiền"].map(h => (
+                                        <th key={h}>{h}</th>
+                                      ))}
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {details.map((d: any, i: number) => (
+                                      <tr key={d.invoiceDetailId ?? i}>
+                                        <td>{d.itemName}</td>
+                                        <td>{fmt(d.unitPrice)}</td>
+                                        <td>{d.quantity ?? 1}</td>
+                                        <td className="cb-font-bold">{fmt(d.totalPrice)}</td>
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                  <tfoot>
+                                    <tr>
+                                      <td colSpan={3} className="cb-text-right">Tạm tính:</td>
+                                      <td className="cb-font-bold">{fmt(invTotal)}</td>
+                                    </tr>
+                                    {(room.deposit ?? 0) > 0 && (
+                                      <tr>
+                                        <td colSpan={3} className="cb-text-right">Đã cọc:</td>
+                                        <td className="cb-text-green cb-font-semibold">- {fmt(room.deposit)}</td>
+                                      </tr>
+                                    )}
+                                    <tr className="cb-border-top-thick">
+                                      <td colSpan={3} className="cb-text-right cb-font-bold">Ước tính cần trả:</td>
+                                      <td className="cb-text-orange cb-font-extrabold cb-text-lg">
+                                        {fmt(Math.max(0, invTotal - (room.deposit ?? 0)))}
+                                      </td>
+                                    </tr>
+                                  </tfoot>
+                                </table>
+                              </div>
+                            )}
                           </div>
                         )}
                       </div>
-                    )}
-                  </div>
-                )
-              })}
-            </div>
+                    )
+                  })}
+                </div>
+              )}
+            </>
           )}
-          </>)}
         </div>
       </div>
 
-      {}
+      
       {svcRoomId !== null && svcRoom && (
-        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}
-          onClick={() => setSvcRoomId(null)}>
-          <div style={{ background: "#fff", borderRadius: 16, width: 460, maxWidth: "95vw", maxHeight: "80vh", display: "flex", flexDirection: "column", boxShadow: "0 20px 60px rgba(0,0,0,0.2)" }}
-            onClick={e => e.stopPropagation()}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", borderBottom: "1px solid #e8f0fe", fontWeight: 700, fontSize: 15, color: "#1e3a5f" }}>
-              <span><ShoppingCartOutlined style={{ marginRight: 8 }} />Gọi dịch vụ · Phòng {svcRoom.roomNumber ?? svcRoom.id}</span>
-              <button onClick={() => setSvcRoomId(null)} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 16, color: "#94a3b8" }}><CloseOutlined /></button>
+        <div className="cb-modal-overlay" onClick={() => setSvcRoomId(null)}>
+          <div className="cb-modal" onClick={e => e.stopPropagation()}>
+            <div className="cb-modal-header">
+              <span><ShoppingCartOutlined className="cb-mr-8" />Gọi dịch vụ · Phòng {svcRoom.roomNumber ?? svcRoom.id}</span>
+              <button className="cb-modal-close" onClick={() => setSvcRoomId(null)}><CloseOutlined /></button>
             </div>
-
-            <div style={{ flex: 1, overflowY: "auto", padding: "16px 20px" }}>
+            <div className="cb-modal-body">
               {services.length === 0 ? (
-                <div style={{ textAlign: "center", color: "#94a3b8", padding: 20 }}><LoadingOutlined /> Đang tải...</div>
+                <div className="cb-loading-center"><LoadingOutlined /> Đang tải...</div>
               ) : (
-                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <div className="cb-svc-list">
                   {services.map(svc => (
-                    <div key={svc.id}
+                    <div
+                      key={svc.id}
+                      className={`cb-svc-item ${selSvc?.id === svc.id ? "selected" : "unselected"}`}
                       onClick={() => setSelSvc(svc)}
-                      style={{
-                        border: `1px solid ${selSvc?.id === svc.id ? "#3b82f6" : "#dbeafe"}`,
-                        background: selSvc?.id === svc.id ? "#eff6ff" : "#fff",
-                        borderRadius: 10, padding: "12px 14px", cursor: "pointer",
-                      }}>
-                      <div style={{ fontWeight: 600, color: "#1e3a5f" }}>{svc.name}</div>
-                      <div style={{ fontSize: 12, color: "#64748b", marginTop: 3 }}>{svc.serviceType} · {fmt(svc.price)}/{svc.unit}</div>
+                    >
+                      <div className="cb-svc-name">{svc.name}</div>
+                      <div className="cb-svc-meta">{svc.serviceType} · {fmt(svc.price)}/{svc.unit}</div>
                     </div>
                   ))}
                 </div>
               )}
-
               {selSvc && (
-                <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 16, padding: "12px 14px", background: "#f8faff", borderRadius: 10, border: "1px solid #dbeafe" }}>
-                  <span style={{ fontSize: 14 }}>Số lượng:</span>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <button onClick={() => setQty(q => Math.max(1, q - 1))} style={{ width: 30, height: 30, borderRadius: 6, border: "1px solid #bfdbfe", background: "#fff", cursor: "pointer", fontWeight: 700, color: "#3b82f6" }}>−</button>
-                    <span style={{ fontWeight: 700, minWidth: 24, textAlign: "center" }}>{qty}</span>
-                    <button onClick={() => setQty(q => q + 1)} style={{ width: 30, height: 30, borderRadius: 6, border: "1px solid #bfdbfe", background: "#fff", cursor: "pointer", fontWeight: 700, color: "#3b82f6" }}>+</button>
+                <div className="cb-qty-row">
+                  <span className="cb-fs-14">Số lượng:</span>
+                  <div className="cb-flex-center-gap">
+                    <button className="cb-qty-btn" onClick={() => setQty(q => Math.max(1, q - 1))}>−</button>
+                    <span className="cb-qty-num">{qty}</span>
+                    <button className="cb-qty-btn" onClick={() => setQty(q => q + 1)}>+</button>
                   </div>
-                  <span style={{ color: "#f59e0b", fontWeight: 700, marginLeft: "auto" }}>{fmt(selSvc.price * qty)}</span>
+                  <span className="cb-qty-total">{fmt(selSvc.price * qty)}</span>
                 </div>
               )}
             </div>
-
-            <div style={{ display: "flex", gap: 10, padding: "14px 20px", borderTop: "1px solid #e8f0fe" }}>
-              <button onClick={() => setSvcRoomId(null)} style={{ flex: 1, padding: 10, border: "1px solid #bfdbfe", borderRadius: 8, background: "#fff", cursor: "pointer", fontSize: 14 }}>Hủy</button>
+            <div className="cb-modal-footer">
+              <button className="cb-modal-cancel" onClick={() => setSvcRoomId(null)}>Hủy</button>
               <button
+                className={`cb-modal-confirm ${selSvc && !adding ? "blue" : "blue-dis"}`}
                 onClick={() => handleAddService(svcRoom)}
                 disabled={!selSvc || adding}
-                style={{ flex: 2, padding: 10, background: selSvc && !adding ? "#3b82f6" : "#93c5fd", border: "none", borderRadius: 8, color: "#fff", cursor: selSvc && !adding ? "pointer" : "not-allowed", fontSize: 14, fontWeight: 700 }}>
-                <PlusOutlined style={{ marginRight: 6 }} />{adding ? "Đang gửi..." : "Xác nhận gọi dịch vụ"}
+              >
+                <PlusOutlined className="cb-mr-6" />
+                {adding ? "Đang gửi..." : "Xác nhận gọi dịch vụ"}
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {}
+      
       {incidentRoomId !== null && incidentRoom && (
-        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }}
-          onClick={() => setIncidentRoomId(null)}>
-          <div style={{ background: "#fff", borderRadius: 16, width: 460, maxWidth: "95vw", boxShadow: "0 20px 60px rgba(0,0,0,0.2)" }}
-            onClick={e => e.stopPropagation()}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", borderBottom: "1px solid #e8f0fe", fontWeight: 700, fontSize: 15, color: "#1e3a5f" }}>
-              <span><WarningOutlined style={{ marginRight: 8, color: "#ef4444" }} />Báo cáo sự cố · Phòng {incidentRoom.roomNumber ?? incidentRoom.id}</span>
-              <button onClick={() => setIncidentRoomId(null)} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 16, color: "#94a3b8" }}><CloseOutlined /></button>
+        <div className="cb-modal-overlay" onClick={() => setIncidentRoomId(null)}>
+          <div className="cb-modal-sm" onClick={e => e.stopPropagation()}>
+            <div className="cb-modal-header">
+              <span><WarningOutlined className="cb-mr-8 cb-text-red" />Báo cáo sự cố · Phòng {incidentRoom.roomNumber ?? incidentRoom.id}</span>
+              <button className="cb-modal-close" onClick={() => setIncidentRoomId(null)}><CloseOutlined /></button>
             </div>
-            <div style={{ padding: "20px" }}>
-              <label style={{ display: "block", fontWeight: 600, fontSize: 13, color: "#475569", marginBottom: 6 }}>Tên / Tiêu đề sự cố *</label>
+            <div className="cb-modal-body-pad">
+              <label className="cb-form-label">Tên / Tiêu đề sự cố *</label>
               <input
+                className="cb-form-input"
                 value={incidentTitle}
                 onChange={e => setIncidentTitle(e.target.value)}
                 placeholder="VD: Điều hòa hỏng, Vòi nước bị rỉ, Đồ thất lạc..."
-                style={{ width: "100%", border: "1.5px solid #dbeafe", borderRadius: 10, padding: "10px 14px", fontSize: 14, boxSizing: "border-box", outline: "none", marginBottom: 14 }}
               />
-              <label style={{ display: "block", fontWeight: 600, fontSize: 13, color: "#475569", marginBottom: 6 }}>Mô tả chi tiết *</label>
+              <label className="cb-form-label">Mô tả chi tiết *</label>
               <textarea
+                className="cb-form-textarea"
                 value={incidentDesc}
                 onChange={e => setIncidentDesc(e.target.value)}
-                placeholder="Mô tả chi tiết sự cố (ví dụ: điều hòa không hoạt động, vòi nước bị rỉ...)"
+                placeholder="Mô tả chi tiết sự cố..."
                 rows={4}
-                style={{ width: "100%", border: "1.5px solid #dbeafe", borderRadius: 10, padding: "10px 14px", fontSize: 14, boxSizing: "border-box", resize: "vertical", outline: "none" }}
               />
             </div>
-            <div style={{ display: "flex", gap: 10, padding: "14px 20px", borderTop: "1px solid #e8f0fe" }}>
-              <button onClick={() => setIncidentRoomId(null)} style={{ flex: 1, padding: 10, border: "1px solid #bfdbfe", borderRadius: 8, background: "#fff", cursor: "pointer", fontSize: 14 }}>Hủy</button>
+            <div className="cb-modal-footer">
+              <button className="cb-modal-cancel" onClick={() => setIncidentRoomId(null)}>Hủy</button>
               <button
+                className={`cb-modal-confirm ${incidentDesc.trim() && !submittingInc ? "red" : "red-dis"}`}
                 onClick={() => handleSubmitIncident(incidentRoom)}
                 disabled={!incidentDesc.trim() || submittingInc}
-                style={{ flex: 2, padding: 10, background: incidentDesc.trim() && !submittingInc ? "#ef4444" : "#fca5a5", border: "none", borderRadius: 8, color: "#fff", cursor: incidentDesc.trim() && !submittingInc ? "pointer" : "not-allowed", fontSize: 14, fontWeight: 700 }}>
-                {submittingInc ? <><LoadingOutlined style={{ marginRight: 6 }} />Đang gửi...</> : <><WarningOutlined style={{ marginRight: 6 }} />Gửi báo cáo</>}
+              >
+                {submittingInc
+                  ? <><LoadingOutlined className="cb-mr-6" />Đang gửi...</>
+                  : <><WarningOutlined className="cb-mr-6" />Gửi báo cáo</>
+                }
               </button>
             </div>
           </div>

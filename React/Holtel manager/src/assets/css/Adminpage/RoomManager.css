@@ -1,124 +1,125 @@
 .room-manager-wapper {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .room-manager-header {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .search-box {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 6px;
-    padding: 8px 14px;
-    gap: 10px;
-    flex: 1;
-    max-width: 440px;
-    transition: border-color 0.2s;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 8px 14px;
+  gap: 10px;
+  flex: 1;
+  max-width: 440px;
+  transition: border-color 0.2s;
 }
 
 .search-box:focus-within {
-    border-color: #1565c0;
+  border-color: #1565c0;
 }
 
 .search-icon {
-    color: rgba(255, 255, 255, 0.45);
-    font-size: 15px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 15px;
 }
 
 .search-box input {
-    background: none;
-    border: none;
-    outline: none;
-    color: #e0eaf4;
-    font-size: 14px;
-    width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  color: #e0eaf4;
+  font-size: 14px;
+  width: 100%;
 }
 
 .search-box input::placeholder {
-    color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.35);
 }
 
 .room-manager-body {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 8px;
-    padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  padding: 16px;
 }
 
 .body-manager {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .body-manager-room {
-    width: 220px;
-    height: 48px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 14px;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
-    position: relative;
+  width: 220px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+  position: relative;
 }
 
 .body-manager-room:hover {
-    background: rgba(21, 101, 192, 0.18);
-    border-color: #1565c0;
+  background: rgba(21, 101, 192, 0.18);
+  border-color: #1565c0;
 }
 
 .body-left-manager-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: #e0eaf4;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e0eaf4;
 }
 
 .body-left-manager-status {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
-/* Modal form */
 .form-value {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .form-value-notchange {
-    font-size: 14px;
-    font-weight: 500;
-    padding: 9px 12px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 5px;
-    color: #e0eaf4;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 9px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  color: #e0eaf4;
 }
 
 .inout-btn {
-    border: none;
-    border-radius: 5px;
-    padding: 9px 16px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 4px;
-    transition: opacity 0.15s;
+  border: none;
+  border-radius: 5px;
+  padding: 9px 16px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: opacity 0.15s;
 }
 
 .inout-btn:hover {
-    opacity: 0.85;
+  opacity: 0.85;
 }

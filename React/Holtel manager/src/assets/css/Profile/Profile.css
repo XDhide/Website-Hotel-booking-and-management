@@ -1,4 +1,7 @@
-.pf-page { background: #f8faff; min-height: 100vh; }
+.pf-page {
+  background: #f8faff;
+  min-height: 100vh;
+}
 
 .pf-header {
   background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
@@ -23,7 +26,6 @@
   align-items: start;
 }
 
-/* Sidebar */
 .pf-sidebar {
   position: sticky;
   top: 20px;
@@ -48,7 +50,10 @@
   align-items: center;
   justify-content: center;
 }
-.pf-avatar-icon { font-size: 36px; color: #3b82f6; }
+.pf-avatar-icon {
+  font-size: 36px;
+  color: #3b82f6;
+}
 .pf-avatar-edit {
   position: absolute;
   bottom: 0;
@@ -65,8 +70,16 @@
   justify-content: center;
   cursor: pointer;
 }
-.pf-avatar-name { font-size: 16px; font-weight: 700; color: #1e3a5f; }
-.pf-avatar-email { font-size: 12px; color: #94a3b8; margin-bottom: 16px; }
+.pf-avatar-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e3a5f;
+}
+.pf-avatar-email {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 16px;
+}
 
 .pf-stats {
   display: flex;
@@ -76,10 +89,22 @@
   padding: 14px 0;
   margin-bottom: 16px;
 }
-.pf-stat-num { font-size: 20px; font-weight: 800; color: #1d4ed8; }
-.pf-stat-label { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+.pf-stat-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1d4ed8;
+}
+.pf-stat-label {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
 
-.pf-nav { display: flex; flex-direction: column; gap: 4px; }
+.pf-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .pf-nav-item {
   padding: 9px 14px;
   border: none;
@@ -92,10 +117,16 @@
   text-align: left;
   transition: all 0.15s;
 }
-.pf-nav-item:hover  { background: #eff6ff; color: #3b82f6; }
-.pf-nav-item.active { background: #eff6ff; color: #3b82f6; font-weight: 700; }
+.pf-nav-item:hover {
+  background: #eff6ff;
+  color: #3b82f6;
+}
+.pf-nav-item.active {
+  background: #eff6ff;
+  color: #3b82f6;
+  font-weight: 700;
+}
 
-/* Card */
 .pf-card {
   background: #fff;
   border: 1px solid #dbeafe;
@@ -131,8 +162,13 @@
   cursor: pointer;
   transition: all 0.15s;
 }
-.pf-edit-btn:hover { background: #eff6ff; }
-.pf-edit-actions { display: flex; gap: 8px; }
+.pf-edit-btn:hover {
+  background: #eff6ff;
+}
+.pf-edit-actions {
+  display: flex;
+  gap: 8px;
+}
 .pf-cancel-btn {
   padding: 7px 16px;
   border: 1px solid #e5e7eb;
@@ -154,7 +190,9 @@
   cursor: pointer;
   transition: background 0.2s;
 }
-.pf-save-btn:hover { background: #2563eb; }
+.pf-save-btn:hover {
+  background: #2563eb;
+}
 
 .pf-success-msg {
   display: flex;
@@ -174,8 +212,14 @@
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
-.pf-form-group.full { grid-column: 1 / -1; }
-.pf-form-group { display: flex; flex-direction: column; gap: 6px; }
+.pf-form-group.full {
+  grid-column: 1 / -1;
+}
+.pf-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 .pf-form-label {
   font-size: 12px;
   font-weight: 600;
@@ -194,16 +238,32 @@
   background: #f8faff;
   outline: none;
   box-sizing: border-box;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
-.pf-form-input:focus  { border-color: #3b82f6; background: #fff; }
-.pf-form-input:disabled { background: #f1f5f9; color: #64748b; cursor: default; }
+.pf-form-input:focus {
+  border-color: #3b82f6;
+  background: #fff;
+}
+.pf-form-input:disabled {
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: default;
+}
 
-/* Password form */
-.pf-pwd-form { display: flex; flex-direction: column; gap: 16px; max-width: 400px; }
+.pf-pwd-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 400px;
+}
 
-/* Notifications */
-.pf-notif-list { display: flex; flex-direction: column; gap: 0; }
+.pf-notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
 .pf-notif-item {
   display: flex;
   align-items: center;
@@ -211,11 +271,20 @@
   padding: 16px 0;
   border-bottom: 1px solid #f1f5f9;
 }
-.pf-notif-item:last-child { border-bottom: none; }
-.pf-notif-label { font-size: 14px; font-weight: 600; color: #1e3a5f; margin-bottom: 3px; }
-.pf-notif-desc  { font-size: 12px; color: #94a3b8; }
+.pf-notif-item:last-child {
+  border-bottom: none;
+}
+.pf-notif-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e3a5f;
+  margin-bottom: 3px;
+}
+.pf-notif-desc {
+  font-size: 12px;
+  color: #94a3b8;
+}
 
-/* Toggle */
 .pf-toggle {
   position: relative;
   display: inline-block;
@@ -223,7 +292,11 @@
   height: 24px;
   flex-shrink: 0;
 }
-.pf-toggle input { opacity: 0; width: 0; height: 0; }
+.pf-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 .pf-toggle-slider {
   position: absolute;
   inset: 0;
@@ -243,11 +316,76 @@
   border-radius: 50%;
   transition: transform 0.2s;
 }
-.pf-toggle input:checked + .pf-toggle-slider { background: #3b82f6; }
-.pf-toggle input:checked + .pf-toggle-slider::before { transform: translateX(20px); }
+.pf-toggle input:checked + .pf-toggle-slider {
+  background: #3b82f6;
+}
+.pf-toggle input:checked + .pf-toggle-slider::before {
+  transform: translateX(20px);
+}
 
 @media (max-width: 768px) {
-  .pf-body { grid-template-columns: 1fr; }
-  .pf-sidebar { position: static; }
-  .pf-form-grid { grid-template-columns: 1fr; }
+  .pf-body {
+    grid-template-columns: 1fr;
+  }
+  .pf-sidebar {
+    position: static;
+  }
+  .pf-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pf-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  border-radius: 12px;
+}
+.pf-loading-icon {
+  font-size: 32px;
+  color: #3b82f6;
+}
+.pf-saved-toast {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 10px;
+  padding: 10px 18px;
+  color: #4ade80;
+  z-index: 999;
+  font-size: 0.9rem;
+}
+.pf-mr-6 {
+  margin-right: 6px;
+}
+.pf-pwd-msg {
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 0.88rem;
+}
+.pf-pwd-msg-ok {
+  background: rgba(34, 197, 94, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+.pf-pwd-msg-err {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+.pf-mt-8 {
+  margin-top: 8px;
+}
+.pf-w-full {
+  width: 100%;
 }

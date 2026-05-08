@@ -6,6 +6,7 @@ const prefix = `${API}/roomtype`;
 export const apiSearchRoomType = async (page = 1, limit = 10): Promise<any> => {
     try {
         const res = await apiClient.get(`${prefix}?page=${page}&limit=${limit}`);
+        
         return res?.data;
     } catch (err: any) {
         console.error("[RoomTypeService.search]", err);
@@ -74,4 +75,16 @@ export const apiGetRoomTypeImages = async (id: number): Promise<any[]> => {
     } catch {
         return [];
     }
+};
+
+
+export const apiGetAllRoomTypes    = (page = 1, limit = 10) => apiSearchRoomType(page, limit);
+export const apiUploadRoomTypeImage = apiAddRoomTypeImage;
+
+export const apiUploadRoomTypeFile = async (roomTypeId: number, formData: FormData): Promise<any> => {
+  const res = await apiClient.post(
+    `${prefix}/${roomTypeId}/images/upload`, formData,
+    { headers: { 'Content-Type': 'multipart/form-data' } }
+  );
+  return res?.data;
 };

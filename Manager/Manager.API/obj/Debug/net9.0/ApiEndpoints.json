@@ -475,6 +475,100 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Manager.API.Controllers.EvaluationController",
+    "Method": "GetMyEvaluations",
+    "RelativePath": "api/evaluation/my-evaluations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.EvaluationController",
+    "Method": "UserSubmitEvaluation",
+    "RelativePath": "api/evaluation/user-submit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Evaluation.UserSubmitEvaluationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.FavoriteController",
+    "Method": "GetFavorites",
+    "RelativePath": "api/Favorite",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.FavoriteController",
+    "Method": "AddFavorite",
+    "RelativePath": "api/Favorite",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Manager.API.Dtos.Favorite.AddFavoriteRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.FavoriteController",
+    "Method": "RemoveFavorite",
+    "RelativePath": "api/Favorite/{roomTypeId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.FavoriteController",
+    "Method": "GetFavoriteIds",
+    "RelativePath": "api/Favorite/ids",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Manager.API.Controllers.FavoriteController",
+    "Method": "ToggleFavorite",
+    "RelativePath": "api/Favorite/toggle/{roomTypeId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roomTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Manager.API.Controllers.InvoiceController",
     "Method": "GetAll",
     "RelativePath": "api/invoice",

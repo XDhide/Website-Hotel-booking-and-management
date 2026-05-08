@@ -1,11 +1,8 @@
-/* src/pages/Homepage.css */
-
 .homepage {
   background: #f8faff;
   min-height: 100vh;
 }
 
-/* ── Shared section layout ── */
 .section {
   padding: 56px 24px;
 }
@@ -15,7 +12,6 @@
   margin: 0 auto;
 }
 
-/* ── Section headings ── */
 .section-title {
   font-size: 26px;
   font-weight: 800;
@@ -36,7 +32,6 @@
   margin-bottom: 32px;
 }
 
-/* ── Room grid (shared bởi TopRooms & CalendarSearch) ── */
 .room-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -44,7 +39,13 @@
 }
 
 @media (max-width: 480px) {
-  .section { padding: 36px 16px; }
-  .section-title { font-size: 20px; }
-  .room-grid { grid-template-columns: 1fr; }
+  .section {
+    padding: 36px 16px;
+  }
+  .section-title {
+    font-size: 20px;
+  }
+  .room-grid {
+    grid-template-columns: 1fr;
+  }
 }

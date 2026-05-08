@@ -1,3 +1,4 @@
+import { apiGetChatStatus } from "../../services/InvoiceService";
 import { useState, useRef, useEffect, useCallback } from "react";
 import {
   MessageOutlined,
@@ -10,13 +11,11 @@ import {
   LoadingOutlined,
 } from "@ant-design/icons";
 import "../../assets/css/Homepage/ChatBubble.css";
-import { apiClient } from "../../constant/api";
-import { API } from "../../constant/config";
 import {
   apiOpenChat,
   apiSendMessage,
   apiGetMessages,
-} from "../../services/IncidencePaymentSupportChatServices";
+} from "../../services/SupportChatService";
 
 interface Message {
   id: number;
@@ -37,26 +36,29 @@ function getTime(isoStr?: string) {
 }
 
 export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
-  const [open, setOpen]         = useState(false);
-  const [msg, setMsg]           = useState("");
+  const [open, setOpen] = useState(false);
+  const [msg, setMsg] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
-  const [chatId, setChatId]     = useState<number | null>(null);
-  const [loading, setLoading]   = useState(false);
-  const [sending, setSending]   = useState(false);
-  const [closed, setClosed]     = useState(false);
+  const [chatId, setChatId] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [closed, setClosed] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const scrollBottom = () =>
-    setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: "smooth" }), 80);
+    setTimeout(
+      () => bottomRef.current?.scrollIntoView({ behavior: "smooth" }),
+      80,
+    );
 
   const loadMessages = useCallback(async (id: number) => {
     try {
       const raw = await apiGetMessages(id);
-      const list: Message[] = Array.isArray(raw) ? raw : raw?.data ?? [];
+      const list: Message[] = Array.isArray(raw) ? raw : (raw?.data ?? []);
       setMessages(list);
       scrollBottom();
-    } catch {  }
+    } catch {}
   }, []);
 
   const initChat = useCallback(async () => {
@@ -64,38 +66,40 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
     setLoading(true);
     try {
       const res = await apiOpenChat();
-      const id  = res?.id ?? res?.data?.id;
+      const id = res?.id ?? res?.data?.id;
       if (id) {
         setChatId(id);
         setClosed(res?.status === "Closed");
         await loadMessages(id);
       }
-    } catch {  }
-    finally { setLoading(false); }
+    } catch {
+    } finally {
+      setLoading(false);
+    }
   }, [chatId, loadMessages]);
 
   useEffect(() => {
     if (!open || !chatId || closed) return;
     pollingRef.current = setInterval(async () => {
       try {
-        
-        const statusRes = await apiClient.get(`${API}/SupportChat/${chatId}/status`);
-        const st = statusRes?.data?.status;
+        const statusRes = await apiGetChatStatus(chatId);
+        const st = statusRes?.status;
         if (st === "Deleted" || st === "Closed") {
           setClosed(true);
-          setMessages(prev => [...prev]); 
+          setMessages((prev) => [...prev]);
           return;
         }
-        
+
         const raw = await apiGetMessages(chatId);
-        const list: Message[] = Array.isArray(raw) ? raw : raw?.data ?? [];
+        const list: Message[] = Array.isArray(raw) ? raw : (raw?.data ?? []);
         setMessages(list);
       } catch {
-        
         setClosed(true);
       }
     }, 6000);
-    return () => { if (pollingRef.current) clearInterval(pollingRef.current); };
+    return () => {
+      if (pollingRef.current) clearInterval(pollingRef.current);
+    };
   }, [open, chatId, closed]);
 
   useEffect(() => {
@@ -111,12 +115,12 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
       await apiSendMessage({ supportChatId: chatId, message: text });
       await loadMessages(chatId);
     } catch (e: any) {
-      
       if (e?.message?.includes("đóng") || e?.message?.includes("Closed")) {
         setClosed(true);
       }
+    } finally {
+      setSending(false);
     }
-    finally { setSending(false); }
   };
 
   const handleKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -136,7 +140,11 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
               <div>
                 <div className="cb-header-title">Hỗ trợ trực tuyến</div>
                 <div className="cb-header-sub">
-                  {isLoggedIn ? (closed ? "Đã kết thúc" : "Đang hoạt động") : "Vui lòng đăng nhập"}
+                  {isLoggedIn
+                    ? closed
+                      ? "Đã kết thúc"
+                      : "Đang hoạt động"
+                    : "Vui lòng đăng nhập"}
                 </div>
               </div>
             </div>
@@ -149,26 +157,30 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
             <div className="cb-login-notice">
               <LockOutlined className="cb-lock-icon" />
               <p className="cb-login-text">
-                Vui lòng <strong>đăng nhập</strong> để nhắn tin với đội ngũ hỗ trợ
-                của chúng tôi.
+                Vui lòng <strong>đăng nhập</strong> để nhắn tin với đội ngũ hỗ
+                trợ của chúng tôi.
               </p>
               <button className="cb-login-btn">
-                <LoginOutlined style={{ marginRight: 8 }} />
+                <LoginOutlined className="cb-mr-8" />
                 Đăng nhập ngay
               </button>
             </div>
           ) : loading ? (
-            <div className="cb-messages" style={{ justifyContent: "center", alignItems: "center" }}>
-              <LoadingOutlined style={{ fontSize: 28, color: "#3b82f6" }} />
+            <div className="cb-messages cb-messages-loading">
+              <LoadingOutlined className="cb-loading-icon" />
             </div>
           ) : (
             <>
               <div className="cb-messages">
                 {messages.length === 0 && (
                   <div className="cb-msg-row bot">
-                    <div className="cb-msg-avatar"><RobotOutlined /></div>
+                    <div className="cb-msg-avatar">
+                      <RobotOutlined />
+                    </div>
                     <div className="cb-msg-bubble-wrap">
-                      <div className="cb-bubble bot">Xin chào! 👋 Tôi có thể giúp gì cho bạn?</div>
+                      <div className="cb-bubble bot">
+                        Xin chào! 👋 Tôi có thể giúp gì cho bạn?
+                      </div>
                       <div className="cb-msg-time">{getTime()}</div>
                     </div>
                   </div>
@@ -177,16 +189,25 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
                 {messages.map((m) => {
                   const isUser = !m.isStaff;
                   return (
-                    <div key={m.id} className={`cb-msg-row ${isUser ? "user" : "bot"}`}>
+                    <div
+                      key={m.id}
+                      className={`cb-msg-row ${isUser ? "user" : "bot"}`}
+                    >
                       {!isUser && (
-                        <div className="cb-msg-avatar"><RobotOutlined /></div>
+                        <div className="cb-msg-avatar">
+                          <RobotOutlined />
+                        </div>
                       )}
                       <div className="cb-msg-bubble-wrap">
-                        <div className={`cb-bubble ${isUser ? "user" : "bot"}`}>{m.message}</div>
+                        <div className={`cb-bubble ${isUser ? "user" : "bot"}`}>
+                          {m.message}
+                        </div>
                         <div className="cb-msg-time">{getTime(m.sentAt)}</div>
                       </div>
                       {isUser && (
-                        <div className="cb-msg-avatar user"><UserOutlined /></div>
+                        <div className="cb-msg-avatar user">
+                          <UserOutlined />
+                        </div>
                       )}
                     </div>
                   );
@@ -196,7 +217,7 @@ export default function ChatBubble({ isLoggedIn }: ChatBubbleProps) {
 
               <div className="cb-input-row">
                 {closed ? (
-                  <div style={{ flex: 1, textAlign: "center", color: "#94a3b8", fontSize: 13, padding: "8px 0" }}>
+                  <div className="cb-closed-notice">
                     Cuộc hội thoại đã kết thúc
                   </div>
                 ) : (
