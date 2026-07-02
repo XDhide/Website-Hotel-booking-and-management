@@ -761,3 +761,13 @@
 .rd-heart-liked {
   color: #ef4444;
 }
+
+.rd-star-active {
+  font-size: 12px;
+  color: #f59e0b;
+}
+
+.rd-star-inactive {
+  font-size: 12px;
+  color: #e2e8f0;
+}

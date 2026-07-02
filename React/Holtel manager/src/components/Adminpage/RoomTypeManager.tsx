@@ -21,7 +21,6 @@ import {
   CloseOutlined,
   CheckCircleOutlined,
 } from "@ant-design/icons";
-import { API } from "../../constant/config";
 import "../../assets/css/Adminpage/RoomTypeManager.css";
 
 interface RoomImage {
@@ -67,25 +66,25 @@ export default function RoomTypeManager() {
   const fileRef = useRef<HTMLInputElement>(null);
 
   const load = useCallback(
-    async (p = page) => {
+    async (p?: number) => {
+      const targetPage = p ?? page;
       setLoading(true);
       try {
-        const res = await apiGetAllRoomTypes(p, PAGE_SIZE);
-        const d = res;
-        setItems(d.data ?? []);
-        setTotal(d.totalCount ?? 0);
+        const res = await apiGetAllRoomTypes(targetPage, PAGE_SIZE);
+        setItems(res.data ?? []);
+        setTotal(res.totalCount ?? 0);
       } catch {
         setItems([]);
       } finally {
         setLoading(false);
       }
     },
-    [page],
+    [],
   );
 
   useEffect(() => {
     load(page);
-  }, [page]);
+  }, [page, load]);
 
   const filtered = search
     ? items.filter((r) => r.name.toLowerCase().includes(search.toLowerCase()))
@@ -144,33 +143,53 @@ export default function RoomTypeManager() {
     }
     setSaving(true);
     setFormErr("");
-    try {
-      let roomTypeId: number;
 
+    let roomTypeId: number | null = null;
+    try {
       if (modalMode === "add") {
         const res = await apiCreateRoomType(form);
-        roomTypeId = res.data?.id ?? res.data?.Id;
+        roomTypeId = res?.id ?? res?.Id ?? null;
+        setSaving(false);
+        setModalMode(null);
+        load(page);
+        return;
       } else {
         await apiUpdateRoomType(editTarget!.id, form);
         roomTypeId = editTarget!.id;
       }
+    } catch (e: any) {
+      setFormErr(e?.response?.data ?? e?.message ?? "Lưu thông tin thất bại.");
+      setSaving(false);
+      return;
+    }
 
+    if (pendingFiles.length > 0 && roomTypeId) {
+      const existingCount = editTarget?.images.length ?? 0;
+      const failedUploads: number[] = [];
       for (let i = 0; i < pendingFiles.length; i++) {
         setUploadingIdx(i);
-        const existingCount =
-          modalMode === "edit" ? (editTarget?.images.length ?? 0) : 0;
-        await uploadFile(roomTypeId, pendingFiles[i], existingCount + i);
+        try {
+          await uploadFile(roomTypeId, pendingFiles[i], existingCount + i);
+        } catch {
+          failedUploads.push(i + 1);
+        }
       }
-
       setUploadingIdx(null);
-      setModalMode(null);
-      load(page);
-    } catch (e: any) {
-      setFormErr(e?.response?.data ?? e?.message ?? "Lưu thất bại.");
-      setUploadingIdx(null);
-    } finally {
-      setSaving(false);
+      if (failedUploads.length > 0) {
+        setFormErr(
+          `Loại phòng đã được cập nhật thành công. ` +
+          `Tuy nhiên ảnh số ${failedUploads.join(", ")} upload thất bại — ` +
+          `bạn có thể thêm ảnh lại qua nút "Ảnh" trong danh sách.`
+        );
+        setSaving(false);
+        load(page);
+        return;
+      }
     }
+
+    setSaving(false);
+    setModalMode(null);
+    load(page);
   };
 
   const handleDelete = async (id: number) => {
@@ -229,7 +248,7 @@ export default function RoomTypeManager() {
 
   return (
     <div className="rtm-wrap">
-      {}
+      { }
       <div className="rtm-header">
         <div className="rtm-header-left">
           <h2 className="rtm-title">Loại Phòng</h2>
@@ -258,7 +277,7 @@ export default function RoomTypeManager() {
         </div>
       </div>
 
-      {}
+      { }
       <div className="rtm-table-wrap">
         {loading ? (
           <div className="rtm-loading">
@@ -341,7 +360,6 @@ export default function RoomTypeManager() {
         )}
       </div>
 
-      {}
       {totalPages > 1 && (
         <div className="rtm-pagination">
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
@@ -356,7 +374,6 @@ export default function RoomTypeManager() {
         </div>
       )}
 
-      {}
       {modalMode && (
         <div className="rtm-overlay" onClick={() => setModalMode(null)}>
           <div className="rtm-modal" onClick={(e) => e.stopPropagation()}>
@@ -405,69 +422,68 @@ export default function RoomTypeManager() {
                 placeholder="Mô tả chi tiết..."
               />
 
-              {}
-              <label className="rtm-label">
-                Ảnh phòng {modalMode === "add" ? "(sẽ upload sau khi tạo)" : ""}
-              </label>
+              {modalMode === "edit" && (
+                <>
+                  <label className="rtm-label">Ảnh phòng</label>
 
-              {}
-              {pendingPreviews.length > 0 && (
-                <div className="rtm-pending-grid">
-                  {pendingPreviews.map((src, idx) => (
-                    <div key={idx} className="rtm-pending-item">
-                      <img
-                        src={src}
-                        alt={`preview-${idx}`}
-                        className="rtm-pending-img"
-                      />
-                      {idx === 0 && (
-                        <span className="rtm-cover-badge">
-                          <StarFilled /> Ảnh bìa
-                        </span>
-                      )}
-                      {uploadingIdx === idx && (
-                        <div className="rtm-pending-uploading">
-                          <LoadingOutlined />
+                  {pendingPreviews.length > 0 && (
+                    <div className="rtm-pending-grid">
+                      {pendingPreviews.map((src, idx) => (
+                        <div key={idx} className="rtm-pending-item">
+                          <img
+                            src={src}
+                            alt={`preview-${idx}`}
+                            className="rtm-pending-img"
+                          />
+                          {idx === 0 && (
+                            <span className="rtm-cover-badge">
+                              <StarFilled /> Ảnh bìa
+                            </span>
+                          )}
+                          {uploadingIdx === idx && (
+                            <div className="rtm-pending-uploading">
+                              <LoadingOutlined />
+                            </div>
+                          )}
+                          {uploadingIdx === null && (
+                            <button
+                              className="rtm-pending-remove"
+                              onClick={() => removePending(idx)}
+                            >
+                              <CloseOutlined />
+                            </button>
+                          )}
+                          {uploadingIdx !== null && uploadingIdx > idx && (
+                            <div className="rtm-pending-done">
+                              <CheckCircleOutlined />
+                            </div>
+                          )}
                         </div>
-                      )}
-                      {uploadingIdx === null && (
-                        <button
-                          className="rtm-pending-remove"
-                          onClick={() => removePending(idx)}
-                        >
-                          <CloseOutlined />
-                        </button>
-                      )}
-                      {uploadingIdx !== null && uploadingIdx > idx && (
-                        <div className="rtm-pending-done">
-                          <CheckCircleOutlined />
-                        </div>
-                      )}
+                      ))}
                     </div>
-                  ))}
-                </div>
-              )}
+                  )}
 
-              <div
-                className="rtm-upload-area"
-                onClick={() => addFileRef.current?.click()}
-              >
-                <UploadOutlined /> Chọn ảnh (jpg, png, webp — tối đa 10MB mỗi
-                ảnh)
-              </div>
-              <input
-                ref={addFileRef}
-                type="file"
-                accept="image/*"
-                multiple
-                className="rtm-d-none"
-                onChange={handleSelectFiles}
-              />
+                  <div
+                    className="rtm-upload-area"
+                    onClick={() => addFileRef.current?.click()}
+                  >
+                    <UploadOutlined /> Chọn ảnh (jpg, png, webp — tối đa 10MB mỗi ảnh)
+                  </div>
+                  <input
+                    ref={addFileRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    className="rtm-d-none"
+                    onChange={handleSelectFiles}
+                  />
 
-              {pendingFiles.length > 0 && (
-                <div className="rtm-pending-files-note">
-                  {pendingFiles.length} ảnh đã chọn — sẽ upload khi nhấn Lưu
-                </div>
+                  {pendingFiles.length > 0 && (
+                    <div className="rtm-pending-files-note">
+                      {pendingFiles.length} ảnh đã chọn — sẽ tự động upload sau khi lưu
+                    </div>
+                  )}
+                </>
               )}
 
               {formErr && <div className="rtm-err">{formErr}</div>}
@@ -505,7 +521,7 @@ export default function RoomTypeManager() {
         </div>
       )}
 
-      {}
+      { }
       {imgTarget && (
         <div className="rtm-overlay" onClick={() => setImgTarget(null)}>
           <div

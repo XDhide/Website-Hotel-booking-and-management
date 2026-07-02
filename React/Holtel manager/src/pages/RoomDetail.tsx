@@ -389,11 +389,7 @@ export default function RoomDetail({ roomTypeId }: Props) {
                           {[1, 2, 3, 4, 5].map((n) => (
                             <StarFilled
                               key={n}
-                              style={{
-                                fontSize: 12,
-                                color:
-                                  n <= (c.rating ?? 5) ? "#f59e0b" : "#e2e8f0",
-                              }}
+                              className={n <= (c.rating ?? 5) ? "rd-star-active" : "rd-star-inactive"}
                             />
                           ))}
                           <span className="rd-review-date">

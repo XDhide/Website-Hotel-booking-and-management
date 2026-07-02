@@ -55,10 +55,10 @@ function calcNights(from?: string, to?: string) {
 }
 
 const STATUS_CFG: Record<string, { label: string; color: string; bg: string; icon: React.ReactElement }> = {
-  Active:    { label: "Đang ở",         color: "#166534", bg: "rgba(34,197,94,0.12)",  icon: <CheckCircleOutlined /> },
-  Pending:   { label: "Chờ nhận phòng", color: "#b45309", bg: "rgba(245,158,11,0.12)", icon: <ClockCircleOutlined /> },
-  Booked:    { label: "Đã đặt",         color: "#1d4ed8", bg: "rgba(59,130,246,0.1)",  icon: <CalendarOutlined /> },
-  CheckedIn: { label: "Đang ở",         color: "#166534", bg: "rgba(34,197,94,0.12)",  icon: <CheckCircleOutlined /> },
+  Active: { label: "Đang ở", color: "#166534", bg: "rgba(34,197,94,0.12)", icon: <CheckCircleOutlined /> },
+  Pending: { label: "Chờ nhận phòng", color: "#b45309", bg: "rgba(245,158,11,0.12)", icon: <ClockCircleOutlined /> },
+  Booked: { label: "Đã đặt", color: "#1d4ed8", bg: "rgba(59,130,246,0.1)", icon: <CalendarOutlined /> },
+  CheckedIn: { label: "Đang ở", color: "#166534", bg: "rgba(34,197,94,0.12)", icon: <CheckCircleOutlined /> },
 }
 
 const getBookingStatus = (room: RoomEntry) => {
@@ -69,37 +69,37 @@ const getBookingStatus = (room: RoomEntry) => {
 }
 
 export default function CurrentBookings() {
-  const [rooms, setRooms]         = useState<RoomEntry[]>([])
-  const [loading, setLoading]     = useState(true)
-  const [search, setSearch]       = useState("")
-  const [filter, setFilter]       = useState<"all" | "active" | "pending">("all")
+  const [rooms, setRooms] = useState<RoomEntry[]>([])
+  const [loading, setLoading] = useState(true)
+  const [search, setSearch] = useState("")
+  const [filter, setFilter] = useState<"all" | "active" | "pending">("all")
   const [activeTab, setActiveTab] = useState<"rooms" | "lostitem">("rooms")
 
-  const [lostItems, setLostItems]     = useState<any[]>([])
+  const [lostItems, setLostItems] = useState<any[]>([])
   const [loadingLost, setLoadingLost] = useState(false)
 
-  const [expandedId, setExpandedId]   = useState<number | null>(null)
+  const [expandedId, setExpandedId] = useState<number | null>(null)
   const [invoiceData, setInvoiceData] = useState<Record<number, any>>({})
-  const [loadingInv, setLoadingInv]   = useState<number | null>(null)
+  const [loadingInv, setLoadingInv] = useState<number | null>(null)
 
-  const [svcRoomId, setSvcRoomId]   = useState<number | null>(null)
-  const [services, setServices]     = useState<Service[]>([])
-  const [selSvc, setSelSvc]         = useState<Service | null>(null)
-  const [qty, setQty]               = useState(1)
-  const [adding, setAdding]         = useState(false)
-  const [svcMsg, setSvcMsg]         = useState<Record<number, string>>({})
+  const [svcRoomId, setSvcRoomId] = useState<number | null>(null)
+  const [services, setServices] = useState<Service[]>([])
+  const [selSvc, setSelSvc] = useState<Service | null>(null)
+  const [qty, setQty] = useState(1)
+  const [adding, setAdding] = useState(false)
+  const [svcMsg, setSvcMsg] = useState<Record<number, string>>({})
 
   const [incidentRoomId, setIncidentRoomId] = useState<number | null>(null)
-  const [incidentTitle, setIncidentTitle]   = useState("")
-  const [incidentDesc, setIncidentDesc]     = useState("")
-  const [submittingInc, setSubmittingInc]   = useState(false)
-  const [incMsg, setIncMsg]                 = useState<Record<number, string>>({})
+  const [incidentTitle, setIncidentTitle] = useState("")
+  const [incidentDesc, setIncidentDesc] = useState("")
+  const [submittingInc, setSubmittingInc] = useState(false)
+  const [incMsg, setIncMsg] = useState<Record<number, string>>({})
 
   const loadRooms = useCallback(async () => {
     try {
       const data = await apiGetMyActiveRooms()
       setRooms(Array.isArray(data) ? data : [])
-    } catch {}
+    } catch { }
     finally { setLoading(false) }
   }, [])
 
@@ -122,7 +122,7 @@ export default function CurrentBookings() {
     if (activeTab === "lostitem") loadLostItems()
   }, [activeTab, loadLostItems])
 
-  const activeCount  = rooms.filter(r => r.roomStatus === "Active").length
+  const activeCount = rooms.filter(r => r.roomStatus === "Active").length
   const pendingCount = rooms.filter(r => r.roomStatus !== "Active").length
   const totalDeposit = rooms.reduce((s, r) => s + (r.deposit ?? 0), 0)
 
@@ -149,7 +149,7 @@ export default function CurrentBookings() {
     try {
       const data = await apiGetInvoiceWithDetails(room.invoiceId)
       setInvoiceData(prev => ({ ...prev, [room.id]: data }))
-    } catch {}
+    } catch { }
     finally { setLoadingInv(null) }
   }
 
@@ -186,14 +186,14 @@ export default function CurrentBookings() {
     setSubmittingInc(true)
     try {
       await apiReportLostItem({
-        roomId:      room.roomId ?? 0,
-        roomUseId:   room.roomUseId,
-        itemName:    incidentTitle.trim() || "Báo cáo sự cố",
+        roomId: room.roomId ?? 0,
+        roomUseId: room.roomUseId,
+        itemName: incidentTitle.trim() || "Báo cáo sự cố",
         description: incidentDesc,
-        status:      "Pending",
-        foundAt:     null,
+        status: "Pending",
+        foundAt: null,
       })
-      setIncMsg(prev => ({ ...prev, [room.id]: "✓ Báo cáo sự cố đã gửi thành công!" }))
+      setIncMsg(prev => ({ ...prev, [room.id]: "Báo cáo sự cố đã gửi thành công!" }))
       setIncidentRoomId(null)
       setIncidentTitle("")
       setIncidentDesc("")
@@ -211,7 +211,7 @@ export default function CurrentBookings() {
     setIncidentDesc("")
   }
 
-  const svcRoom      = rooms.find(r => r.id === svcRoomId)
+  const svcRoom = rooms.find(r => r.id === svcRoomId)
   const incidentRoom = rooms.find(r => r.id === incidentRoomId)
 
   return (
@@ -233,11 +233,11 @@ export default function CurrentBookings() {
         </div>
 
         <div className="container bh-body">
-          
+
           <div className="cb-tab-bar">
             {([
-              { key: "rooms",    label: "Phòng đang đặt", icon: <HomeOutlined /> },
-              { key: "lostitem", label: "Đồ thất lạc",    icon: <InboxOutlined /> },
+              { key: "rooms", label: "Phòng đang đặt", icon: <HomeOutlined /> },
+              { key: "lostitem", label: "Đồ thất lạc", icon: <InboxOutlined /> },
             ] as const).map(t => (
               <button
                 key={t.key}
@@ -249,7 +249,7 @@ export default function CurrentBookings() {
             ))}
           </div>
 
-          
+
           {activeTab === "lostitem" && (
             <div>
               <div className="cb-lostitem-header">
@@ -272,7 +272,7 @@ export default function CurrentBookings() {
                   {lostItems.map(item => (
                     <div key={item.lostItemId} className="bh-txn-card">
                       <div className="bh-txn-icon cb-bg-orange-light cb-text-orange cb-fs-22">
-                        📦
+
                       </div>
                       <div className="bh-txn-info">
                         <div className="bh-txn-title">
@@ -283,7 +283,7 @@ export default function CurrentBookings() {
                           {item.description && <span>{item.description}</span>}
                           {item.foundAt && (
                             <><span className="cb-text-gray-light">·</span>
-                            <span>Tìm thấy: {new Date(item.foundAt).toLocaleDateString("vi-VN")}</span></>
+                              <span>Tìm thấy: {new Date(item.foundAt).toLocaleDateString("vi-VN")}</span></>
                           )}
                           <span className="cb-text-gray-light">·</span>
                           <span>Báo cáo: {new Date(item.createdAt).toLocaleDateString("vi-VN")}</span>
@@ -301,15 +301,15 @@ export default function CurrentBookings() {
             </div>
           )}
 
-          
+
           {activeTab === "rooms" && (
             <>
               <div className="bh-stats">
                 {[
-                  { label: "Tổng phòng đặt",  value: rooms.length, color: "#3b82f6", isCount: true },
-                  { label: "Đang ở",           value: activeCount,  color: "#22c55e", isCount: true },
-                  { label: "Chờ nhận phòng",   value: pendingCount, color: "#f59e0b", isCount: true },
-                  { label: "Tổng tiền cọc",    value: totalDeposit, color: "#8b5cf6" },
+                  { label: "Tổng phòng đặt", value: rooms.length, color: "#3b82f6", isCount: true },
+                  { label: "Đang ở", value: activeCount, color: "#22c55e", isCount: true },
+                  { label: "Chờ nhận phòng", value: pendingCount, color: "#f59e0b", isCount: true },
+                  { label: "Tổng tiền cọc", value: totalDeposit, color: "#8b5cf6" },
                 ].map(s => (
                   <div key={s.label} className="bh-stat-card">
                     <div className="bh-stat-num" style={{ color: s.color }}>
@@ -323,8 +323,8 @@ export default function CurrentBookings() {
               <div className="bh-filters">
                 <div className="bh-filter-tabs">
                   {([
-                    { key: "all",     label: "Tất cả" },
-                    { key: "active",  label: "Đang ở" },
+                    { key: "all", label: "Tất cả" },
+                    { key: "active", label: "Đang ở" },
                     { key: "pending", label: "Chờ nhận" },
                   ] as const).map(t => (
                     <button
@@ -355,11 +355,11 @@ export default function CurrentBookings() {
               ) : (
                 <div className="bh-txn-list">
                   {filtered.map(room => {
-                    const stCfg    = getBookingStatus(room)
+                    const stCfg = getBookingStatus(room)
                     const isActive = room.roomStatus === "Active"
-                    const nights   = calcNights(room.fromDate, room.toDate)
-                    const inv      = invoiceData[room.id]
-                    const details  = inv?.invoiceDetails ?? []
+                    const nights = calcNights(room.fromDate, room.toDate)
+                    const inv = invoiceData[room.id]
+                    const details = inv?.invoiceDetails ?? []
                     const invTotal = details.reduce((s: number, d: any) => s + (d.totalPrice ?? 0), 0)
                     const isExpanded = expandedId === room.id
 
@@ -383,10 +383,10 @@ export default function CurrentBookings() {
                               {nights > 0 && <><span className="cb-text-gray-light">·</span><span>{nights} đêm</span></>}
                               {room.checkInActual && (
                                 <><span className="cb-text-gray-light">·</span>
-                                <span>
-                                  <CheckCircleOutlined className="cb-mr-4 cb-text-green" />
-                                  Check-in: {fmtDate(room.checkInActual)}
-                                </span></>
+                                  <span>
+                                    <CheckCircleOutlined className="cb-mr-4 cb-text-green" />
+                                    Check-in: {fmtDate(room.checkInActual)}
+                                  </span></>
                               )}
                             </div>
                             {svcMsg[room.id] && (
@@ -499,7 +499,7 @@ export default function CurrentBookings() {
         </div>
       </div>
 
-      
+
       {svcRoomId !== null && svcRoom && (
         <div className="cb-modal-overlay" onClick={() => setSvcRoomId(null)}>
           <div className="cb-modal" onClick={e => e.stopPropagation()}>
@@ -551,7 +551,7 @@ export default function CurrentBookings() {
         </div>
       )}
 
-      
+
       {incidentRoomId !== null && incidentRoom && (
         <div className="cb-modal-overlay" onClick={() => setIncidentRoomId(null)}>
           <div className="cb-modal-sm" onClick={e => e.stopPropagation()}>

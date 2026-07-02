@@ -536,3 +536,13 @@
 .bw-icon-margin {
   margin-right: 6px;
 }
+
+.ha-flex-gap-8 {
+  display: flex;
+  gap: 8px;
+}
+
+.ha-muted-sm {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.8rem;
+}

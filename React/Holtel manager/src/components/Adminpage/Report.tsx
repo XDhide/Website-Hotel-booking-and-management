@@ -105,9 +105,9 @@ export default function Report() {
 
   const maxRevenue = revenueReport
     ? Math.max(
-        ...(revenueReport.dailyRevenues ?? []).map((d: any) => d.revenue),
-        1,
-      )
+      ...(revenueReport.dailyRevenues ?? []).map((d: any) => d.revenue),
+      1,
+    )
     : 1;
 
   return (
@@ -231,7 +231,7 @@ export default function Report() {
         ) : null}
       </div>
 
-      {}
+      { }
       <div className="report-chart-card">
         <div className="chart-header">
           <div className="chart-title">
@@ -329,7 +329,7 @@ export default function Report() {
         ) : null}
       </div>
 
-      {}
+      { }
       {tab === "revenue" &&
         revenueReport &&
         (revenueReport.dailyRevenues ?? []).length > 0 && (

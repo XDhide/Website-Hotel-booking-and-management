@@ -1,0 +1,28 @@
+.access-denied-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0f1117;
+  color: #fff;
+  gap: 16px;
+}
+
+.access-denied-subtitle {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.access-denied-button {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.access-denied-button:hover {
+  background: #2563eb;
+}

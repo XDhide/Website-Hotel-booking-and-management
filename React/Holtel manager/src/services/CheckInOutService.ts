@@ -39,9 +39,19 @@ export const apiExtendStay = async (data: { roomInUseId: number; newCheckOutDate
     }
 };
 
+export const apiCheckInByBooking = async (bookingId: number): Promise<any> => {
+    try {
+        const res = await apiClient.post(`${prefix}/checkin`, { bookingId });
+        return res?.data;
+    } catch (err: any) {
+        throw new Error(err?.response?.data || "Check-in thất bại");
+    }
+};
+
 export const CheckInOutService = {
-    checkIn:     apiCheckIn,
-    checkOut:    apiCheckOut,
-    transferRoom: apiTransferRoom,
-    extend:      apiExtendStay,
+    checkIn:          apiCheckIn,
+    checkInByBooking: apiCheckInByBooking,
+    checkOut:         apiCheckOut,
+    transferRoom:     apiTransferRoom,
+    extend:           apiExtendStay,
 };

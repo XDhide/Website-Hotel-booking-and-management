@@ -11,23 +11,23 @@ interface BannerSlide {
 }
 
 const FALLBACK: BannerSlide[] = [
-  { imageUrl: '', name: 'Chào mừng đến LuxStay',  description: 'Trải nghiệm lưu trú đẳng cấp 5 sao' },
-  { imageUrl: '', name: 'Phòng View Biển',          description: 'Tận hưởng bình minh trên sóng nước' },
-  { imageUrl: '', name: 'Không gian thư giãn',      description: 'Gói nghỉ dưỡng cao cấp đẳng cấp'   },
+  { imageUrl: '', name: 'Chào mừng đến LuxStay', description: 'Trải nghiệm lưu trú đẳng cấp 5 sao' },
+  { imageUrl: '', name: 'Phòng View Biển', description: 'Tận hưởng bình minh trên sóng nước' },
+  { imageUrl: '', name: 'Không gian thư giãn', description: 'Gói nghỉ dưỡng cao cấp đẳng cấp' },
 ]
 
 function resolveUrl(url: string): string {
   if (!url) return ''
   if (url.startsWith('http')) return url
-  
+
   const base = (API as string).replace('/api', '')
   return `${base}${url.startsWith('/') ? '' : '/'}${url}`
 }
 
 export default function Banner() {
-  const [slides, setSlides]   = useState<BannerSlide[]>(FALLBACK)
+  const [slides, setSlides] = useState<BannerSlide[]>(FALLBACK)
   const [current, setCurrent] = useState(0)
-  const [loaded, setLoaded]   = useState(false)
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     apiSearchRoomType(1, 20).then(res => {
@@ -37,17 +37,17 @@ export default function Banner() {
         .map(rt => {
           const cover = rt.images.find((img: any) => img.displayOrder === 0) ?? rt.images[0]
           return {
-            imageUrl:    resolveUrl(cover.imageUrl),
-            name:        rt.name,
+            imageUrl: resolveUrl(cover.imageUrl),
+            name: rt.name,
             description: rt.description || `Sức chứa: ${rt.capacity || '—'}`,
           }
         })
       if (built.length > 0) setSlides(built)
-    }).catch(() => {})
+    }).catch(() => { })
   }, [])
 
   useEffect(() => {
-    const id = setInterval(() => setCurrent(p => (p + 1) % slides.length), 4000)
+    const id = setInterval(() => setCurrent(p => (p + 1) % slides.length), 15000)
     return () => clearInterval(id)
   }, [slides.length])
 
@@ -59,7 +59,7 @@ export default function Banner() {
 
   return (
     <div className="banner-wrap">
-      
+
       {slide.imageUrl ? (
         <img
           key={slide.imageUrl}
@@ -72,10 +72,10 @@ export default function Banner() {
         <div className="banner-bg-fallback" />
       )}
 
-      
+
       <div className="banner-overlay" />
 
-      
+
       <div className="banner-content">
         <div className="banner-title">{slide.name}</div>
         <div className="banner-sub">{slide.description}</div>

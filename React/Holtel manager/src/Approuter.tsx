@@ -24,34 +24,16 @@ function AccessDenied({
   onHome: () => void;
 }) {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#0f1117",
-        color: "#fff",
-        gap: 16,
-      }}
-    >
-      <div style={{ fontSize: "3rem" }}>🔒</div>
-      <h2>{message}</h2>
-      <p style={{ color: "rgba(255,255,255,0.5)" }}>
+    <div className="access-denied-container">
+      <h2 className="access-denied-title">{message}</h2>
+
+      <p className="access-denied-subtitle">
         Tài khoản của bạn không có quyền truy cập trang này.
       </p>
+
       <button
         onClick={onHome}
-        style={{
-          background: "#3b82f6",
-          color: "#fff",
-          border: "none",
-          borderRadius: 8,
-          padding: "10px 24px",
-          cursor: "pointer",
-          fontSize: "0.95rem",
-        }}
+        className="access-denied-button"
       >
         Về trang chủ
       </button>

@@ -166,12 +166,7 @@ export default function BookingTable({
                       </button>
                     )}
                     {bk.status === "CheckedIn" && (
-                      <span
-                        className="booking-date-td"
-                        style={{ fontSize: "0.8rem" }}
-                      >
-                        Đang ở
-                      </span>
+                      <span className="ha-muted-sm">Đang ở</span>
                     )}
                   </td>
                 </tr>

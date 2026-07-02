@@ -69,12 +69,12 @@ const fmt = (v: number) =>
 const fmtDate = (s?: string) =>
   s
     ? new Date(s).toLocaleString("vi-VN", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      })
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })
     : "—";
 
 export default function Payment() {
@@ -135,7 +135,7 @@ export default function Payment() {
       try {
         const res = await apiGetInvoiceWithDetails(detail.invoiceId);
         setDetail(res);
-      } catch {}
+      } catch { }
     }, 15000);
     return () => clearInterval(timer);
   }, [detail?.invoiceId]);
@@ -298,7 +298,7 @@ export default function Payment() {
 
   return (
     <div className="payment-wrapper">
-      {}
+      { }
       <div className="pmt-stats-row">
         <div className="pmt-stat-card blue">
           <div className="pmt-stat-icon">
@@ -329,7 +329,6 @@ export default function Payment() {
         </div>
       </div>
 
-      {}
       <div className="pmt-toolbar">
         <div className="pmt-tabs">
           {(["all", "unpaid", "paid"] as const).map((t) => (
@@ -355,7 +354,6 @@ export default function Payment() {
         </button>
       </div>
 
-      {}
       <div className="pmt-table-card">
         <table className="pmt-table">
           <thead>
@@ -453,7 +451,6 @@ export default function Payment() {
         </table>
       </div>
 
-      {}
       {totalPages > 1 && (
         <div className="pmt-pagination">
           <span className="pmt-page-info">
@@ -486,7 +483,6 @@ export default function Payment() {
         </div>
       )}
 
-      {}
       {detail && (
         <div className="pmt-modal-overlay" onClick={() => setDetail(null)}>
           <div className="pmt-modal" onClick={(e) => e.stopPropagation()}>
@@ -539,7 +535,7 @@ export default function Payment() {
               </div>
             ) : (
               <div className="pmt-modal-body">
-                {}
+                { }
                 <div className="pmt-detail-section">
                   <div className="pmt-detail-section-title">
                     Chi tiết hóa đơn
@@ -588,7 +584,7 @@ export default function Payment() {
                   )}
                 </div>
 
-                {}
+                { }
                 <div className="pmt-summary-box">
                   {[
                     ["Tạm tính", fmt(detailSubTotal)],
@@ -628,8 +624,8 @@ export default function Payment() {
                       }
                     >
                       {(detail.paymentStatus ?? "").toLowerCase() === "paid"
-                        ? `✅ Đã thanh toán${detail.paidAt ? ` — ${fmtDate(detail.paidAt)}` : ""}`
-                        : "⏳ Chưa thanh toán"}
+                        ? `Đã thanh toán${detail.paidAt ? ` — ${fmtDate(detail.paidAt)}` : ""}`
+                        : "Chưa thanh toán"}
                     </span>
                   </div>
                 </div>
@@ -639,7 +635,7 @@ export default function Payment() {
         </div>
       )}
 
-      {}
+      { }
       {showAddSvc && detail && (
         <div className="pmt-modal-overlay" onClick={() => setShowAddSvc(false)}>
           <div
@@ -728,7 +724,7 @@ export default function Payment() {
             </div>
             <div className="pmt-modal-body">
               <div className="pmt-confirm-info-box">
-                <div className="pmt-confirm-title">📋 Thông tin dịch vụ</div>
+                <div className="pmt-confirm-title"> Thông tin dịch vụ</div>
                 {[
                   ["Dịch vụ", selSvc.name],
                   ["Loại", selSvc.serviceType],
@@ -744,7 +740,7 @@ export default function Payment() {
                 ))}
               </div>
               <div className="pmt-confirm-warning">
-                🔔 Hệ thống sẽ tự động ghi thông báo vào bảng{" "}
+                Hệ thống sẽ tự động ghi thông báo vào bảng{" "}
                 <strong>ServiceNotifications</strong> để lưu lịch sử yêu cầu
                 dịch vụ, sau đó thêm vào hóa đơn chi tiết.
               </div>
@@ -776,7 +772,7 @@ export default function Payment() {
         </div>
       )}
 
-      {}
+      { }
       {showPayModal && detail && (
         <div
           className="pmt-modal-overlay"
@@ -838,7 +834,7 @@ export default function Payment() {
                   <div className="pmt-voucher-success">
                     ✓ {voucherInfo.name} — Giảm{" "}
                     {voucherInfo.discountType === "Percent" ||
-                    voucherInfo.discountType === "Percentage"
+                      voucherInfo.discountType === "Percentage"
                       ? `${voucherInfo.discountValue}%`
                       : fmt(voucherInfo.discountValue)}{" "}
                     → -{fmt(payDiscount)}
